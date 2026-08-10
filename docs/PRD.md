@@ -1,75 +1,145 @@
 # Product Requirements Document
 
-## Objective
+## Rescue Heatmap — missing-person reporting and heatmaps for SAR operations
 
-Help authorized search-and-rescue coordinators identify geographic concentrations of missing-person reports after an earthquake while protecting affected people from misuse.
+**Version:** 1.1 draft
+**Last updated:** August 2026
+**Origin:** volunteer response to the Venezuela earthquakes, June 2026
 
-## Users
+---
 
-- Civilians submitting reports
-- Command-center data monitors and SAR coordinators
-- Field teams working with intermittent connectivity
-- Incident administrators and safeguarding personnel
+## 1. Objective
 
-## Product requirements
+Help authorized search-and-rescue coordinators identify geographic concentrations of missing-person reports after an earthquake, while protecting affected people from misuse of their data.
 
-### Civilian reporting form
+## 2. Background
 
-- Reporter contact and consent
-- Missing person's name and approximate age
-- Last-known location on a map, plus timestamp and free-text context
-- Optional photo upload
-- Language selection and accessibility support
-- Duplicate detection, abuse controls, and a reference number
+During the June 2026 Venezuela earthquakes there was no centralized system for tracking missing persons. Civilians self-organized through social media and improvised platforms, producing large but fragmented and heavily duplicated datasets (see [lessons learned](lessons-learned/2026-06-venezuela.md)). SAR teams lacked structured, geolocated information to prioritize search zones.
 
-### Command dashboard
+A volunteer group created a reporting form. Discussion with INSARAG about future use has been reported within the group but **is not independently verified and is not claimed as an endorsement.**
 
-- Role-based access and audit logs
-- Map and heatmap views with time and confidence filters
+## 3. Users
+
+### 3.1 Civilians submitting reports
+- Family members, neighbors, witnesses
+- Limited connectivity, low-end phones, low battery
+- Under acute stress — UX must be simple and forgiving
+- Multilingual (priority: Spanish, English)
+
+### 3.2 Command-center monitors and SAR coordinators
+- INSARAG-certified teams, national agencies (e.g., UNGRD in Colombia)
+- Need aggregated, deduplicated data with geospatial visualization and audit trails
+
+### 3.3 Field teams
+- Intermittent or zero connectivity
+- Need offline maps, assigned sectors, and status updates that sync later
+
+### 3.4 Incident administrators and safeguarding personnel
+- Own the lawful basis, retention, moderation, and deletion decisions
+
+## 4. Product requirements
+
+### 4.1 Civilian reporting form (MVP)
+
+**Fields**
+- Missing person: full name, approximate age, gender, optional photo
+- Last-known location: map pin, address, or landmark description + floor/apartment where relevant
+- Time of last contact
+- Free-text context
+- Reporter: name, phone/WhatsApp, relationship to the missing person
+- Status: missing / found / confirmed deceased
+- Consent notice and language selection
+
+**Requirements**
+- Works offline (PWA with service worker + local queue) — see [offline-first options](offline-first-options.md)
+- Mobile-first, low-bandwidth, accessible (WCAG 2.1 AA)
+- Multilingual (Spanish/English minimum, extensible)
+- No login required to submit
+- **Duplicate detection at intake** (fuzzy name + proximity + phone), not bolted on later
+- Abuse controls and a reference number returned to the reporter
+
+### 4.2 Command dashboard
+
+- Role-based access control and audit logs
+- Map and heatmap views with time, status, and confidence filters
 - Cluster analysis that preserves access to the underlying verified reports
-- Verification and deduplication workflow
-- KML and GeoJSON export for authorized operations
+- Verification and deduplication (entity-resolution) workflow with human review
+- KML / GeoJSON / CSV export for authorized operations
 - Retention, correction, and deletion controls
+- Status-lifecycle management: prompts to update stale "still missing" records
 
-### Offline field app
+### 4.3 Offline field app
 
 - Installable PWA with cached incident map and assigned records
-- Offline notes, status changes, and conflict-aware synchronization
-- Minimal-data views appropriate to the team's assignment
+- Offline notes, status changes, conflict-aware synchronization
+- Minimal-data views appropriate to each team's assignment
 - Device revocation and encrypted local storage
 
-## Non-functional requirements
+## 5. Non-functional requirements
 
 - Operate on low bandwidth and degraded networks
-- Multilingual, accessible, observable, and auditable
+- Multilingual, accessible, observable, auditable
 - Encrypt data in transit and at rest
 - Separate public submission from operational access
-- Minimize collection and define incident-specific retention
-- Export standard GIS formats and support INSARAG-aligned coordination workflows
+- Minimize collection; define incident-specific retention (default: 90 days post-event, then anonymize)
+- Export standard GIS formats; support INSARAG-aligned coordination workflows
+- GDPR-compatible consent; reporter-initiated deletion requests
 
-## Proposed technology
+## 6. Proposed technology
 
-- Next.js PWA
-- PostgreSQL with PostGIS
-- Nominatim-compatible geocoding, with usage-policy-compliant hosting
-- Vercel for rapid initial deployment, with a portable deployment path
+- **Frontend:** Next.js PWA; Leaflet or MapLibre GL with offline tile support; Service Worker + IndexedDB
+- **Backend:** serverless functions; PostgreSQL with PostGIS
+- **Geocoding:** Nominatim-compatible, hosted in compliance with usage policy
+- **Deduplication:** fuzzy name matching + proximity clustering + phone/identity signals
+- **Hosting:** Vercel for rapid initial deployment, with a portable deployment path
 
-## Roadmap
+## 7. Deployment model
 
-1. **MVP:** secure reporting form, moderation queue, map, basic clustering, exports.
-2. **Operational pilot:** offline field workflow, multilingual templates, drills, security review.
-3. **Ecosystem readiness:** interoperability testing, deployment automation, governance, partner validation.
+The system is a **template**, not a permanently running service:
 
-## Success criteria
+1. Earthquake detected → team activates
+2. Clone repo → update `config.json` (event name, region, languages, map bounds)
+3. Deploy
+4. Distribute the URL per the distribution playbook
+5. Monitor the dashboard
+6. After the event: export, archive, deactivate, delete per retention policy
+
+**Target activation time: under 2 hours from decision to live form.**
+
+## 8. Success criteria
 
 - Verified form online within two hours of activation
 - Reports visible to authorized monitors within one minute under normal connectivity
 - Field workflow remains usable offline for 24 hours
+- Share of reports with usable geolocation
+- Duplicate rate after entity resolution (baseline to beat: ~24% observed across Venezuela platforms — see lessons learned)
 - Every read, export, edit, and deletion is auditable
 - Quarterly drill meets the checklist and produces documented follow-up actions
 
-## Out of scope for the MVP
+## 9. Roadmap
+
+### Phase 1 — MVP
+- [ ] Public reporting form with offline capture and queued sync
+- [ ] Moderation queue and intake deduplication
+- [ ] Basic map view + clustering
+- [ ] CSV/KML export
+- [ ] Spanish + English
+
+### Phase 2 — Operational pilot
+- [ ] Heatmap and triage workflow
+- [ ] Offline field app with cached maps
+- [ ] Partner-reviewed translations, safeguarding procedures
+- [ ] Drills and security review
+
+### Phase 3 — Ecosystem readiness
+- [ ] Interoperability testing with SAR coordination systems
+- [ ] Deployment automation and multi-incident support
+- [ ] AI-assisted duplicate detection
+- [ ] SMS/USSD reporting for non-smartphone users
+- [ ] Governance and partner validation
+
+## 10. Out of scope for the MVP
 
 - Automated victim identification
 - Public access to individual reports or precise heatmap points
-- Claims of official endorsement without written verification
+- Any claim of official endorsement without written verification
