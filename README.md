@@ -65,6 +65,7 @@ See the [deployment playbook](docs/deployment-playbook.md) and [PRD](docs/PRD.md
 
 - [Product requirements (PRD)](docs/PRD.md)
 - [Offline-first intake — design options](docs/offline-first-options.md) — how to collect reports without connectivity
+- [Structure intel — room-level victim localisation](docs/structure-intel.md) — from "which building" to "where to breach"
 - [Deployment playbook](docs/deployment-playbook.md) — who, when, how to activate
 - [Distribution playbook](docs/distribution-playbook.md) — channels, audiences, timing, templates
 - [Quarterly drill checklist](ops/drill-checklist.md)
