@@ -48,6 +48,13 @@ export interface Report {
   reporter_relation?: "family" | "neighbour" | "friend" | "colleague" | "witness" | "other";
   reporter_lang?: string;
 
+  // consent — deliberately GRANULAR (ADR-001).
+  // Listing and photo are two separate decisions: agreeing to be searchable by
+  // name is not agreeing to have your face on a public page.
+  consent_public_listing?: boolean; // name, approx age, area, status in public search
+  consent_photo_public?: boolean;   // photo shown publicly — opt-IN, never default on
+  consent_recorded_at?: string | null;
+
   // lifecycle
   status: Status;
   status_source: StatusSource;

@@ -60,6 +60,11 @@ export default function Reportar() {
       reporter_count: 1,
       full_name: draft.full_name!.trim(),
       ...draft,
+      // Consent is resolved AFTER the draft spread so the rules always win:
+      // listing = opt-out (on unless withdrawn), photo = opt-in (off unless explicitly granted).
+      consent_public_listing: draft.consent_public_listing !== false,
+      consent_photo_public: Boolean(draft.photo_data_url) && draft.consent_photo_public === true,
+      consent_recorded_at: now,
       ...extra,
     } as Report;
     addReport(report);
@@ -213,6 +218,7 @@ async function compressImage(file: File, maxSide = 800, quality = 0.7): Promise<
 function PhotoField({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
+  const isMinor = typeof draft.age_approx === "number" && draft.age_approx < 18;
 
   const onFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -228,6 +234,9 @@ function PhotoField({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
       setBusy(false);
     }
   };
+
+  const removePhoto = () => set({ photo_data_url: null, consent_photo_public: false });
+
 
   return (
     <div className="field">
@@ -249,7 +258,7 @@ function PhotoField({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
               Cambiar foto
               <input type="file" accept="image/*" onChange={onFile} style={{ display: "none" }} />
             </label>
-            <button className="btn ghost" onClick={() => set({ photo_data_url: null })}>
+            <button className="btn ghost" onClick={removePhoto}>
               Quitar foto
             </button>
           </div>
@@ -261,9 +270,34 @@ function PhotoField({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
         </label>
       )}
       {err && <span className="small" style={{ color: "var(--danger, #c1121f)" }}>{err}</span>}
-      <span className="small muted" style={{ marginTop: 6 }}>
-        Si no quieres que la foto se muestre en la búsqueda pública, puedes enviar el reporte sin ella.
-      </span>
+
+      {/* SEPARATE consent. Attaching a photo is not the same decision as publishing it.
+          Opt-IN: unchecked by default. The photo still reaches the rescue teams either way. */}
+      {draft.photo_data_url && (
+        <div className="card" style={{ marginTop: 12, padding: 12 }}>
+          <label className="row" style={{ alignItems: "flex-start", gap: 10, cursor: "pointer" }}>
+            <input
+              type="checkbox"
+              checked={Boolean(draft.consent_photo_public)}
+              onChange={(e) => set({ consent_photo_public: e.target.checked })}
+              style={{ marginTop: 3 }}
+            />
+            <span>
+              <strong>Autorizo que la foto se muestre en la búsqueda pública.</strong>
+              <span className="small muted" style={{ display: "block", marginTop: 4 }}>
+                Ayuda a que alguien la reconozca en la calle o en un albergue. Si no marcas esta casilla,
+                la foto se envía igual a los equipos de rescate, pero no aparece en la página pública.
+              </span>
+            </span>
+          </label>
+          {isMinor && (
+            <p className="small muted" style={{ marginTop: 10, marginBottom: 0 }}>
+              Es menor de edad: aunque autorices la publicación, el rostro se difumina automáticamente en
+              la vista pública.
+            </p>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -381,6 +415,30 @@ function StepReporter({ draft, set }: { draft: Draft; set: (p: Draft) => void })
             <button key={v} className={`chip ${draft.reporter_relation === v ? "on" : ""}`} onClick={() => set({ reporter_relation: v })}>{l}</button>
           ))}
         </div>
+      </div>
+
+      {/* Consent #1: public listing. Opt-OUT (default on) — it is the engine of adoption,
+          but withdrawing it must cost one tap. Withheld reports still feed the heat map. */}
+      <div className="card" style={{ marginTop: 8, padding: 12 }}>
+        <label className="row" style={{ alignItems: "flex-start", gap: 10, cursor: "pointer" }}>
+          <input
+            type="checkbox"
+            checked={draft.consent_public_listing !== false}
+            onChange={(e) => set({ consent_public_listing: e.target.checked })}
+            style={{ marginTop: 3 }}
+          />
+          <span>
+            <strong>Autorizo que aparezca en la búsqueda pública.</strong>
+            <span className="small muted" style={{ display: "block", marginTop: 4 }}>
+              Se muestra solo el nombre, la edad aproximada, el barrio y el estado. Nunca tu teléfono, ni
+              el piso o apartamento, ni la ubicación exacta. Si no marcas esta casilla, el reporte llega
+              igual a los equipos de rescate, pero no aparece en la página pública.
+            </span>
+          </span>
+        </label>
+        <p className="small muted" style={{ marginTop: 10, marginBottom: 0 }}>
+          Puedes revertir esta decisión en cualquier momento con tu número de referencia.
+        </p>
       </div>
     </div>
   );

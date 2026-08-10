@@ -44,6 +44,9 @@ Progressive: each step is a separate screen on mobile, all steps on one page on 
 | `photo` | image | | Compressed client-side to ≤200 KB. **Auto-blur faces of minors** (Venezuela Reporta did this — copy it) |
 | `distinguishing_info` | text | | Clothing, height, medical condition, disability, language spoken. Free text |
 | `national_id_last4` | text | | Optional, high-value dedup signal. Never the full ID |
+| `consent_public_listing` | bool | | **Opt-out** (default on). Name / approx age / area / status in public search. Withheld reports still feed the heat map and still reach SAR |
+| `consent_photo_public` | bool | | **Opt-in** (default off). Separate decision from the listing — agreeing to be searchable by name is not agreeing to have your face on a public page. Only meaningful when a photo exists |
+| `consent_recorded_at` | datetime | auto | When the two flags above were captured |
 
 ### 3.2 Last known location — the field that makes the product work
 
@@ -126,7 +129,12 @@ Never silently reject. Never silently merge. Below the threshold but above the n
 ## 6. Privacy and safeguarding
 
 - Consent notice in plain language before step 1, not a checkbox wall
-- Minor photos auto-blurred; full national ID never collected
+- **Two separate consents, never one bundled checkbox:**
+  - *Public listing* — opt-out, default on. It is the engine of adoption, but withdrawing it must cost exactly one tap
+  - *Photo publication* — opt-in, default off. A face on a public page is a different exposure from a name in a list
+  - Removing the photo automatically clears its consent flag
+  - Both are reversible at any time using the reference number
+- Minor photos auto-blurred **even when photo consent was granted**; full national ID never collected
 - Public view shows **name, photo, city, approximate area only** — never floor/apartment, never the reporter's phone, never a precise pin
 - Precise coordinates and reporter contact are visible to authorised coordinators only, with an audit log
 - Reporter can withdraw a report using their reference number

@@ -21,6 +21,9 @@ export default function Buscar() {
   const list = useMemo(() => {
     const nq = normName(q);
     return reports.filter((r) => {
+      // Consent gate: a report whose listing consent was withdrawn never appears here.
+      // It still counts in the heat map and still reaches the rescue teams.
+      if (r.consent_public_listing === false) return false;
       if (only === "missing" && !["missing", "trapped_alive"].includes(r.status)) return false;
       if (only === "found" && !r.status.startsWith("found")) return false;
       if (!nq) return true;
@@ -42,8 +45,9 @@ export default function Buscar() {
     <div className="wrap">
       <h1 style={{ fontSize: 24, marginBottom: 4 }}>Buscar personas reportadas</h1>
       <p className="small muted">
-        Vista pública. No se muestran teléfonos, pisos ni ubicaciones exactas. Las fotos de menores se
-        difuminan automáticamente.
+        Vista pública. No se muestran teléfonos, pisos ni ubicaciones exactas. Solo aparecen las personas
+        cuyo reporte autorizó la publicación, y las fotos solo si se autorizó por separado. Las fotos de
+        menores se difuminan automáticamente.
       </p>
 
       <div className="row" style={{ margin: "18px 0" }}>
@@ -61,6 +65,7 @@ export default function Buscar() {
         {list.slice(0, 60).map((r) => (
           <div className="card" key={r.uuid}>
             <div className="row" style={{ alignItems: "flex-start" }}>
+              <PublicPhoto report={r} />
               <div>
                 <h3 style={{ marginBottom: 4 }}>{r.full_name}</h3>
                 <p className="small">
@@ -84,6 +89,33 @@ export default function Buscar() {
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+// A photo is shown publicly only with its OWN consent flag. Minors are blurred even then.
+function PublicPhoto({ report }: { report: Report }) {
+  const minor = report.is_minor || (typeof report.age_approx === "number" && report.age_approx < 18);
+  if (!report.photo_data_url || report.consent_photo_public !== true) return null;
+  return (
+    <div style={{ position: "relative", marginRight: 10 }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={report.photo_data_url}
+        alt={report.full_name}
+        style={{
+          width: 56,
+          height: 56,
+          objectFit: "cover",
+          borderRadius: 10,
+          filter: minor ? "blur(7px)" : undefined,
+        }}
+      />
+      {minor && (
+        <span className="small muted" style={{ display: "block", marginTop: 4, maxWidth: 56, lineHeight: 1.1 }}>
+          menor
+        </span>
+      )}
     </div>
   );
 }
