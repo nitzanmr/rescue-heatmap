@@ -172,6 +172,33 @@ DESAPARECIDO Maria Gomez 34 / Torre H apt 12 Caribe / visto 06:00
 
 ---
 
+## 6b. Option 6 — Rescue Node: local Wi-Fi + captive portal *(fully offline capture **and** delivery)*
+
+**How it works:** a Raspberry Pi, travel router, laptop or dedicated Android phone broadcasts its own Wi-Fi at a relief point and serves the form itself via a captive portal. No internet is involved at capture time; the node store-and-forwards queued reports when it later gets connectivity.
+
+| | |
+|---|---|
+| **Effort** | ~1–2 weeks (node app + sync protocol); phone variant faster |
+| **Cost** | Low — Pi/travel router + power bank per site |
+| **Reach** | Everyone physically at the relief point, *including people who never loaded our app* |
+| **Photos / GPS** | Yes / partial (device GPS works offline; no map tiles unless cached) |
+
+**Pros**
+- ❗ Solves the fatal flaw of Option 1: **no prior load required**
+- Relief points are exactly where families of the missing gather
+- Reports encrypted at rest on the node, with an immediate receipt number
+- UUID + incident ID + sync state prevent retry duplicates
+
+**Cons**
+- Requires hardware and a person on site
+- iOS cannot host a node; captive-portal behaviour is inconsistent across devices
+- A single QR cannot both join Wi-Fi and open the form — needs two QRs
+- If the node is lost/destroyed before sync, unsynced reports are lost
+
+**Verdict:** Strongest candidate to be the **core architecture** for true no-network conditions. Full design: [rescue-node.md](rescue-node.md).
+
+---
+
 ## 7. Comparison and recommendation
 
 | Option | Effort | Reach | No-network? | Photo/GPS | Pre-event work needed |
@@ -181,6 +208,7 @@ DESAPARECIDO Maria Gomez 34 / Torre H apt 12 Caribe / visto 06:00
 | 3. WhatsApp bot | Medium | Very high | Partial | ✅ | Medium (verification) |
 | 4. Paper + QR | **Lowest** | Universal | ✅ Yes | Partial | Low (print + translate) |
 | 5. Field collector app | **Lowest** (off-shelf) | Low–medium | ✅ Yes | ✅ | Low |
+| 6. **Rescue Node** | Medium | Site-local | ✅ **Yes, incl. first-time users** | ✅ | Medium (hardware kit) |
 
 **Recommended Phase 1 combination — "two channels, one pipeline":**
 
@@ -188,7 +216,8 @@ DESAPARECIDO Maria Gomez 34 / Torre H apt 12 Caribe / visto 06:00
 2. **WhatsApp bot** (option 3) as the true reach channel for Latin America — it is where the audience already is, and it solves distribution and intake at once.
 3. **Paper form PDFs** (option 4) prepared now, at near-zero cost, as the no-power fallback.
 4. **SMS short codes** (option 2) as pre-event homework for priority countries — cannot be improvised during an event.
-5. **KoBoToolbox/ODK** (option 5) as the *immediate* stopgap if a delegation deploys before our MVP is ready.
+5. **Rescue Node** (option 6) as the architecture for genuine no-network conditions — see [rescue-node.md](rescue-node.md).
+6. **KoBoToolbox/ODK** (option 5) as the *immediate* stopgap if a delegation deploys before our MVP is ready.
 
 All channels must write into **one normalized report schema with deduplication at intake** — the single most important lesson from Venezuela, where ~24% of records across platforms were duplicates *(reported figure, unverified)*.
 
