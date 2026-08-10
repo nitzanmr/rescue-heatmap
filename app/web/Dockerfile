@@ -4,15 +4,13 @@
 # Run:    docker run --rm -p 3000:3000 rescue-heatmap:latest
 
 ########## 1. deps ##########
-FROM node:22-alpine AS deps
+FROM node:20-alpine AS deps
 WORKDIR /app
-# libc6-compat: needed by some native deps on Alpine
-RUN apk add --no-cache libc6-compat
 COPY package.json package-lock.json* ./
 RUN npm ci
 
 ########## 2. build ##########
-FROM node:22-alpine AS builder
+FROM node:20-alpine AS builder
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 COPY --from=deps /app/node_modules ./node_modules
@@ -20,7 +18,7 @@ COPY . .
 RUN npm run build
 
 ########## 3. runtime ##########
-FROM node:22-alpine AS runner
+FROM node:20-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production \
     NEXT_TELEMETRY_DISABLED=1 \
