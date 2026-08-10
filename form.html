@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reportar persona desaparecida — Maqueta para revisión</title>
+<style>
+  :root{
+    --bg:#f4f5f7; --card:#fff; --ink:#16191d; --muted:#6b7280;
+    --line:#e3e6ea; --accent:#c1121f; --accent-dark:#8d0d17;
+    --ok:#0b7a3b; --warn:#a16207; --warnbg:#fef6e0;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+  .wrap{max-width:620px;margin:0 auto;padding:16px 14px 60px}
+  header.top{background:var(--accent);color:#fff;padding:16px 14px;position:sticky;top:0;z-index:5}
+  header.top h1{margin:0;font-size:19px}
+  header.top p{margin:4px 0 0;font-size:13px;opacity:.9}
+  .banner{background:#fff3cd;border:1px solid #f0d68a;color:#7a5b00;
+          padding:10px 12px;border-radius:8px;font-size:13px;margin:14px 0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+        padding:16px;margin-bottom:14px}
+  .card h2{margin:0 0 2px;font-size:16px}
+  .card h2 .n{display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;
+    background:var(--accent);color:#fff;border-radius:50%;font-size:13px;margin-inline-end:8px}
+  .card .sub{margin:0 0 14px 32px;color:var(--muted);font-size:13px}
+  label{display:block;font-weight:600;font-size:14px;margin:12px 0 5px}
+  label .req{color:var(--accent)}
+  label .opt{color:var(--muted);font-weight:400;font-size:12px}
+  input,select,textarea{width:100%;padding:11px 12px;border:1px solid #cbd2d9;
+    border-radius:8px;font-size:16px;background:#fff;font-family:inherit}
+  textarea{min-height:70px;resize:vertical}
+  .hint{font-size:12px;color:var(--muted);margin-top:4px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .chip{padding:8px 12px;border:1px solid #cbd2d9;border-radius:999px;background:#fff;
+        font-size:14px;cursor:pointer}
+  .chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .row{display:flex;gap:10px}.row>*{flex:1}
+  .map{height:150px;border:1px dashed #b6bfc9;border-radius:8px;background:
+      repeating-linear-gradient(45deg,#eef1f4 0 10px,#e7ebef 10px 20px);
+      display:flex;align-items:center;justify-content:center;color:var(--muted);
+      font-size:13px;text-align:center;padding:10px}
+  .note{background:var(--warnbg);border-inline-start:3px solid var(--warn);color:#6b4d00;
+        font-size:12.5px;padding:8px 10px;margin-top:8px;border-radius:0 6px 6px 0}
+  .note b{color:#553d00}
+  .consent{background:#f0f4f8;border-radius:8px;padding:12px;font-size:13px;color:#31404f}
+  button.send{width:100%;padding:15px;background:var(--accent);color:#fff;border:0;
+    border-radius:10px;font-size:17px;font-weight:700;cursor:pointer}
+  button.send:active{background:var(--accent-dark)}
+  .status{display:flex;align-items:center;gap:8px;font-size:13px;padding:10px 12px;
+    border-radius:8px;background:#fdf0f0;color:#8d0d17;margin-bottom:12px}
+  .dot{width:9px;height:9px;border-radius:50%;background:#c1121f;flex:none}
+  .ok{background:#e8f6ed;color:var(--ok)} .ok .dot{background:var(--ok)}
+  .ref{background:#0b3d2c;color:#fff;border-radius:12px;padding:18px;text-align:center;margin-top:14px}
+  .ref .code{font-size:30px;font-weight:800;letter-spacing:3px;margin:6px 0}
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;
+         align-items:center;justify-content:center;padding:18px;z-index:20}
+  .modal.on{display:flex}
+  .modal .box{background:#fff;border-radius:12px;padding:18px;max-width:420px}
+  .modal h3{margin:0 0 8px;font-size:17px}
+  .modal .acts{display:flex;gap:10px;margin-top:14px}
+  .modal .acts button{flex:1;padding:12px;border-radius:8px;border:1px solid #cbd2d9;
+    background:#fff;font-size:14px;cursor:pointer}
+  .modal .acts .primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+  footer{color:var(--muted);font-size:12px;text-align:center;margin-top:24px;line-height:1.7}
+  .toggle{position:fixed;bottom:14px;inset-inline-end:14px;background:#16191d;color:#fff;
+    border:0;border-radius:999px;padding:11px 16px;font-size:13px;cursor:pointer;z-index:10}
+  body.hide-notes .note{display:none}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1>Reportar persona desaparecida</h1>
+  <p>Sismo Colombia · Centro de coordinación · Español</p>
+</header>
+
+<div class="wrap">
+
+  <div class="banner">
+    <b>MAQUETA DE REVISIÓN — no es un formulario real.</b> Nada se envía a ningún servidor.
+    Sirve para validar con personal local si las preguntas tienen sentido en el terreno.
+    Los recuadros amarillos son notas para el revisor.
+  </div>
+
+  <div class="status" id="netStatus"><span class="dot"></span>
+    <span>Sin conexión — su reporte se guardará en este dispositivo y se enviará automáticamente al recuperar señal.</span></div>
+
+  <div class="card">
+    <div class="consent">
+      <b>Antes de empezar:</b> esta información se usa únicamente para localizar a la persona
+      y coordinar la búsqueda con los equipos de rescate. Su teléfono no se muestra al público.
+      Puede retirar el reporte con su número de referencia.
+      <div class="note"><b>Revisor:</b> ¿el lenguaje genera confianza o miedo? ¿Falta mencionar
+      a alguna autoridad (UNGRD, Defensa Civil, Cruz Roja) para dar credibilidad?</div>
+    </div>
+  </div>
+
+  <!-- 1 -->
+  <div class="card">
+    <h2><span class="n">1</span>¿Quién está desaparecido?</h2>
+    <p class="sub">Solo el nombre es obligatorio. Lo demás ayuda, pero no es necesario.</p>
+
+    <label>Nombre completo de la persona <span class="req">*</span></label>
+    <input placeholder="Ej.: María Ramírez / «el hijo de doña Ana»">
+    <div class="hint">Se aceptan apodos o nombres incompletos.</div>
+    <div class="note"><b>Revisor:</b> ¿la gente usará apellidos completos? ¿Conviene separar
+    primer y segundo apellido para mejorar la detección de duplicados?</div>
+
+    <div class="row">
+      <div>
+        <label>Edad aproximada <span class="opt">(opcional)</span></label>
+        <select><option>No lo sé</option><option>0–5</option><option>6–12</option>
+        <option>13–17</option><option>18–30</option><option>31–50</option>
+        <option>51–70</option><option>71+</option></select>
+      </div>
+      <div>
+        <label>Sexo <span class="opt">(opcional)</span></label>
+        <select><option>No lo sé</option><option>Mujer</option><option>Hombre</option><option>Otro</option></select>
+      </div>
+    </div>
+
+    <label>Foto <span class="opt">(opcional)</span></label>
+    <input type="file" accept="image/*">
+    <div class="hint">La foto se comprime en el teléfono. Los rostros de menores se difuminan automáticamente.</div>
+
+    <label>Señas particulares <span class="opt">(opcional)</span></label>
+    <textarea placeholder="Ropa que vestía, estatura, condición médica, discapacidad, idioma que habla"></textarea>
+
+    <label>Últimos 4 dígitos de la cédula <span class="opt">(opcional)</span></label>
+    <input inputmode="numeric" maxlength="4" placeholder="····">
+    <div class="hint">Nunca pedimos la cédula completa. Sirve para no duplicar reportes.</div>
+    <div class="note"><b>Revisor:</b> ¿pedir aunque sean 4 dígitos genera desconfianza en el contexto local?</div>
+  </div>
+
+  <!-- 2 -->
+  <div class="card">
+    <h2><span class="n">2</span>¿Dónde se le vio por última vez?</h2>
+    <p class="sub">Este es el dato más importante: es lo que orienta a los equipos de rescate.</p>
+
+    <div class="map">🗺️ Mapa — toque para marcar el punto<br>(sin conexión: se usa el GPS del teléfono)</div>
+
+    <label>Dirección o punto de referencia <span class="req">*</span></label>
+    <input placeholder="Ej.: Carrera 7 #12-40, o «el colegio al lado de la iglesia»">
+    <div class="hint">Si no sabe la dirección, describa el lugar. Sirve igual.</div>
+
+    <label>¿Qué tan exacta es la ubicación?</label>
+    <div class="chips">
+      <span class="chip on">Exacta</span><span class="chip">El edificio</span>
+      <span class="chip">La cuadra</span><span class="chip">El barrio</span><span class="chip">No lo sé</span>
+    </div>
+    <div class="note"><b>Revisor:</b> este campo pondera el mapa de calor. ¿Se entiende la
+    diferencia entre «la cuadra» y «el barrio» para una persona en un albergue?</div>
+
+    <div class="row">
+      <div><label>Piso <span class="opt">(opcional)</span></label><input placeholder="Ej.: 4"></div>
+      <div><label>Apartamento <span class="opt">(opcional)</span></label><input placeholder="Ej.: 402"></div>
+    </div>
+    <div class="hint">En un derrumbe, el piso es lo que decide por dónde empiezan a excavar.</div>
+    <div class="note"><b>Revisor:</b> nunca se muestra al público. ¿Queda claro para el que reporta?</div>
+  </div>
+
+  <!-- 3 -->
+  <div class="card">
+    <h2><span class="n">3</span>¿Cuándo fue el último contacto?</h2>
+    <div class="chips">
+      <span class="chip">Antes del sismo</span><span class="chip on">Después del sismo</span>
+      <span class="chip">No lo sé</span>
+    </div>
+    <label>Fecha y hora aproximada <span class="opt">(opcional)</span></label>
+    <input type="datetime-local">
+    <div class="note"><b>Revisor:</b> ¿los selectores de fecha son usables con poca batería,
+    pantalla rota o para adultos mayores? ¿Mejor solo los botones?</div>
+  </div>
+
+  <!-- 4 -->
+  <div class="card">
+    <h2><span class="n">4</span>Sus datos de contacto</h2>
+    <p class="sub">Para avisarle si la persona aparece.</p>
+
+    <label>Su nombre <span class="req">*</span></label>
+    <input placeholder="Nombre y apellido">
+
+    <label>Teléfono / WhatsApp <span class="opt">(recomendado)</span></label>
+    <input inputmode="tel" placeholder="+57 ···">
+    <div class="hint">No se publica. Solo lo ve el centro de coordinación.</div>
+
+    <label>¿Qué relación tiene con la persona?</label>
+    <select><option>Familiar</option><option>Vecino/a</option><option>Amigo/a</option>
+    <option>Compañero/a de trabajo</option><option>Testigo</option><option>Otro</option></select>
+    <div class="note"><b>Revisor:</b> ¿la gente dará su teléfono real? Si hay desconfianza hacia
+    las autoridades, cae la calidad del dato y perdemos la mejor señal antiduplicados.</div>
+  </div>
+
+  <button class="send" id="sendBtn">Guardar y enviar reporte</button>
+  <div class="hint" style="text-align:center;margin-top:8px">
+    Si no hay señal, el reporte queda guardado y se envía solo al recuperar conexión.</div>
+
+  <div id="result"></div>
+
+  <footer>
+    Maqueta v0.1 · <code>docs/form-spec.md</code> · nitzanmr/rescue-heatmap<br>
+    Tiempo objetivo de llenado: menos de 90 segundos · Campos obligatorios: 3
+  </footer>
+</div>
+
+<!-- duplicate modal -->
+<div class="modal" id="dupModal">
+  <div class="box">
+    <h3>¿Es la misma persona?</h3>
+    <p style="font-size:14px;color:#4b5563;margin:0">
+      Alguien ya reportó a <b>María R.</b>, edad aprox. 31–50, en esta misma dirección,
+      hace 20 minutos.</p>
+    <div class="acts">
+      <button class="primary" onclick="closeDup()">Sí, agregar mi información</button>
+      <button onclick="closeDup()">No, es otra persona</button>
+    </div>
+    <div class="note"><b>Revisor:</b> se muestra al enviar, antes de guardar. Nunca se
+    rechaza ni se fusiona en silencio. ¿Revela demasiado de un reporte ajeno?</div>
+  </div>
+</div>
+
+<button class="toggle" id="tg">Ocultar notas del revisor</button>
+
+<script>
+  document.querySelectorAll('.chips').forEach(g=>g.addEventListener('click',e=>{
+    if(!e.target.classList.contains('chip'))return;
+    g.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+    e.target.classList.add('on');
+  }));
+  const dup=document.getElementById('dupModal');
+  document.getElementById('sendBtn').onclick=()=>dup.classList.add('on');
+  function closeDup(){
+    dup.classList.remove('on');
+    const code='CO-'+Math.random().toString(36).slice(2,6).toUpperCase();
+    document.getElementById('result').innerHTML=
+      '<div class="ref"><div style="font-size:13px;opacity:.85">Guardado en este dispositivo — aún no enviado</div>'+
+      '<div class="code">'+code+'</div>'+
+      '<div style="font-size:13px;opacity:.85">Anote este número. Con él puede corregir o retirar el reporte.</div>'+
+      '<button style="margin-top:12px;padding:10px 18px;border:0;border-radius:8px;font-weight:700;cursor:pointer" '+
+      'onclick="this.textContent=\'Recibido por el centro de coordinación ✓\'">Enviar ahora</button></div>'+
+      '<div class="note"><b>Revisor:</b> el número de referencia se genera en el teléfono, sin conexión. '+
+      'El botón «Enviar ahora» existe porque el envío automático en segundo plano no es confiable (y en iPhone no existe).</div>';
+    document.getElementById('result').scrollIntoView({behavior:'smooth'});
+  }
+  const tg=document.getElementById('tg');
+  tg.onclick=()=>{document.body.classList.toggle('hide-notes');
+    tg.textContent=document.body.classList.contains('hide-notes')?'Mostrar notas del revisor':'Ocultar notas del revisor';};
+  const ns=document.getElementById('netStatus');
+  function net(){ if(navigator.onLine){ns.className='status ok';
+      ns.innerHTML='<span class="dot"></span><span>Con conexión — el reporte se enviará de inmediato.</span>';}
+    else{ns.className='status';
+      ns.innerHTML='<span class="dot"></span><span>Sin conexión — su reporte se guardará en este dispositivo y se enviará al recuperar señal.</span>';}}
+  addEventListener('online',net);addEventListener('offline',net);net();
+</script>
+</body>
+</html>
