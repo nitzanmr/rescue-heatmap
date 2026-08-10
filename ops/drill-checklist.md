@@ -1,31 +1,63 @@
 # Quarterly Drill Checklist
 
-## 1. Activate
+## Simulated Activation Exercise
 
-- [ ] Confirm drill scope, owner, roles, and safety constraints
-- [ ] Start the timestamped incident log
+**Frequency:** Every 3 months
+**Duration:** 2-3 hours
+**Goal:** Verify the team can go from alert to live form in under 2 hours
 
-## 2. Configure
+---
 
-- [ ] Provision an isolated environment from a clean baseline
-- [ ] Configure languages, region, retention, access, and offline tiles
+## Before the Drill
 
-## 3. Verify
+- [ ] Pick a fictional scenario (country, magnitude, affected area)
+- [ ] Notify team 24h in advance (or surprise drill)
+- [ ] Ensure Vercel/hosting access is still valid
+- [ ] Prepare test data (5-10 fake missing person reports)
 
-- [ ] Submit synthetic reports and test moderation/deduplication
-- [ ] Validate map clusters and KML/GeoJSON exports
-- [ ] Test offline field work, sync conflicts, revocation, and deletion
-- [ ] Complete security, privacy, accessibility, and load checks
+## During the Drill
 
-## 4. Distribute
+### Phase 1: Alert (0–15 min)
+- [ ] Team lead sends alert to group
+- [ ] All team members acknowledge within 10 minutes
+- [ ] GO/NO-GO decision made
 
-- [ ] Prepare locally reviewed Spanish and English messages
-- [ ] Simulate Tier 1–3 distribution and track referral coverage
-- [ ] Test correction, abuse-reporting, and shutdown communications
+### Phase 2: Deploy (15–45 min)
+- [ ] Tech lead clones repo and updates config
+- [ ] Form deployed to staging/test URL
+- [ ] Verify form works on mobile
+- [ ] Verify offline mode works
 
-## 5. Review
+### Phase 3: Test Data (45–75 min)
+- [ ] Team submits 5-10 test reports
+- [ ] Verify heatmap updates correctly
+- [ ] Test KML/CSV export
+- [ ] Verify deduplication (submit similar reports)
 
-- [ ] Measure activation-to-verified-form time against the two-hour target
-- [ ] Record failures, decisions, owners, deadlines, and acceptance tests
-- [ ] Remove synthetic data and revoke drill access
-- [ ] Schedule follow-up verification
+### Phase 4: Distribution (75–105 min)
+- [ ] Draft distribution messages (don't send externally!)
+- [ ] Verify all Tier 1 contacts are still valid
+- [ ] Update any stale contacts
+- [ ] Review and update message templates if needed
+
+### Phase 5: Debrief (105–120 min)
+- [ ] What worked?
+- [ ] What was slow or broken?
+- [ ] Any contacts that need updating?
+- [ ] Action items for before next drill
+
+## After the Drill
+
+- [ ] Clean up test deployment
+- [ ] Update contact database
+- [ ] Fix any issues found
+- [ ] Schedule next drill
+- [ ] Document results in `docs/lessons-learned/drills/`
+
+---
+
+## Drill Log
+
+| Date | Scenario | Time to Deploy | Issues Found | Notes |
+|------|----------|---------------|--------------|-------|
+| | | | | |
