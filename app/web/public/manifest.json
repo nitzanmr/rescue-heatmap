@@ -1,0 +1,10 @@
+{
+  "name": "Rescue Heatmap — Reporte de personas desaparecidas",
+  "short_name": "Rescue Heatmap",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d1117",
+  "theme_color": "#0d1117",
+  "lang": "es",
+  "icons": []
+}
