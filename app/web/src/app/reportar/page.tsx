@@ -163,6 +163,7 @@ function StepPerson({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
           ))}
         </div>
       </div>
+      <PhotoField draft={draft} set={set} />
       <label className="field">
         <span className="lab">Señas particulares</span>
         <span className="hint">Ropa que llevaba, estatura, cicatrices, si usa bastón o silla de ruedas.</span>
@@ -178,6 +179,91 @@ function StepPerson({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
         <span className="hint">Opcional. Solo se usa para no duplicar la misma persona. Nunca pedimos el documento completo.</span>
         <input inputMode="numeric" maxLength={4} value={draft.national_id_last4 ?? ""} onChange={(e) => set({ national_id_last4: e.target.value })} placeholder="1234" />
       </label>
+    </div>
+  );
+}
+
+// Optional photo. Compressed on the device before it ever touches the network:
+// a 4 MB camera JPEG would never sync over a degraded cell tower.
+async function compressImage(file: File, maxSide = 800, quality = 0.7): Promise<string> {
+  const dataUrl: string = await new Promise((res, rej) => {
+    const fr = new FileReader();
+    fr.onload = () => res(String(fr.result));
+    fr.onerror = () => rej(fr.error);
+    fr.readAsDataURL(file);
+  });
+  const img = await new Promise<HTMLImageElement>((res, rej) => {
+    const i = new Image();
+    i.onload = () => res(i);
+    i.onerror = () => rej(new Error("decode"));
+    i.src = dataUrl;
+  });
+  const scale = Math.min(1, maxSide / Math.max(img.width, img.height));
+  const w = Math.round(img.width * scale);
+  const h = Math.round(img.height * scale);
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return dataUrl;
+  ctx.drawImage(img, 0, 0, w, h);
+  return canvas.toDataURL("image/jpeg", quality);
+}
+
+function PhotoField({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState("");
+
+  const onFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = ""; // allow re-picking the same file
+    if (!file) return;
+    setErr("");
+    setBusy(true);
+    try {
+      set({ photo_data_url: await compressImage(file) });
+    } catch {
+      setErr("No se pudo procesar la imagen. Puedes enviar el reporte sin foto.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <div className="field">
+      <span className="lab">Foto <span className="muted" style={{ fontWeight: 400 }}>(opcional)</span></span>
+      <span className="hint">
+        Una foto multiplica las posibilidades de que alguien la reconozca. Se reduce en este teléfono antes
+        de enviarse y se envía después del texto, cuando haya señal.
+      </span>
+      {draft.photo_data_url ? (
+        <div className="row" style={{ alignItems: "center", marginTop: 6 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={draft.photo_data_url}
+            alt="Foto de la persona"
+            style={{ width: 88, height: 88, objectFit: "cover", borderRadius: 10 }}
+          />
+          <div className="row" style={{ flexDirection: "column", alignItems: "stretch" }}>
+            <label className="btn ghost" style={{ cursor: "pointer", textAlign: "center" }}>
+              Cambiar foto
+              <input type="file" accept="image/*" onChange={onFile} style={{ display: "none" }} />
+            </label>
+            <button className="btn ghost" onClick={() => set({ photo_data_url: null })}>
+              Quitar foto
+            </button>
+          </div>
+        </div>
+      ) : (
+        <label className="btn ghost" style={{ cursor: "pointer", display: "inline-block", marginTop: 6 }}>
+          {busy ? "Procesando…" : "Agregar una foto"}
+          <input type="file" accept="image/*" capture="environment" onChange={onFile} style={{ display: "none" }} />
+        </label>
+      )}
+      {err && <span className="small" style={{ color: "var(--danger, #c1121f)" }}>{err}</span>}
+      <span className="small muted" style={{ marginTop: 6 }}>
+        Si no quieres que la foto se muestre en la búsqueda pública, puedes enviar el reporte sin ella.
+      </span>
     </div>
   );
 }
