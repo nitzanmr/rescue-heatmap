@@ -43,10 +43,25 @@ services:
       interval: 3s
       timeout: 3s
       retries: 20
+    # Memory settings are stated, not defaulted, and they are overridable per
+    # machine: the same compose file runs on a 4 GB VM and on a 16 GB one, and
+    # Postgres' out-of-the-box 128 MB of shared_buffers wastes either.
+    #   PG_SHARED_BUFFERS=4GB PG_EFFECTIVE_CACHE=12GB PG_WORK_MEM=32MB make up
+    # max_connections is deliberately NOT 200 any more. Our two pools ask for
+    # 8+8; a limit of 200 on a small box is not headroom, it is permission to
+    # OOM (each backend costs MBs before it does any work).
     command:
       - postgres
       - -c
-      - max_connections=200
+      - max_connections=${PG_MAX_CONNECTIONS:-60}
+      - -c
+      - shared_buffers=${PG_SHARED_BUFFERS:-1GB}
+      - -c
+      - effective_cache_size=${PG_EFFECTIVE_CACHE:-2GB}
+      - -c
+      - work_mem=${PG_WORK_MEM:-16MB}
+      - -c
+      - maintenance_work_mem=${PG_MAINTENANCE_WORK_MEM:-256MB}
       - -c
       - shared_preload_libraries=pg_stat_statements
 
@@ -195,6 +210,11 @@ services:
       - "${EDGE_PORT:-8080}:80"
     volumes:
       - ./ops/edge/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    # The public read cache lives in RAM and dies with the container. It holds
+    # only the two aggregate layers (no named person ever reaches it), and a
+    # cache surviving a restart on someone's laptop buys us nothing.
+    tmpfs:
+      - /var/cache/nginx:size=96m,mode=0755
     healthcheck:
       test: ["CMD-SHELL", "wget -q -O- http://127.0.0.1/edge-health >/dev/null || exit 1"]
       interval: 5s

@@ -6,6 +6,7 @@ import { toE164 } from "../phone.js";
 import { HttpError, noIndex, rateLimit } from "../security.js";
 import { audit } from "../audit.js";
 import { enqueue } from "../jobs.js";
+import { cached } from "../cache.js";
 
 // Everything in this file is readable by the world. The rule from ADR-001:
 // name, approximate age, gender, neighbourhood, status, date — and nothing else.
@@ -172,27 +173,58 @@ export default async function publicRoutes(app: FastifyInstance) {
     }
   );
 
-  // Aggregated heat cells. The public map never receives individual cases.
+  // -------------------------------------------------------------------------
+  // GET /v1/public/heat — aggregated cells. The public map never receives
+  // individual cases.
+  //
+  // This is the most expensive query we serve and the one every phone asks for
+  // first: heat_cells() reprojects every indexed person of the incident into a
+  // metre grid. It is also the same answer for every caller on earth, so it is
+  // cached twice, on purpose and at different layers:
+  //
+  //   - at the edge (30 s, with stale-while-updating) so a thousand phones cost
+  //     one query. See ops/edge/nginx.conf.
+  //   - in this process (20 s, single-flight, stale-on-failure) so the same is
+  //     true when there is no edge of ours in front — and so a cold cache under
+  //     load runs ONE query instead of one per connection.
+  //
+  // The Cache-Control below is the honest version of a comment that used to
+  // claim edge caching while noIndex() sent `no-store`. An aggregate with a
+  // two-case floor carries no person, so it may be shared by caches.
+  // -------------------------------------------------------------------------
   app.get<{ Querystring: { incident?: string; cell?: string } }>(
     "/v1/public/heat",
     async (req, reply) => {
       noIndex(reply);
       await rateLimit(`heat:${req.actor.ipHash}`, 60, 60);
-      const inc = await one<{ id: string }>(
-        req.query.incident
-          ? `SELECT id FROM incident WHERE slug = $1`
-          : `SELECT id FROM incident WHERE ended_at IS NULL ORDER BY started_at DESC LIMIT 1`,
-        req.query.incident ? [req.query.incident] : []
-      );
-      if (!inc) return { cells: [] };
       // Never finer than 250 m in public: a 50 m cell with one case is an address.
       const cell = Math.max(250, Math.min(2000, Number(req.query.cell ?? 500) || 500));
-      const cells = await query(
-        `SELECT lat, lng, weight, cases FROM public.heat_cells($1, $2, NULL)
-          WHERE cases >= 2`,
-        [inc.id, cell]
-      );
-      return { cell_m: cell, cells };
+      const slug = req.query.incident ?? "";
+
+      const hit = await cached(`heat|${slug}|${cell}`, 20_000, 120_000, async () => {
+        const inc = await one<{ id: string }>(
+          slug
+            ? `SELECT id FROM incident WHERE slug = $1`
+            : `SELECT id FROM incident WHERE ended_at IS NULL ORDER BY started_at DESC LIMIT 1`,
+          slug ? [slug] : []
+        );
+        if (!inc) return null;
+        return await query(
+          `SELECT lat, lng, weight, cases FROM public.heat_cells($1, $2, NULL)
+            WHERE cases >= 2`,
+          [inc.id, cell]
+        );
+      });
+
+      // A shared aggregate may be cached; a stale one says so, so an operator
+      // debugging "the map is behind" reads it off the response instead of
+      // guessing which layer is holding it.
+      reply.header("Cache-Control", "public, max-age=30, stale-while-revalidate=120");
+      reply.header("X-Cache-Age", String(Math.max(0, Math.round(hit.age_ms / 1000))));
+      if (hit.stale) reply.header("X-Cache-Stale", "1");
+
+      if (hit.value === null) return { cells: [] };
+      return { cell_m: cell, cells: hit.value };
     }
   );
 
@@ -205,9 +237,12 @@ export default async function publicRoutes(app: FastifyInstance) {
   // table at all, so no future edit can widen it into a people endpoint by
   // accident.
   //
-  // Cached at the edge for 5 minutes. Shelter status changes in minutes, not
-  // seconds, and on a saturated cellular network during an activation a cached
-  // answer beats a fresh timeout.
+  // Cached at the edge for 2 minutes AND in this process for 1. Shelter status
+  // changes in minutes, not seconds, and on a saturated cellular network during
+  // an activation a cached answer beats a fresh timeout. (This comment claimed
+  // edge caching for a while before any edge cache existed. It does now:
+  // ops/edge/nginx.conf, and services/api/test/public-cache.test.ts fails if
+  // either half is removed.)
   // -------------------------------------------------------------------------
   app.get<{ Querystring: { country?: string; kinds?: string; incident?: string } }>(
     "/v1/public/aid-sites",
@@ -220,24 +255,28 @@ export default async function publicRoutes(app: FastifyInstance) {
         ? req.query.kinds.split(",").map((k) => k.trim()).filter(Boolean).slice(0, 12)
         : null;
 
-      let incidentId: string | null = null;
-      if (req.query.incident) {
-        const inc = await one<{ id: string }>(`SELECT id FROM incident WHERE slug = $1`, [req.query.incident]);
-        incidentId = inc?.id ?? null;
-      }
+      const key = `aid|${country}|${(kinds ?? []).join(",")}|${req.query.incident ?? ""}`;
+      const hit = await cached(key, 60_000, 300_000, async () => {
+        let incidentId: string | null = null;
+        if (req.query.incident) {
+          const inc = await one<{ id: string }>(`SELECT id FROM incident WHERE slug = $1`, [req.query.incident]);
+          incidentId = inc?.id ?? null;
+        }
+        return await query(
+          `SELECT id, kind, name, lat, lng, address, phone, capacity, status, verified, source, updated_at
+             FROM public.aid_sites($1, $2, $3)
+            ORDER BY verified DESC, kind, name
+            LIMIT 5000`,
+          [country, kinds, incidentId]
+        );
+      });
 
-      const sites = await query(
-        `SELECT id, kind, name, lat, lng, address, phone, capacity, status, verified, source, updated_at
-           FROM public.aid_sites($1, $2, $3)
-          ORDER BY verified DESC, kind, name
-          LIMIT 5000`,
-        [country, kinds, incidentId]
-      );
-
-      reply.header("cache-control", "public, max-age=300");
+      reply.header("Cache-Control", "public, max-age=120, stale-while-revalidate=600");
+      reply.header("X-Cache-Age", String(Math.max(0, Math.round(hit.age_ms / 1000))));
+      if (hit.stale) reply.header("X-Cache-Stale", "1");
       return {
         attribution: "© OpenStreetMap contributors (ODbL)",
-        sites,
+        sites: hit.value,
       };
     }
   );

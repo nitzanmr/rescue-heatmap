@@ -242,7 +242,36 @@ drill:   ## Full rehearsal: fresh db -> migrate -> seed -> smoke test
 	if [ "$${sites:-0}" -lt 1 ]; then \
 	  echo "AID SITE LAYER IS EMPTY - the reviewed GeoJSON never reached the database"; exit 1; fi; \
 	echo "aid sites published: $$sites"
+	@# THE PUBLIC READ CACHE MUST ACTUALLY BE CACHING.
+	@# This is the only check in the repository that proves the nginx cache
+	@# config was loaded by a real nginx: the static tests read a file, and a
+	@# file can be perfectly written and never take effect. Two identical
+	@# requests must produce MISS then HIT. If they do not, the map recomputes
+	@# the most expensive query we own once per phone and nothing says so.
+	@first=$$(curl -fsS -o /dev/null -D - "$(EDGE_URL)/api/v1/public/heat?incident=drill-quibdo&cell=500" \
+	  | tr -d '\r' | sed -n 's/^X-Cache-Status: //p'); \
+	second=$$(curl -fsS -o /dev/null -D - "$(EDGE_URL)/api/v1/public/heat?incident=drill-quibdo&cell=500" \
+	  | tr -d '\r' | sed -n 's/^X-Cache-Status: //p'); \
+	if [ -z "$$first" ]; then \
+	  echo "NO X-Cache-Status HEADER - the edge cache config is not loaded"; exit 1; fi; \
+	if [ "$$second" != "HIT" ]; then \
+	  echo "HEAT IS NOT CACHED AT THE EDGE (first=$$first second=$$second)"; exit 1; fi; \
+	echo "edge cache ok: heat $$first -> $$second"
+	@# And the personal endpoints must NOT be cached: a shared cache holding one
+	@# family's search result would serve it to a stranger.
+	@st=$$(curl -fsS -o /dev/null -D - "$(EDGE_URL)/api/v1/public/search?q=Simulacro" \
+	  | tr -d '\r' | sed -n 's/^X-Cache-Status: //p'); \
+	if [ -n "$$st" ]; then \
+	  echo "SEARCH WENT THROUGH THE CACHE ($$st) - a named person must never be cached"; exit 1; fi; \
+	echo "personal endpoints uncached ok"
 	@echo "drill passed."
+
+# A number from YOUR machine instead of my estimate. Ramps concurrency against
+# the three paths that matter (heat, search, intake) and prints p50/p95, errors
+# and 429s per step. The intake step WRITES drill reports through EDGE_URL --
+# never point this at a deployment that holds real families.
+load:    ## Load test through the edge (INCIDENT=... DURATION=... make load)
+	@ops/load/run.sh "$(EDGE_URL)" "$${INCIDENT:-drill-quibdo}" "$${DURATION:-20}"
 
 reset:   ## Drop the database volume (LOCAL DEV DATA ONLY)
 	$(COMPOSE) down -v
