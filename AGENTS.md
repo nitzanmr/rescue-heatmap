@@ -158,6 +158,22 @@ When Supabase ships 18 GA, the bump is a one-line change plus a `make drill`.
   Restore the flag afterwards: an ablation is not a deploy.
 - **Do not call it BM25.** `ts_rank_cd` is not BM25, and it is a claim someone
   will check.
+- **A dynamic import is only as good as the imports around it.** A page may load
+  a browser-only component with `next/dynamic({ ssr: false })` and still drag it
+  into the server bundle by statically importing one constant from the same
+  file. `/mapa` did exactly that with `KIND_STYLE`, and prerender died on
+  `window is not defined`. Shared data lives in `src/lib/`; the component file
+  exports the component. `test/ssr-safety.test.ts` walks every page's static
+  import graph and fails on any path to Leaflet.
+- **A measurement must first prove it is measuring the right database.** When a
+  drill dies before migrating, the suite that follows reports "column does not
+  exist" — which reads as a broken query and is really a stale schema. Every
+  DB-backed test calls `requireFreshSchema()` first: it compares
+  `db/migrations` to `schema_migration` and refuses to print any number if the
+  database is behind.
+- **The front end fails the drill before the database is touched.** `build` runs
+  ahead of `down -v` on purpose: a broken build costs a rebuild, a half-reset
+  volume costs the run. Fail fast, destroy nothing.
 
 ## Reporting
 

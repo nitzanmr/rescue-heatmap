@@ -18,6 +18,7 @@ import "leaflet.heat";
 import { incident } from "@/lib/incident";
 import type { AidSite, HeatCell } from "@/lib/api";
 import { clusterPoints } from "@/lib/cluster";
+import { KIND_STYLE } from "@/lib/aid-kinds";
 import { shouldFailover, tileChain, type TileProvider } from "@/lib/tiles";
 
 interface Props {
@@ -28,18 +29,6 @@ interface Props {
   cellM: number;
 }
 
-const KIND_STYLE: Record<string, { colour: string; label: string }> = {
-  shelter: { colour: "#3fb950", label: "Albergue" },
-  shelter_candidate: { colour: "#8b949e", label: "Posible albergue (sin confirmar)" },
-  medical: { colour: "#ff5c5c", label: "Hospital / clínica" },
-  pharmacy: { colour: "#d29922", label: "Farmacia" },
-  responder: { colour: "#58a6ff", label: "Bomberos / policía" },
-  supply: { colour: "#f0883e", label: "Punto de acopio" },
-  water: { colour: "#39c5cf", label: "Agua" },
-  morgue: { colour: "#6e7681", label: "Morgue" },
-  info_point: { colour: "#a371f7", label: "Punto de información" },
-  other: { colour: "#8b949e", label: "Otro" },
-};
 
 export default function PublicMap({ cells, sites, showHeat, showSites, cellM }: Props) {
   const el = useRef<HTMLDivElement>(null);
@@ -187,5 +176,3 @@ export default function PublicMap({ cells, sites, showHeat, showSites, cellM }: 
 function escapeHtml(s: string) {
   return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 }
-
-export { KIND_STYLE };

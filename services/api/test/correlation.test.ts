@@ -16,6 +16,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { pool, query } from "../src/db.js";
 import { seed } from "../src/seed.js";
+import { requireFreshSchema } from "./schema-freshness.js";
 
 const HAVE_DB = !!process.env.DATABASE_URL;
 
@@ -37,6 +38,7 @@ const key = (a: string, b: string): Pair => (a < b ? `${a}|${b}` : `${b}|${a}`);
 // was never reachable.
 test("correlation engine: precision/recall curve against seeded ground truth", async (t) => {
   if (!HAVE_DB) return t.skip("DATABASE_URL not set");
+  await requireFreshSchema();
 
   const n = Number(process.env.TEST_SEED_CASES ?? 300);
   await query(`TRUNCATE dedup_candidate, seed_truth`).catch(() => {});
@@ -234,6 +236,7 @@ test("correlation engine: precision/recall curve against seeded ground truth", a
 // above describes the real system and not a parallel implementation of it.
 test("the worker's enqueue path agrees with the swept scores at the live floor", async (t) => {
   if (!HAVE_DB) return t.skip("DATABASE_URL not set");
+  await requireFreshSchema();
 
   const previousSeedIncident = process.env.SEED_INCIDENT;
   process.env.SEED_INCIDENT = `test-enqueue-${process.pid}-${Date.now()}`;
@@ -291,6 +294,7 @@ test("the worker's enqueue path agrees with the swept scores at the live floor",
 // pair with a different uuid each time.
 test("the shortlist is deterministic across repeated calls", async (t) => {
   if (!HAVE_DB) return t.skip("DATABASE_URL not set");
+  await requireFreshSchema();
   const cases = await query<{ id: string }>(
     `SELECT case_id AS id FROM person_index ORDER BY case_id LIMIT 40`
   );
@@ -306,6 +310,7 @@ test("the shortlist is deterministic across repeated calls", async (t) => {
 
 test("never auto-merges: every candidate is undecided until a human acts", async (t) => {
   if (!HAVE_DB) return t.skip("DATABASE_URL not set");
+  await requireFreshSchema();
   const rows = await query<{ state: string; n: number }>(
     `SELECT state, count(*)::int AS n FROM dedup_candidate GROUP BY state`
   );
@@ -328,6 +333,7 @@ test("never auto-merges: every candidate is undecided until a human acts", async
 
 test("Spanish name normalisation is order- and accent-insensitive", async (t) => {
   if (!HAVE_DB) return t.skip("DATABASE_URL not set");
+  await requireFreshSchema();
   const rows = await query<{ a: string; b: string; c: string }>(
     `SELECT public.name_key('María José García Pérez')  AS a,
             public.name_key('Jose Maria Perez Garcia')  AS b,
@@ -339,6 +345,7 @@ test("Spanish name normalisation is order- and accent-insensitive", async (t) =>
 
 test("public projection leaks nothing identifying", async (t) => {
   if (!HAVE_DB) return t.skip("DATABASE_URL not set");
+  await requireFreshSchema();
   const cols = (await query<{ column_name: string }>(
     `SELECT column_name FROM information_schema.columns WHERE table_name = 'public_case_view'`
   )).map((c) => c.column_name);

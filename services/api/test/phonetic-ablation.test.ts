@@ -20,6 +20,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { pool, query } from "../src/db.js";
 import { seed } from "../src/seed.js";
+import { requireFreshSchema } from "./schema-freshness.js";
 
 const HAVE_DB = !!process.env.DATABASE_URL;
 const RUN = !!process.env.ABLATION;
@@ -30,6 +31,7 @@ const key = (a: string, b: string): Pair => (a < b ? `${a}|${b}` : `${b}|${a}`);
 test("ablation: what phonetic name matching actually buys", async (t) => {
   if (!HAVE_DB) return t.skip("DATABASE_URL not set");
   if (!RUN) return t.skip("set ABLATION=1 to run (it re-scores the seed twice)");
+  await requireFreshSchema();
 
   const n = Number(process.env.ABLATION_CASES ?? 300);
   const previous = process.env.SEED_INCIDENT;

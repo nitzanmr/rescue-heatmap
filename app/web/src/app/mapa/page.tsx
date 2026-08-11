@@ -13,7 +13,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { api, ApiError, type AidSite, type HeatCell } from "@/lib/api";
 import { incident } from "@/lib/incident";
-import { KIND_STYLE } from "@/components/PublicMap";
+import { KIND_STYLE } from "@/lib/aid-kinds";
 
 const PublicMap = dynamic(() => import("@/components/PublicMap"), {
   ssr: false,
