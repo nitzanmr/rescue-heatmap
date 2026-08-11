@@ -43,7 +43,11 @@ test("the newest correlate_case breaks score ties deterministically", () => {
   const orders = [...sql.matchAll(/ORDER BY\s+score DESC[^\n]*/gi)].map((m) => m[0]);
   assert.ok(orders.length, `${file}: correlate_case must order by score`);
   for (const o of orders) {
-    assert.match(o, /score DESC\s*,\s*(x\.)?case_id/i,
+    // NULLS FIRST/LAST may sit between the direction and the tie break (0013
+    // added NULLS LAST because DESC defaults to NULLS FIRST, which sorted
+    // unscorable pairs to the top of every shortlist). The tie break itself is
+    // what this test is about and it is still required.
+    assert.match(o, /score DESC\s*(NULLS\s+(FIRST|LAST)\s*)?,\s*(x\.)?case_id/i,
       `${file}: "${o.trim()}" has no tie break — the shortlist is not reproducible`);
   }
 });

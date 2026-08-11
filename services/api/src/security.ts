@@ -20,11 +20,22 @@ export function hashIp(ip: string): string {
 }
 
 // Human-readable reference: no ambiguous characters, readable over a bad phone line.
+//
+// LENGTH IS A COLLISION BUDGET, NOT A COSMETIC CHOICE.
+// This was 4 characters = 32^4 ≈ 1.05M references. At 1,000 cases in one
+// incident, the chance that SOME pair collides is already ~38% (birthday, not
+// per-insert), and the seed hit it on the first real run against a live
+// database. Intake survives it because it retries on clash; anything that
+// inserts without retrying just dies. 6 characters = 32^6 ≈ 1.07 BILLION, which
+// keeps the per-insert clash below one in a million at 10,000 cases, and
+// "DRL-A3K9F2" is still six characters read out loud over a bad line.
+// Existing 4-character references stay valid: nothing parses the length.
 const ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+export const REFERENCE_LENGTH = 6;
 export function newReference(prefix: string): string {
-  const b = crypto.randomBytes(4);
+  const b = crypto.randomBytes(REFERENCE_LENGTH);
   let s = "";
-  for (let i = 0; i < 4; i++) s += ALPHABET[b[i] % ALPHABET.length];
+  for (let i = 0; i < REFERENCE_LENGTH; i++) s += ALPHABET[b[i] % ALPHABET.length];
   return `${prefix}-${s}`;
 }
 

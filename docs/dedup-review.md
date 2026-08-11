@@ -5,6 +5,23 @@ second, adversarial read of `correlate_case()` (0003 → 0007 → 0010) found, w
 previously reported operating point (precision 0.976 / recall 0.804) does not support the
 claim it was used for, and the order in which the defects should be fixed.
 
+> **Update, 11 Aug 2026 (migration 0012, ADR-007).** F1 and the sibling half of F2 are
+> **fixed**; the hard negatives F4 asks for are **in the seed** (households: one parent,
+> several children, one address, one phone — labelled `distinct` / `sibling` in
+> `seed_truth`); and a defect not listed below — one reporter inflating one heat cell — is
+> capped in `heat_cells()`, which is the only fix here that holds when dedup fails
+> entirely.
+>
+> The rest (F3, F5, F6, F7, F8) is **deliberately deferred**, on an argument this document
+> did not make: a heat map is a ranking, and an error that is uniform across cells changes
+> no rescue decision. What is not affordable is an error correlated with severity, and F1
+> and the sibling case are exactly that — they shrink the cell where a whole household is
+> missing. Whether the remainder matters at all is now a measurement rather than an
+> opinion: `make rank-ablation` compares cell RANKING (Spearman, top-20 overlap) between a
+> perfectly deduplicated map, an undeduplicated one, and two corrupted ones (20% random
+> false merges vs 20% sibling false merges). If the top-20 does not move, the pairwise work
+> below does not change where teams are sent.
+
 Two failure modes, still not symmetrical:
 
 * a missed duplicate → two teams dig for one person. Wasteful.
@@ -14,7 +31,7 @@ Everything below is ordered by that asymmetry, not by effort.
 
 ---
 
-## F1 — The engine scores the *reporter's* phone as if it were the *subject's* (critical)
+## F1 — The engine scores the *reporter's* phone as if it were the *subject's* (critical) — **FIXED (0012)**
 
 `refresh_person_index()` fills `person_index.phone_e164` from
 `report.payload->>'reporter_phone'` (0003 line 229, unchanged in 0011 line 68). The intake
@@ -57,7 +74,7 @@ overlap must be neutral-to-negative, never positive: a reporter filing twice is 
 evidence of *different* people, because a person re-telling the same case normally uses the
 `sumar` path.
 
-## F2 — The name comparison cannot tell a sibling from a duplicate (critical)
+## F2 — The name comparison cannot tell a sibling from a duplicate (critical) — **sibling half FIXED (0012)**
 
 `name_tokens()` sorts tokens alphabetically, so Spanish structure (given + given +
 apellido paterno + apellido materno — see *Naming customs of Hispanic America*) is
@@ -102,7 +119,7 @@ linkage data*, J Biomed Inform 2014; the Fellegi–Sunter formulation treats a m
 as neutral, not as evidence against). At minimum, `w_semantic` must leave the denominator
 while embeddings are off — today it silently taxes every pair 0.05.
 
-## F4 — The measurement does not support the numbers, in both directions
+## F4 — The measurement does not support the numbers, in both directions — **partly addressed (0012)**
 
 The seed is the evaluation. Three separate validity problems:
 
@@ -190,15 +207,43 @@ distribution**, which is another reason F4 comes before F7.
 
 ## Order of work
 
-1. **F1** — phone semantics. Highest harm, smallest change.
-2. **F2** — given/surname decomposition and the sibling guard.
-3. **F4** — adversarial fixture + hard negatives in the seed, *before* any re-tuning, so
-   the next number means something. Cluster-level metric alongside the pairwise one.
-4. **F3** — weight redistribution for missing fields; `w_semantic` out of the denominator.
-5. **F5** — write `dedup_cluster_id`; group leads/pending into components for review.
-6. **F6/F7** — Spanish fold and rarity weighting, behind the existing flag, measured by
-   ablation on the fixture and on the seed.
-7. **F8** — the cheap ones, any time.
+Revised 11 Aug 2026 (ADR-007). The ordering principle changed: not "worst defect first"
+but **"worst defect that is correlated with severity first"**, because a uniform error in
+cell weight does not change a ranking and therefore does not change a rescue decision.
+
+**Done (migration 0012):**
+
+1. **F1** — phone semantics. `person_index.phone_e164` holds a subject phone or nothing;
+   the optional `subject_phone` field exists on the form and in the intake schema; the
+   same-reporter penalty is unconditional.
+2. **F2, sibling half** — `given_tokens` / `surname_tokens` split the name before the
+   alphabetical sort; surname agreement with given-name disagreement is a configurable
+   penalty; a matching document number suppresses the rule; a one-character typo does not
+   trigger it (`given_conflict_sim`). Known cost, accepted: hypocorisms (Pepe/Jose) now
+   read as two people.
+3. **F4, hard negatives** — households are in the seed and labelled `sibling`, so
+   precision is finally measured against a population that collides. The adversarial
+   fixture is `test/dedup-semantics.test.ts` (eight named pairs, including the two that
+   must NOT be demoted).
+4. **Not on this list originally, and the cheapest of all** — a per-reporter cap on what
+   one phone can contribute to one heat cell (`heatmap_config.reporter_cell_cap`). It is
+   the only fix that neutralises family inflation *whether or not* the duplicates were
+   ever detected.
+5. **F8, the config half** — the building bonus and the gender penalty moved out of the
+   function body into `correlation_config`.
+
+**Waiting on a measurement, not on effort (`make rank-ablation`):**
+
+6. **F3** — weight redistribution for missing fields; `w_semantic` out of the denominator.
+7. **F5** — write `dedup_cluster_id`; group leads/pending into components for review. This
+   is what would show an operator a household as one cluster of distinct people, which is
+   the constructive counterpart to the sibling penalty.
+8. **F6/F7** — Spanish fold and rarity weighting, behind the existing flag.
+9. **F8, the rest** — age tolerance scaling with age, the location double-counting cap,
+   `max(age_approx)`, and deleting `lex_rank` or giving it a weight.
+
+If the ablation shows the top-20 cells unchanged by both corruption regimes, 6–9 are not
+worth doing before real data arrives, and saying so out loud is cheaper than doing them.
 
 Nothing here changes the invariant: the engine proposes, a human decides, and every merge
 stays reversible with its evidence recorded.

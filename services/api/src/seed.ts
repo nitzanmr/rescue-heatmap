@@ -9,11 +9,11 @@
 //
 // Ground truth is written to `seed_truth` so the correlation test can compute
 // precision and recall instead of eyeballing a list.
-import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { pool, query, one, tx } from "./db.js";
+import { newReference } from "./security.js";
 import { fromGeoJSONFile } from "./aid-sites.js";
 
 const GIVEN_M = ["Jose", "Juan", "Carlos", "Luis", "Miguel", "Andres", "Diego", "Jorge", "Ivan", "Nicolas"];
@@ -68,7 +68,14 @@ interface Person {
   building_name: string;
   floor: string;
   apartment: string;
+  // The REPORTER's number. Named `phone` for historical reasons and kept that
+  // way on purpose: this field is what the old engine scored as if it were the
+  // subject's, and renaming it would hide the mistake instead of pinning it.
   phone: string;
+  // The SUBJECT's own number, when the family knows it. Often absent — children
+  // and older adults frequently have none, and that asymmetry is part of the
+  // data. Correlating on this is legitimate; correlating on `phone` is not.
+  subject_phone: string | null;
   id4: string;
   distinguishing_info: string;
 }
@@ -90,6 +97,8 @@ function makePerson(): Person {
     floor: String(1 + Math.floor(r() * 12)),
     apartment: `${1 + Math.floor(r() * 12)}0${1 + Math.floor(r() * 4)}`,
     phone: `+57 3${Math.floor(r() * 10)}${Math.floor(1000000 + r() * 8999999)}`,
+    subject_phone: chance(0.35)
+      ? `+57 3${Math.floor(r() * 10)}${Math.floor(1000000 + r() * 8999999)}` : null,
     id4: String(1000 + Math.floor(r() * 9000)),
     distinguishing_info: `camisa ${pick(["azul", "blanca", "roja", "negra", "verde"])}, ${pick(["delgado", "estatura media", "cabello largo", "gafas", "cicatriz en el brazo"])}`,
   };
@@ -145,13 +154,95 @@ function makeVariant(p: Person): Record<string, unknown> {
     building_name: chance(0.7) ? p.building_name : null,
     floor: chance(0.5) ? p.floor : null,
     apartment: chance(0.4) ? p.apartment : null,
-    // Half the time the second reporter gives the same contact number.
-    reporter_phone: chance(0.5) ? p.phone : `+57 3${Math.floor(r() * 10)}${Math.floor(1000000 + r() * 8999999)}`,
+    // A DIFFERENT person is re-telling this case, so their contact number is
+    // normally their own. This used to be the same number half the time, which
+    // was pure leakage: the old engine scored the reporter's phone as the
+    // subject's, so synthetic duplicates handed the scorer +0.15 on a field that
+    // carries no signal at all in the field (docs/dedup-review.md F4.1). The
+    // measured recall was partly a measurement of that leak.
+    //
+    // It is not zero: a family sometimes files a second form instead of using
+    // the `sumar` path on their private link. It is rare, and now it costs the
+    // pair 0.10 instead of gaining it 0.15 — which is the correct direction, and
+    // is the hardest true pair in the seed.
+    reporter_phone: chance(0.12) ? p.phone : `+57 3${Math.floor(r() * 10)}${Math.floor(1000000 + r() * 8999999)}`,
+    // A second reporter who knows the person's own number usually gives the
+    // same one. This is a real, discriminative signal — unlike the reporter's
+    // number, which used to leak into the score as if it were this one.
+    subject_phone: p.subject_phone && chance(0.6) ? p.subject_phone : null,
     national_id_last4: chance(0.35) ? p.id4 : null,
     distinguishing_info: chance(0.6) ? p.distinguishing_info : `ropa ${pick(["oscura", "clara"])}`,
     // Reports arrive hours apart.
     last_contact_at: new Date(Date.now() - r() * 36 * 3600_000).toISOString(),
   };
+}
+
+// ---------------------------------------------------------------------------
+// Families: the hard negative the seed did not contain.
+//
+// Every false positive we have actually observed belongs to a class this file
+// used to generate none of. makePerson() scatters strangers with independent
+// random names over a 2 km box, so precision 0.976 was precision against a
+// population in which nothing collides. The real population collides in one
+// specific way: ONE parent reports SEVERAL children — same surnames, same
+// building, same apartment, same reporter phone, minutes apart, and for two
+// brothers not even a gender disagreement.
+//
+// These are labelled `distinct` in seed_truth. Merging any of these pairs is
+// the worst outcome the system can produce: a living child removed from the
+// search list, and a collapsed building whose cell weight goes DOWN because the
+// household inside it was collapsed into one case.
+//
+// Given names are drawn from disjoint halves of the name lists so that siblings
+// never accidentally share one; the point of a hard negative is that it is hard
+// for the right reason.
+// ---------------------------------------------------------------------------
+function makeFamily(): { reporterPhone: string; members: Person[] } {
+  const s1 = pick(SURNAMES);
+  const s2 = pick(SURNAMES.filter((s) => s !== s1));
+  const building = pick(BUILDINGS);
+  const apartment = `${1 + Math.floor(r() * 12)}0${1 + Math.floor(r() * 4)}`;
+  const floor = String(1 + Math.floor(r() * 12));
+  const lat = CENTRE.lat + (r() - 0.5) * 0.04;
+  const lng = CENTRE.lng + (r() - 0.5) * 0.04;
+  const reporterPhone = `+57 3${Math.floor(r() * 10)}${Math.floor(1000000 + r() * 8999999)}`;
+  // Two to four children, occasionally all of the same sex — the pair with no
+  // contradicting signal whatsoever.
+  const count = 2 + Math.floor(r() * 3);
+  const allSameSex = chance(0.5);
+  const familyFemale = chance(0.5);
+  const used = new Set<string>();
+  const members: Person[] = [];
+  for (let i = 0; i < count; i++) {
+    const female = allSameSex ? familyFemale : chance(0.5);
+    const pool = (female ? GIVEN_F : GIVEN_M).filter((g) => !used.has(g));
+    if (!pool.length) break;
+    const given = pick(pool);
+    used.add(given);
+    const jitter = 15;
+    members.push({
+      // One given name plus both surnames: how a parent writes a child's name on
+      // a form at 3 a.m.
+      full_name: `${given} ${s1} ${s2}`,
+      age_approx: 2 + Math.floor(r() * 16),
+      gender: female ? "f" : "m",
+      lat: lat + ((r() - 0.5) * jitter) / 111_320,
+      lng: lng + ((r() - 0.5) * jitter) / 111_320,
+      building_name: building,
+      floor,
+      apartment,
+      // The same parent files all of them. This is what used to hand the scorer
+      // +0.15 per pair.
+      phone: reporterPhone,
+      // Children usually have no phone of their own; when one does, it is theirs
+      // alone and it is the signal that tells them apart.
+      subject_phone: chance(0.2)
+        ? `+57 3${Math.floor(r() * 10)}${Math.floor(1000000 + r() * 8999999)}` : null,
+      id4: String(1000 + Math.floor(r() * 9000)),
+      distinguishing_info: `camisa ${pick(["azul", "blanca", "roja", "negra", "verde"])}`,
+    });
+  }
+  return { reporterPhone, members };
 }
 
 function baseReport(p: Person): Record<string, unknown> {
@@ -167,26 +258,37 @@ function baseReport(p: Person): Record<string, unknown> {
     floor: p.floor,
     apartment: p.apartment,
     reporter_phone: p.phone,
+    subject_phone: p.subject_phone,
     national_id_last4: chance(0.4) ? p.id4 : null,
     distinguishing_info: p.distinguishing_info,
     last_contact_at: new Date(Date.now() - r() * 48 * 3600_000).toISOString(),
   };
 }
 
-const ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-function ref(prefix: string) {
-  const b = crypto.randomBytes(4);
-  return `${prefix}-${Array.from(b).map((x) => ALPHABET[x % ALPHABET.length]).join("")}`;
-}
-
+// The seed allocates references the same way intake does, from the same
+// function, WITH THE SAME RETRY. It used to have its own private 4-character
+// copy and no retry, and it died on run one against a real database:
+// `duplicate key value violates unique constraint "person_case_ref_uq"`. A seed
+// that cannot survive its own collision budget is a drill that fails for a
+// reason that has nothing to do with what the drill measures.
 async function insertCase(incidentId: string, prefix: string, payload: Record<string, unknown>) {
   return tx(async (c) => {
-    const cs = await c.query(
-      `INSERT INTO person_case (incident_id, status, status_source, reference_number,
-                                public_listed, consent_photo_public, is_minor)
-       VALUES ($1,$2,'citizen',$3,true,false,$4) RETURNING id`,
-      [incidentId, pick(STATUSES), ref(prefix), (payload.age_approx as number ?? 99) < 18]
-    );
+    let cs: { rows: Array<{ id: string }> } | null = null;
+    for (let attempt = 0; attempt < 8 && cs === null; attempt++) {
+      const candidate = newReference(prefix);
+      const clash = await c.query(
+        `SELECT 1 FROM person_case WHERE incident_id = $1 AND reference_number = $2`,
+        [incidentId, candidate]
+      );
+      if (clash.rowCount) continue;
+      cs = await c.query(
+        `INSERT INTO person_case (incident_id, status, status_source, reference_number,
+                                  public_listed, consent_photo_public, is_minor)
+         VALUES ($1,$2,'citizen',$3,true,false,$4) RETURNING id`,
+        [incidentId, pick(STATUSES), candidate, (payload.age_approx as number ?? 99) < 18]
+      );
+    }
+    if (!cs) throw new Error("seed could not allocate a reference number in 8 attempts");
     const caseId: string = cs.rows[0].id;
     await c.query(
       `INSERT INTO report (case_id, incident_id, channel, payload, reporter_phone_e164, submitted_at)
@@ -288,6 +390,47 @@ export async function seed(total = Number(process.env.SEED_CASES ?? 500)) {
   const dupRate = Number(process.env.SEED_DUP_RATE ?? 0.3);
   let people = 0, cases = 0, pairs = 0;
 
+  // ---------------------------------------------------------------------------
+  // Households first, so that a smaller seed still contains some. Around 15% of
+  // the population is a family reported by one parent: distinct people who look
+  // like duplicates on every signal except the given name. Without them the
+  // precision number describes a world we are not deploying into.
+  // ---------------------------------------------------------------------------
+  const familyShare = Number(process.env.SEED_FAMILY_SHARE ?? 0.15);
+  const familyBudget = Math.min(Math.floor(total * familyShare), total);
+  let families = 0, siblingPairs = 0;
+  while (cases < familyBudget) {
+    const fam = makeFamily();
+    const ids: string[] = [];
+    for (const m of fam.members) {
+      if (cases >= familyBudget) break;
+      // Deliberately the easiest possible location claim: one parent standing
+      // outside one building points at it once. Nothing about the geography
+      // separates these children, which is the whole point.
+      const payload = {
+        ...baseReport(m),
+        location_accuracy: "building",
+        location_source: "map_pick",
+        last_contact_at: new Date(Date.now() - r() * 6 * 3600_000).toISOString(),
+      };
+      ids.push(await insertCase(inc.id, inc.ref_prefix, payload));
+      cases++; people++;
+    }
+    families++;
+    for (let i = 0; i < ids.length; i++) {
+      for (let j = i + 1; j < ids.length; j++) {
+        const [a, b] = ids[i] < ids[j] ? [ids[i], ids[j]] : [ids[j], ids[i]];
+        await query(
+          `INSERT INTO seed_truth (a_case, b_case, kind, note, pair_type)
+           VALUES ($1,$2,'distinct',$3,'sibling')
+           ON CONFLICT DO NOTHING`,
+          [a, b, `siblings, one reporter: ${fam.members[0]?.full_name ?? ""}`]
+        );
+        siblingPairs++;
+      }
+    }
+  }
+
   while (cases < total) {
     const p = makePerson();
     const first = await insertCase(inc.id, inc.ref_prefix, baseReport(p));
@@ -346,9 +489,13 @@ export async function seed(total = Number(process.env.SEED_CASES ?? 500)) {
   console.log(JSON.stringify({
     level: "info", msg: "seed complete",
     incident: slug, cases, people, duplicate_pairs: pairs, enqueued: enqueue,
+    // Reported separately from the duplicates: these are the pairs the engine
+    // must NOT propose, and a precision figure that never met one is not a
+    // precision figure.
+    families, sibling_pairs: siblingPairs,
     aid_sites: aidLoaded,
   }));
-  return { incidentId: inc.id, cases, people, pairs, aidLoaded };
+  return { incidentId: inc.id, cases, people, pairs, families, siblingPairs, aidLoaded };
 }
 
 const invokedDirectly =
