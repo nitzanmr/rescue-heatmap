@@ -14,12 +14,14 @@ laptop, our recovery story during an event is fiction.
 - Working DNS inside the Docker daemon (the build pulls from the PGDG apt repo
   and the npm registry). If image builds fail to resolve hostnames, fix the
   daemon's DNS before blaming the Dockerfile.
-- Host ports 5432 and 8080 free, **or** override them. If another Postgres
-  already owns 5432:
+- Host ports 5432 and 8080 free, **or** override them. Only two ports are
+  published: the database (for the host-side correlation test) and the **edge**,
+  which serves the whole system on one origin. If another Postgres already owns
+  5432, or something else owns 8080:
 
   ```
   DB_PORT=55432 make drill      # `make test` follows the same variable
-  API_PORT=8081 make drill
+  EDGE_PORT=8090 make drill     # the single http port
   ```
 
 ## Database TLS
@@ -206,21 +208,37 @@ against instead of an argument.
 
 ## The web tier
 
-`make up` now starts the PWA alongside the API:
+`make up` starts the PWA, the API and the **edge** (nginx). There is one
+address:
 
 ```
 make up
-# web  http://localhost:3000   (WEB_PORT overrides)
-# api  http://localhost:8080   (API_PORT overrides)
+# http://localhost:8080/          the PWA   (EDGE_PORT overrides)
+# http://localhost:8080/api/...   the API
 ```
 
-The browser calls a relative `/api/...` path which the Next server forwards to
-`API_ORIGIN` (`http://api:8080` in compose). If the web container starts but
-every page shows a connection error, check that first:
+The API and the web container publish **no host port**. nginx routes `/api/` to
+the API (stripping the prefix) and everything else to Next. That is not a
+cosmetic tidy-up:
+
+- one origin means no CORS and no preflight on the intake POST, and one DNS
+  lookup instead of two on a saturated cell network;
+- the API's address never reaches a browser, so moving it is an edge config
+  change, not a client rebuild;
+- request size, timeouts and the client-IP header are decided in **one** place.
+  The API runs with `trustProxy` on, and nginx overwrites `X-Forwarded-For` with
+  what it actually observed. A second, directly published API port would let a
+  caller state its own address and shed its rate limit.
+
+Three checks, in this order — they fail differently on purpose:
 
 ```
-curl -fsS http://localhost:3000/api/readyz     # proxy + API + database
+curl -fsS http://localhost:8080/edge-health    # nginx is up (answered by nginx)
+curl -fsS http://localhost:8080/api/readyz     # edge -> api -> database
+curl -fsS http://localhost:8080/reportar       # edge -> web
 ```
+
+`make logs-edge` tails the access log when a route is going to the wrong tier.
 
 To open `/panel` you need an operator token — there is no password login:
 

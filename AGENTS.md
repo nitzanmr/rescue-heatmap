@@ -31,6 +31,14 @@ When Supabase ships 18 GA, the bump is a one-line change plus a `make drill`.
 
 - **One image, three roles.** `services/api/Dockerfile` builds a single image;
   `ROLE=api|worker|migrate` selects behaviour. Do not add a second image.
+- **One origin, one published http port.** `ops/edge/nginx.conf` is the only
+  door: `/api/` goes to the API with the prefix stripped, everything else to the
+  PWA. Neither `api` nor `web` publishes a host port, and re-publishing one is a
+  regression, not a debugging convenience — the edge is where the body limit,
+  the timeouts and the client-IP header are decided, and the API runs with
+  `trustProxy` on, so a second way in is a client-IP spoofing hole. nginx
+  **overwrites** `X-Forwarded-For` with `$remote_addr`; never append to what the
+  client sent. `test/edge.test.ts` fails if any of this drifts.
 - **Managed Postgres is used as Postgres.** No provider SDK, no Edge Functions,
   no provider-specific auth in application code. The exit test is: `pg_dump`
   from the cloud, restore locally, tests still pass.

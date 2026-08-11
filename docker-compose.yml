@@ -5,7 +5,14 @@
 #   docker compose up -d db
 #   docker compose run --rm migrate
 #   docker compose run --rm seed
-#   docker compose up api worker
+#   docker compose up api worker web edge
+#
+# ONE published port: the edge (nginx) on EDGE_PORT, 8080 by default. The API
+# and the PWA are reachable only through it, on one origin:
+#   http://localhost:8080/          -> the PWA
+#   http://localhost:8080/api/...   -> the API
+# The database port stays published because the correlation test runs on the
+# host and must reach it directly.
 #
 # The db image is built locally because no official image carries both PostGIS
 # and pgvector, and our correlation query needs both in the same statement.
@@ -90,8 +97,13 @@ services:
       STORAGE_DRIVER: fs
       STORAGE_ROOT_DIR: /data/media
       LOG_LEVEL: info
-    ports:
-      - "${API_PORT:-8080}:8080"
+    # No published port on purpose. The API is reached through the edge at
+    # /api/... — one origin for the whole system. Publishing it again would
+    # create a second way in that bypasses the edge's request-size limit and,
+    # worse, its X-Forwarded-For overwrite: this service runs with trustProxy
+    # on, so a directly reachable port is a client-IP spoofing hole.
+    expose:
+      - "8080"
     volumes:
       - media:/data/media
     depends_on:
@@ -125,9 +137,9 @@ services:
       migrate:
         condition: service_completed_successfully
 
-  # The PWA. It talks to the API through its own /api path (next.config.mjs
-  # rewrites), so the browser never needs the API's address and there is no CORS
-  # in the intake path.
+  # The PWA. The browser reaches it through the edge; /api on the same origin is
+  # routed to the API by nginx, so the browser never needs the API's address and
+  # there is no CORS in the intake path.
   web:
     build:
       context: ./app/web
@@ -138,9 +150,11 @@ services:
       # Server-side: where Next forwards /api/* and where it fetches link-preview
       # metadata from. Container address, never seen by a browser.
       API_ORIGIN: http://api:8080
-      NEXT_PUBLIC_BASE_URL: http://localhost:${WEB_PORT:-3000}
-    ports:
-      - "${WEB_PORT:-3000}:3000"
+      # The address a human types and a shared link contains: the edge, not this
+      # container. Anything else prints an unreachable link on a family's card.
+      NEXT_PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-http://localhost:${EDGE_PORT:-8080}}
+    expose:
+      - "3000"
     depends_on:
       - api
 
@@ -172,6 +186,23 @@ services:
         condition: service_completed_successfully
     profiles: ["tools"]
     restart: "no"
+
+  # The single front door. Every browser request — page or API — arrives here.
+  # See ops/edge/nginx.conf for why there is one origin and not two ports.
+  edge:
+    image: nginx:1.27-alpine
+    ports:
+      - "${EDGE_PORT:-8080}:80"
+    volumes:
+      - ./ops/edge/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O- http://127.0.0.1/edge-health >/dev/null || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    depends_on:
+      - api
+      - web
 
 volumes:
   dbdata:

@@ -142,11 +142,12 @@ repository shipped with, and a green drill must not be able to hide it.
 
 | Variable | Where | Meaning |
 |---|---|---|
-| `API_ORIGIN` | web (server) | Where `/api/*` is forwarded. `http://api:8080` in compose. |
+| `API_ORIGIN` | web (server) | Where the Next server itself calls the API (link previews), and the dev fallback rewrite. `http://api:8080` in compose. In compose the browser's `/api` is handled by nginx before Next sees it. |
 | `NEXT_PUBLIC_API_BASE` | web (browser) | Override the relative base. Leave unset. |
 | `NEXT_PUBLIC_BASE_URL` | web | Public host used in shared links and QR codes. |
 | `NEXT_PUBLIC_DEMO` | web | `0` only for a real activation. Anything else shows the "not a real deployment" banner. |
-| `WEB_PORT` | compose | Host port for the PWA (default 3000). |
+| `EDGE_PORT` | compose | The one published http port (default 8080). The PWA is `/`, the API is `/api/`. |
+| `PUBLIC_BASE_URL` | compose | Address printed in shared links; defaults to the edge. |
 
 ## Still not done
 

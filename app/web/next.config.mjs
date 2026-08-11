@@ -11,8 +11,13 @@ const nextConfig = {
   // required for the Docker image (multi-stage runtime copies .next/standalone)
   output: "standalone",
 
-  // The browser talks to a RELATIVE /api path and Next forwards it. This is not
-  // cosmetic:
+  // The browser talks to a RELATIVE /api path. In compose (and in any real
+  // deployment) nginx at the edge answers that path before Next ever sees it —
+  // see ops/edge/nginx.conf. This rewrite is the fallback for `npm run dev`,
+  // where there is no edge in front. Same contract either way, which is the
+  // point: the client code does not know or care which one served it.
+  //
+  // Relative and same-origin is not cosmetic:
   //   - same-origin means no CORS, no preflight on every intake POST, and one
   //     less hostname to get right during an activation;
   //   - the API's internal address never reaches the browser, so moving the API
