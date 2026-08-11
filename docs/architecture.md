@@ -141,8 +141,13 @@ This is what makes ניצן's "operator approves, decision is auditable" actuall
 
 ## 4. Dedup pipeline — one query, then a model, then a human
 
-Adopting ניצן's ordering (normalize → BM25 → embeddings → structured signals → human),
+Adopting ניצן's ordering (normalize → lexical rank → embeddings → structured signals → human),
 implemented so that stages 1–3 are a **single SQL round-trip**:
+
+> **Naming, precisely:** what runs is Postgres `ts_rank_cd`, which is **not BM25**. It has no
+> document-length normalisation and no IDF saturation. Calling it BM25 is a claim someone will
+> check us on, and it is not one we need — the shortlist is carried by trigram similarity and
+> geography, not by the lexical rank.
 
 ```sql
 -- stage 1+2: candidate shortlist, all inside Postgres
@@ -170,8 +175,25 @@ queue; below → ignore.
 a rescue team stops looking for a person who is still under the rubble.
 
 **Embeddings, honestly:** they are stage-2 sugar, not the core. Ship stages 1, 2 (trgm+FTS),
-4 and 5 first — Avishai's own observation last night was that BM25 alone is often enough.
-`pgvector` is provisioned from day one so adding it later is an `UPDATE`, not a migration.
+4 and 5 first — lexical matching alone is often enough. `pgvector` is provisioned from day one
+so adding it later is an `UPDATE`, not a migration.
+
+**Two things currently cost time and change no decision, and both should be named rather than
+left to be discovered:**
+
+- `w_semantic` (0.05) is multiplied by `sem_sim`, which is `NULL` for every row because the
+  embedding service is a stub and `narrative_vec` is never written. The maximum achievable
+  score is therefore 0.95, not 1.0, while every threshold was chosen as if it were 1.0. Either
+  turn embeddings on or drop the weight — a weight standing on an empty column is a false
+  claim in the config, not a small number.
+- `lex_rank` is computed on every candidate and used in no branch of the score. It either
+  enters the scoring or it comes out of the query.
+
+**The operating point (from the first real sweep):** queue floor `0.525`, lead band down to
+`0.45`. 0.50 was rejected deliberately: it buys three points of recall for four of precision
+across one 0.025 step, which is a cliff, and an operating point on a cliff stops holding the
+day the data changes. The shortlist size is `correlation_config.candidate_limit` and nothing
+may pass a literal — the measurement and the field must run the same engine.
 
 ---
 

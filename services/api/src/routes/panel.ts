@@ -40,17 +40,36 @@ export default async function panelRoutes(app: FastifyInstance) {
   );
 
   // On-demand correlation for one case: "who else might this be?"
+  //
+  // The shortlist size is NOT passed here. It lives in correlation_config
+  // .candidate_limit so that the panel, the worker and the measurement harness
+  // all see the same engine; a test that scores 50 candidates while production
+  // scores 25 reports a recall nobody will ever get in the field.
+  //
+  // Both bands are returned, labelled. Above auto_suggest_floor it is a queued
+  // suggestion; between lead_floor and that, a 'lead' — worth a glance while
+  // this case is open, not worth interrupting an operator for.
   app.get<{ Params: { id: string } }>("/v1/panel/cases/:id/correlations", async (req) => {
     requireOperator(req.actor);
-    const rows = await query(
+    const rows = await query<{ band: string }>(
       `SELECT c.case_id, c.score, c.signals, pi.name_raw, pi.age_approx,
-              pc.reference_number, pc.status
-         FROM public.correlate_case($1, 25) c
+              pc.reference_number, pc.status,
+              CASE WHEN c.score >= cfg.auto_suggest_floor THEN 'suggestion'
+                   WHEN c.score >= cfg.lead_floor        THEN 'lead'
+                   ELSE 'below' END AS band
+         FROM public.correlate_case($1) c
          JOIN person_index pi ON pi.case_id = c.case_id
-         JOIN person_case  pc ON pc.id = c.case_id`,
+         JOIN person_case  pc ON pc.id = c.case_id
+         CROSS JOIN correlation_config cfg
+        WHERE cfg.id = 1
+        ORDER BY c.score DESC, c.case_id`,
       [req.params.id]
     );
-    return { candidates: rows };
+    return {
+      candidates: rows,
+      suggestions: rows.filter((r) => r.band === "suggestion"),
+      leads: rows.filter((r) => r.band === "lead"),
+    };
   });
 
   app.get<{ Params: { id: string } }>("/v1/panel/cases/:id", async (req) => {
@@ -97,7 +116,10 @@ export default async function panelRoutes(app: FastifyInstance) {
       `SELECT a_case, b_case, state FROM dedup_candidate WHERE id = $1`, [req.params.id]
     );
     if (!cand) throw new HttpError(404, "not found", "not_found");
-    if (cand.state !== "pending") throw new HttpError(409, "already decided", "already_decided");
+    // 'lead' is undecided too — it is simply below the queue floor. An operator
+    // who opened the case and looked at it may decide it like any other pair.
+    if (!["pending", "lead"].includes(cand.state))
+      throw new HttpError(409, "already decided", "already_decided");
 
     if (decision === "reject") {
       await query(
@@ -163,10 +185,11 @@ export default async function panelRoutes(app: FastifyInstance) {
         `UPDATE dedup_candidate SET state='merged', decided_by=$2, decided_at=now() WHERE id=$1`,
         [req.params.id, op.userId]
       );
-      // Any other pending pair touching the merged case is now stale.
+      // Any other undecided pair touching the merged case is now stale — leads
+      // included, or a stale lead resurfaces on the case screen after a merge.
       await c.query(
         `UPDATE dedup_candidate SET state='superseded'
-          WHERE state='pending' AND (a_case=$1 OR b_case=$1) AND id <> $2`,
+          WHERE state IN ('pending','lead') AND (a_case=$1 OR b_case=$1) AND id <> $2`,
         [merged, Number(req.params.id)]
       );
       await c.query(`SELECT public.refresh_person_index($1)`, [survivor]);

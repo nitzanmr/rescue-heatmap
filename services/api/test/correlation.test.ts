@@ -46,10 +46,15 @@ test("correlation engine: precision/recall curve against seeded ground truth", a
   if (previousSeedIncident === undefined) delete process.env.SEED_INCIDENT;
   else process.env.SEED_INCIDENT = previousSeedIncident;
 
-  const cfg = (await query<{ auto_suggest_floor: number }>(
-    `SELECT auto_suggest_floor FROM correlation_config WHERE id = 1`
+  const cfg = (await query<{
+    auto_suggest_floor: number; lead_floor: number;
+    candidate_limit: number; phonetic_enabled: boolean;
+  }>(
+    `SELECT auto_suggest_floor, lead_floor, candidate_limit, phonetic_enabled
+       FROM correlation_config WHERE id = 1`
   ))[0];
   const liveFloor = Number(cfg.auto_suggest_floor);
+  const leadFloor = Number(cfg.lead_floor);
 
   const cases = await query<{ id: string }>(
     `SELECT id FROM person_case WHERE incident_id = $1`, [incidentId]
@@ -58,11 +63,17 @@ test("correlation engine: precision/recall curve against seeded ground truth", a
   // One scoring pass. correlate_case() is the same function the worker calls;
   // enqueue_correlations() is only that function plus the floor, so scoring here
   // and thresholding in JS measures the production engine, not a copy of it.
+  //
+  // NO SHORTLIST SIZE IS PASSED. It used to be 50 here and 25 in the worker and
+  // the panel, which meant this file reported the recall of an engine that was
+  // never going to run in the field. The number now lives once, in
+  // correlation_config.candidate_limit, and is printed with the results so a
+  // future reader can tell which engine produced them.
   const scores = new Map<Pair, number>();
   const t0 = Date.now();
   for (const c of cases) {
     const rows = await query<{ case_id: string; score: number }>(
-      `SELECT case_id, score FROM public.correlate_case($1, 50)`, [c.id]
+      `SELECT case_id, score FROM public.correlate_case($1)`, [c.id]
     );
     for (const r of rows) {
       const k = key(c.id, r.case_id);
@@ -122,14 +133,45 @@ test("correlation engine: precision/recall curve against seeded ground truth", a
   // The operating point we are willing to defend out loud. A missed duplicate
   // wastes a team; a false suggestion can make a team stop searching for someone
   // still alive. So: maximise recall subject to a hard precision floor.
+  //
+  // AND the point must not sit on a cliff. "Maximise recall subject to a
+  // precision floor" on its own picks the last value before precision falls
+  // through the floor, which is by definition the most fragile point on the
+  // curve: one step further and the guarantee is gone. Since the data will
+  // change the day real reports arrive, a candidate is only eligible if the
+  // NEXT step down still holds most of its precision. Stability is part of the
+  // requirement, not a nicety.
   const P_FLOOR = Number(process.env.TARGET_PRECISION ?? 0.90);
   const R_TARGET = Number(process.env.TARGET_RECALL ?? 0.85);
+  const MAX_CLIFF = Number(process.env.MAX_PRECISION_CLIFF ?? 0.03);
+
+  const stepBelow = (p: (typeof curve)[number]) =>
+    curve.filter((q) => q.floor < p.floor).sort((a, b) => b.floor - a.floor)[0];
+  const cliffOf = (p: (typeof curve)[number]) => {
+    const below = stepBelow(p);
+    return below ? +(p.precision - below.precision).toFixed(3) : 0;
+  };
+
   const feasible = curve.filter((p) => p.precision >= P_FLOOR);
-  const best = feasible.length
-    ? feasible.reduce((a, b) => (b.recall > a.recall ? b : a))
-    : curve.reduce((a, b) => (b.f1 > a.f1 ? b : a));
+  const stable = feasible.filter((p) => cliffOf(p) <= MAX_CLIFF);
+  const best = stable.length
+    ? stable.reduce((a, b) => (b.recall > a.recall ? b : a))
+    : feasible.length
+      ? feasible.reduce((a, b) => (b.recall > a.recall ? b : a))
+      : curve.reduce((a, b) => (b.f1 > a.f1 ? b : a));
 
   const live = at(liveFloor);
+  // What the second band buys. A lead is not queued, so its false positives do
+  // not cost an operator a decision — they cost a glance on a case already
+  // open. Reported separately precisely so the two are never added together.
+  const leadBand = at(leadFloor);
+  const leadOnly = {
+    lead_floor: leadFloor,
+    extra_true_pairs: leadBand.tp - live.tp,
+    extra_false_pairs: leadBand.fp - live.fp,
+    recall_if_leads_count: leadBand.recall,
+    queue_recall: live.recall,
+  };
   const missedScores = scoredTruth
     .map((p) => scores.get(p)!)
     .filter((s) => s < liveFloor)
@@ -144,8 +186,12 @@ test("correlation engine: precision/recall curve against seeded ground truth", a
     // What candidate generation makes possible at ANY threshold.
     recall_ceiling: +recallCeiling.toFixed(3),
     blocked_truth_pairs: blocked.length,
+    candidate_limit: Number(cfg.candidate_limit),
+    phonetic_enabled: cfg.phonetic_enabled,
     live_floor: liveFloor,
     live: live,
+    lead_band: leadOnly,
+    recommended_cliff: cliffOf(best),
     live_by_pair_type: byType(liveFloor),
     recommended_by_pair_type: byType(best.floor),
     // Duplicates that WERE scored and lost to the floor alone, best first.
@@ -195,43 +241,85 @@ test("the worker's enqueue path agrees with the swept scores at the live floor",
   if (previousSeedIncident === undefined) delete process.env.SEED_INCIDENT;
   else process.env.SEED_INCIDENT = previousSeedIncident;
 
-  const floor = Number((await query<{ auto_suggest_floor: number }>(
-    `SELECT auto_suggest_floor FROM correlation_config WHERE id = 1`
-  ))[0].auto_suggest_floor);
+  const cfg = (await query<{ auto_suggest_floor: number; lead_floor: number }>(
+    `SELECT auto_suggest_floor, lead_floor FROM correlation_config WHERE id = 1`
+  ))[0];
+  const floor = Number(cfg.auto_suggest_floor);
+  const lead = Number(cfg.lead_floor);
 
   const cases = await query<{ id: string }>(
     `SELECT id FROM person_case WHERE incident_id = $1`, [incidentId]
   );
-  const expected = new Set<Pair>();
+  // Same call the worker makes: no shortlist size, no floor of its own.
+  const expected = new Map<Pair, string>();
   for (const c of cases) {
     const rows = await query<{ case_id: string; score: number }>(
-      `SELECT case_id, score FROM public.correlate_case($1, 25)`, [c.id]
+      `SELECT case_id, score FROM public.correlate_case($1)`, [c.id]
     );
-    for (const r of rows) if (Number(r.score) >= floor) expected.add(key(c.id, r.case_id));
+    for (const r of rows) {
+      const s = Number(r.score);
+      if (s < lead) continue;
+      const k = key(c.id, r.case_id);
+      const band = s >= floor ? "pending" : "lead";
+      // Either side of a pair may promote it; a pair seen as a lead once and a
+      // suggestion once belongs in the queue.
+      if (band === "pending" || !expected.has(k)) expected.set(k, band);
+    }
     await query(`SELECT public.enqueue_correlations($1)`, [c.id]);
   }
 
-  const actual = new Set(
-    (await query<{ a_case: string; b_case: string }>(
-      `SELECT a_case, b_case FROM dedup_candidate WHERE incident_id = $1`, [incidentId]
-    )).map((r) => key(r.a_case, r.b_case))
+  const actual = new Map(
+    (await query<{ a_case: string; b_case: string; state: string }>(
+      `SELECT a_case, b_case, state FROM dedup_candidate WHERE incident_id = $1`, [incidentId]
+    )).map((r) => [key(r.a_case, r.b_case), r.state] as const)
   );
 
-  const missing = [...expected].filter((p) => !actual.has(p));
-  const extra = [...actual].filter((p) => !expected.has(p));
-  assert.deepEqual(missing, [], "scored above the floor but never queued for an operator");
-  assert.deepEqual(extra, [], "queued a pair the scorer did not put above the floor");
+  const missing = [...expected.keys()].filter((p) => !actual.has(p));
+  const extra = [...actual.keys()].filter((p) => !expected.has(p));
+  assert.deepEqual(missing, [], "scored above the lead floor but never recorded");
+  assert.deepEqual(extra, [], "recorded a pair the scorer did not put above the lead floor");
+
+  // The band matters as much as the pair: a lead that lands in the queue is
+  // exactly the noise the two-band split exists to keep out of it.
+  const misbanded = [...expected].filter(([p, band]) => actual.get(p) !== band);
+  assert.deepEqual(misbanded, [], "a pair landed in the wrong band");
 });
 
-test("never auto-merges: every candidate lands as 'pending'", async (t) => {
+// A shortlist an operator cannot reproduce is not evidence. Ties used to be
+// broken by whatever order the planner returned, so the same case gave a
+// different shortlist on a re-run — which is what made this suite flap by one
+// pair with a different uuid each time.
+test("the shortlist is deterministic across repeated calls", async (t) => {
+  if (!HAVE_DB) return t.skip("DATABASE_URL not set");
+  const cases = await query<{ id: string }>(
+    `SELECT case_id AS id FROM person_index ORDER BY case_id LIMIT 40`
+  );
+  if (!cases.length) return t.skip("no indexed cases");
+  for (const c of cases) {
+    const shot = async () => (await query<{ case_id: string }>(
+      `SELECT case_id FROM public.correlate_case($1)`, [c.id]
+    )).map((r) => r.case_id).join(",");
+    assert.equal(await shot(), await shot(),
+      `correlate_case(${c.id}) returned a different shortlist on a re-run`);
+  }
+});
+
+test("never auto-merges: every candidate is undecided until a human acts", async (t) => {
   if (!HAVE_DB) return t.skip("DATABASE_URL not set");
   const rows = await query<{ state: string; n: number }>(
     `SELECT state, count(*)::int AS n FROM dedup_candidate GROUP BY state`
   );
   for (const r of rows) {
-    assert.equal(r.state, "pending",
+    assert.ok(["pending", "lead"].includes(r.state),
       `found ${r.n} candidates in state '${r.state}' — nothing may merge without a human`);
   }
+  // A lead is below the queue floor by construction. If one ever outranks the
+  // floor the two bands have crossed and the queue is silently losing pairs.
+  const badLead = await query<{ n: number }>(
+    `SELECT count(*)::int AS n FROM dedup_candidate d, correlation_config c
+      WHERE c.id = 1 AND d.state = 'lead' AND d.score >= c.auto_suggest_floor`
+  );
+  assert.equal(badLead[0].n, 0, "a lead scored above the queue floor and was not promoted");
   const merged = await query<{ n: number }>(
     `SELECT count(*)::int AS n FROM person_case WHERE merged_into IS NOT NULL`
   );

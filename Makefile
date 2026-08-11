@@ -1,6 +1,6 @@
 # One entry point for the whole stack. The target that matters is `drill`:
 # from an empty machine to a running system with data, in one command.
-.PHONY: help up down migrate seed test build build-api build-web logs psql drill reset fresh web operator-token
+.PHONY: help up down migrate seed test ablation build build-api build-web logs psql drill reset fresh web operator-token
 
 COMPOSE ?= docker compose
 # Host port for the dev database. Override when 5432 is already taken:
@@ -73,6 +73,14 @@ aid-sites-load: ## Load a reviewed GeoJSON of aid sites into the database (FILE=
 
 test:    ## Correlation precision/recall against seeded ground truth
 	cd services/api && DATABASE_URL=$(DB_URL) DB_SSL=disable npm test
+
+# Phonetic name matching is the only proposed answer to duplicate-vs-duplicate
+# recall, and it ships OFF. This scores the same seed twice, with the flag off
+# and on, and prints the difference -- including what it costs in precision.
+# It restores the flag to whatever it found. Enabling it is a separate decision,
+# taken after reading this output.
+ablation: ## Measure what phonetic name matching buys (does not enable it)
+	cd services/api && DATABASE_URL=$(DB_URL) DB_SSL=disable ABLATION=1 npm test
 
 logs:    ## Tail api + worker
 	$(COMPOSE) logs -f api worker
@@ -150,6 +158,26 @@ drill:   ## Full rehearsal: fresh db -> migrate -> seed -> smoke test
 	if [ "$${cands:-0}" -lt 1 ]; then \
 	  echo "NO DEDUP CANDIDATES - the correlation engine produced nothing"; exit 1; fi; \
 	echo "dedup candidates: $$cands"
+	@# Bands, not one number. A 'lead' is below the queue floor on purpose; if one
+	@# ever lands in the operator queue the two bands have crossed and the queue is
+	@# quietly absorbing the noise the split exists to keep out.
+	@$(COMPOSE) exec -T db psql -U rescue -d rescue -tAc \
+	  "SELECT state || ': ' || count(*) FROM dedup_candidate GROUP BY state ORDER BY state"
+	@bad=$$($(COMPOSE) exec -T db psql -U rescue -d rescue -tAc \
+	  "SELECT count(*) FROM dedup_candidate d, correlation_config c \
+	    WHERE c.id=1 AND ((d.state='lead' AND d.score >= c.auto_suggest_floor) \
+	                   OR (d.state='pending' AND d.score < c.auto_suggest_floor))" \
+	  | tr -d '[:space:]'); \
+	if [ "$${bad:-1}" != "0" ]; then \
+	  echo "BAND VIOLATION: $$bad candidates are in the wrong band"; exit 1; fi; \
+	echo "dedup bands ok"
+	@# Nothing may be decided without a human. The drill runs unattended, so any
+	@# state beyond the two undecided ones means the machine merged something.
+	@decided=$$($(COMPOSE) exec -T db psql -U rescue -d rescue -tAc \
+	  "SELECT count(*) FROM dedup_candidate WHERE state NOT IN ('pending','lead')" \
+	  | tr -d '[:space:]'); \
+	if [ "$${decided:-1}" != "0" ]; then \
+	  echo "AUTO-DECIDED $$decided CANDIDATES WITHOUT AN OPERATOR"; exit 1; fi
 	@echo "drill passed."
 
 reset:   ## Drop the database volume (LOCAL DEV DATA ONLY)

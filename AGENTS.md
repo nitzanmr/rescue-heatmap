@@ -126,6 +126,39 @@ When Supabase ships 18 GA, the bump is a one-line change plus a `make drill`.
   makes you non-compliant with three; it also looks broken and defeats caching.
   `tile.openstreetmap.org` is last in the chain, never a default.
 
+- **The measurement runs the same engine as the field.** The shortlist size is
+  `correlation_config.candidate_limit` and no caller passes a literal. The test
+  once scored 50 candidates while the worker and the panel scored 25, so every
+  recall number we quoted came from an engine nobody would ever run — and the
+  gap opens exactly where duplicates cluster, in a crowded building. Any tuning
+  knob that exists in two places will eventually hold two values. Locked by
+  `test/operating-point.test.ts`.
+- **A shortlist an operator cannot reproduce is not evidence.** Every ranking
+  ends with a tie break (`ORDER BY score DESC, case_id`). Without one, two equal
+  scores straddling the LIMIT swap between calls: the suite flaps by one pair
+  with a different uuid each run, and the same case shows a different screen
+  when nothing changed.
+- **An operating point must sit on a plateau, not on a cliff.** "Maximise recall
+  under a precision floor" on its own always picks the last point before the
+  floor breaks — by construction the most fragile value on the curve. A
+  threshold is only eligible if the next step down still holds its precision.
+  0.525 was chosen over 0.50 for that reason, not for the three recall points.
+- **When one threshold forces a bad trade, add a band — do not move the
+  threshold.** Pairs above `auto_suggest_floor` enter the operator queue; pairs
+  above `lead_floor` are recorded as `lead` and surface only when someone opens
+  that case. Effective recall rises without the review queue absorbing the
+  noise. `lead` is still undecided: nothing merges without a human, ever.
+- **A weight standing on an empty column is a false claim, not a small number.**
+  `w_semantic` multiplies a `sem_sim` that is always NULL while embeddings are a
+  stub, which caps the achievable score at 0.95 against thresholds calibrated as
+  if it were 1.0. Turn the feature on or remove the weight.
+- **A new signal ships off, behind a flag, with an ablation.** Phonetic name
+  matching is measured with `make ablation` — same seed, flag off and on, delta
+  in both precision and recall — before anyone argues about whether it helps.
+  Restore the flag afterwards: an ablation is not a deploy.
+- **Do not call it BM25.** `ts_rank_cd` is not BM25, and it is a claim someone
+  will check.
+
 ## Reporting
 
 When you finish a task, report **what actually ran** and **what you assumed**
