@@ -36,9 +36,52 @@ export function updateReport(uuid: string, patch: Partial<Report>) {
   saveReports(all);
 }
 
+// Sightings — the loop that makes sharing worth something.
+// Whoever receives a card must be able to answer it, otherwise every forward is
+// a dead end. A sighting is NEVER written straight into the report: it is a
+// separate claim that the coordination panel reviews.
+export interface Sighting {
+  uuid: string;
+  reference_number: string;
+  seen_where: string;
+  seen_when?: string | null;
+  note?: string | null;
+  contact?: string | null;
+  created_at: string;
+  source: "public_card";
+}
+
+const SIGHT_KEY = "rh:sightings:v1";
+
+export function loadSightings(): Sighting[] {
+  if (typeof window === "undefined") return [];
+  try {
+    return JSON.parse(localStorage.getItem(SIGHT_KEY) || "[]") as Sighting[];
+  } catch {
+    return [];
+  }
+}
+
+export function addSighting(s: Sighting) {
+  const all = loadSightings();
+  all.unshift(s);
+  localStorage.setItem(SIGHT_KEY, JSON.stringify(all));
+  window.dispatchEvent(new Event("rh:reports-changed"));
+}
+
+export function sightingsFor(reference: string): Sighting[] {
+  return loadSightings().filter((s) => s.reference_number === reference);
+}
+
+export function findByReference(reference: string): Report | undefined {
+  const want = reference.trim().toUpperCase();
+  return loadReports().find((r) => r.reference_number.toUpperCase() === want);
+}
+
 export function resetDemo() {
   localStorage.removeItem(KEY);
   localStorage.removeItem(SEEDED);
+  localStorage.removeItem(SIGHT_KEY);
   window.dispatchEvent(new Event("rh:reports-changed"));
 }
 

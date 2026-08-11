@@ -4,6 +4,10 @@ export const incident = {
   id: "CO-2026-08-CHOCO",
   name: "Sismo Chocó, Colombia",
   country: "Colombia",
+  city: "Quibdó",
+  // Short, readable-over-the-radio host. Everything shared publicly points here.
+  // Overridable at deploy time so a staging build never emits production links.
+  publicBaseUrl: process.env.NEXT_PUBLIC_BASE_URL || "https://buscamos.co",
   countryCode: "CO",
   quakeAt: "2026-08-10T12:34:00Z",
   languages: ["es", "en"] as const,
