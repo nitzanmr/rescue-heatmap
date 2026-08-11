@@ -32,6 +32,11 @@ export interface Report {
   medical_info?: string | null;
   national_id_last4?: string | null;
   is_minor?: boolean;
+  // The missing person's own number — NOT reporter_phone below. Kept apart on
+  // purpose: the reporter's number identifies who filled the form, and scoring
+  // it as the subject's is what made one parent's four reports look like one
+  // child (docs/dedup-review.md F1).
+  subject_phone?: string | null;
 
   // location
   last_seen_lat?: number | null;

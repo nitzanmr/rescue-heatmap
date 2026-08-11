@@ -66,6 +66,13 @@ export const reportInput = z.object({
   medical_info: z.string().max(2000).nullish(),
   national_id_last4: z.string().regex(/^\d{4}$/).nullish(),
   is_minor: z.boolean().optional(),
+  // The MISSING PERSON's own number, not the reporter's. Two fields, because
+  // the engine used to score the reporter's phone as if it identified the
+  // subject: "the same person filed both reports" then looked like "the same
+  // human being", which was the strongest false-merge signal we had and fired
+  // hardest on a parent reporting several children (docs/dedup-review.md F1).
+  // Often unknown; when present it is highly discriminative.
+  subject_phone: z.string().max(40).nullish(),
 
   // location
   last_seen_lat: z.number().min(-90).max(90).nullish(),
@@ -81,7 +88,8 @@ export const reportInput = z.object({
   last_contact_at: z.string().datetime().nullish(),
   last_contact_precision: z.enum(["exact", "same_day", "approximate", "unknown"]).optional(),
 
-  // reporter
+  // reporter — this phone identifies whoever filled the form. It is contact
+  // information and a rate-limit key, never evidence about the subject.
   reporter_name: z.string().max(200).nullish(),
   reporter_phone: z.string().max(40).nullish(),
   reporter_relation: z

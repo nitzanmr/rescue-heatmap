@@ -17,6 +17,7 @@
     "seed": "tsx src/seed.ts",
     "aid-sites": "tsx src/import-aid-sites.ts",
     "test": "tsx --test test/**/*.test.ts",
+    "rank-ablation": "RANK_ABLATION=1 tsx --test test/heat-rank-ablation.test.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {

@@ -257,6 +257,33 @@ function DedupPair({ pair, onDecided }: { pair: any; onDecided: () => void }) {
         <Side ref_={pair.b_ref} name={pair.b_name} age={pair.b_age} reports={pair.b_reports} status={pair.b_status} />
       </div>
 
+      {/* Contradictions are not one signal among twelve. The engine already
+          demoted this pair for them, so the only reason it is on screen is that
+          something else pushed it back up — and the operator has to know which
+          way the evidence points before reading the rest. A parent reporting
+          several children is the most common shape of this queue, and merging
+          two of them removes a living child from the public search list. */}
+      {(signals.sibling_conflict === true || signals.gender_conflict === true) && (
+        <div
+          className="small"
+          style={{
+            marginTop: 10, padding: "8px 10px", borderRadius: 8,
+            border: "1px solid var(--warn)", color: "var(--warn)", lineHeight: 1.5,
+          }}
+        >
+          {signals.sibling_conflict === true && (
+            <div>
+              <strong>Posibles hermanos, no la misma persona.</strong>{" "}
+              Los apellidos coinciden y los nombres de pila no. Antes de unir,
+              compruebe la edad y el documento.
+            </div>
+          )}
+          {signals.gender_conflict === true && (
+            <div><strong>Los reportes no coinciden en el sexo de la persona.</strong></div>
+          )}
+        </div>
+      )}
+
       <div className="small muted" style={{ marginTop: 10, lineHeight: 1.6 }}>
         {Object.entries(signals).length === 0
           ? "Sin detalle de señales."

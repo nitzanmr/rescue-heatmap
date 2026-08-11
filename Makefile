@@ -1,6 +1,6 @@
 # One entry point for the whole stack. The target that matters is `drill`:
 # from an empty machine to a running system with data, in one command.
-.PHONY: help up down migrate seed test ablation build build-api build-web logs logs-edge psql drill reset fresh web operator-token
+.PHONY: help up down migrate seed test ablation rank-ablation build build-api build-web logs logs-edge psql drill reset fresh web operator-token
 
 COMPOSE ?= docker compose
 # Host port for the dev database. Override when 5432 is already taken:
@@ -87,6 +87,19 @@ test:    ## Correlation precision/recall against seeded ground truth
 # taken after reading this output.
 ablation: ## Measure what phonetic name matching buys (does not enable it)
 	cd services/api && DATABASE_URL=$(DB_URL) DB_SSL=disable ABLATION=1 npm test
+
+# The measurement that answers "is the dedup engine good enough?" in the units an
+# operator actually consumes: the ORDER of heat cells, not pairwise precision.
+# It builds a population, merges it four ways (perfect / no dedup / 20% random
+# false merges / 20% sibling false merges) and prints Spearman plus top-20
+# overlap against the perfect map. Everything runs in one transaction that is
+# rolled back, so it is safe on a database with real data in it.
+#
+# If both corrupted regimes leave the top-20 alone, the pairwise work (phonetics,
+# rarity weighting) does not change any rescue decision and can wait.
+rank-ablation: ## Does a dedup failure change where teams are sent? (read-only, rolls back)
+	cd services/api && DATABASE_URL=$(DB_URL) DB_SSL=disable RANK_ABLATION=1 \
+	  npx tsx --test test/heat-rank-ablation.test.ts
 
 logs:    ## Tail api + worker
 	$(COMPOSE) logs -f api worker

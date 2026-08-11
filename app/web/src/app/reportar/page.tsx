@@ -40,7 +40,7 @@ type Draft = Partial<Report>;
 // be silently dropped, which is worse than being rejected.
 const WIRE_FIELDS = [
   "full_name", "age_approx", "gender", "distinguishing_info", "medical_info",
-  "national_id_last4", "is_minor",
+  "national_id_last4", "is_minor", "subject_phone",
   "last_seen_lat", "last_seen_lng", "location_accuracy", "location_source", "last_seen_address",
   "building_name", "floor", "apartment",
   "last_contact_at", "last_contact_precision",
@@ -240,6 +240,15 @@ function StepPerson({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
         <span className="lab">Últimos 4 dígitos del documento</span>
         <span className="hint">Opcional. Solo se usa para no duplicar la misma persona. Nunca pedimos el documento completo.</span>
         <input inputMode="numeric" maxLength={4} value={draft.national_id_last4 ?? ""} onChange={(e) => set({ national_id_last4: e.target.value })} placeholder="1234" />
+      </label>
+      {/* The SUBJECT's phone, asked here among the facts about the person and
+          deliberately far from "tu teléfono" in Paso 4. Two phones with two
+          different meanings: this one helps tell one person from another, and
+          confusing the two is what merged siblings into a single case. */}
+      <label className="field">
+        <span className="lab">Su celular (de la persona buscada)</span>
+        <span className="hint">Opcional. No es tu número. Ayuda a no confundirla con un familiar del mismo apellido. No se muestra públicamente.</span>
+        <input inputMode="tel" value={draft.subject_phone ?? ""} onChange={(e) => set({ subject_phone: e.target.value })} placeholder="+57 300 000 0000" />
       </label>
     </div>
   );
