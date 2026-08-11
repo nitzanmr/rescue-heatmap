@@ -45,6 +45,21 @@ export async function runMigrations(opts: { dir?: string; url?: string } = {}) {
   try {
     await client.query(`SELECT pg_advisory_lock($1)`, [LOCK_ID]);
 
+    // Extension objects are never schema-qualified in the SQL files, because the
+    // provider decides where extensions live (Supabase: `extensions`; the
+    // postgis image: `public`). One search_path covers both, for every file.
+    await client.query(`CREATE SCHEMA IF NOT EXISTS extensions`);
+    await client.query(`SET search_path = public, extensions`);
+
+    // Set it as the database default *before* the schema is built, so the API
+    // and worker pools inherit it too. Best-effort: a managed role may not own
+    // the database, which is why db.ts also pins it per connection.
+    if (client.database) {
+      await client
+        .query(`ALTER DATABASE "${client.database}" SET search_path = public, extensions`)
+        .catch(() => {});
+    }
+
     await client.query(`
       CREATE TABLE IF NOT EXISTS schema_migration (
         version    text PRIMARY KEY,
@@ -101,12 +116,6 @@ export async function runMigrations(opts: { dir?: string; url?: string } = {}) {
       ran++;
       log("migration applied", { version, ms: Date.now() - t0 });
     }
-
-    // Extensions land in schema `extensions`; make them resolvable without a
-    // qualified name for interactive use. Best-effort: managed providers differ.
-    await client
-      .query(`ALTER DATABASE ${client.database ? `"${client.database}"` : "CURRENT"} SET search_path = public, extensions`)
-      .catch(() => {});
 
     log("migrations complete", { applied: ran, total: files.length });
     return { applied: ran, total: files.length };

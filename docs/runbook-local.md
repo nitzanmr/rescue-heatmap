@@ -36,6 +36,28 @@ is the fallback, and the default is `require`:
 
 An unrecognised value throws at startup rather than quietly picking a mode.
 
+## Where the extensions live
+
+Nowhere in particular, on purpose. The `postgis/postgis` image creates PostGIS
+in `public` during initdb; Supabase pre-creates it in `extensions`; on Cloud SQL
+and Neon it lands wherever the operator put it. PostGIS is `relocatable = false`,
+so it cannot be moved to make the environments agree.
+
+The migrations therefore never name the schema. `0001` creates the `extensions`
+schema, sets `search_path = public, extensions`, and every later file relies on
+that. The same path is applied in three more places so that runtime matches
+migration time:
+
+| Where | How |
+|---|---|
+| migration session | `SET search_path` in the runner, before file `0001` |
+| database default | `ALTER DATABASE ... SET search_path` (best effort — a managed role may not own the database) |
+| API / worker pool | `options=-c search_path=...`, a startup parameter so it survives a transaction-mode pooler |
+
+Override with `DB_SEARCH_PATH` if a provider ever puts extensions somewhere
+else. `name_norm` is generated with the dictionary's real schema baked in,
+because a function behind an index must not depend on the caller's path.
+
 ## The one command
 
 ```

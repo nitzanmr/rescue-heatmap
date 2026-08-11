@@ -54,7 +54,7 @@ DO $$
 BEGIN
   IF NOT EXISTS (SELECT 1 FROM pg_class WHERE relname = 'person_index_vec_hnsw') THEN
     EXECUTE 'CREATE INDEX person_index_vec_hnsw ON person_index
-             USING hnsw (narrative_vec extensions.vector_cosine_ops)
+             USING hnsw (narrative_vec vector_cosine_ops)
              WITH (m = 16, ef_construction = 64)';
   END IF;
 EXCEPTION WHEN OTHERS THEN

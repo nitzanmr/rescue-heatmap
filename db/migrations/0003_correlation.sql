@@ -256,7 +256,7 @@ BEGIN
     COALESCE(agg.rphones,'{}'), COALESCE(agg.reporter_count,1),
     agg.building_name, agg.floor, agg.apartment, agg.accuracy,
     CASE WHEN agg.lat IS NOT NULL AND agg.lng IS NOT NULL
-         THEN ST_SetSRID(ST_MakePoint(agg.lng, agg.lat),4326)::extensions.geography END,
+         THEN ST_SetSRID(ST_MakePoint(agg.lng, agg.lat),4326)::geography END,
     agg.last_seen_at, agg.narrative,
     to_tsvector('spanish', concat_ws(' ', agg.name_raw, agg.narrative)),
     'pending', now())

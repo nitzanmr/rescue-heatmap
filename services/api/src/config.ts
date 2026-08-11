@@ -61,6 +61,9 @@ export const config = {
     // exhaustion exactly when the form goes viral.
     max: num(process.env.DB_POOL_MAX, 8),
     statementTimeoutMs: num(process.env.DB_STATEMENT_TIMEOUT_MS, 8000),
+    // Where extension objects live is a provider fact, so it is configuration.
+    // public first (postgis image, Cloud SQL), extensions second (Supabase).
+    searchPath: (process.env.DB_SEARCH_PATH ?? "public,extensions").replace(/\s+/g, ""),
     ssl: process.env.DB_SSL,
   },
 

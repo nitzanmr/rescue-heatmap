@@ -42,8 +42,15 @@ When Supabase ships 18 GA, the bump is a one-line change plus a `make drill`.
   migration — the runner checksums them and will refuse. Never hide an ordering
   bug with `IF EXISTS`. Never patch the database by hand; fix the migration and
   reset.
-- **Extensions live in an `extensions` schema**, mirroring Supabase and Neon, so
-  the same migration applies locally and managed.
+- **Never schema-qualify an extension object.** Write `geography`, `vector`,
+  `gin_trgm_ops` — never `extensions.geography`. Where an extension lives is the
+  provider's decision: Supabase uses `extensions`, the `postgis/postgis` image
+  creates PostGIS in `public` at initdb, Cloud SQL uses wherever the operator
+  ran `CREATE EXTENSION`, and `postgis` is `relocatable = false` so it cannot be
+  moved afterwards. The schema is put on the `search_path` instead — by `0001`,
+  by the migration runner, by `ALTER DATABASE`, and by the pool's startup
+  options. A function that backs an index must not depend on the caller's
+  `search_path`: bake the resolved schema into it (see `name_norm` in `0001`).
 
 - **Environment decides, code does not guess.** No behaviour is inferred from a
   hostname, a URL substring or `NODE_ENV`. TLS to the database comes from

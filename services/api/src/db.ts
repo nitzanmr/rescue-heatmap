@@ -12,6 +12,11 @@ export const pool = new pg.Pool({
   idleTimeoutMillis: 30_000,
   connectionTimeoutMillis: 10_000,
   application_name: `rescue-${config.role}`,
+  // Extension objects (geography, vector, gin_trgm_ops) are never qualified in
+  // our SQL, because their schema differs per provider. Sent as a startup
+  // parameter rather than a `SET` so it survives a transaction-mode pooler,
+  // where a session-level SET would be discarded between statements.
+  options: `-c search_path=${config.db.searchPath}`,
   ssl: sslFor(config.db.url),
 });
 

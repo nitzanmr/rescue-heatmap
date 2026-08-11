@@ -85,7 +85,7 @@ async function handleEmbed(job: Job) {
   if (!Array.isArray(vec)) throw new Error("embeddings response has no vector");
 
   await query(
-    `UPDATE person_index SET narrative_vec = $2::text::extensions.vector,
+    `UPDATE person_index SET narrative_vec = $2::text::vector,
             vec_state = 'ready' WHERE case_id = $1`,
     [caseId, `[${vec.join(",")}]`]
   );

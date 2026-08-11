@@ -7,12 +7,12 @@
 -- the "delete everything when the event ends" promise (ADR-001) hang off this.
 -- ---------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS incident (
-  id             uuid PRIMARY KEY DEFAULT extensions.gen_random_uuid(),
+  id             uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   slug           text UNIQUE NOT NULL,
   name           text NOT NULL,
   country        text,
   ref_prefix     text NOT NULL DEFAULT 'CO',
-  centre         extensions.geography(Point, 4326),
+  centre         geography(Point, 4326),
   started_at     timestamptz NOT NULL DEFAULT now(),
   ended_at       timestamptz,
   public_expires_at timestamptz,          -- when the public listing goes dark
@@ -118,7 +118,7 @@ CREATE INDEX IF NOT EXISTS person_index_vec_state ON person_index (vec_state)
 -- Media. Postgres holds the reference; bytes live behind StoragePort (R2/S3/Blob).
 -- ---------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS media (
-  id             uuid PRIMARY KEY DEFAULT extensions.gen_random_uuid(),
+  id             uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   case_id        uuid NOT NULL REFERENCES person_case(id) ON DELETE CASCADE,
   report_id      uuid REFERENCES report(id),
   storage_key    text NOT NULL,
@@ -144,11 +144,11 @@ CREATE INDEX IF NOT EXISTS media_purge ON media (purge_after) WHERE deleted_at I
 -- loop that makes a shared card worth sharing.
 -- ---------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS sighting (
-  id           uuid PRIMARY KEY DEFAULT extensions.gen_random_uuid(),
+  id           uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   case_id      uuid NOT NULL REFERENCES person_case(id) ON DELETE CASCADE,
   kind         text NOT NULL,             -- seen | safe | hospital | shelter | deceased | correction
   note         text,
-  geo          extensions.geography(Point, 4326),
+  geo          geography(Point, 4326),
   reported_at  timestamptz,
   source       text NOT NULL DEFAULT 'public',   -- public | reporter_token | operator | official
   contact_phone_e164 text,
@@ -206,7 +206,7 @@ CREATE TABLE IF NOT EXISTS reporter_token (
 CREATE INDEX IF NOT EXISTS reporter_token_case ON reporter_token (case_id);
 
 CREATE TABLE IF NOT EXISTS app_user (
-  id            uuid PRIMARY KEY DEFAULT extensions.gen_random_uuid(),
+  id            uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   email         text UNIQUE NOT NULL,
   display_name  text,
   role          text NOT NULL DEFAULT 'operator',   -- operator | admin
@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS app_user (
 );
 
 CREATE TABLE IF NOT EXISTS user_session (
-  id          uuid PRIMARY KEY DEFAULT extensions.gen_random_uuid(),
+  id          uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id     uuid NOT NULL REFERENCES app_user(id) ON DELETE CASCADE,
   token_hash  text UNIQUE NOT NULL,
   issued_at   timestamptz NOT NULL DEFAULT now(),

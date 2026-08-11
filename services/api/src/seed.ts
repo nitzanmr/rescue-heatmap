@@ -180,7 +180,7 @@ export async function seed(total = Number(process.env.SEED_CASES ?? 500)) {
   const inc = await one<{ id: string; ref_prefix: string }>(
     `INSERT INTO incident (slug, name, country, ref_prefix, centre, public_expires_at)
      VALUES ($1,$2,'CO','DRL',
-             ST_SetSRID(ST_MakePoint($3,$4),4326)::extensions.geography,
+             ST_SetSRID(ST_MakePoint($3,$4),4326)::geography,
              now() + interval '30 days')
      ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name
      RETURNING id, ref_prefix`,
