@@ -1,6 +1,6 @@
 # One entry point for the whole stack. The target that matters is `drill`:
 # from an empty machine to a running system with data, in one command.
-.PHONY: help up down migrate seed test build build-api logs psql drill reset fresh
+.PHONY: help up down migrate seed test build build-api build-web logs psql drill reset fresh web operator-token
 
 COMPOSE ?= docker compose
 # Host port for the dev database. Override when 5432 is already taken:
@@ -23,11 +23,29 @@ build:   ## Build every image (api + the dev database image)
 build-api: ## Build only the shared API image (api, worker, migrate, seed)
 	$(COMPOSE) build api
 
-up:      ## Start db + api + worker (migrations run first, automatically)
+build-web: ## Build only the web (PWA) image
+	$(COMPOSE) build web
+
+up:      ## Start db + api + worker + web (migrations run first, automatically)
 	$(COMPOSE) up -d db
 	$(COMPOSE) run --rm migrate
-	$(COMPOSE) up -d api worker
+	$(COMPOSE) up -d api worker web
 	@echo "API on http://localhost:$${API_PORT:-8080}  ->  /healthz  /readyz  /v1/meta"
+	@echo "Web on http://localhost:$${WEB_PORT:-3000}  ->  /reportar  /buscar  /panel"
+
+web:     ## Start only the PWA (assumes the API is already up)
+	$(COMPOSE) up -d web
+	@echo "Web on http://localhost:$${WEB_PORT:-3000}"
+
+# Operators authenticate with a token minted here, never with a password typed
+# into a browser: there is no login endpoint, on purpose.
+#   make operator-token EMAIL=ana@ungrd.gov.co ROLE=admin
+operator-token: ## Mint an operator token for /panel (EMAIL=..., ROLE=operator|admin)
+	@test -n "$(EMAIL)" || (echo "EMAIL=... is required"; exit 1)
+	@# The image entrypoint is tini; the args below become tini's command, so this
+	@# stays a normal `tini -- node dist/operator.js` and signals still work.
+	$(COMPOSE) run --rm -e OPERATOR_EMAIL=$(EMAIL) -e OPERATOR_ROLE=$${ROLE:-operator} \
+	  -e OPERATOR_DAYS=$${DAYS:-7} migrate node dist/operator.js
 
 down:    ## Stop everything, keep the data
 	$(COMPOSE) down
@@ -37,6 +55,21 @@ migrate: ## Apply pending migrations
 
 seed:    ## Synthetic incident with known duplicates (SEED_CASES=500)
 	$(COMPOSE) run --rm seed
+
+# Aid sites (shelters, hospitals, pharmacies, responders) for the public map.
+# Two steps on purpose: PULL writes a GeoJSON a human reviews and commits, LOAD
+# puts a reviewed file into the database. An activation with no outbound network
+# still has the layer, because the file is in the repo.
+#   make aid-sites-pull BBOX=5.55,-76.80,5.85,-76.55 OUT=data/aid-sites/quibdo-co.geojson
+#   make aid-sites-load FILE=data/aid-sites/quibdo-co.geojson COUNTRY=CO
+aid-sites-pull: ## Pull aid sites from OpenStreetMap into a GeoJSON file (BBOX=s,w,n,e OUT=...)
+	@test -n "$(BBOX)" || (echo "BBOX=south,west,north,east is required"; exit 1)
+	cd services/api && npm run aid-sites -- --bbox $(BBOX) --out ../../$${OUT:-../../data/aid-sites/sites.geojson}
+
+aid-sites-load: ## Load a reviewed GeoJSON of aid sites into the database (FILE=... COUNTRY=CO)
+	@test -n "$(FILE)" || (echo "FILE=data/aid-sites/....geojson is required"; exit 1)
+	cd services/api && DATABASE_URL=$(DB_URL) DB_SSL=disable \
+	  npm run aid-sites -- --file ../../$(FILE) --country $${COUNTRY:-CO} --load
 
 test:    ## Correlation precision/recall against seeded ground truth
 	cd services/api && DATABASE_URL=$(DB_URL) DB_SSL=disable npm test
@@ -56,7 +89,7 @@ drill:   ## Full rehearsal: fresh db -> migrate -> seed -> smoke test
 	@# Only `build api`: the db image installs PostGIS/pgvector from apt, and a
 	@# host whose docker build network cannot resolve deb.debian.org would fail
 	@# here for no reason. `up -d db` builds it on demand when it is missing.
-	$(COMPOSE) build api
+	$(COMPOSE) build api web
 	$(COMPOSE) down -v
 	$(COMPOSE) up -d db
 	$(COMPOSE) run --rm migrate
@@ -68,6 +101,31 @@ drill:   ## Full rehearsal: fresh db -> migrate -> seed -> smoke test
 	  -H 'content-type: application/json' \
 	  -d '{"full_name":"Prueba Simulacro Perez Garcia","incident_slug":"drill-bogota","last_seen_lat":4.6533,"last_seen_lng":-74.0836,"location_accuracy":"building","status":"missing"}' \
 	  && echo "" || (echo "INTAKE FAILED"; exit 1)
+	@# The front end is part of the system, not a demo beside it. The drill now
+	@# proves the browser-facing tier can actually reach the API through its own
+	@# /api proxy -- a web container that boots but cannot talk to the backend is
+	@# exactly the failure this repo shipped with for weeks.
+	$(COMPOSE) up -d web
+	@echo "waiting for the web tier..."
+	@ok=0; for i in $$(seq 1 45); do \
+	  if curl -fsS http://localhost:$${WEB_PORT:-3000}/api/readyz >/dev/null 2>&1; then ok=1; break; fi; \
+	  sleep 2; \
+	done; \
+	if [ "$$ok" != "1" ]; then echo "WEB -> API PROXY FAILED"; $(COMPOSE) logs --tail 50 web; exit 1; fi
+	@echo "web -> api proxy ok"
+	@# End to end through the front door: submit a report the way a phone does,
+	@# then read it back through the public card endpoint the shared link uses.
+	@ref=$$(curl -fsS -X POST http://localhost:$${WEB_PORT:-3000}/api/v1/reports \
+	  -H 'content-type: application/json' \
+	  -d '{"full_name":"Simulacro Web Ramirez Mosquera","incident_slug":"drill-bogota","last_seen_lat":4.6540,"last_seen_lng":-74.0840,"location_accuracy":"building","status":"missing","consent_public_listing":true}' \
+	  | sed -n 's/.*"reference_number":"\([^"]*\)".*/\1/p'); \
+	if [ -z "$$ref" ]; then echo "WEB INTAKE FAILED"; exit 1; fi; \
+	echo "web intake ok: $$ref"; \
+	curl -fsS "http://localhost:$${WEB_PORT:-3000}/api/v1/public/cases/$$ref" >/dev/null \
+	  || (echo "PUBLIC CARD FAILED FOR $$ref"; exit 1); \
+	curl -fsS "http://localhost:$${WEB_PORT:-3000}/r/$$ref" | grep -q "Simulacro Web" \
+	  || (echo "SHARED CARD PAGE DID NOT RENDER THE CASE"; exit 1); \
+	echo "public card + shared page ok"
 	@# The intake above only proves the HTTP path. The correlation engine runs in
 	@# the worker, so a broken correlate_case() lands in job.last_error and the
 	@# drill still printed "drill passed" over a dead dedup engine. It did, once.

@@ -6,8 +6,7 @@
 // on the device, so it works with no signal: the card renders offline, the link
 // only becomes useful once the report syncs.
 import { useEffect, useState } from "react";
-import { Report } from "@/lib/schema";
-import { toPublicCard, canShowPhotoPublicly } from "@/lib/publicView";
+import { PublicCardData } from "@/lib/publicView";
 import {
   CardFormat,
   canShareFiles,
@@ -18,30 +17,37 @@ import {
   whatsappShareUrl,
 } from "@/lib/share";
 
-export default function ShareSheet({ report, compact = false }: { report: Report; compact?: boolean }) {
+export default function ShareSheet({
+  card,
+  compact = false,
+  queued = false,
+}: {
+  card: PublicCardData;
+  compact?: boolean;
+  /** The report is still in the device outbox: the link does not resolve yet. */
+  queued?: boolean;
+}) {
   const [format, setFormat] = useState<CardFormat>("story");
   const [preview, setPreview] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
-  const card = toPublicCard(report);
-  const queued = report.sync_state === "queued";
 
   useEffect(() => {
     let alive = true;
     setPreview(null);
-    renderCardDataUrl(report, format)
+    renderCardDataUrl(card, format)
       .then((url) => alive && setPreview(url))
       .catch(() => alive && setMsg("No se pudo generar la imagen. Puedes compartir el enlace igual."));
     return () => {
       alive = false;
     };
-  }, [report, format]);
+  }, [card, format]);
 
   const withFile = async (fn: (f: File) => Promise<void> | void) => {
     setBusy(true);
     setMsg("");
     try {
-      const file = await renderCardFile(report, format);
+      const file = await renderCardFile(card, format);
       await fn(file);
     } catch (e) {
       if ((e as Error)?.name !== "AbortError") setMsg("No se pudo compartir la imagen. Prueba con “Descargar imagen”.");
@@ -63,13 +69,13 @@ export default function ShareSheet({ report, compact = false }: { report: Report
       await (navigator as Navigator).share({
         files: [file],
         title: card.name,
-        text: shareText(report),
+        text: shareText(card),
       });
     });
 
   const copyText = async () => {
     try {
-      await navigator.clipboard.writeText(shareText(report));
+      await navigator.clipboard.writeText(shareText(card));
       setMsg("Mensaje copiado. Pégalo donde quieras.");
     } catch {
       setMsg("No se pudo copiar. Selecciona el texto y cópialo a mano.");
@@ -120,7 +126,7 @@ export default function ShareSheet({ report, compact = false }: { report: Report
         <button className="btn primary block" disabled={busy} onClick={shareNative}>
           {busy ? "Preparando…" : "Compartir imagen (Estado, Historia, WhatsApp)"}
         </button>
-        <a className="btn block" href={whatsappShareUrl(report)} target="_blank" rel="noreferrer">
+        <a className="btn block" href={whatsappShareUrl(card)} target="_blank" rel="noreferrer">
           Enviar por WhatsApp con enlace
         </a>
         <div className="row">
@@ -141,7 +147,7 @@ export default function ShareSheet({ report, compact = false }: { report: Report
 
       <p className="small muted" style={{ marginTop: 14, marginBottom: 0 }}>
         La tarjeta muestra únicamente nombre, edad aproximada, zona general y número de referencia.
-        {canShowPhotoPublicly(report)
+        {card.photo
           ? card.blurPhoto
             ? " Por ser menor de edad, el rostro sale difuminado."
             : " La foto aparece porque autorizaste su publicación."

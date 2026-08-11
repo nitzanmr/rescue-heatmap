@@ -4,6 +4,7 @@
 // module it must never leave the coordination panel.
 import { Report } from "./schema";
 import { incident } from "./incident";
+import type { PublicCase } from "./api";
 
 export function isMinor(r: Report): boolean {
   return Boolean(r.is_minor) || (typeof r.age_approx === "number" && r.age_approx < 18);
@@ -86,6 +87,34 @@ export function publicUrlFor(reference: string): string {
     incident.publicBaseUrl ||
     (typeof window !== "undefined" ? window.location.origin : "https://ejemplo.org");
   return `${base.replace(/\/$/, "")}/r/${reference}`;
+}
+
+// The server-side projection of the same card.
+//
+// Note what is NOT here: coarseArea(). The API already coarsened the location to
+// ~1 km before it left the database (public_case_view), and it never returns an
+// address at all. Re-deriving an "area" in the browser from a string we no
+// longer receive would be theatre — the redaction happens where the data lives.
+export function cardFromPublicCase(c: PublicCase): PublicCardData {
+  const age = typeof c.age_approx === "number" ? `${c.age_approx} años` : "";
+  const gender = c.gender === "f" ? "Mujer" : c.gender === "m" ? "Hombre" : "";
+  const minor = typeof c.age_approx === "number" && c.age_approx < 18;
+  return {
+    name: c.name,
+    gsuffix: c.gender === "f" ? "a" : "o",
+    ageLine: [gender, age].filter(Boolean).join(" · "),
+    area: c.area ? `${incident.city || incident.country} (zona aproximada)` : incident.city || incident.country,
+    statusLabel: statusLabelEs(c.status as Report["status"], (c.gender ?? undefined) as Report["gender"]),
+    urgent: c.status === "trapped_alive",
+    found: c.status.startsWith("found"),
+    reference: c.reference_number,
+    url: publicUrlFor(c.reference_number),
+    // The API decides whether a photo may be shown at all; if it returned a URL,
+    // consent and minor-redaction were already applied server-side.
+    photo: c.photo_url ?? null,
+    blurPhoto: minor,
+    incidentName: incident.name,
+  };
 }
 
 export function toPublicCard(r: Report): PublicCardData {

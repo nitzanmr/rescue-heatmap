@@ -1,47 +1,66 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
-import { Report } from "@/lib/schema";
-import { loadReports, updateReport } from "@/lib/store";
-import { normName } from "@/lib/dedup";
+import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { api, ApiError, PublicCase } from "@/lib/api";
 import StatusBadge from "@/components/StatusBadge";
-import { canListPublicly, canShowPhotoPublicly, coarseArea, isMinor } from "@/lib/publicView";
+import { incident } from "@/lib/incident";
 
-// PUBLIC view. Privacy rule from form-spec: shows name, approximate age, city/area.
-// NEVER floor, apartment, reporter phone or an exact pin.
+// PUBLIC view, served by GET /v1/public/search.
+//
+// There is no "show me everything" mode and there never will be: without a name
+// this page is a downloadable list of vulnerable people, which is exactly what
+// ADR-001 says we do not build. The API enforces the same rule (q is required,
+// minimum 3 characters) — this is the second lock, not the only one.
 export default function Buscar() {
-  const [reports, setReports] = useState<Report[]>([]);
   const [q, setQ] = useState("");
-  const [only, setOnly] = useState<"all" | "missing" | "found">("all");
+  const [status, setStatus] = useState<"all" | "missing" | "trapped_alive" | "found_safe">("all");
+  const [results, setResults] = useState<PublicCase[] | null>(null);
+  const [hasMore, setHasMore] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  const seq = useRef(0);
 
-  useEffect(() => {
-    const read = () => setReports(loadReports());
-    read();
-    window.addEventListener("rh:reports-changed", read);
-    return () => window.removeEventListener("rh:reports-changed", read);
-  }, []);
-
-  const list = useMemo(() => {
-    const nq = normName(q);
-    return reports.filter((r) => {
-      // Consent gate: a report whose listing consent was withdrawn never appears here.
-      // It still counts in the heat map and still reaches the rescue teams.
-      if (!canListPublicly(r)) return false;
-      if (only === "missing" && !["missing", "trapped_alive"].includes(r.status)) return false;
-      if (only === "found" && !r.status.startsWith("found")) return false;
-      if (!nq) return true;
-      return normName(r.full_name).includes(nq) || normName(r.last_seen_address ?? "").includes(nq) || r.reference_number.toLowerCase().includes(q.toLowerCase());
-    });
-  }, [reports, q, only]);
-
-  const markFound = (r: Report) => {
-    if (r.status_source === "official") {
-      alert("Este estado fue confirmado oficialmente y no puede cambiarse desde la vista pública.");
+  const run = useCallback(async (term: string, st: string) => {
+    const mine = ++seq.current;
+    if (term.trim().length < 3) {
+      setResults(null);
+      setError(null);
       return;
     }
-    if (confirm(`¿Confirmas que ${r.full_name} apareció con vida?`)) {
-      updateReport(r.uuid, { status: "found_safe", status_source: "citizen", status_updated_at: new Date().toISOString() });
+    setBusy(true);
+    setError(null);
+    try {
+      const res = await api.search(term.trim(), {
+        status: st === "all" ? undefined : st,
+        limit: 20,
+      });
+      if (mine !== seq.current) return; // a newer keystroke already won
+      setResults(res.results);
+      setHasMore(res.has_more);
+    } catch (err) {
+      if (mine !== seq.current) return;
+      const e = err as ApiError;
+      setResults([]);
+      setError(
+        e.isOffline
+          ? "Sin conexión. La búsqueda necesita señal; reportar no."
+          : e.status === 429
+            ? "Demasiadas búsquedas seguidas. Espera unos segundos."
+            : e.message
+      );
+    } finally {
+      if (mine === seq.current) setBusy(false);
     }
-  };
+  }, []);
+
+  // Debounced: every keystroke is a rate-limited request against a server that
+  // is also taking reports. 400 ms costs the user nothing and the server a lot.
+  useEffect(() => {
+    const t = setTimeout(() => void run(q, status), 400);
+    return () => clearTimeout(t);
+  }, [q, status, run]);
+
+  const tooShort = q.trim().length > 0 && q.trim().length < 3;
 
   return (
     <div className="wrap">
@@ -53,78 +72,94 @@ export default function Buscar() {
       </p>
 
       <div className="row" style={{ margin: "18px 0" }}>
-        <input style={{ maxWidth: 380 }} placeholder="Nombre, barrio o número de referencia…" value={q} onChange={(e) => setQ(e.target.value)} />
+        <input
+          style={{ maxWidth: 380 }}
+          placeholder="Escribe un nombre (mínimo 3 letras)…"
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          autoFocus
+        />
         <div className="chips">
-          {([["all", "Todos"], ["missing", "Se busca"], ["found", "Apareció"]] as const).map(([v, l]) => (
-            <button key={v} className={`chip ${only === v ? "on" : ""}`} onClick={() => setOnly(v)}>{l}</button>
+          {(
+            [
+              ["all", "Todos"],
+              ["missing", "Se busca"],
+              ["trapped_alive", "Atrapados"],
+              ["found_safe", "Aparecieron"],
+            ] as const
+          ).map(([v, l]) => (
+            <button key={v} className={`chip ${status === v ? "on" : ""}`} onClick={() => setStatus(v)}>
+              {l}
+            </button>
           ))}
         </div>
       </div>
 
-      <p className="small muted">{list.length} resultado(s)</p>
+      {/* The empty state is the normal state here, so it has to do real work:
+          explain WHY there is no list, and offer the two things worth doing. */}
+      {results === null && (
+        <div className="card" style={{ marginTop: 8 }}>
+          <h3 style={{ marginTop: 0 }}>Busca por nombre</h3>
+          <p className="small muted">
+            No publicamos la lista completa de personas desaparecidas. Escribe el nombre de quien buscas —
+            aunque lo escribas distinto a como lo escribió la familia, el buscador tolera variaciones de
+            ortografía y acentos.
+          </p>
+          {tooShort && <p className="small muted">Necesitamos al menos 3 letras.</p>}
+          <div className="row" style={{ marginTop: 12 }}>
+            <Link className="btn primary" href="/reportar">Reportar a una persona</Link>
+          </div>
+        </div>
+      )}
+
+      {error && (
+        <p className="small" style={{ color: "var(--warn)" }}>{error}</p>
+      )}
+
+      {results !== null && (
+        <p className="small muted">
+          {busy ? "Buscando…" : `${results.length}${hasMore ? "+" : ""} resultado(s) para “${q.trim()}”`}
+        </p>
+      )}
 
       <div className="grid cols-3" style={{ marginTop: 12 }}>
-        {list.slice(0, 60).map((r) => (
-          <div className="card" key={r.uuid}>
+        {(results ?? []).map((r) => (
+          <div className="card" key={r.reference_number}>
             <div className="row" style={{ alignItems: "flex-start" }}>
-              <PublicPhoto report={r} />
               <div>
-                <h3 style={{ marginBottom: 4 }}>{r.full_name}</h3>
+                <h3 style={{ marginBottom: 4 }}>{r.name}</h3>
                 <p className="small">
                   {r.age_approx ? `~${r.age_approx} años · ` : ""}
-                  {/* Area only — the public list is coarsened exactly like the shareable card. */}
-                  {coarseArea(r)}
+                  {/* The API returns a COARSE point (~1 km), never an address.
+                      There is nothing finer to display even if we wanted to. */}
+                  {r.area ? `${incident.city || incident.country} (zona aproximada)` : "Zona no informada"}
                 </p>
               </div>
               <span className="spacer" />
-              <StatusBadge status={r.status} />
+              <StatusBadge status={r.status as any} />
             </div>
             <p className="small muted" style={{ marginTop: 10 }}>
               Ref. {r.reference_number}
-              {(r.reporter_count ?? 1) > 1 ? ` · ${r.reporter_count} personas lo reportaron` : ""}
-              {r.status_source === "verified_field" ? " · verificado en terreno" : ""}
+              {r.reports > 1 ? ` · ${r.reports} personas la reportaron` : ""}
             </p>
             <div className="row" style={{ marginTop: 12 }}>
-              {/* Every listed person has a shareable page. The card is the product
-                  that actually travels; the list is only where it starts. */}
-              <a className="btn ghost" style={{ flex: 1 }} href={`/r/${r.reference_number}`}>
-                Compartir
-              </a>
-              {["missing", "trapped_alive"].includes(r.status) && (
-                <button className="btn ghost" style={{ flex: 1 }} onClick={() => markFound(r)}>
-                  Apareció
-                </button>
-              )}
+              <Link className="btn ghost" style={{ flex: 1 }} href={`/r/${r.reference_number}`}>
+                Ver ficha y compartir
+              </Link>
             </div>
           </div>
         ))}
       </div>
-    </div>
-  );
-}
 
-// A photo is shown publicly only with its OWN consent flag. Minors are blurred even then.
-function PublicPhoto({ report }: { report: Report }) {
-  const minor = isMinor(report);
-  if (!canShowPhotoPublicly(report)) return null;
-  return (
-    <div style={{ position: "relative", marginRight: 10 }}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={report.photo_data_url ?? undefined}
-        alt={report.full_name}
-        style={{
-          width: 56,
-          height: 56,
-          objectFit: "cover",
-          borderRadius: 10,
-          filter: minor ? "blur(7px)" : undefined,
-        }}
-      />
-      {minor && (
-        <span className="small muted" style={{ display: "block", marginTop: 4, maxWidth: 56, lineHeight: 1.1 }}>
-          menor
-        </span>
+      {results !== null && results.length === 0 && !busy && !error && (
+        <div className="card" style={{ marginTop: 12 }}>
+          <p className="small muted" style={{ marginTop: 0 }}>
+            No encontramos a nadie con ese nombre. Puede que todavía no lo hayan reportado, o que la
+            familia haya pedido que no aparezca públicamente — en ese caso el reporte sí llegó a los
+            equipos de rescate aunque no se vea aquí.
+          </p>
+          <Link className="btn primary" href="/reportar">Reportar a esta persona</Link>
+        </div>
       )}
     </div>
   );

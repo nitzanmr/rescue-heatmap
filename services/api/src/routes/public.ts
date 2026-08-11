@@ -195,4 +195,50 @@ export default async function publicRoutes(app: FastifyInstance) {
       return { cell_m: cell, cells };
     }
   );
+
+  // -------------------------------------------------------------------------
+  // GET /v1/public/aid-sites — shelters, hospitals, pharmacies, responders.
+  //
+  // Unlike every other public endpoint here this one is NOT about people, which
+  // is why it may return exact coordinates and a phone number: it describes
+  // institutions. It reads public.aid_sites(), a function that touches no case
+  // table at all, so no future edit can widen it into a people endpoint by
+  // accident.
+  //
+  // Cached at the edge for 5 minutes. Shelter status changes in minutes, not
+  // seconds, and on a saturated cellular network during an activation a cached
+  // answer beats a fresh timeout.
+  // -------------------------------------------------------------------------
+  app.get<{ Querystring: { country?: string; kinds?: string; incident?: string } }>(
+    "/v1/public/aid-sites",
+    async (req, reply) => {
+      noIndex(reply);
+      await rateLimit(`aid:${req.actor.ipHash}`, 60, 60);
+
+      const country = (req.query.country ?? config.incident.countryCode ?? "CO").slice(0, 2);
+      const kinds = req.query.kinds
+        ? req.query.kinds.split(",").map((k) => k.trim()).filter(Boolean).slice(0, 12)
+        : null;
+
+      let incidentId: string | null = null;
+      if (req.query.incident) {
+        const inc = await one<{ id: string }>(`SELECT id FROM incident WHERE slug = $1`, [req.query.incident]);
+        incidentId = inc?.id ?? null;
+      }
+
+      const sites = await query(
+        `SELECT id, kind, name, lat, lng, address, phone, capacity, status, verified, source, updated_at
+           FROM public.aid_sites($1, $2, $3)
+          ORDER BY verified DESC, kind, name
+          LIMIT 5000`,
+        [country, kinds, incidentId]
+      );
+
+      reply.header("cache-control", "public, max-age=300");
+      return {
+        attribution: "© OpenStreetMap contributors (ODbL)",
+        sites,
+      };
+    }
+  );
 }

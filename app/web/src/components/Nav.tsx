@@ -7,16 +7,25 @@ const links = [
   { href: "/", label: "Producto" },
   { href: "/reportar", label: "Reportar" },
   { href: "/buscar", label: "Buscar" },
+  { href: "/mapa", label: "Mapa" },
   { href: "/panel", label: "Panel de mando" },
 ];
+
+// Demo unless a deployment explicitly says otherwise (NEXT_PUBLIC_DEMO=0).
+const isDemo = incident.demo;
 
 export default function Nav() {
   const path = usePathname();
   return (
     <>
-      <div className="mock-banner">
-        MAQUETA / DEMO — {incident.name}. Datos ficticios, nada se envía a ninguna autoridad.
-      </div>
+      {/* This banner is a safety interlock, not decoration: it is driven by an
+          explicit deploy-time flag, so a staging build cannot quietly look like
+          the real thing to a family reporting a missing person. */}
+      {isDemo && (
+        <div className="mock-banner">
+          ENTORNO DE PRUEBAS — {incident.name}. Los reportes enviados aquí no llegan a ningún equipo de rescate.
+        </div>
+      )}
       <div className="topbar">
         <Link href="/" className="brand">
           <span className="dot" />

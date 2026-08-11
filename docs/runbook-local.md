@@ -203,3 +203,29 @@ make drill && make test
 If `make test` prints a recall below 0.6, that is not a bug in the harness — it
 means the weights need calibrating, and now we have a number to calibrate
 against instead of an argument.
+
+## The web tier
+
+`make up` now starts the PWA alongside the API:
+
+```
+make up
+# web  http://localhost:3000   (WEB_PORT overrides)
+# api  http://localhost:8080   (API_PORT overrides)
+```
+
+The browser calls a relative `/api/...` path which the Next server forwards to
+`API_ORIGIN` (`http://api:8080` in compose). If the web container starts but
+every page shows a connection error, check that first:
+
+```
+curl -fsS http://localhost:3000/api/readyz     # proxy + API + database
+```
+
+To open `/panel` you need an operator token — there is no password login:
+
+```
+make operator-token EMAIL=you@example.org ROLE=admin
+```
+
+It is printed once. See `docs/frontend-backend.md`.

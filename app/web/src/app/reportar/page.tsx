@@ -1,23 +1,53 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
-import { incident, REFERENCE_PREFIX } from "@/lib/incident";
-import { Report, newReferenceNumber, newUuid, LocationAccuracy } from "@/lib/schema";
-import { addReport, loadReports, flushQueue } from "@/lib/store";
-import { findDuplicates, DedupHit } from "@/lib/dedup";
+import { useEffect, useState } from "react";
+import { incident } from "@/lib/incident";
+import { Report, LocationAccuracy } from "@/lib/schema";
+import { api, ApiError, PublicCase } from "@/lib/api";
+import { enqueueReport, flushOutbox, getEntry, OUTBOX_EVENT, OutboxEntry, startOutboxSync } from "@/lib/outbox";
 import ShareSheet from "@/components/ShareSheet";
+import { toPublicCard } from "@/lib/publicView";
 
 const DRAFT_KEY = "rh:draft:v1";
 
 type Draft = Partial<Report>;
+
+// Only the fields the API accepts (services/api/src/schema.ts). Anything else in
+// the draft is device-side state and must not be posted: an unknown field would
+// be silently dropped, which is worse than being rejected.
+const WIRE_FIELDS = [
+  "full_name", "age_approx", "gender", "distinguishing_info", "medical_info",
+  "national_id_last4", "is_minor",
+  "last_seen_lat", "last_seen_lng", "location_accuracy", "last_seen_address",
+  "building_name", "floor", "apartment",
+  "last_contact_at", "last_contact_precision",
+  "reporter_name", "reporter_phone", "reporter_relation", "reporter_lang",
+  "consent_public_listing", "consent_photo_public", "status",
+] as const;
+
+function toWire(draft: Draft): Record<string, unknown> {
+  const out: Record<string, unknown> = { channel: "pwa" };
+  for (const f of WIRE_FIELDS) {
+    const v = (draft as Record<string, unknown>)[f];
+    if (v !== undefined && v !== "") out[f] = v;
+  }
+  out.full_name = String(draft.full_name ?? "").trim();
+  out.reporter_lang = draft.reporter_lang ?? "es";
+  out.status = draft.status ?? "missing";
+  // Consent rules win over whatever the draft happens to hold:
+  // listing = opt-out (on unless withdrawn), photo = opt-in (off unless granted).
+  out.consent_public_listing = draft.consent_public_listing !== false;
+  out.consent_photo_public = Boolean(draft.photo_data_url) && draft.consent_photo_public === true;
+  return out;
+}
 
 export default function Reportar() {
   const [step, setStep] = useState(0);
   const [draft, setDraft] = useState<Draft>({});
   const [online, setOnline] = useState(true);
   const [simulateOffline, setSimulateOffline] = useState(false);
-  const [dupes, setDupes] = useState<DedupHit[] | null>(null);
-  const [done, setDone] = useState<Report | null>(null);
-  const [flushMsg, setFlushMsg] = useState("");
+  const [dupes, setDupes] = useState<PublicCase[] | null>(null);
+  const [checking, setChecking] = useState(false);
+  const [doneId, setDoneId] = useState<string | null>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem(DRAFT_KEY);
@@ -26,9 +56,11 @@ export default function Reportar() {
     update();
     window.addEventListener("online", update);
     window.addEventListener("offline", update);
+    const stop = startOutboxSync();
     return () => {
       window.removeEventListener("online", update);
       window.removeEventListener("offline", update);
+      stop();
     };
   }, []);
 
@@ -44,46 +76,41 @@ export default function Reportar() {
   const effectiveOnline = online && !simulateOffline;
   const canSubmit = Boolean(draft.full_name?.trim() && (draft.last_seen_address?.trim() || draft.last_seen_lat));
 
-  const commit = (extra: Partial<Report> = {}) => {
-    const now = new Date().toISOString();
-    const report: Report = {
-      uuid: newUuid(),
-      reference_number: newReferenceNumber(REFERENCE_PREFIX),
-      incident_id: incident.id,
-      channel: "pwa",
-      created_at_device: now,
-      received_at_server: effectiveOnline ? now : null,
-      sync_state: effectiveOnline ? "acked" : "queued",
-      status: (draft.status as Report["status"]) ?? "missing",
-      status_source: "citizen",
-      status_updated_at: now,
-      reporter_lang: "es",
-      reporter_count: 1,
-      full_name: draft.full_name!.trim(),
-      ...draft,
-      // Consent is resolved AFTER the draft spread so the rules always win:
-      // listing = opt-out (on unless withdrawn), photo = opt-in (off unless explicitly granted).
-      consent_public_listing: draft.consent_public_listing !== false,
-      consent_photo_public: Boolean(draft.photo_data_url) && draft.consent_photo_public === true,
-      consent_recorded_at: now,
-      ...extra,
-    } as Report;
-    addReport(report);
+  // Written to the device first, sent second. If the browser dies between the
+  // two, the report is still here on the next open.
+  const commit = () => {
+    const id = enqueueReport(toWire(draft), draft.photo_data_url ?? null);
     localStorage.removeItem(DRAFT_KEY);
     setDupes(null);
-    setDone(report);
+    setDoneId(id);
+    if (effectiveOnline) void flushOutbox();
   };
 
-  const submit = () => {
-    const hits = findDuplicates(draft, loadReports());
-    if (hits.length) {
-      setDupes(hits);
-      return;
+  // Pre-submit duplicate check against what is already PUBLIC — not against a
+  // private copy of other people's reports, which this device must never hold.
+  // Offline it is skipped entirely: the server correlates every case anyway, so
+  // the only thing lost is the chance to ask this family the question now.
+  const submit = async () => {
+    const name = draft.full_name?.trim() ?? "";
+    if (effectiveOnline && name.length >= 3) {
+      setChecking(true);
+      try {
+        const { results } = await api.search(name, { limit: 5 });
+        const hits = results.filter((r) => !r.status.startsWith("found"));
+        if (hits.length) {
+          setDupes(hits);
+          return;
+        }
+      } catch {
+        // A failed check must never block a report. Correlation happens server-side.
+      } finally {
+        setChecking(false);
+      }
     }
     commit();
   };
 
-  if (done) return <Confirmation report={done} onFlush={() => setFlushMsg(`${flushQueue()} reporte(s) enviado(s).`)} flushMsg={flushMsg} />;
+  if (doneId) return <Confirmation localId={doneId} />;
 
   return (
     <>
@@ -125,8 +152,8 @@ export default function Reportar() {
               Continuar
             </button>
           ) : (
-            <button className="btn primary" onClick={submit} disabled={!canSubmit}>
-              Enviar reporte
+            <button className="btn primary" onClick={() => void submit()} disabled={!canSubmit || checking}>
+              {checking ? "Revisando…" : "Enviar reporte"}
             </button>
           )}
         </div>
@@ -137,12 +164,7 @@ export default function Reportar() {
       </div>
 
       {dupes && (
-        <DedupModal
-          hits={dupes}
-          onSame={() => commit({ dedup_reviewed: true, dedup_cluster_id: dupes[0].report.dedup_cluster_id ?? dupes[0].report.uuid })}
-          onDifferent={() => commit({ dedup_reviewed: true })}
-          onCancel={() => setDupes(null)}
-        />
+        <DedupModal hits={dupes} onContinue={commit} onCancel={() => setDupes(null)} />
       )}
     </>
   );
@@ -445,60 +467,211 @@ function StepReporter({ draft, set }: { draft: Draft; set: (p: Draft) => void })
   );
 }
 
-function DedupModal({ hits, onSame, onDifferent, onCancel }: { hits: DedupHit[]; onSame: () => void; onDifferent: () => void; onCancel: () => void }) {
+// Note what this modal does NOT do: it never merges, and it never replaces the
+// family's report with the existing one. Both buttons submit. Saying "it is the
+// same person" only attaches a signal to the existing case for an operator to
+// read — a stranger's opinion is not a merge decision.
+function DedupModal({ hits, onContinue, onCancel }: { hits: PublicCase[]; onContinue: () => void; onCancel: () => void }) {
   const top = hits[0];
+  const [busy, setBusy] = useState(false);
+
+  const samePerson = async () => {
+    setBusy(true);
+    try {
+      await api.sighting(top.reference_number, {
+        kind: "correction",
+        note: "Otra persona reporta a la misma persona. Enviado desde el formulario, pendiente de revisión.",
+      });
+    } catch {
+      // Best effort. The report itself must go out regardless.
+    } finally {
+      setBusy(false);
+      onContinue();
+    }
+  };
+
   return (
     <div className="modal-bg" onClick={onCancel}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <h3 style={{ marginTop: 0 }}>¿Es la misma persona?</h3>
         <p className="small muted">
-          Alguien ya reportó a <strong style={{ color: "var(--text)" }}>{top.report.full_name}</strong> en{" "}
-          {top.report.last_seen_address}. Coincide por: {top.reasons.join(", ")}.
+          Ya hay {hits.length === 1 ? "un reporte" : `${hits.length} reportes`} con un nombre parecido:
         </p>
+        <ul className="small" style={{ margin: "8px 0 0", paddingLeft: 18 }}>
+          {hits.slice(0, 3).map((h) => (
+            <li key={h.reference_number} style={{ marginBottom: 4 }}>
+              <strong>{h.name}</strong>
+              {h.age_approx ? ` · ~${h.age_approx} años` : ""} · Ref. {h.reference_number}
+              {h.reports > 1 ? ` · ${h.reports} personas la reportaron` : ""}
+            </li>
+          ))}
+        </ul>
         <div className="row" style={{ marginTop: 18, flexDirection: "column", alignItems: "stretch" }}>
-          <button className="btn primary block" onClick={onSame}>Sí — sumar mi información</button>
-          <button className="btn block" onClick={onDifferent}>No — es otra persona</button>
+          <button className="btn primary block" disabled={busy} onClick={() => void samePerson()}>
+            {busy ? "Enviando…" : "Sí — sumar mi información"}
+          </button>
+          <button className="btn block" onClick={onContinue}>No — es otra persona</button>
           <button className="btn ghost block" onClick={onCancel}>Volver a revisar</button>
         </div>
         <p className="small muted" style={{ marginTop: 14, marginBottom: 0 }}>
-          Nunca rechazamos ni fusionamos un reporte en silencio. Tú decides.
+          En los dos casos tu reporte se envía. Nunca lo descartamos ni lo unimos con otro en silencio:
+          un equipo revisa antes de unir dos reportes.
         </p>
       </div>
     </div>
   );
 }
 
-function Confirmation({ report, onFlush, flushMsg }: { report: Report; onFlush: () => void; flushMsg: string }) {
-  const queued = report.sync_state === "queued";
+// The confirmation follows the outbox entry instead of pretending. The reference
+// number is issued by the SERVER, so while the report is still queued there is
+// no reference to show — and inventing one would print a different number on
+// every retry for the same person.
+function Confirmation({ localId }: { localId: string }) {
+  const [entry, setEntry] = useState<OutboxEntry | undefined>(() => getEntry(localId));
+  const [flushMsg, setFlushMsg] = useState("");
+  const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    const read = () => setEntry(getEntry(localId));
+    read();
+    window.addEventListener(OUTBOX_EVENT, read);
+    return () => window.removeEventListener(OUTBOX_EVENT, read);
+  }, [localId]);
+
+  const sendNow = async () => {
+    setBusy(true);
+    const r = await flushOutbox();
+    setBusy(false);
+    setFlushMsg(
+      r.offline
+        ? "Todavía no hay conexión. Tu reporte sigue guardado en este teléfono y se enviará solo."
+        : r.sent > 0
+          ? "Enviado."
+          : "No se pudo enviar todavía. Se reintentará automáticamente."
+    );
+  };
+
+  if (!entry) {
+    return (
+      <div className="wrap-narrow" style={{ paddingTop: 50 }}>
+        <p className="muted small">No encontramos este reporte en este teléfono.</p>
+        <a className="btn primary" href="/reportar">Reportar de nuevo</a>
+      </div>
+    );
+  }
+
+  const p = entry.payload as Partial<Report>;
+
+  if (entry.state === "rejected") {
+    return (
+      <div className="wrap-narrow" style={{ textAlign: "center", paddingTop: 50 }}>
+        <div style={{ fontSize: 44 }}>⚠️</div>
+        <h1 style={{ fontSize: 22 }}>El servidor no aceptó este reporte</h1>
+        <p className="muted small">
+          Tu información sigue guardada en este teléfono. Detalle técnico: {entry.last_error}
+        </p>
+        <a className="btn primary block" style={{ marginTop: 18 }} href="/reportar">Intentar de nuevo</a>
+      </div>
+    );
+  }
+
+  if (entry.state !== "sent") {
+    return (
+      <div className="wrap-narrow" style={{ textAlign: "center", paddingTop: 50 }}>
+        <div style={{ fontSize: 44 }}>📥</div>
+        <h1 style={{ fontSize: 22 }}>Guardado en este teléfono</h1>
+        <p className="muted small">
+          Todavía <strong>no</strong> se ha enviado al centro de coordinación. Se enviará solo en cuanto
+          vuelva la señal, aunque cierres esta página.
+        </p>
+        <div className="card" style={{ marginTop: 22 }}>
+          <p className="small muted" style={{ marginBottom: 0 }}>
+            El número de referencia lo asigna el centro de coordinación cuando recibe el reporte. Por eso
+            todavía no aparece aquí: si te diéramos uno ahora, podría no coincidir con el real.
+          </p>
+        </div>
+        <button className="btn primary block" style={{ marginTop: 18 }} disabled={busy} onClick={() => void sendNow()}>
+          {busy ? "Enviando…" : "Enviar ahora"}
+        </button>
+        {flushMsg && <p className="small muted">{flushMsg}</p>}
+        <div className="row" style={{ marginTop: 22, justifyContent: "center" }}>
+          <a className="btn ghost" href="/reportar">Reportar a otra persona</a>
+          <a className="btn ghost" href="/buscar">Buscar por nombre</a>
+        </div>
+      </div>
+    );
+  }
+
+  // Accepted. Everything below is real: the reference came from the server.
+  const report: Report = {
+    ...(p as Report),
+    uuid: entry.uuid,
+    reference_number: entry.reference_number!,
+    incident_id: incident.id,
+    channel: "pwa",
+    created_at_device: entry.created_at,
+    received_at_server: entry.accepted_at ?? null,
+    sync_state: "acked",
+    status: (p.status as Report["status"]) ?? "missing",
+    status_source: "citizen",
+    status_updated_at: entry.accepted_at ?? entry.created_at,
+    reporter_count: 1,
+  };
+
+  return <Accepted report={report} entry={entry} />;
+}
+
+function Accepted({ report, entry }: { report: Report; entry: OutboxEntry }) {
+  const reporterUrl = entry.reporter_token
+    ? `/r/${report.reference_number}?t=${entry.reporter_token}`
+    : null;
   return (
     <div className="wrap-narrow" style={{ textAlign: "center", paddingTop: 50 }}>
-      <div style={{ fontSize: 44 }}>{queued ? "📥" : "✅"}</div>
-      <h1 style={{ fontSize: 22 }}>{queued ? "Guardado en este teléfono" : "Recibido en el centro de coordinación"}</h1>
-      <p className="muted small">
-        {queued
-          ? "Todavía NO se ha enviado. Se enviará solo cuando vuelva la señal, o puedes intentarlo ahora."
-          : "Tu reporte ya está en el sistema."}
-      </p>
+      <div style={{ fontSize: 44 }}>✅</div>
+      <h1 style={{ fontSize: 22 }}>Recibido en el centro de coordinación</h1>
+      <p className="muted small">Tu reporte ya está en el sistema.</p>
+
       <div className="card" style={{ marginTop: 22 }}>
         <p className="small muted">Tu número de referencia</p>
         <div style={{ fontSize: 34, fontWeight: 700, letterSpacing: ".06em" }}>{report.reference_number}</div>
         <p className="small muted" style={{ marginTop: 10 }}>
-          Anótalo. Con este número puedes actualizar el reporte o avisar si la persona aparece — incluso desde
-          otro teléfono.
+          Anótalo. Con este número cualquiera puede ver la ficha pública de esta persona y avisar si la ve.
         </p>
       </div>
-      {queued && (
-        <button className="btn primary block" style={{ marginTop: 18 }} onClick={onFlush}>
-          Enviar ahora
-        </button>
+
+      {/* The private link. It is shown ONCE and cannot be re-issued: the server
+          stores only a hash of the token, by design. Saying so plainly here is
+          the difference between a family keeping it and losing it. */}
+      {reporterUrl && (
+        <div className="card" style={{ marginTop: 14, borderColor: "rgba(240,198,116,.4)" }}>
+          <p className="small" style={{ marginTop: 0 }}>
+            <strong>Guarda este enlace privado</strong>
+          </p>
+          <p className="small muted">
+            Solo con él puedes corregir el reporte, avisar que apareció o pedir que se borre. Se muestra
+            una sola vez y no podemos volver a generarlo.
+          </p>
+          <div className="row" style={{ marginTop: 10 }}>
+            <a className="btn primary" style={{ flex: 1 }} href={reporterUrl}>Abrir mi reporte</a>
+            <button
+              className="btn ghost"
+              style={{ flex: 1 }}
+              onClick={() => {
+                const url = `${window.location.origin}${reporterUrl}`;
+                void navigator.clipboard?.writeText(url);
+              }}
+            >
+              Copiar enlace
+            </button>
+          </div>
+        </div>
       )}
-      {flushMsg && <p className="small" style={{ color: "var(--ok)" }}>{flushMsg}</p>}
 
       {/* The share moment. It comes BEFORE the secondary links on purpose: this is
           the single point where a family is most willing to broadcast, and the
           card is what actually spreads (see docs/adoption-playbook.md). */}
       {report.consent_public_listing !== false ? (
-        <ShareSheet report={report} />
+        <ShareSheet card={toPublicCard(report)} />
       ) : (
         <p className="small muted" style={{ marginTop: 20 }}>
           Pediste que este reporte no aparezca públicamente, así que no generamos una tarjeta para
@@ -508,7 +681,7 @@ function Confirmation({ report, onFlush, flushMsg }: { report: Report; onFlush: 
 
       <div className="row" style={{ marginTop: 22, justifyContent: "center" }}>
         <a className="btn ghost" href="/reportar">Reportar a otra persona</a>
-        <a className="btn ghost" href="/buscar">Ver la lista</a>
+        <a className="btn ghost" href="/buscar">Buscar por nombre</a>
       </div>
     </div>
   );

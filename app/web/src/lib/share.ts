@@ -12,8 +12,7 @@
 //                       grey rectangle reads as phishing and does not get forwarded)
 //   "story" 1080×1920 — WhatsApp Status / Instagram Story / Facebook Story
 import qrcode from "qrcode-generator";
-import { Report } from "./schema";
-import { PublicCardData, toPublicCard } from "./publicView";
+import { PublicCardData } from "./publicView";
 
 export type CardFormat = "link" | "story";
 
@@ -273,23 +272,22 @@ async function draw(d: PublicCardData, format: CardFormat): Promise<HTMLCanvasEl
   return canvas;
 }
 
-export async function renderCardDataUrl(report: Report, format: CardFormat): Promise<string> {
-  const canvas = await draw(toPublicCard(report), format);
+export async function renderCardDataUrl(card: PublicCardData, format: CardFormat): Promise<string> {
+  const canvas = await draw(card, format);
   return canvas.toDataURL("image/jpeg", 0.9);
 }
 
-export async function renderCardFile(report: Report, format: CardFormat): Promise<File> {
-  const canvas = await draw(toPublicCard(report), format);
+export async function renderCardFile(card: PublicCardData, format: CardFormat): Promise<File> {
+  const canvas = await draw(card, format);
   const blob: Blob = await new Promise((res) =>
     canvas.toBlob((b) => res(b!), "image/jpeg", 0.9)
   );
-  return new File([blob], `${report.reference_number}-${format}.jpg`, { type: "image/jpeg" });
+  return new File([blob], `${card.reference}-${format}.jpg`, { type: "image/jpeg" });
 }
 
 // The message the family actually sends. Written as a person begging their own
 // network — not as a platform announcement.
-export function shareText(report: Report): string {
-  const d = toPublicCard(report);
+export function shareText(d: PublicCardData): string {
   const lines = [
     `🔴 ${d.statusLabel}: ${d.name}${d.ageLine ? ` (${d.ageLine})` : ""}`,
     `Visto por última vez: ${d.area}`,
@@ -303,8 +301,8 @@ export function shareText(report: Report): string {
   return lines.join("\n");
 }
 
-export function whatsappShareUrl(report: Report): string {
-  return `https://wa.me/?text=${encodeURIComponent(shareText(report))}`;
+export function whatsappShareUrl(card: PublicCardData): string {
+  return `https://wa.me/?text=${encodeURIComponent(shareText(card))}`;
 }
 
 export function canShareFiles(file: File): boolean {

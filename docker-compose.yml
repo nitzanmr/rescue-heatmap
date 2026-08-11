@@ -125,6 +125,25 @@ services:
       migrate:
         condition: service_completed_successfully
 
+  # The PWA. It talks to the API through its own /api path (next.config.mjs
+  # rewrites), so the browser never needs the API's address and there is no CORS
+  # in the intake path.
+  web:
+    build:
+      context: ./app/web
+      network: ${BUILD_NETWORK:-default}
+    image: rescue-web:dev
+    environment:
+      NODE_ENV: production
+      # Server-side: where Next forwards /api/* and where it fetches link-preview
+      # metadata from. Container address, never seen by a browser.
+      API_ORIGIN: http://api:8080
+      NEXT_PUBLIC_BASE_URL: http://localhost:${WEB_PORT:-3000}
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+    depends_on:
+      - api
+
   # Synthetic incident + reports with known duplicates. This is what makes the
   # correlation weights measurable instead of a guess.
   seed:

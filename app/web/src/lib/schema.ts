@@ -66,33 +66,14 @@ export interface Report {
   reporter_count?: number; // how many people reported this same person = signal strength
 }
 
-export function newReferenceNumber(prefix: string): string {
-  const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // no ambiguous chars
-  let s = "";
-  for (let i = 0; i < 4; i++) s += alphabet[Math.floor(Math.random() * alphabet.length)];
-  return `${prefix}-${s}`;
-}
-
-export function newUuid(): string {
-  if (typeof crypto !== "undefined" && "randomUUID" in crypto) return crypto.randomUUID();
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
-    const r = (Math.random() * 16) | 0;
-    const v = c === "x" ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
-}
-
-// Heatmap weighting: confidence × urgency. This is what makes the map useful.
-export function reportWeight(r: Report): number {
-  const acc: Record<LocationAccuracy, number> = {
-    exact: 1,
-    building: 0.9,
-    block: 0.6,
-    neighbourhood: 0.35,
-    unknown: 0.15,
-  };
-  const base = acc[r.location_accuracy ?? "unknown"];
-  const urgency = r.status === "trapped_alive" ? 2.5 : r.status === "missing" ? 1 : 0.2;
-  const corroboration = Math.min(1 + ((r.reporter_count ?? 1) - 1) * 0.25, 2);
-  return base * urgency * corroboration;
-}
+// Deliberately NOT here any more:
+//
+//   newReferenceNumber() — the reference is issued by the server. A client that
+//     mints one prints a different number on every retry of the same report, and
+//     the family writes down the one that does not exist.
+//   reportWeight()       — the heat weighting lives in SQL (public.heat_cells).
+//     Two implementations of the same formula drift, and the one on the map
+//     would stop matching the one the rescue teams are ranked by.
+//   findDuplicates()     — correlation is the server's job (correlate_case).
+//     A weaker second opinion in the browser is how you get a family told
+//     "no duplicates" about a person the engine already flagged.

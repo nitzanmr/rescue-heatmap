@@ -126,6 +126,16 @@ tr:hover td { background: var(--panel-2); }
 
 .map { height: 460px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
 .leaflet-container { background: #10151c; }
+/* The public map sits on a LIGHT basemap: the dark command style reads as a
+   military product to a civilian, and this page is the one civilians share. */
+.map.map-light .leaflet-container { background: #eef1f5; }
+.cluster-badge {
+  width: 34px; height: 34px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: rgba(240,136,62,.9); color: #1a1005;
+  font-weight: 700; font-size: 13px; border: 2px solid #fff;
+  box-shadow: 0 1px 6px rgba(0,0,0,.35);
+}
 
 .mock-banner {
   background: rgba(255,92,92,.14); border-bottom: 1px solid rgba(255,92,92,.35);

@@ -1,0 +1,2166 @@
+{
+ "type": "FeatureCollection",
+ "attribution": "© OpenStreetMap contributors (ODbL)",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6601186,
+     5.6876877
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Bomberos",
+    "address": "Calle 24, Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/568189176",
+    "source_url": "https://www.openstreetmap.org/node/568189176"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6619179,
+     5.689219
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Universidad Nacional Abierta y Distancia",
+    "address": "Carrera 2",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6033264154",
+    "source_url": "https://www.openstreetmap.org/node/6033264154"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6610014,
+     5.6850489
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Puesto de Salud San Vicente",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6033264164",
+    "source_url": "https://www.openstreetmap.org/node/6033264164"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6578801,
+     5.6816478
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Centro de Salud Niño Jesús",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6496551986",
+    "source_url": "https://www.openstreetmap.org/node/6496551986"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6561879,
+     5.6807326
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Normal Superior",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6507438885",
+    "source_url": "https://www.openstreetmap.org/node/6507438885"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6601354,
+     5.685331
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Universidad Uniclaretiana",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/9136374600",
+    "source_url": "https://www.openstreetmap.org/node/9136374600"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.641853,
+     5.646372
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Rural Mixta Km 8",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246332",
+    "source_url": "https://www.openstreetmap.org/node/12485246332"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6456662,
+     5.6858481
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Jardín Infantil Mi Reino de Colores",
+    "address": "Quibdó",
+    "phone": "+57 310 8090302",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246333",
+    "source_url": "https://www.openstreetmap.org/node/12485246333"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6585703,
+     5.6878045
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Fundación Siglo Xxi de Educación Para Adultos",
+    "address": "Quibdó",
+    "phone": "+57 317 4008716",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246334",
+    "source_url": "https://www.openstreetmap.org/node/12485246334"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6609852,
+     5.6948922
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro Educativo Miguel Angelo Palacios Rentería",
+    "address": "Quibdó",
+    "phone": "+57 314 6334473",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246335",
+    "source_url": "https://www.openstreetmap.org/node/12485246335"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6562417,
+     5.6921531
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Jardín Infantil Mis Primeros Pasos",
+    "address": "Quibdó",
+    "phone": "+57 316 5676406",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246336",
+    "source_url": "https://www.openstreetmap.org/node/12485246336"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6467463,
+     5.6873496
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "OTRA-SIGLA CENTER SEED OF LOVE",
+    "address": "QUIBDÓ",
+    "phone": "+57 314 6433763",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246337",
+    "source_url": "https://www.openstreetmap.org/node/12485246337"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6566328,
+     5.6959921
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Humanista Alexandre Petion",
+    "address": "Quibdó",
+    "phone": "6723764",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246338",
+    "source_url": "https://www.openstreetmap.org/node/12485246338"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6531443,
+     5.7015471
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro Educativo Asambleas de Dios",
+    "address": "Quibdó",
+    "phone": "6721344",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246339",
+    "source_url": "https://www.openstreetmap.org/node/12485246339"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6471042,
+     5.6856806
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Jardín Infantil Rayitos de Sol",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246340",
+    "source_url": "https://www.openstreetmap.org/node/12485246340"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6422603,
+     5.6865385
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Jardín Infantil y Escuela Materna Acuarela",
+    "address": "Quibdó",
+    "phone": "+57 321 8471426",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246341",
+    "source_url": "https://www.openstreetmap.org/node/12485246341"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6588598,
+     5.6807194
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro Educativo Pacifico Cepa",
+    "address": "Quibdó",
+    "phone": "+57 314 6103233",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246342",
+    "source_url": "https://www.openstreetmap.org/node/12485246342"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6583906,
+     5.6933669
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Guarderia y Jard Inf Cielito",
+    "address": "Quibdó",
+    "phone": "6708292",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246343",
+    "source_url": "https://www.openstreetmap.org/node/12485246343"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6585899,
+     5.6918882
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Ramón Lozano Garcés II",
+    "address": "Quibdó",
+    "phone": "6712072",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246344",
+    "source_url": "https://www.openstreetmap.org/node/12485246344"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6577549,
+     5.6899233
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Bilingue de Quibdo",
+    "address": "Quibdó",
+    "phone": "6712281",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246345",
+    "source_url": "https://www.openstreetmap.org/node/12485246345"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6575872,
+     5.6788878
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "OTRA-SIGLA KINDER DIVINO NIÑO JESUS",
+    "address": "QUIBDÓ",
+    "phone": "6711045",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246346",
+    "source_url": "https://www.openstreetmap.org/node/12485246346"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6559046,
+     5.6792588
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "OTRA-SIGLA KINDER SANTA FAMILIA",
+    "address": "QUIBDÓ",
+    "phone": "6713977",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246347",
+    "source_url": "https://www.openstreetmap.org/node/12485246347"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6602515,
+     5.6872563
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio de Bachillerato Mix Manuel Saturio Valencia",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246348",
+    "source_url": "https://www.openstreetmap.org/node/12485246348"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6488464,
+     5.6879503
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Departamental Sto Domingo Savio",
+    "address": "Quibdó",
+    "phone": "6708016",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246349",
+    "source_url": "https://www.openstreetmap.org/node/12485246349"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6575665,
+     5.6887516
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro Educativo Catalina",
+    "address": "Quibdó",
+    "phone": "6712266",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246350",
+    "source_url": "https://www.openstreetmap.org/node/12485246350"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6563225,
+     5.6956332
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "ESCUELA NORM SUP MANUEL CAÑIZALES ANEX A LA UTC",
+    "address": "QUIBDÓ",
+    "phone": "6711110",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246351",
+    "source_url": "https://www.openstreetmap.org/node/12485246351"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6597663,
+     5.690048
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro Educativo Pasito A Pasito Love",
+    "address": "Quibdó",
+    "phone": "+57 310 6915065",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246488",
+    "source_url": "https://www.openstreetmap.org/node/12485246488"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6518867,
+     5.6918321
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Guarderia y Jardín Infantil Creando Huellas",
+    "address": "Quibdó",
+    "phone": "+57 310 6144366",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246489",
+    "source_url": "https://www.openstreetmap.org/node/12485246489"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6564,
+     5.6947101
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "CENTRO EDUCATIVO EMPODERANDO PEQUEÑOS GIGANTES",
+    "address": "QUIBDÓ",
+    "phone": "+57 310 4951700",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485246490",
+    "source_url": "https://www.openstreetmap.org/node/12485246490"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6411165,
+     5.6427789
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "CENTRO EDUCATIVO CENTRO DE ATENCIÓN ESPECIALIZADA CAE JUAN ANDRÉS PALACIOS ASPR",
+    "address": "QUIBDÓ",
+    "phone": "6737150",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248669",
+    "source_url": "https://www.openstreetmap.org/node/12485248669"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6440471,
+     5.6697858
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Tecnica Antonio Ricaurte",
+    "address": "Quibdó",
+    "phone": "6713255",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248680",
+    "source_url": "https://www.openstreetmap.org/node/12485248680"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.5968889,
+     5.6828179
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Rural Indig de Pacurita",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248681",
+    "source_url": "https://www.openstreetmap.org/node/12485248681"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6240158,
+     5.8418751
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Rural Mix San Joaquin",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248688",
+    "source_url": "https://www.openstreetmap.org/node/12485248688"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.7335281,
+     5.6910086
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Rural Mix de Pto Aluma",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248692",
+    "source_url": "https://www.openstreetmap.org/node/12485248692"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6792755,
+     5.7985969
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Rural Mixta Boca de Purdu",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248693",
+    "source_url": "https://www.openstreetmap.org/node/12485248693"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.687767,
+     5.7179098
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Mix El Trapiche",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248695",
+    "source_url": "https://www.openstreetmap.org/node/12485248695"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6600342,
+     5.8030968
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Nueva Zabulon Córdoba",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248698",
+    "source_url": "https://www.openstreetmap.org/node/12485248698"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.578964,
+     5.735417
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Nueva Los Estancos",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248700",
+    "source_url": "https://www.openstreetmap.org/node/12485248700"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6173143,
+     5.8344223
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Rural Mixta Diego Luis Córdoba",
+    "address": "Quibdó",
+    "phone": "713531",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248702",
+    "source_url": "https://www.openstreetmap.org/node/12485248702"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6435394,
+     5.6714401
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Rural Mixta Pte de Cabi",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248718",
+    "source_url": "https://www.openstreetmap.org/node/12485248718"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6286598,
+     5.6847882
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Nueva Miguel Antonio Caicedo",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248719",
+    "source_url": "https://www.openstreetmap.org/node/12485248719"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6042713,
+     5.729795
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Nueva Jorge Valencia Lozano",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248723",
+    "source_url": "https://www.openstreetmap.org/node/12485248723"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6894522,
+     5.7337148
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Rural Mix de Sanceno",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248724",
+    "source_url": "https://www.openstreetmap.org/node/12485248724"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.7167293,
+     5.8189853
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Rural Mixta Las Mercedes",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248725",
+    "source_url": "https://www.openstreetmap.org/node/12485248725"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.5897604,
+     5.6869079
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Rural Mix de Pacurita",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248727",
+    "source_url": "https://www.openstreetmap.org/node/12485248727"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6684113,
+     5.6498899
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Rural Mixta de la Baudata",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248728",
+    "source_url": "https://www.openstreetmap.org/node/12485248728"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6685181,
+     5.7087302
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Rural Mixta Cll Quibdo",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248729",
+    "source_url": "https://www.openstreetmap.org/node/12485248729"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.667283,
+     5.7693024
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Rural Mixta Loma de Belen",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248731",
+    "source_url": "https://www.openstreetmap.org/node/12485248731"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6398513,
+     5.7394438
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Mix de Guayabal",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248733",
+    "source_url": "https://www.openstreetmap.org/node/12485248733"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.7000543,
+     5.6968481
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Rural Mix de la Comunidad",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248754",
+    "source_url": "https://www.openstreetmap.org/node/12485248754"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.7112656,
+     5.8448868
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Rural Mixta de Curiquido",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248757",
+    "source_url": "https://www.openstreetmap.org/node/12485248757"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6665439,
+     5.73636
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Rural Mixta El Barranco",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248759",
+    "source_url": "https://www.openstreetmap.org/node/12485248759"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.7397222,
+     5.6
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "SEDE INDÍGENA QUIJARADO",
+    "address": "RÍO QUITO",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248940",
+    "source_url": "https://www.openstreetmap.org/node/12485248940"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.5782704,
+     5.5889602
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Sede Villa Lenina",
+    "address": "Atrato",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485248958",
+    "source_url": "https://www.openstreetmap.org/node/12485248958"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6580727,
+     5.701009
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Urb Mix de Monserrate",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251116",
+    "source_url": "https://www.openstreetmap.org/node/12485251116"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6531605,
+     5.7236508
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Urb Mix Julio Ibarguen M",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251117",
+    "source_url": "https://www.openstreetmap.org/node/12485251117"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6350493,
+     5.677672
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Rural Mixta Brisas del Poblado",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251149",
+    "source_url": "https://www.openstreetmap.org/node/12485251149"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6529846,
+     5.7124019
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Dioc Pedro Grau y Arola",
+    "address": "Quibdó",
+    "phone": "6722111",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251150",
+    "source_url": "https://www.openstreetmap.org/node/12485251150"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6489247,
+     5.7205022
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Luis Gonzalo Perea Caicedo",
+    "address": "Quibdó",
+    "phone": "6712333",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251151",
+    "source_url": "https://www.openstreetmap.org/node/12485251151"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6576878,
+     5.6770089
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "ESCUELA MIX EL DIVINO NIÑO",
+    "address": "QUIBDÓ",
+    "phone": "6715550",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251152",
+    "source_url": "https://www.openstreetmap.org/node/12485251152"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6528565,
+     5.6994079
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Mis Esfuerzos",
+    "address": "Quibdó",
+    "phone": "6717078",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251153",
+    "source_url": "https://www.openstreetmap.org/node/12485251153"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6483903,
+     5.6269455
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Mixt La Victoria Numero 2",
+    "address": "Quibdó",
+    "phone": "716196",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251154",
+    "source_url": "https://www.openstreetmap.org/node/12485251154"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6522446,
+     5.69349
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Urb de San Judas Tadeo",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251156",
+    "source_url": "https://www.openstreetmap.org/node/12485251156"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6624948,
+     5.707172
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Mix El Reposo",
+    "address": "Quibdó",
+    "phone": "6715540",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251157",
+    "source_url": "https://www.openstreetmap.org/node/12485251157"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.652747,
+     5.71287
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Parque La Gloria",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251158",
+    "source_url": "https://www.openstreetmap.org/node/12485251158"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6506653,
+     5.7121126
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Urb Ernesto Samper",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251159",
+    "source_url": "https://www.openstreetmap.org/node/12485251159"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.64721,
+     5.6996705
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela El Paraiso",
+    "address": "QUIBDÓ",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251160",
+    "source_url": "https://www.openstreetmap.org/node/12485251160"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6613274,
+     5.6833298
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Noct San Vicente de Paul",
+    "address": "Quibdó",
+    "phone": "6718261",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251161",
+    "source_url": "https://www.openstreetmap.org/node/12485251161"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.658358,
+     5.6875964
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "OTRA-SIGLA INST TECNOLOG SISTEMATIZADO INTSA",
+    "address": "QUIBDÓ",
+    "phone": "6713603",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251162",
+    "source_url": "https://www.openstreetmap.org/node/12485251162"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6601076,
+     5.6944969
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Jardín Infantil Manitas Creativas",
+    "address": "Quibdó",
+    "phone": "6715123",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251163",
+    "source_url": "https://www.openstreetmap.org/node/12485251163"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6580839,
+     5.6876083
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Liceo Departamental José del Carmen Cuesta",
+    "address": "Quibdó",
+    "phone": "6714058",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251164",
+    "source_url": "https://www.openstreetmap.org/node/12485251164"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.65251,
+     5.6804824
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Anex Al Inst Carrasquilla Ind",
+    "address": "Quibdó",
+    "phone": "6711587",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251165",
+    "source_url": "https://www.openstreetmap.org/node/12485251165"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6590845,
+     5.6807204
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "ESCUELA URB MIX NIÑO JESUS",
+    "address": "QUIBDÓ",
+    "phone": "6720498",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251166",
+    "source_url": "https://www.openstreetmap.org/node/12485251166"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6571063,
+     5.7109749
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Urb Mix del B Obrero",
+    "address": "Quibdó",
+    "phone": "6719026",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251167",
+    "source_url": "https://www.openstreetmap.org/node/12485251167"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6589457,
+     5.6959335
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro Educativo Cent de Integ Popular",
+    "address": "Quibdó",
+    "phone": "6712161",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251168",
+    "source_url": "https://www.openstreetmap.org/node/12485251168"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6503817,
+     5.697587
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Urb Mix El Porvenir",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251169",
+    "source_url": "https://www.openstreetmap.org/node/12485251169"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6509539,
+     5.6864328
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Melvin Jones",
+    "address": "Quibdó",
+    "phone": "6711157",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251171",
+    "source_url": "https://www.openstreetmap.org/node/12485251171"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6507848,
+     5.6922107
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Urb Mix Santa Ana",
+    "address": "Quibdó",
+    "phone": "6717504",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251172",
+    "source_url": "https://www.openstreetmap.org/node/12485251172"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6551789,
+     5.695167
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Nzdo Mix Manuel Agustín Santa Coloma Villa",
+    "address": "Quibdó",
+    "phone": "6712015",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251173",
+    "source_url": "https://www.openstreetmap.org/node/12485251173"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6613993,
+     5.6904848
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Jardín Infantil Popular de Quibdo",
+    "address": "Quibdó",
+    "phone": "712104",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251174",
+    "source_url": "https://www.openstreetmap.org/node/12485251174"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6535418,
+     5.6961193
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Nueva Sto Domingo de Guzman",
+    "address": "Quibdó",
+    "phone": "6709029",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251175",
+    "source_url": "https://www.openstreetmap.org/node/12485251175"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6562821,
+     5.6947174
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Urb Mix Tomás Perez",
+    "address": "Quibdó",
+    "phone": "6717084",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251176",
+    "source_url": "https://www.openstreetmap.org/node/12485251176"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.66098,
+     5.6902133
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Gimn de Educ Media Anexo A La Utch",
+    "address": "Quibdó",
+    "phone": "6713807",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251177",
+    "source_url": "https://www.openstreetmap.org/node/12485251177"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6569393,
+     5.6810781
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Anex A La Norm Nal Sup de Quibdo",
+    "address": "Quibdó",
+    "phone": "6711070",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251178",
+    "source_url": "https://www.openstreetmap.org/node/12485251178"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6580077,
+     5.6960604
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Mix de Huapango",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251205",
+    "source_url": "https://www.openstreetmap.org/node/12485251205"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6541851,
+     5.6796447
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Nueva Fco Córdoba Mosquera",
+    "address": "Quibdó",
+    "phone": "6718916",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251206",
+    "source_url": "https://www.openstreetmap.org/node/12485251206"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6561831,
+     5.6811262
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Norm Nal Superior",
+    "address": "Quibdó",
+    "phone": "6711465",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251207",
+    "source_url": "https://www.openstreetmap.org/node/12485251207"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6578878,
+     5.6951564
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Anex Al Inst Fem Ens Med Profesional",
+    "address": "Quibdó",
+    "phone": "6712947",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251208",
+    "source_url": "https://www.openstreetmap.org/node/12485251208"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6573734,
+     5.6805512
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Lisandro Mosquera Lozano",
+    "address": "Quibdó",
+    "phone": "6717370",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251209",
+    "source_url": "https://www.openstreetmap.org/node/12485251209"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6615837,
+     5.6979791
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Urb Mix John F Kennedy",
+    "address": "Quibdó",
+    "phone": "6719544",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251210",
+    "source_url": "https://www.openstreetmap.org/node/12485251210"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.655189,
+     5.6899848
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Urb La Esmeralda",
+    "address": "Quibdó",
+    "phone": "6708072",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251211",
+    "source_url": "https://www.openstreetmap.org/node/12485251211"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.644355,
+     5.6884795
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Urb Mix Los Angeles",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251212",
+    "source_url": "https://www.openstreetmap.org/node/12485251212"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6539277,
+     5.7084213
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Urb Mix de Buenos Aires",
+    "address": "Quibdó",
+    "phone": "6716031",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251213",
+    "source_url": "https://www.openstreetmap.org/node/12485251213"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6598969,
+     5.6874023
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Nicolás Rojas Mena",
+    "address": "Quibdó",
+    "phone": "715622",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251214",
+    "source_url": "https://www.openstreetmap.org/node/12485251214"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.642752,
+     5.6791198
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Mix María Berchmans",
+    "address": "Quibdó",
+    "phone": "+57 315 5302280",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12485251215",
+    "source_url": "https://www.openstreetmap.org/node/12485251215"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.7573802,
+     5.5549096
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "IE Agropecuaria Nuestra Señora de Las Mercedes",
+    "address": null,
+    "phone": "+57 311 7948399",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13424647712",
+    "source_url": "https://www.openstreetmap.org/node/13424647712"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6604027,
+     5.6937684
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Mega Colegio MIA",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/595272274",
+    "source_url": "https://www.openstreetmap.org/way/595272274"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6611389,
+     5.6962113
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Hospital San Francisco de Asís",
+    "address": "Carrera 1, Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/865414483",
+    "source_url": "https://www.openstreetmap.org/way/865414483"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6585892,
+     5.6953449
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institucion Educativa Femenina de Enseñanza Media y Profesional",
+    "address": "Carrera 5, Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/865414484",
+    "source_url": "https://www.openstreetmap.org/way/865414484"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6592055,
+     5.6962673
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Antonio María Claret",
+    "address": "Carrera 32, Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/865414485",
+    "source_url": "https://www.openstreetmap.org/way/865414485"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6586476,
+     5.6979392
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Comfachico",
+    "address": "Carrera 33, Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/865414493",
+    "source_url": "https://www.openstreetmap.org/way/865414493"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6568039,
+     5.6913443
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Integrado Carrasquilla Industrial",
+    "address": "Calle 27, Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/865436804",
+    "source_url": "https://www.openstreetmap.org/way/865436804"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6468754,
+     5.6816289
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Universidad Tecnológica del Chocó Diego Luis Córdoba",
+    "address": "Carrera 22, Quibdò",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/865436808",
+    "source_url": "https://www.openstreetmap.org/way/865436808"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6550056,
+     5.6940449
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Instituciòn Educativa Armando Luna Roa",
+    "address": "Quibdó",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/865444152",
+    "source_url": "https://www.openstreetmap.org/way/865444152"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6605431,
+     5.6929258
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Comando de Policia Municipal",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1023121379",
+    "source_url": "https://www.openstreetmap.org/way/1023121379"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6515431,
+     5.6861273
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Universidad Diego Luis Cordoba",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1176490699",
+    "source_url": "https://www.openstreetmap.org/way/1176490699"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.7550097,
+     5.7056444
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Rural Mixta Altagracia",
+    "address": "QUIBDÓ",
+    "phone": "985224695",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1461296367",
+    "source_url": "https://www.openstreetmap.org/way/1461296367"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.6651175,
+     5.6898684
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "ESCUELA RUR MIX AV BAHIA SOLANO",
+    "address": "QUIBDÓ",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1462962697",
+    "source_url": "https://www.openstreetmap.org/way/1462962697"
+   }
+  }
+ ]
+}

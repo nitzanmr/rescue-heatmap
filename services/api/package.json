@@ -15,6 +15,7 @@
     "migrate": "node dist/migrate.js",
     "migrate:dev": "tsx src/migrate.ts",
     "seed": "tsx src/seed.ts",
+    "aid-sites": "tsx src/import-aid-sites.ts",
     "test": "tsx --test test/**/*.test.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },

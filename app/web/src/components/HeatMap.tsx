@@ -3,15 +3,23 @@ import { useEffect, useRef } from "react";
 import L from "leaflet";
 import "leaflet.heat";
 import { incident } from "@/lib/incident";
-import { Report, reportWeight } from "@/lib/schema";
+import type { HeatCell } from "@/lib/api";
 
 interface Props {
-  reports: Report[];
+  /** Aggregated cells from the server. The browser never receives case points. */
+  cells: HeatCell[];
   mode: "heat" | "points";
-  onSelect?: (r: Report) => void;
+  /** Cell size in metres, for the legend and the marker radius. */
+  cellM?: number;
 }
 
-export default function HeatMap({ reports, mode, onSelect }: Props) {
+// The map renders AGGREGATES, not people.
+//
+// This is not a display choice, it is the privacy boundary: heat_cells() does the
+// grouping in SQL and the API never returns an individual location to a browser.
+// A front-end that received points and blurred them client-side would have
+// already lost — the exact coordinates would be in the network tab.
+export default function HeatMap({ cells, mode, cellM = 100 }: Props) {
   const el = useRef<HTMLDivElement>(null);
   const map = useRef<L.Map | null>(null);
   const layer = useRef<L.Layer | null>(null);
@@ -39,10 +47,14 @@ export default function HeatMap({ reports, mode, onSelect }: Props) {
       m.removeLayer(layer.current);
       layer.current = null;
     }
-    const geo = reports.filter((r) => r.last_seen_lat != null && r.last_seen_lng != null);
+    if (!cells.length) return;
+
+    // Normalise against the strongest cell. Without this, one building with many
+    // reports saturates the gradient and every other street reads as empty.
+    const max = Math.max(...cells.map((c) => c.weight)) || 1;
 
     if (mode === "heat") {
-      const pts = geo.map((r) => [r.last_seen_lat!, r.last_seen_lng!, reportWeight(r)] as [number, number, number]);
+      const pts = cells.map((c) => [c.lat, c.lng, c.weight / max] as [number, number, number]);
       // @ts-expect-error leaflet.heat has no bundled types
       layer.current = L.heatLayer(pts, {
         radius: 28,
@@ -52,26 +64,25 @@ export default function HeatMap({ reports, mode, onSelect }: Props) {
       }).addTo(m);
     } else {
       const group = L.layerGroup();
-      geo.forEach((r) => {
-        const color =
-          r.status === "trapped_alive" ? "#ff3b3b" : r.status === "missing" ? "#f0c674" : "#3fb950";
-        const marker = L.circleMarker([r.last_seen_lat!, r.last_seen_lng!], {
-          radius: 5 + Math.min((r.reporter_count ?? 1) - 1, 4),
-          color,
+      cells.forEach((c) => {
+        const intensity = c.weight / max;
+        const colour = intensity > 0.66 ? "#ff3b3b" : intensity > 0.33 ? "#f0c674" : "#2b6cb0";
+        const marker = L.circleMarker([c.lat, c.lng], {
+          radius: 5 + Math.min(c.cases, 8),
+          color: colour,
           weight: 2,
-          fillColor: color,
-          fillOpacity: 0.45,
+          fillColor: colour,
+          fillOpacity: 0.35,
         });
         marker.bindPopup(
-          `<strong>${r.full_name}</strong><br/>${r.last_seen_address ?? ""}<br/>` +
-            `<span style="opacity:.7">${r.reference_number} · ${r.status} · ${r.location_accuracy}</span>`
+          `<strong>${c.cases} caso(s)</strong><br/>peso ${c.weight.toFixed(2)}<br/>` +
+            `<span style="opacity:.7">celda de ${cellM} m — no es una dirección</span>`
         );
-        if (onSelect) marker.on("click", () => onSelect(r));
         group.addLayer(marker);
       });
       layer.current = group.addTo(m);
     }
-  }, [reports, mode, onSelect]);
+  }, [cells, mode, cellM]);
 
   return <div ref={el} className="map" />;
 }

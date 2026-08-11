@@ -94,6 +94,12 @@ export const config = {
     photoMaxBytes: num(process.env.PHOTO_MAX_BYTES, 3 * 1024 * 1024),
   },
 
+  // The activation's country. Aid sites are loaded per country in peacetime, so
+  // the public map needs a default when the caller does not name one.
+  incident: {
+    countryCode: (process.env.INCIDENT_COUNTRY ?? "CO").toUpperCase(),
+  },
+
   retention: {
     publicDays: num(process.env.PUBLIC_RETENTION_DAYS, 30),
     mediaDays: num(process.env.MEDIA_RETENTION_DAYS, 90),

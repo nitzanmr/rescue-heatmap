@@ -1,227 +1,282 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+// The command panel, served by /v1/panel/* with an operator token.
+//
+// The screen that matters here is the DEDUP QUEUE. Everything else — the map,
+// the export — exists in some form in every incident tool. The queue is the
+// thing this system was built for, and it is the thing a human must not be
+// allowed to skip: a merge is never automatic, and the operator is shown the
+// score AND the signals behind it so they can audit the machine rather than
+// trust it.
+import { useCallback, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { Report, reportWeight } from "@/lib/schema";
-import { loadReports, resetDemo, flushQueue, updateReport } from "@/lib/store";
+import { api, ApiError, HeatCell, operatorToken, setOperatorToken } from "@/lib/api";
 import { incident } from "@/lib/incident";
 import StatusBadge from "@/components/StatusBadge";
 
 const HeatMap = dynamic(() => import("@/components/HeatMap"), {
   ssr: false,
-  loading: () => <div className="map" style={{ display: "grid", placeItems: "center", color: "var(--muted)" }}>Cargando mapa…</div>,
+  loading: () => (
+    <div className="map" style={{ display: "grid", placeItems: "center", color: "var(--muted)" }}>
+      Cargando mapa…
+    </div>
+  ),
 });
 
 export default function Panel() {
-  const [reports, setReports] = useState<Report[]>([]);
-  const [mode, setMode] = useState<"heat" | "points">("heat");
-  const [channel, setChannel] = useState<string>("all");
-  const [sel, setSel] = useState<Report | null>(null);
+  const [authed, setAuthed] = useState<boolean | null>(null);
 
   useEffect(() => {
-    const read = () => setReports(loadReports());
-    read();
-    window.addEventListener("rh:reports-changed", read);
-    return () => window.removeEventListener("rh:reports-changed", read);
+    setAuthed(Boolean(operatorToken()));
   }, []);
 
-  const filtered = useMemo(
-    () => (channel === "all" ? reports : reports.filter((r) => r.channel === channel)),
-    [reports, channel]
+  if (authed === null) return <div className="wrap"><p className="muted small">…</p></div>;
+  if (!authed) return <Login onDone={() => setAuthed(true)} />;
+  return <PanelBody onSignOut={() => { setOperatorToken(null); setAuthed(false); }} />;
+}
+
+// There is no password login endpoint in the API, and inventing one in the
+// browser would be the worst possible place to invent authentication. An
+// operator token is minted server-side (`make operator-token`) and pasted here.
+function Login({ onDone }: { onDone: () => void }) {
+  const [token, setToken] = useState("");
+  const [err, setErr] = useState("");
+  const [busy, setBusy] = useState(false);
+
+  const submit = async () => {
+    setBusy(true);
+    setErr("");
+    setOperatorToken(token.trim());
+    try {
+      await api.dedupQueue(1); // the token is only real if the API accepts it
+      onDone();
+    } catch (e) {
+      setOperatorToken(null);
+      const ae = e as ApiError;
+      setErr(ae.status === 401 ? "Ese token no es válido o expiró." : ae.message);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <div className="wrap-narrow">
+      <h1 style={{ fontSize: 24 }}>Panel de mando</h1>
+      <p className="small muted">
+        Acceso restringido a personal de coordinación. El token se genera en el servidor
+        (<code>make operator-token</code>) y se pega aquí una sola vez.
+      </p>
+      <label className="field">
+        <span className="lab">Token de operador</span>
+        <input value={token} onChange={(e) => setToken(e.target.value)} placeholder="…" type="password" />
+      </label>
+      {err && <p className="small" style={{ color: "var(--warn)" }}>{err}</p>}
+      <button className="btn primary block" disabled={busy || !token.trim()} onClick={() => void submit()}>
+        {busy ? "Verificando…" : "Entrar"}
+      </button>
+    </div>
   );
+}
 
-  const stats = useMemo(() => {
-    const total = reports.length;
-    const missing = reports.filter((r) => r.status === "missing").length;
-    const trapped = reports.filter((r) => r.status === "trapped_alive").length;
-    const found = reports.filter((r) => r.status.startsWith("found")).length;
-    const queued = reports.filter((r) => r.sync_state === "queued").length;
-    const noGeo = reports.filter((r) => r.last_seen_lat == null).length;
-    const clusters = new Set(reports.filter((r) => r.dedup_cluster_id).map((r) => r.dedup_cluster_id)).size;
-    return { total, missing, trapped, found, queued, noGeo, clusters };
-  }, [reports]);
+function PanelBody({ onSignOut }: { onSignOut: () => void }) {
+  const [pending, setPending] = useState<any[]>([]);
+  const [cells, setCells] = useState<HeatCell[]>([]);
+  const [cellM, setCellM] = useState(100);
+  const [mode, setMode] = useState<"heat" | "points">("heat");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  // Top hotspots: group by building / address, ranked by summed weight.
-  const hotspots = useMemo(() => {
-    const m = new Map<string, { key: string; n: number; w: number; trapped: number }>();
-    filtered.forEach((r) => {
-      const key = r.building_name || r.last_seen_address || "sin ubicación";
-      const e = m.get(key) ?? { key, n: 0, w: 0, trapped: 0 };
-      e.n++;
-      e.w += reportWeight(r);
-      if (r.status === "trapped_alive") e.trapped++;
-      m.set(key, e);
-    });
-    return [...m.values()].sort((a, b) => b.w - a.w).slice(0, 6);
-  }, [filtered]);
+  const load = useCallback(async () => {
+    setLoading(true);
+    try {
+      const [q, h] = await Promise.all([api.dedupQueue(50), api.panelHeat(cellM)]);
+      setPending(q.pending);
+      setCells(h.cells);
+      setCellM(h.cell_m);
+      setError(null);
+    } catch (e) {
+      const ae = e as ApiError;
+      if (ae.status === 401) {
+        onSignOut();
+        return;
+      }
+      setError(ae.isOffline ? "Sin conexión con el servidor." : ae.message);
+    } finally {
+      setLoading(false);
+    }
+  }, [cellM, onSignOut]);
 
-  const exportCsv = () => {
-    const cols = ["reference_number", "full_name", "age_approx", "status", "status_source", "last_seen_address", "building_name", "floor", "apartment", "last_seen_lat", "last_seen_lng", "location_accuracy", "channel", "created_at_device", "reporter_count"];
-    const esc = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
-    const csv = [cols.join(","), ...filtered.map((r) => cols.map((c) => esc((r as any)[c])).join(","))].join("\n");
-    download(new Blob([csv], { type: "text/csv" }), `${incident.id}-reports.csv`);
+  useEffect(() => {
+    void load();
+    // The queue changes while the operator looks at it: the worker keeps
+    // correlating. 15 s is short enough to feel live and long enough not to
+    // fight the intake for database connections during a surge.
+    const t = setInterval(() => void load(), 15_000);
+    return () => clearInterval(t);
+  }, [load]);
+
+  const download = async (format: "csv" | "geojson" | "kml") => {
+    try {
+      const blob = await api.exportBlob(format);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${incident.id}.${format === "geojson" ? "geojson" : format}`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      setError((e as Error).message);
+    }
   };
 
-  const exportKml = () => {
-    const pm = filtered
-      .filter((r) => r.last_seen_lat != null)
-      .map(
-        (r) =>
-          `<Placemark><name>${escapeXml(r.full_name)}</name><description>${escapeXml(
-            `${r.reference_number} | ${r.status} | ${r.last_seen_address ?? ""} | piso ${r.floor ?? "?"}`
-          )}</description><Point><coordinates>${r.last_seen_lng},${r.last_seen_lat},0</coordinates></Point></Placemark>`
-      )
-      .join("");
-    const kml = `<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>${incident.id}</name>${pm}</Document></kml>`;
-    download(new Blob([kml], { type: "application/vnd.google-earth.kml+xml" }), `${incident.id}.kml`);
-  };
+  const totalCases = cells.reduce((n, c) => n + c.cases, 0);
 
   return (
     <div className="wrap">
       <div className="row">
         <div>
           <h1 style={{ fontSize: 24, margin: "0 0 4px" }}>Panel de mando</h1>
-          <p className="small muted" style={{ margin: 0 }}>
-            {incident.name} · {incident.id}
-          </p>
+          <p className="small muted" style={{ margin: 0 }}>{incident.name}</p>
         </div>
         <span className="spacer" />
-        <button className="btn ghost" onClick={exportCsv}>Exportar CSV</button>
-        <button className="btn ghost" onClick={exportKml}>Exportar KML</button>
-        <button className="btn ghost" onClick={() => { flushQueue(); }}>Sincronizar cola ({stats.queued})</button>
-        <button className="btn ghost" onClick={() => { if (confirm("¿Reiniciar los datos de demostración?")) resetDemo(); }}>Reiniciar demo</button>
+        <button className="btn ghost" onClick={() => void download("csv")}>Exportar CSV</button>
+        <button className="btn ghost" onClick={() => void download("geojson")}>GeoJSON</button>
+        <button className="btn ghost" onClick={() => void download("kml")}>KML</button>
+        <button className="btn ghost" onClick={() => void load()}>{loading ? "…" : "Actualizar"}</button>
+        <button className="btn ghost" onClick={onSignOut}>Salir</button>
       </div>
+
+      {error && <p className="small" style={{ color: "var(--warn)" }}>{error}</p>}
 
       <div className="grid cols-4" style={{ marginTop: 20 }}>
-        <Stat n={stats.total} l="Reportes" />
-        <Stat n={stats.trapped} l="Atrapados con vida" accent="var(--accent-2)" />
-        <Stat n={stats.missing} l="Se busca" accent="var(--warn)" />
-        <Stat n={stats.found} l="Aparecieron" accent="var(--ok)" />
-        <Stat n={stats.clusters} l="Posibles duplicados" />
-        <Stat n={stats.noGeo} l="Sin ubicación" />
-        <Stat n={stats.queued} l="En cola (offline)" />
-        <Stat n={new Set(filtered.map((r) => r.channel)).size} l="Canales activos" />
+        <Stat n={pending.length} l="Duplicados por revisar" accent="var(--accent-2)" />
+        <Stat n={totalCases} l="Casos con ubicación" />
+        <Stat n={cells.length} l="Celdas activas" />
+        <Stat n={cellM} l="Tamaño de celda (m)" />
       </div>
 
-      <div className="row" style={{ margin: "24px 0 12px" }}>
+      {/* ---------------------------------------------------------------- */}
+      <div className="section-title">Posibles duplicados — decisión humana</div>
+      <p className="small muted" style={{ marginTop: -8 }}>
+        El motor propone; nadie une nada solo. Una unión equivocada hace que un equipo deje de buscar a
+        alguien que sigue bajo los escombros — por eso cada par se revisa y toda decisión queda auditada.
+      </p>
+
+      {pending.length === 0 ? (
+        <div className="card">
+          <p className="small muted" style={{ margin: 0 }}>
+            {loading ? "Cargando…" : "No hay pares pendientes de revisión."}
+          </p>
+        </div>
+      ) : (
+        <div className="grid cols-2">
+          {pending.map((p) => (
+            <DedupPair key={p.id} pair={p} onDecided={() => void load()} />
+          ))}
+        </div>
+      )}
+
+      {/* ---------------------------------------------------------------- */}
+      <div className="section-title">Mapa operativo</div>
+      <div className="row" style={{ marginBottom: 12 }}>
         <div className="chips">
           <button className={`chip ${mode === "heat" ? "on" : ""}`} onClick={() => setMode("heat")}>Mapa de calor</button>
-          <button className={`chip ${mode === "points" ? "on" : ""}`} onClick={() => setMode("points")}>Puntos</button>
+          <button className={`chip ${mode === "points" ? "on" : ""}`} onClick={() => setMode("points")}>Celdas</button>
         </div>
         <span className="spacer" />
         <div className="chips">
-          {["all", "pwa", "whatsapp", "sms", "paper", "node", "field"].map((c) => (
-            <button key={c} className={`chip ${channel === c ? "on" : ""}`} onClick={() => setChannel(c)}>
-              {c === "all" ? "Todos los canales" : c}
+          {[50, 100, 250, 500].map((m) => (
+            <button key={m} className={`chip ${cellM === m ? "on" : ""}`} onClick={() => setCellM(m)}>
+              {m} m
             </button>
           ))}
         </div>
       </div>
 
-      <HeatMap reports={filtered} mode={mode} onSelect={setSel} />
+      <HeatMap cells={cells} mode={mode} cellM={cellM} />
       <p className="small muted" style={{ marginTop: 8 }}>
-        Intensidad = precisión de la ubicación × urgencia (atrapado con vida ×2,5) × corroboración (cuántas
-        personas reportaron a la misma). Los reportes sin ubicación quedan fuera del mapa y se cuentan aparte.
+        El servidor agrupa los casos en celdas de {cellM} m antes de enviarlos: este navegador nunca recibe
+        la ubicación de una persona concreta. La intensidad combina precisión de la ubicación, urgencia
+        (atrapado con vida pesa más) y corroboración. Los casos sin ubicación no aparecen en el mapa.
       </p>
-
-      <div className="section-title">Focos prioritarios</div>
-      <div className="grid cols-3">
-        {hotspots.map((h, i) => (
-          <div className="card" key={h.key}>
-            <div className="row">
-              <h3 style={{ margin: 0 }}>#{i + 1} {h.key}</h3>
-              <span className="spacer" />
-              {h.trapped > 0 && <span className="badge trapped">{h.trapped} atrapado(s)</span>}
-            </div>
-            <p style={{ marginTop: 8 }}>
-              {h.n} reporte(s) · peso {h.w.toFixed(1)}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      <div className="section-title">Reportes recientes</div>
-      <div className="card" style={{ padding: 0, overflowX: "auto" }}>
-        <table>
-          <thead>
-            <tr>
-              <th>Ref.</th>
-              <th>Persona</th>
-              <th>Ubicación</th>
-              <th>Precisión</th>
-              <th>Canal</th>
-              <th>Estado</th>
-              <th>Fuente</th>
-              <th>Peso</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.slice(0, 25).map((r) => (
-              <tr key={r.uuid} onClick={() => setSel(r)} style={{ cursor: "pointer" }}>
-                <td className="muted">{r.reference_number}</td>
-                <td>
-                  {r.full_name}
-                  {(r.reporter_count ?? 1) > 1 && <span className="muted small"> ×{r.reporter_count}</span>}
-                  {r.medical_info && <div className="small" style={{ color: "var(--accent)" }}>⚕ {r.medical_info}</div>}
-                </td>
-                <td>
-                  {r.last_seen_address}
-                  {r.floor && <div className="small muted">piso {r.floor}{r.apartment ? ` apto ${r.apartment}` : ""}</div>}
-                </td>
-                <td className="muted">{r.location_accuracy}</td>
-                <td className="muted">{r.channel}{r.sync_state === "queued" ? " ⏳" : ""}</td>
-                <td><StatusBadge status={r.status} /></td>
-                <td className="muted small">{r.status_source}</td>
-                <td className="muted">{reportWeight(r).toFixed(2)}</td>
-                <td>
-                  <button
-                    className="chip"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      updateReport(r.uuid, { status: "found_safe", status_source: "verified_field", status_updated_at: new Date().toISOString() });
-                    }}
-                  >
-                    Verificar hallazgo
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {sel && (
-        <div className="modal-bg" onClick={() => setSel(null)}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <div className="row">
-              <h3 style={{ margin: 0 }}>{sel.full_name}</h3>
-              <span className="spacer" />
-              <StatusBadge status={sel.status} />
-            </div>
-            <p className="small muted">{sel.reference_number} · {sel.channel}{sel.node_id ? ` · ${sel.node_id}` : ""}</p>
-            <dl className="small" style={{ lineHeight: 1.7 }}>
-              <Row k="Edad" v={sel.age_approx ? `~${sel.age_approx}` : "—"} />
-              <Row k="Señas" v={sel.distinguishing_info ?? "—"} />
-              <Row k="Médico" v={sel.medical_info ?? "—"} />
-              <Row k="Última ubicación" v={`${sel.last_seen_address ?? "—"}${sel.floor ? `, piso ${sel.floor}` : ""}${sel.apartment ? `, apto ${sel.apartment}` : ""}`} />
-              <Row k="Precisión" v={sel.location_accuracy ?? "—"} />
-              <Row k="Reportado por" v={`${sel.reporter_name ?? "—"} (${sel.reporter_relation ?? "—"}) ${sel.reporter_phone ?? ""}`} />
-              <Row k="Corroboración" v={`${sel.reporter_count ?? 1} reporte(s)`} />
-              <Row k="Sincronización" v={sel.sync_state} />
-            </dl>
-            <button className="btn block" onClick={() => setSel(null)}>Cerrar</button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
 
-function Row({ k, v }: { k: string; v: string }) {
+// One candidate pair. Everything the operator needs to disagree with the machine
+// is on the card: both records, the score, and each signal that produced it.
+function DedupPair({ pair, onDecided }: { pair: any; onDecided: () => void }) {
+  const [busy, setBusy] = useState<string | null>(null);
+  const [err, setErr] = useState("");
+
+  const decide = async (decision: "merge" | "reject", survivor?: string) => {
+    setBusy(decision);
+    setErr("");
+    try {
+      await api.decide(String(pair.id), { decision, survivor_case_id: survivor });
+      onDecided();
+    } catch (e) {
+      setErr((e as Error).message);
+      setBusy(null);
+    }
+  };
+
+  const signals: Record<string, unknown> = pair.signals ?? {};
+
   return (
-    <div className="row" style={{ gap: 8 }}>
-      <span className="muted" style={{ minWidth: 130 }}>{k}</span>
-      <span>{v}</span>
+    <div className="card">
+      <div className="row">
+        <strong>Puntuación {Number(pair.score).toFixed(2)}</strong>
+        <span className="spacer" />
+        <span className="small muted">{new Date(pair.created_at).toLocaleString("es")}</span>
+      </div>
+
+      <div className="grid cols-2" style={{ marginTop: 10 }}>
+        <Side ref_={pair.a_ref} name={pair.a_name} age={pair.a_age} reports={pair.a_reports} status={pair.a_status} />
+        <Side ref_={pair.b_ref} name={pair.b_name} age={pair.b_age} reports={pair.b_reports} status={pair.b_status} />
+      </div>
+
+      <div className="small muted" style={{ marginTop: 10, lineHeight: 1.6 }}>
+        {Object.entries(signals).length === 0
+          ? "Sin detalle de señales."
+          : Object.entries(signals).map(([k, v]) => (
+              <span key={k} style={{ marginRight: 10 }}>
+                {k}: <strong style={{ color: "var(--text)" }}>{typeof v === "number" ? v.toFixed(2) : String(v)}</strong>
+              </span>
+            ))}
+      </div>
+
+      {err && <p className="small" style={{ color: "var(--warn)" }}>{err}</p>}
+
+      <div className="row" style={{ marginTop: 12 }}>
+        <button className="btn ghost" style={{ flex: 1 }} disabled={!!busy} onClick={() => void decide("reject")}>
+          Son personas distintas
+        </button>
+        <button className="btn" style={{ flex: 1 }} disabled={!!busy} onClick={() => void decide("merge", pair.a_case)}>
+          Unir → {pair.a_ref}
+        </button>
+        <button className="btn" style={{ flex: 1 }} disabled={!!busy} onClick={() => void decide("merge", pair.b_case)}>
+          Unir → {pair.b_ref}
+        </button>
+      </div>
+      <p className="small muted" style={{ marginTop: 8, marginBottom: 0 }}>
+        Unir es reversible: solo se reasignan los reportes al caso que queda.
+      </p>
+    </div>
+  );
+}
+
+function Side({ ref_, name, age, reports, status }: { ref_: string; name: string; age: number | null; reports: number; status: string }) {
+  return (
+    <div style={{ border: "1px solid var(--line)", borderRadius: 10, padding: 10 }}>
+      <div className="row">
+        <strong>{name}</strong>
+        <span className="spacer" />
+        <StatusBadge status={status as any} />
+      </div>
+      <p className="small muted" style={{ margin: "6px 0 0" }}>
+        {age ? `~${age} años · ` : ""}Ref. {ref_}
+        {reports > 1 ? ` · ${reports} reportes` : ""}
+      </p>
     </div>
   );
 }
@@ -233,17 +288,4 @@ function Stat({ n, l, accent }: { n: number; l: string; accent?: string }) {
       <div className="l">{l}</div>
     </div>
   );
-}
-
-function download(blob: Blob, name: string) {
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = name;
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
-function escapeXml(s: string) {
-  return s.replace(/[<>&'"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", '"': "&quot;" }[c] as string));
 }

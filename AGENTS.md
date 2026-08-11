@@ -94,6 +94,38 @@ When Supabase ships 18 GA, the bump is a one-line change plus a `make drill`.
   database image pulls PostGIS/pgvector over apt and fails on hosts whose build
   network has no DNS — a failure that has nothing to do with the drill.
 
+- **The browser never holds a private copy of other people's reports.** The web
+  app reads the API and nothing else. No mock store, no client-side dedup, no
+  reference numbers minted in the browser. A second correlation implementation
+  in the client drifts from `correlate_case()`, and a client-minted reference
+  prints a different number on every retry of the same report — the family
+  writes down the one that does not exist. Locked by
+  `test/frontend-wiring.test.ts`.
+- **Write to the device before the network, and separate "no signal" from "no".**
+  A submitted report is persisted in the outbox before any request. A transport
+  failure retries forever; a 4xx does not, because it would resend the same
+  rejected bytes. `ApiError.isOffline` / `isPermanent` exist for this and must
+  not be collapsed into "the request failed".
+- **The map receives aggregates, not people.** `heat_cells()` groups in SQL and
+  the API never returns an individual location to a browser. Coarsening in the
+  client is not coarsening: the exact coordinates would be in the network tab.
+- **The public map and the command map are two components, not one with a
+  prop.** `PublicMap.tsx` reads `/v1/public/*` and holds no token; `HeatMap.tsx`
+  serves the panel. A single component for both audiences means one boolean
+  stands between an exact case location and the open internet, and a boolean is
+  one careless refactor away from being wrong. Locked by `public-map.test.ts`.
+- **Aid sites are institutions, not people.** `aid_site` joins no case table and
+  `public.aid_sites()` may return exact coordinates and a phone — that is the
+  one place in the public API where that is allowed, and it stays that way
+  because the table has no path to person data.
+- **Imported data is unverified until a human stood in it.** OSM rows carry
+  `source`/`source_url` and no `verified_at`, the map draws them dashed, and the
+  importer never overwrites a verified row's name, address or phone.
+- **One basemap provider at a time, with an ordered fallback.** Spreading tile
+  requests across providers does not make you compliant with three policies, it
+  makes you non-compliant with three; it also looks broken and defeats caching.
+  `tile.openstreetmap.org` is last in the chain, never a default.
+
 ## Reporting
 
 When you finish a task, report **what actually ran** and **what you assumed**
