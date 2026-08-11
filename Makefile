@@ -7,6 +7,10 @@ COMPOSE ?= docker compose
 #   DB_PORT=55432 make drill
 DB_PORT ?= 5432
 export DB_PORT
+# Build-time network for the API image. Leave it alone unless `docker build`
+# on this host cannot resolve DNS; then: BUILD_NETWORK=host make drill
+BUILD_NETWORK ?= default
+export BUILD_NETWORK
 DB_URL  ?= postgres://rescue:rescue@localhost:$(DB_PORT)/rescue
 
 help:

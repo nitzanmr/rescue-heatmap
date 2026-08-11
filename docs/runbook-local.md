@@ -85,6 +85,43 @@ still builds that image on demand the first time. If you do need to rebuild it
 (after editing `ops/dev/Dockerfile.db`), run `make build` on a host with working
 build-network DNS, or pass `--network=host` to the daemon's build.
 
+**If `docker build` on your host cannot resolve DNS at all** (we hit this on a
+systemd-resolved server), run everything with `BUILD_NETWORK=host`:
+
+```
+BUILD_NETWORK=host DB_PORT=55432 make drill
+```
+
+The default is `default`, on purpose: `network: host` is rejected by some
+builders (Docker Desktop, rootless Docker), so one machine's escape hatch must
+not be everyone's default. Runtime containers always use the private compose
+network regardless.
+
+## Reading `make test`
+
+The correlation test does **not** report a single accuracy number. It scores
+every pair once and then sweeps the suggestion floor from 0.35 to 0.75 over
+those scores, printing:
+
+| Field | What it means |
+|---|---|
+| `curve` | precision / recall / F1 at each floor. The trade-off, explicit. |
+| `live` | the point the system is actually running at (`correlation_config.auto_suggest_floor`). |
+| `recall_ceiling` | the share of true duplicates that reached the scorer **at all**. Anything below this is lost in *blocking* (radius, trigram floor, no phone/id overlap) and **no threshold can recover it**. |
+| `blocked_truth_pairs` | how many duplicates were never scored. A blocking bug, not a tuning problem. |
+| `threshold_losses` | duplicates that *were* scored and lost to the floor alone. These are free to recover — the curve says what they cost in precision. |
+| `live_by_pair_type` | recall for `base-variant` (original vs re-telling) and `variant-variant` (two re-tellings, neither original). The second is harder and is what a real event produces most of; an averaged number hides it. |
+| `recommended` | the highest-recall floor that still holds precision ≥ `TARGET_PRECISION` (default 0.90). |
+
+Changing the floor is a migration against `correlation_config`, made **after**
+reading a curve — never a guess. The assertions in the test are regression
+guards with deliberately loose bounds; they are not a claim that the engine is
+good enough to ship.
+
+All of it is measured against **synthetic data we generated**. It measures the
+engine against our own assumptions about how duplicates look. Real calibration
+only starts with real reports.
+
 ## Step by step
 
 ```

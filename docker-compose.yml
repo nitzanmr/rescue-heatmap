@@ -65,7 +65,13 @@ services:
     build:
       context: .
       dockerfile: services/api/Dockerfile
-      network: host
+      # Build-time network. `default` everywhere; `host` only on a machine whose
+      # docker build network cannot resolve DNS (a systemd-resolved host we hit
+      # during a drill). That workaround belongs to that machine, not to this
+      # repository: `host` is unsupported on some builders (Docker Desktop,
+      # rootless), so baking it in as the default breaks everyone else.
+      #   BUILD_NETWORK=host make drill
+      network: ${BUILD_NETWORK:-default}
     image: rescue-api:dev
     environment:
       ROLE: api
@@ -135,6 +141,10 @@ services:
       TOKEN_PEPPER: dev-token-pepper-change-me
       IP_PEPPER: dev-ip-pepper-change-me
       SEED_CASES: "${SEED_CASES:-500}"
+      # Queue every seeded case for the worker: the drill must exercise the real
+      # asynchronous path. In-process callers (the correlation test) leave this
+      # unset so a running worker cannot race their measurement.
+      SEED_ENQUEUE: "1"
     command: ["node", "dist/seed.js"]
     depends_on:
       db:

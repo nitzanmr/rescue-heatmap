@@ -76,6 +76,18 @@ When Supabase ships 18 GA, the bump is a one-line change plus a `make drill`.
   engine produced candidates. This exists because a runtime type error in
   `correlate_case()` once left dedup completely dead while the drill printed
   `drill passed` — the HTTP path was fine and the failure lived in the worker.
+- **A measurement must be reproducible, and a single number is not one.**
+  `make test` sweeps the suggestion floor over one scoring pass and prints the
+  precision/recall curve, the recall *ceiling* imposed by candidate generation,
+  and recall split by pair type. Two rules follow: never quote one operating
+  point as "the accuracy", and never tune weights against recall that blocking
+  made unreachable. Nothing may run concurrently with the measured pass —
+  `seed()` therefore only queues worker jobs when `SEED_ENQUEUE=1`.
+- **A workaround for one machine never becomes the default for every machine.**
+  Host-specific escapes go behind a variable with a neutral default
+  (`BUILD_NETWORK`, `DB_PORT`) and get documented in the runbook. `network: host`
+  was committed as the default for a single host's broken DNS; it is unsupported
+  on other builders.
 - **The drill must test the current checkout.** Migrations are baked into
   `rescue-api:dev`, which `migrate`, `seed`, `api` and `worker` all share, so
   the drill rebuilds that image first. It builds **only** `api`: rebuilding the
