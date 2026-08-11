@@ -27,7 +27,11 @@ test("correlation engine: precision and recall against seeded ground truth", asy
 
   const n = Number(process.env.TEST_SEED_CASES ?? 300);
   await query(`TRUNCATE dedup_candidate, seed_truth`).catch(() => {});
+  const previousSeedIncident = process.env.SEED_INCIDENT;
+  process.env.SEED_INCIDENT = `test-correlation-${process.pid}-${Date.now()}`;
   const { incidentId } = await seed(n);
+  if (previousSeedIncident === undefined) delete process.env.SEED_INCIDENT;
+  else process.env.SEED_INCIDENT = previousSeedIncident;
 
   // Run the real pipeline: the same function the worker calls.
   const cases = await query<{ id: string }>(
