@@ -9,7 +9,7 @@
 // trust it.
 import { useCallback, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { api, ApiError, HeatCell, MergeRecord, operatorToken, setOperatorToken } from "@/lib/api";
+import { api, ApiError, HeatCell, MergeRecord, UnmappedCase, operatorToken, setOperatorToken } from "@/lib/api";
 import { incident } from "@/lib/incident";
 import StatusBadge from "@/components/StatusBadge";
 
@@ -20,6 +20,13 @@ const HeatMap = dynamic(() => import("@/components/HeatMap"), {
       Cargando mapa…
     </div>
   ),
+});
+
+// Browser-only, like HeatMap. Used to place the point an address never resolved
+// to — the operator confirms it on a map instead of typing coordinates.
+const LocationPicker = dynamic(() => import("@/components/LocationPicker"), {
+  ssr: false,
+  loading: () => <div className="small muted">Cargando mapa…</div>,
 });
 
 export default function Panel() {
@@ -80,6 +87,7 @@ function Login({ onDone }: { onDone: () => void }) {
 function PanelBody({ onSignOut }: { onSignOut: () => void }) {
   const [pending, setPending] = useState<any[]>([]);
   const [merges, setMerges] = useState<MergeRecord[]>([]);
+  const [unmapped, setUnmapped] = useState<UnmappedCase[]>([]);
   const [cells, setCells] = useState<HeatCell[]>([]);
   const [cellM, setCellM] = useState(100);
   const [mode, setMode] = useState<"heat" | "points">("heat");
@@ -89,13 +97,15 @@ function PanelBody({ onSignOut }: { onSignOut: () => void }) {
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const [q, h, m] = await Promise.all([
+      const [q, h, m, u] = await Promise.all([
         api.dedupQueue(50),
         api.panelHeat(cellM),
         api.merges(20),
+        api.unmapped(100),
       ]);
       setPending(q.pending);
       setMerges(m.merges);
+      setUnmapped(u.unmapped);
       setCells(h.cells);
       setCellM(h.cell_m);
       setError(null);
@@ -156,7 +166,7 @@ function PanelBody({ onSignOut }: { onSignOut: () => void }) {
       <div className="grid cols-4" style={{ marginTop: 20 }}>
         <Stat n={pending.length} l="Duplicados por revisar" accent="var(--accent-2)" />
         <Stat n={totalCases} l="Casos con ubicación" />
-        <Stat n={cells.length} l="Celdas activas" />
+        <Stat n={unmapped.length} l="Sin ubicar (solo dirección)" accent={unmapped.length ? "var(--warn)" : undefined} />
         <Stat n={cellM} l="Tamaño de celda (m)" />
       </div>
 
@@ -183,6 +193,9 @@ function PanelBody({ onSignOut }: { onSignOut: () => void }) {
 
       {/* ---------------------------------------------------------------- */}
       <MergeLedger merges={merges} onChanged={() => void load()} />
+
+      {/* ---------------------------------------------------------------- */}
+      <UnmappedQueue rows={unmapped} onChanged={() => void load()} />
 
       {/* ---------------------------------------------------------------- */}
       <div className="section-title">Mapa operativo</div>
@@ -343,6 +356,86 @@ function MergeLedger({ merges, onChanged }: { merges: MergeRecord[]; onChanged: 
           </p>
         </div>
       )}
+    </>
+  );
+}
+
+// Cases with an address and no coordinate.
+//
+// This section is the visible half of the fix: before it, a report whose place
+// was only ever a sentence produced no error, no warning and no row anywhere —
+// it was simply not on the map. Work that disappears is worse than work that
+// fails, because nobody goes looking for it.
+function UnmappedQueue({ rows, onChanged }: { rows: UnmappedCase[]; onChanged: () => void }) {
+  const [open, setOpen] = useState<string | null>(null);
+  const [point, setPoint] = useState<{ lat: number; lng: number } | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState("");
+
+  const save = async (caseId: string) => {
+    if (!point) return;
+    setBusy(true);
+    setErr("");
+    try {
+      // 'building' is the ceiling for staff work from a written address; the API
+      // does not accept 'exact' here at all. A point somebody derived from text
+      // must not look like a point somebody stood on.
+      await api.setCaseLocation(caseId, { ...point, accuracy: "building", note: "ubicado por operador" });
+      setOpen(null);
+      setPoint(null);
+      onChanged();
+    } catch (e) {
+      setErr((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <>
+      <div className="section-title">Sin ubicar — dirección escrita, sin punto</div>
+      <p className="small muted" style={{ marginTop: -8 }}>
+        Estas personas no aparecen en el mapa de calor. Alguien dijo dónde buscarlas y el texto no se
+        convirtió en coordenadas. Ubicar una la devuelve al mapa y vuelve a compararla con las demás.
+      </p>
+      {rows.length === 0 ? (
+        <div className="card">
+          <p className="small muted" style={{ margin: 0 }}>Ninguna. Todos los reportes tienen punto.</p>
+        </div>
+      ) : (
+        <div className="grid cols-2">
+          {rows.map((r) => (
+            <div key={r.case_id} className="card">
+              <div className="row">
+                <strong>{r.name_raw ?? "Sin nombre"}</strong>
+                <span className="spacer" />
+                <span className="small muted">{r.reference_number}</span>
+              </div>
+              <p className="small" style={{ marginBottom: 4 }}>{r.address_text}</p>
+              {r.building_name && <p className="small muted" style={{ marginTop: 0 }}>Edificio: {r.building_name}</p>}
+              <p className="small muted" style={{ marginTop: 0 }}>
+                {r.reporter_count} reporte(s) · desde {new Date(r.first_reported_at).toLocaleString("es")}
+              </p>
+              {open === r.case_id ? (
+                <>
+                  <LocationPicker lat={point?.lat} lng={point?.lng} onPick={(lat, lng) => setPoint({ lat, lng })} />
+                  <div className="row" style={{ marginTop: 8 }}>
+                    <button className="btn primary" disabled={!point || busy} onClick={() => void save(r.case_id)}>
+                      {busy ? "Guardando…" : "Guardar ubicación"}
+                    </button>
+                    <button className="btn ghost" onClick={() => { setOpen(null); setPoint(null); }}>Cancelar</button>
+                  </div>
+                </>
+              ) : (
+                <button className="btn ghost" onClick={() => { setOpen(r.case_id); setPoint(null); }}>
+                  Ubicar en el mapa
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+      {err && <p className="small" style={{ color: "var(--warn)" }}>{err}</p>}
     </>
   );
 }

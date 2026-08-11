@@ -1,6 +1,6 @@
 import type { FastifyInstance } from "fastify";
 import { one, query, tx } from "../db.js";
-import { decisionInput, statusUpdate } from "../schema.js";
+import { decisionInput, operatorLocation, statusUpdate } from "../schema.js";
 import { HttpError, requireAdmin, requireOperator } from "../security.js";
 import { audit } from "../audit.js";
 import { enqueue } from "../jobs.js";
@@ -309,6 +309,68 @@ export default async function panelRoutes(app: FastifyInstance) {
       );
     });
     await audit(req.actor, "case.status", req.params.id, { from: prev.status, to: s.status });
+    return { ok: true };
+  });
+
+  // -------------------------------------------------------------------------
+  // Unmapped cases: someone told us a place in words and nothing turned it into
+  // a point. Before this existed those reports were simply absent from the map
+  // with nothing anywhere saying so, which is the quietest way to lose a person.
+  // -------------------------------------------------------------------------
+  app.get<{ Querystring: { incident?: string; limit?: string } }>(
+    "/v1/panel/unmapped",
+    async (req) => {
+      requireOperator(req.actor);
+      const rows = await query(
+        `SELECT case_id, reference_number, status, name_raw, building_name,
+                reporter_count, address_text, first_reported_at
+           FROM public.unmapped_case
+          WHERE ($1::text IS NULL OR incident_id = (SELECT id FROM incident WHERE slug = $1))
+          ORDER BY first_reported_at
+          LIMIT $2`,
+        [req.query.incident ?? null, Math.min(Number(req.query.limit ?? 100) || 100, 500)]
+      );
+      await audit(req.actor, "unmapped.list", req.query.incident ?? null, { count: rows.length });
+      return { unmapped: rows };
+    }
+  );
+
+  // An operator places the point the address never resolved to.
+  //
+  // Written to case_location_override, never back into the report: the report is
+  // the citizen's account and must stay what they actually said. The override
+  // wins in refresh_person_index and is recorded as source 'operator', so the
+  // map never presents staff work as if a family had given a GPS fix.
+  app.post<{ Params: { id: string } }>("/v1/panel/cases/:id/location", async (req) => {
+    const op = requireOperator(req.actor);
+    const parsed = operatorLocation.safeParse(req.body);
+    if (!parsed.success) throw new HttpError(400, "invalid location", "invalid_location");
+    const loc = parsed.data;
+
+    const exists = await one<{ id: string }>(`SELECT id FROM person_case WHERE id = $1`, [req.params.id]);
+    if (!exists) throw new HttpError(404, "not found", "not_found");
+
+    await tx(async (c) => {
+      await c.query(
+        `INSERT INTO case_location_override (case_id, lat, lng, accuracy, note, set_by)
+         VALUES ($1,$2,$3,$4,$5,$6)
+         ON CONFLICT (case_id) DO UPDATE SET
+           lat = EXCLUDED.lat, lng = EXCLUDED.lng, accuracy = EXCLUDED.accuracy,
+           note = EXCLUDED.note, set_by = EXCLUDED.set_by, set_at = now()`,
+        [req.params.id, loc.lat, loc.lng, loc.accuracy, loc.note ?? null, op.userId]
+      );
+      await c.query(
+        `INSERT INTO report_revision (case_id, field, old_value, new_value, actor, reason)
+         VALUES ($1,'location',NULL,$2,$3,$4)`,
+        [req.params.id, JSON.stringify({ lat: loc.lat, lng: loc.lng, accuracy: loc.accuracy }),
+         `operator:${op.userId}`, loc.note ?? null]
+      );
+      await c.query(`SELECT public.refresh_person_index($1)`, [req.params.id]);
+    });
+    // A case that just acquired a location has a geography key it never had:
+    // re-correlate it, or it keeps the dedup shortlist it got while invisible.
+    await enqueue("correlate", { case_id: req.params.id }, `correlate:${req.params.id}:located`);
+    await audit(req.actor, "case.location", req.params.id, { accuracy: loc.accuracy });
     return { ok: true };
   });
 

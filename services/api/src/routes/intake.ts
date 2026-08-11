@@ -1,7 +1,7 @@
 import type { FastifyInstance } from "fastify";
 import crypto from "node:crypto";
 import { one, query, tx } from "../db.js";
-import { reportInput } from "../schema.js";
+import { normaliseLocation, reportInput } from "../schema.js";
 import { toE164 } from "../phone.js";
 import { config } from "../config.js";
 import { audit } from "../audit.js";
@@ -26,7 +26,10 @@ export default async function intakeRoutes(app: FastifyInstance) {
     if (!parsed.success) {
       throw new HttpError(400, parsed.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; "), "invalid_report");
     }
-    const r = parsed.data;
+    // One place decides what the location claim is worth, for every channel:
+    // a precision label without a coordinate is downgraded, never trusted, and
+    // never rejected. See normaliseLocation() for why.
+    const { unmapped, ...r } = normaliseLocation(parsed.data);
 
     const incident = await one<{ id: string; ref_prefix: string }>(
       r.incident_slug
@@ -117,6 +120,10 @@ export default async function intakeRoutes(app: FastifyInstance) {
       case_id: out.caseId,
       report_id: out.reportId,
       reference_number: out.ref,
+      // Said out loud, so the confirmation screen can say it too. An address
+      // with no point is accepted, but it is not on the map, and a family that
+      // is not told that believes rescuers can see where they said to look.
+      unmapped_location: unmapped,
       // Shown once. This is the family's private link; we cannot re-issue it.
       reporter_token: out.token,
       reporter_url: `/r/${out.ref}?t=${out.token}`,

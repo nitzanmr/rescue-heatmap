@@ -175,6 +175,31 @@ When Supabase ships 18 GA, the bump is a one-line change plus a `make drill`.
   ahead of `down -v` on purpose: a broken build costs a rebuild, a half-reset
   volume costs the run. Fail fast, destroy nothing.
 
+- **A precision claim without a coordinate is a false statement, not a rounding
+  error.** The intake form accepted a written address, never geocoded it, and
+  still offered "punto exacto" as a precision. The payload therefore described
+  a point that did not exist, the database correctly stored no geography, and
+  the case dropped out of the heat map with no error raised anywhere. Rules
+  that follow from it: accuracy describes a coordinate, so no coordinate means
+  `unknown`; a claim may never exceed what its source supports (a geocoded
+  street is a building at best, a landmark is a block); and `normaliseLocation()`
+  downgrades rather than rejects, because refusing a report during an earthquake
+  is the worst failure mode there is.
+- **A geocoder suggests, it never assigns**, and every result is bounded to the
+  incident box twice — once in the query, once locally. A point 500 km away does
+  not read as an error on a map, it reads as a second collapse site.
+- **Work that disappears is worse than work that fails.** A case with an address
+  and no point is now a queue (`public.unmapped_case`, `/v1/panel/unmapped`),
+  not an absence. The drill submits an address-only report and fails if it does
+  not arrive there.
+- **A case's location is chosen, never averaged.** `avg(lat), avg(lng)` across a
+  case's reports puts it between a GPS fix and a neighbourhood guess — a spot no
+  reporter named. Take the most precise point, latest wins ties, and an operator
+  override beats all of them.
+- **An operator's correction does not overwrite what a citizen said.** Staff
+  points go to `case_location_override`; the report stays the account of what was
+  actually reported.
+
 ## Reporting
 
 When you finish a task, report **what actually ran** and **what you assumed**

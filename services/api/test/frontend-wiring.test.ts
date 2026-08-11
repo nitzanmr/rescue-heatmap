@@ -46,7 +46,12 @@ test("every network call goes through lib/api.ts", () => {
     // The Next server component fetches the API directly for link-preview
     // metadata: it runs on the server, where the relative /api path has no
     // origin to resolve against.
-    .filter((f) => !f.endsWith(path.join("r", "[ref]", "page.tsx")));
+    .filter((f) => !f.endsWith(path.join("r", "[ref]", "page.tsx")))
+    // lib/geo.ts talks to a THIRD-PARTY geocoder, not to us. Routing it through
+    // lib/api.ts would attach our base URL and, worse, our auth header to an
+    // outside host. The exemption is the point: this is the one call that must
+    // not carry our credentials.
+    .filter((f) => !f.endsWith(path.join("lib", "geo.ts")));
 
   assert.deepEqual(
     offenders.map((f) => path.relative(WEB, f)),

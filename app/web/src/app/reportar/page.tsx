@@ -1,11 +1,35 @@
 "use client";
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { incident } from "@/lib/incident";
-import { Report, LocationAccuracy } from "@/lib/schema";
+import { Report, LocationAccuracy, LocationSource } from "@/lib/schema";
+import {
+  ACCURACY_CEILING,
+  geocode,
+  searchLandmarks,
+  withinIncident,
+  type Place,
+  type PlaceSource,
+} from "@/lib/geo";
 import { api, ApiError, PublicCase } from "@/lib/api";
 import { enqueueReport, flushOutbox, getEntry, OUTBOX_EVENT, OutboxEntry, startOutboxSync } from "@/lib/outbox";
 import ShareSheet from "@/components/ShareSheet";
 import { toPublicCard } from "@/lib/publicView";
+
+// Browser-only (Leaflet). Never import a binding from it statically — see
+// services/api/test/ssr-safety.test.ts for the build this rule cost us once.
+const LocationPicker = dynamic(() => import("@/components/LocationPicker"), {
+  ssr: false,
+  loading: () => <div className="small muted">Cargando mapa…</div>,
+});
+
+const SOURCE_LABEL: Record<LocationSource, string> = {
+  device_gps: "GPS del teléfono",
+  map_pick: "marcado en el mapa",
+  geocoded: "dirección encontrada y confirmada",
+  landmark: "punto de referencia",
+  none: "sin punto",
+};
 
 const DRAFT_KEY = "rh:draft:v1";
 
@@ -17,7 +41,7 @@ type Draft = Partial<Report>;
 const WIRE_FIELDS = [
   "full_name", "age_approx", "gender", "distinguishing_info", "medical_info",
   "national_id_last4", "is_minor",
-  "last_seen_lat", "last_seen_lng", "location_accuracy", "last_seen_address",
+  "last_seen_lat", "last_seen_lng", "location_accuracy", "location_source", "last_seen_address",
   "building_name", "floor", "apartment",
   "last_contact_at", "last_contact_precision",
   "reporter_name", "reporter_phone", "reporter_relation", "reporter_lang",
@@ -37,6 +61,16 @@ function toWire(draft: Draft): Record<string, unknown> {
   // listing = opt-out (on unless withdrawn), photo = opt-in (off unless granted).
   out.consent_public_listing = draft.consent_public_listing !== false;
   out.consent_photo_public = Boolean(draft.photo_data_url) && draft.consent_photo_public === true;
+  // Location invariant, enforced again here because the draft survives across
+  // sessions and a stale accuracy could outlive the point it described:
+  // no coordinate => no precision claim, and the source says so explicitly.
+  const hasPoint = draft.last_seen_lat != null && draft.last_seen_lng != null;
+  out.location_source = hasPoint ? draft.location_source ?? "map_pick" : "none";
+  if (!hasPoint) {
+    delete out.last_seen_lat;
+    delete out.last_seen_lng;
+    out.location_accuracy = "unknown";
+  }
   return out;
 }
 
@@ -326,6 +360,81 @@ function PhotoField({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
 }
 
 function StepPlace({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
+  const [results, setResults] = useState<Place[] | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [geoError, setGeoError] = useState<string | null>(null);
+  const [showMap, setShowMap] = useState(false);
+
+  const address = draft.last_seen_address ?? "";
+  const mapped = draft.last_seen_lat != null && draft.last_seen_lng != null;
+  const source = (draft.location_source ?? "none") as LocationSource;
+
+  // Editing the address invalidates the point: a coordinate resolved from a
+  // previous address silently attached to a new one is worse than no point.
+  const setAddress = (v: string) => {
+    setResults(null);
+    setGeoError(null);
+    if (mapped && source !== "device_gps" && source !== "map_pick") {
+      set({ last_seen_address: v, last_seen_lat: null, last_seen_lng: null, location_source: "none", location_accuracy: "unknown" });
+    } else {
+      set({ last_seen_address: v });
+    }
+  };
+
+  const applyPlace = (p: Place) => {
+    setResults(null);
+    set({
+      last_seen_lat: p.lat,
+      last_seen_lng: p.lng,
+      location_source: p.source,
+      last_seen_address: draft.last_seen_address?.trim() ? draft.last_seen_address : p.label,
+      // A point may never claim more precision than its origin allows.
+      location_accuracy: ACCURACY_CEILING[p.source],
+    });
+  };
+
+  const search = async () => {
+    setGeoError(null);
+    const local = searchLandmarks(address);
+    setBusy(true);
+    try {
+      const remote = await geocode(address);
+      setResults([...local, ...remote]);
+      if (!local.length && !remote.length) setGeoError("No encontramos ese lugar en la zona del evento.");
+    } catch (e) {
+      // Offline or blocked. The landmark list still works, and the report is
+      // still accepted — we only refuse to pretend it has a location.
+      setResults(local);
+      setGeoError(
+        local.length
+          ? "Sin conexión: solo se muestran lugares guardados en el teléfono."
+          : "No se pudo buscar la dirección ahora. Puedes enviar el reporte igual — quedará como texto, sin punto en el mapa."
+      );
+      void e;
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const useGps = () => {
+    navigator.geolocation?.getCurrentPosition(
+      (p) => {
+        if (!withinIncident(p.coords.latitude, p.coords.longitude)) {
+          setGeoError("Tu ubicación actual está fuera de la zona del evento. Marca el lugar en el mapa.");
+          setShowMap(true);
+          return;
+        }
+        applyPlace({ label: "Mi ubicación actual", lat: p.coords.latitude, lng: p.coords.longitude, source: "device_gps" });
+      },
+      () => setGeoError("No se pudo obtener la ubicación del dispositivo.")
+    );
+  };
+
+  // Accuracy is a claim about a coordinate. Without one, the only honest value
+  // is "unknown", so the finer options are shown disabled rather than hidden —
+  // the family should see why they cannot say "punto exacto" yet.
+  const ceiling = mapped ? ACCURACY_CEILING[source as PlaceSource] ?? "block" : null;
+  const RANK: Record<string, number> = { exact: 3, building: 2, block: 1, neighbourhood: 0, unknown: 0 };
   const accuracies: [LocationAccuracy, string][] = [
     ["exact", "Punto exacto"],
     ["building", "El edificio"],
@@ -333,42 +442,113 @@ function StepPlace({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
     ["neighbourhood", "El barrio"],
     ["unknown", "No sé"],
   ];
-  const useGps = () => {
-    navigator.geolocation?.getCurrentPosition(
-      (p) => set({ last_seen_lat: p.coords.latitude, last_seen_lng: p.coords.longitude, location_accuracy: "exact" }),
-      () => alert("No se pudo obtener la ubicación del dispositivo.")
-    );
-  };
+
   return (
     <div>
       <div className="section-title" style={{ marginTop: 8 }}>Paso 2 · ¿Dónde se le vio por última vez?</div>
       <label className="field">
         <span className="lab">Dirección o punto de referencia <span className="req">*</span></span>
         <span className="hint">Si no hay dirección, sirve igual: &quot;el colegio al lado de la iglesia&quot;.</span>
-        <input list="landmarks" value={draft.last_seen_address ?? ""} onChange={(e) => set({ last_seen_address: e.target.value })} placeholder="Ej: Cra 1 con Calle 24, casa azul" />
+        <input
+          list="landmarks"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          placeholder="Ej: Cra 1 con Calle 24, casa azul"
+        />
         <datalist id="landmarks">
           {incident.landmarks.map((l) => (
-            <option key={l} value={l} />
+            <option key={l.name} value={l.name} />
           ))}
         </datalist>
       </label>
-      <div className="field">
-        <span className="lab">¿Qué tan exacto es ese lugar?</span>
-        <span className="hint">Esto define el peso del punto en el mapa de calor. Decir &quot;no sé&quot; es válido y útil.</span>
-        <div className="chips">
-          {accuracies.map(([v, l]) => (
-            <button key={v} className={`chip ${draft.location_accuracy === v ? "on" : ""}`} onClick={() => set({ location_accuracy: v })}>{l}</button>
+
+      <div className="row" style={{ marginBottom: 12 }}>
+        <button className="btn ghost" onClick={() => void search()} disabled={busy || address.trim().length < 3}>
+          {busy ? "Buscando…" : "Buscar en el mapa"}
+        </button>
+        <button className="btn ghost" onClick={useGps}>Usar mi ubicación actual</button>
+        <button className="btn ghost" onClick={() => setShowMap((v) => !v)}>
+          {showMap ? "Ocultar mapa" : "Marcar en el mapa"}
+        </button>
+      </div>
+
+      {results && results.length > 0 && (
+        <div className="card" style={{ padding: 8, marginBottom: 12 }}>
+          <div className="small muted" style={{ padding: "4px 6px" }}>
+            Toca el lugar correcto. Ninguno se elige solo.
+          </div>
+          {results.map((p, i) => (
+            <button
+              key={`${p.source}:${i}`}
+              className="btn ghost"
+              style={{ display: "block", width: "100%", textAlign: "left", marginTop: 4 }}
+              onClick={() => applyPlace(p)}
+            >
+              {p.label}
+              {p.detail && <span className="small muted" style={{ display: "block" }}>{p.detail}</span>}
+            </button>
           ))}
         </div>
-      </div>
-      <div className="row" style={{ marginBottom: 16 }}>
-        <button className="btn ghost" onClick={useGps}>Usar mi ubicación actual</button>
-        {draft.last_seen_lat != null && (
-          <span className="small muted">
-            {draft.last_seen_lat.toFixed(5)}, {draft.last_seen_lng?.toFixed(5)}
+      )}
+
+      {geoError && (
+        <p className="small" style={{ color: "#d29922", marginTop: 0 }}>{geoError}</p>
+      )}
+
+      {/* The honest state banner. This is the whole point of the fix: a report
+          with an address and no coordinate must SAY that it is not on the map. */}
+      <div className="card" style={{ padding: 10, marginBottom: 12 }}>
+        {mapped ? (
+          <span className="small">
+            ✅ Ubicación en el mapa: {draft.last_seen_lat?.toFixed(5)}, {draft.last_seen_lng?.toFixed(5)}
+            <span className="muted"> · {SOURCE_LABEL[source]}</span>
+          </span>
+        ) : (
+          <span className="small">
+            ⚠️ <strong>La dirección se guardará como texto, todavía sin punto en el mapa.</strong>
+            <span className="muted" style={{ display: "block", marginTop: 4 }}>
+              El reporte se envía igual y un equipo lo revisará, pero no aparecerá en el mapa de calor
+              hasta que alguien lo ubique.
+            </span>
           </span>
         )}
       </div>
+
+      {showMap && (
+        <div style={{ marginBottom: 12 }}>
+          <LocationPicker
+            lat={draft.last_seen_lat}
+            lng={draft.last_seen_lng}
+            onPick={(lat, lng) => applyPlace({ label: address || "Punto marcado", lat, lng, source: "map_pick" })}
+          />
+        </div>
+      )}
+
+      <div className="field">
+        <span className="lab">¿Qué tan exacto es ese lugar?</span>
+        <span className="hint">
+          {mapped
+            ? "Esto define el peso del punto en el mapa de calor. Decir 'no sé' es válido y útil."
+            : "Se activa cuando el lugar tenga un punto en el mapa."}
+        </span>
+        <div className="chips">
+          {accuracies.map(([v, l]) => {
+            const blocked = !mapped ? v !== "unknown" : RANK[v] > RANK[ceiling ?? "unknown"];
+            return (
+              <button
+                key={v}
+                className={`chip ${draft.location_accuracy === v ? "on" : ""}`}
+                disabled={blocked}
+                title={blocked ? "Necesita un punto en el mapa más preciso" : undefined}
+                onClick={() => set({ location_accuracy: v })}
+              >
+                {l}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       <label className="field">
         <span className="lab">Edificio</span>
         <input value={draft.building_name ?? ""} onChange={(e) => set({ building_name: e.target.value })} />

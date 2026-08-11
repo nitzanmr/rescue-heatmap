@@ -15,14 +15,21 @@ export const incident = {
   languages: ["es", "en"] as const,
   center: { lat: 5.6947, lng: -76.6611 }, // Quibdó
   zoom: 13,
-  // Pre-loaded landmarks / shelters for offline location picking (no geocoder offline)
+  // Everything the geocoder returns must land inside this box. A geocoder asked
+  // for "Calle 24" will happily answer with a Calle 24 in Bogotá, 500 km away —
+  // and a coordinate that far off does not read as an error on a map, it reads
+  // as a second disaster site with people under it.
+  bbox: { minLat: 5.60, minLng: -76.74, maxLat: 5.79, maxLng: -76.58 },
+  // Pre-loaded landmarks for location picking. These carry COORDINATES on
+  // purpose: offline there is no geocoder, and a landmark name without a point
+  // is exactly the bug this list was supposed to prevent.
   landmarks: [
-    "Coliseo Municipal",
-    "Hospital San Francisco de Asís",
-    "Parque Manuel Mosquera",
-    "Colegio Carrasquilla",
-    "Iglesia San Francisco",
-    "Terminal de Transportes",
+    { name: "Coliseo Municipal", lat: 5.6926, lng: -76.6585 },
+    { name: "Hospital San Francisco de Asís", lat: 5.6939, lng: -76.6552 },
+    { name: "Parque Manuel Mosquera", lat: 5.6919, lng: -76.6616 },
+    { name: "Colegio Carrasquilla", lat: 5.6892, lng: -76.6603 },
+    { name: "Iglesia San Francisco", lat: 5.6913, lng: -76.6628 },
+    { name: "Terminal de Transportes", lat: 5.6836, lng: -76.6470 },
   ],
 };
 

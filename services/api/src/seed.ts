@@ -26,6 +26,12 @@ const ACCENTED: Record<string, string> = {
 const BUILDINGS = ["Edificio Aurora", "Torre Bolivar", "Conjunto Los Pinos", "Residencias El Mirador",
   "Bloque 7 Ciudadela", "Edificio San Rafael", "Torre Central"];
 const ACCURACY = ["exact", "building", "block", "neighbourhood"] as const;
+// Where a point came from, when there is one. The synthetic data has to contain
+// the case that broke us in the field: an address in words and no coordinate.
+const SOURCE = ["device_gps", "map_pick", "geocoded", "landmark"] as const;
+function sourceFor(lat: number | null): string {
+  return lat == null ? "none" : pick(SOURCE);
+}
 const STATUSES = ["missing", "missing", "missing", "trapped_alive"] as const;
 
 // Deterministic PRNG: a seed run must be reproducible or the measurement is not
@@ -112,9 +118,18 @@ function makeVariant(p: Person): Record<string, unknown> {
     // Nobody is sure of an age. Off by up to 3 years.
     age_approx: chance(0.75) ? Math.max(0, p.age_approx + Math.round((r() - 0.5) * 6)) : null,
     gender: chance(0.9) ? p.gender : "unknown",
-    last_seen_lat: chance(0.85) ? p.lat + dLat : null,
-    last_seen_lng: chance(0.85) ? p.lng + dLng : null,
-    location_accuracy: pick(ACCURACY),
+    ...(() => {
+      const has = chance(0.85);
+      const lat = has ? p.lat + dLat : null;
+      return {
+        last_seen_lat: lat,
+        last_seen_lng: has ? p.lng + dLng : null,
+        // No point, no precision claim — the same invariant the API enforces.
+        location_accuracy: has ? pick(ACCURACY) : "unknown",
+        location_source: sourceFor(lat),
+        last_seen_address: has ? null : `${p.building_name ?? "casa"} cerca del parque`,
+      };
+    })(),
     building_name: chance(0.7) ? p.building_name : null,
     floor: chance(0.5) ? p.floor : null,
     apartment: chance(0.4) ? p.apartment : null,
@@ -135,6 +150,7 @@ function baseReport(p: Person): Record<string, unknown> {
     last_seen_lat: p.lat,
     last_seen_lng: p.lng,
     location_accuracy: pick(ACCURACY),
+    location_source: pick(SOURCE),
     building_name: p.building_name,
     floor: p.floor,
     apartment: p.apartment,

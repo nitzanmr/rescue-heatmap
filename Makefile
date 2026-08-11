@@ -134,6 +134,31 @@ drill:   ## Full rehearsal: fresh db -> migrate -> seed -> smoke test
 	curl -fsS "http://localhost:$${WEB_PORT:-3000}/r/$$ref" | grep -q "Simulacro Web" \
 	  || (echo "SHARED CARD PAGE DID NOT RENDER THE CASE"; exit 1); \
 	echo "public card + shared page ok"
+	@# A report whose place is only a sentence. This is the case that used to be
+	@# lost in silence: the form let a family label a typed address "exact", no
+	@# geocoding ever happened, the database correctly stored no geography, and
+	@# the person never reached the map with nothing anywhere raising an error.
+	@# The drill now proves three things about it: it is ACCEPTED, its precision
+	@# claim is DOWNGRADED to unknown, and it lands in the operator queue.
+	@aref=$$(curl -fsS -X POST http://localhost:$${API_PORT:-8080}/v1/reports \
+	  -H 'content-type: application/json' \
+	  -d '{"full_name":"Simulacro Sin Punto Benson","incident_slug":"drill-bogota","last_seen_address":"Cra 1 con Calle 24, casa azul","location_accuracy":"exact","status":"missing"}' \
+	  | sed -n 's/.*"reference_number":"\([^"]*\)".*/\1/p'); \
+	if [ -z "$$aref" ]; then echo "ADDRESS-ONLY INTAKE REJECTED"; exit 1; fi; \
+	echo "address-only intake ok: $$aref"
+	@bad=$$($(COMPOSE) exec -T db psql -U rescue -d rescue -tAc \
+	  "SELECT count(*) FROM person_index pi JOIN person_case pc ON pc.id=pi.case_id \
+	    WHERE pc.reference_number IS NOT NULL AND pi.name_raw LIKE 'Simulacro Sin Punto%' \
+	      AND NOT (pi.last_seen IS NULL AND pi.location_accuracy='unknown' AND pi.location_source='none')" \
+	  | tr -d '[:space:]'); \
+	if [ "$${bad:-1}" != "0" ]; then \
+	  echo "PRECISION CLAIMED WITHOUT A POINT - the location invariant is broken"; exit 1; fi
+	@q=$$($(COMPOSE) exec -T db psql -U rescue -d rescue -tAc \
+	  "SELECT count(*) FROM public.unmapped_case WHERE name_raw LIKE 'Simulacro Sin Punto%'" \
+	  | tr -d '[:space:]'); \
+	if [ "$${q:-0}" -lt 1 ]; then \
+	  echo "UNMAPPED CASE DID NOT REACH THE OPERATOR QUEUE - it was lost silently"; exit 1; fi; \
+	echo "unmapped queue ok"
 	@# The intake above only proves the HTTP path. The correlation engine runs in
 	@# the worker, so a broken correlate_case() lands in job.last_error and the
 	@# drill still printed "drill passed" over a dead dedup engine. It did, once.

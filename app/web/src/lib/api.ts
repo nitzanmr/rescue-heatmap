@@ -218,6 +218,19 @@ export interface MergeRecord {
   merged_name: string | null;
 }
 
+// A case whose location exists only as a sentence. Operator-only: address_text
+// is free text a family wrote and is personal data.
+export interface UnmappedCase {
+  case_id: string;
+  reference_number: string;
+  status: string;
+  name_raw: string | null;
+  building_name: string | null;
+  reporter_count: number;
+  address_text: string;
+  first_reported_at: string;
+}
+
 export const api = {
   meta: () => apiFetch<{ version: string; incidents: { slug: string; name: string; ref_prefix: string }[] }>("/v1/meta"),
 
@@ -293,6 +306,16 @@ export const api = {
       method: "POST",
       auth: "operator",
     }),
+
+  // Cases that told us a place in words and have no point. Until this existed
+  // they were simply missing from the map, with nothing anywhere saying so.
+  unmapped: (limit = 100) =>
+    apiFetch<{ unmapped: UnmappedCase[] }>(`/v1/panel/unmapped?limit=${limit}`, { auth: "operator" }),
+
+  setCaseLocation: (
+    caseId: string,
+    body: { lat: number; lng: number; accuracy?: "building" | "block" | "neighbourhood"; note?: string }
+  ) => apiFetch<{ ok: true }>(`/v1/panel/cases/${caseId}/location`, { body, auth: "operator" }),
 
   panelCase: (caseId: string) => apiFetch<any>(`/v1/panel/cases/${caseId}`, { auth: "operator" }),
 

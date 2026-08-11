@@ -53,14 +53,17 @@ Progressive: each step is a separate screen on mobile, all steps on one page on 
 | Field | Type | Req. | Notes |
 |---|---|---|---|
 | `last_seen_lat` / `last_seen_lng` | float | ✅* | Map pin. Defaults to device GPS if permitted |
-| `location_accuracy` | enum | | exact / building / block / neighbourhood / unknown — **drives heatmap confidence weighting** |
+| `location_accuracy` | enum | | exact / building / block / neighbourhood / unknown — **drives heatmap confidence weighting**. A claim about a COORDINATE: with no coordinate the only valid value is `unknown`, enforced by `normaliseLocation()` |
+| `location_source` | enum | | device_gps / map_pick / geocoded / landmark / operator / none — where the point came from. Caps what `location_accuracy` may claim: geocoded → building, landmark → block |
 | `last_seen_address` | text | ✅* | Address, landmark, shelter name, or "the school next to the church" |
 | `building_name` | text | | |
 | `floor` | text | | **Critical for SAR triage in a collapse** |
 | `apartment` | text | | |
 | `admin_area` | text | auto | Department / municipality, derived by geocoding |
 
-\* At least one of {coordinates, address text} is required. A report with a name and no location is accepted but flagged `geo_missing` and excluded from the heatmap.
+\* At least one of {coordinates, address text} is required. A report with an address and no coordinate is **accepted**, its precision claim is downgraded to `unknown`, and it appears in `public.unmapped_case` — the operator queue — instead of vanishing. It is excluded from the heatmap until someone places the point, and the form says so to the family in those words.
+
+**What this replaced:** the form used to take an address as free text, geocode nothing, and still let the family tick "punto exacto". The report looked complete and the person never reached the map, with no error raised anywhere. Address → coordinate now happens explicitly, with a confirmation step, and never automatically.
 
 **Offline note:** with no network there is no geocoder and no map tiles. Fallbacks, in order: (a) cached tiles for the incident bounding box, (b) raw device GPS with no basemap, (c) a picker of pre-loaded shelter/landmark names for the incident, (d) free text.
 

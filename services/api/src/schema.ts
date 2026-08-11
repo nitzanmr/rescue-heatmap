@@ -6,6 +6,44 @@ import { z } from "zod";
 // field failed validation is the worst possible failure mode.
 export const genderEnum = z.enum(["m", "f", "other", "unknown"]);
 export const accuracyEnum = z.enum(["exact", "building", "block", "neighbourhood", "unknown"]);
+// Where the coordinate came from. Accuracy is a claim ABOUT a coordinate; this
+// records whether one exists at all. A report whose source is "none" carries an
+// address as text and is invisible to the heat map until an operator maps it.
+export const locationSourceEnum = z.enum(["device_gps", "map_pick", "geocoded", "landmark", "none"]);
+
+/**
+ * The one location invariant, applied to every channel, in one place.
+ *
+ * The bug it closes: the form let a family label a typed address "exact" while
+ * no geocoding ever happened, so the payload claimed precision it did not have
+ * and the case dropped out of the map without an error anywhere. Precision
+ * without a point is not a small inaccuracy, it is a false statement that a
+ * later operator reads as verified.
+ *
+ * Deliberately a normaliser and NOT a rejection: refusing a report during an
+ * earthquake is the worst failure mode there is. We accept, and we downgrade
+ * the claim to what the data supports.
+ */
+export function normaliseLocation<T extends {
+  last_seen_lat?: number | null;
+  last_seen_lng?: number | null;
+  location_accuracy?: string;
+  location_source?: string;
+}>(r: T): T & { location_source: string; unmapped: boolean } {
+  const hasPoint = r.last_seen_lat != null && r.last_seen_lng != null;
+  if (!hasPoint) {
+    return { ...r, last_seen_lat: null, last_seen_lng: null, location_accuracy: "unknown", location_source: "none", unmapped: true };
+  }
+  const ceiling: Record<string, string> = {
+    device_gps: "exact", map_pick: "exact", geocoded: "building", landmark: "block",
+  };
+  const source = r.location_source && r.location_source !== "none" ? r.location_source : "map_pick";
+  const rank: Record<string, number> = { exact: 3, building: 2, block: 1, neighbourhood: 0, unknown: 0 };
+  const cap = ceiling[source] ?? "block";
+  const claimed = r.location_accuracy ?? cap;
+  const accuracy = rank[claimed] > rank[cap] ? cap : claimed;
+  return { ...r, location_accuracy: accuracy, location_source: source, unmapped: false };
+}
 export const statusEnum = z.enum([
   "missing", "trapped_alive", "found_safe", "found_injured", "deceased", "withdrawn",
 ]);
@@ -33,6 +71,7 @@ export const reportInput = z.object({
   last_seen_lat: z.number().min(-90).max(90).nullish(),
   last_seen_lng: z.number().min(-180).max(180).nullish(),
   location_accuracy: accuracyEnum.optional(),
+  location_source: locationSourceEnum.optional(),
   last_seen_address: z.string().max(500).nullish(),
   building_name: z.string().max(200).nullish(),
   floor: z.string().max(20).nullish(),
@@ -73,6 +112,7 @@ export const reporterUpdate = z.object({
   last_seen_lat: z.number().min(-90).max(90).nullish(),
   last_seen_lng: z.number().min(-180).max(180).nullish(),
   location_accuracy: accuracyEnum.optional(),
+  location_source: locationSourceEnum.optional(),
   building_name: z.string().max(200).nullish(),
   floor: z.string().max(20).nullish(),
   apartment: z.string().max(20).nullish(),
@@ -82,6 +122,16 @@ export const reporterUpdate = z.object({
   status: z.enum(["missing", "found_safe", "withdrawn"]).optional(),
   consent_public_listing: z.boolean().optional(),
   consent_photo_public: z.boolean().optional(),
+});
+
+// An operator placing the point an address never resolved to. 'exact' is not
+// offered: staff working from a written address are locating a building at best,
+// and a coordinate that claims to be exact is one nobody re-checks.
+export const operatorLocation = z.object({
+  lat: z.number().min(-90).max(90),
+  lng: z.number().min(-180).max(180),
+  accuracy: z.enum(["building", "block", "neighbourhood"]).default("building"),
+  note: z.string().max(500).nullish(),
 });
 
 export const statusUpdate = z.object({

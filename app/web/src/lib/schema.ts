@@ -3,6 +3,10 @@
 
 export type Gender = "m" | "f" | "other" | "unknown";
 export type LocationAccuracy = "exact" | "building" | "block" | "neighbourhood" | "unknown";
+// WHERE the coordinate came from. Accuracy describes a point; this says whether
+// a point exists at all and who put it there. "none" means the report carries an
+// address as text only and is invisible to the heat map until somebody maps it.
+export type LocationSource = "device_gps" | "map_pick" | "geocoded" | "landmark" | "none";
 export type Status = "missing" | "trapped_alive" | "found_safe" | "found_injured" | "deceased" | "withdrawn";
 export type StatusSource = "citizen" | "verified_field" | "official";
 export type Channel = "pwa" | "whatsapp" | "sms" | "paper" | "node" | "field";
@@ -33,6 +37,7 @@ export interface Report {
   last_seen_lat?: number | null;
   last_seen_lng?: number | null;
   location_accuracy?: LocationAccuracy;
+  location_source?: LocationSource;
   last_seen_address?: string | null;
   building_name?: string | null;
   floor?: string | null;
