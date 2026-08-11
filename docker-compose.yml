@@ -1,0 +1,136 @@
+# Local development and the drill. `docker compose up` must produce a database
+# with our schema and an API that accepts a report — with no cloud account, no
+# credit card and no network beyond the image pull.
+#
+#   docker compose up -d db
+#   docker compose run --rm migrate
+#   docker compose run --rm seed
+#   docker compose up api worker
+#
+# The db image is built locally because no official image carries both PostGIS
+# and pgvector, and our correlation query needs both in the same statement.
+name: rescue-heatmap
+
+services:
+  db:
+    # Postgres 17 + PostGIS 3.5 + pgvector 0.8.6. 17 and not 18 on purpose: 18 is
+    # Preview on Cloud SQL and absent on Supabase, and this image exists to match
+    # the managed target, not to be the newest. See ops/dev/Dockerfile.db.
+    build:
+      context: ./ops/dev
+      dockerfile: Dockerfile.db
+    image: rescue-db:dev
+    environment:
+      POSTGRES_USER: rescue
+      POSTGRES_PASSWORD: rescue
+      POSTGRES_DB: rescue
+      # Fail fast on a mis-set locale: Spanish text search depends on it.
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C.UTF-8"
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+      - ./ops/dev/init-db.sh:/docker-entrypoint-initdb.d/10-init.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rescue -d rescue"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    command:
+      - postgres
+      - -c
+      - max_connections=200
+      - -c
+      - shared_preload_libraries=pg_stat_statements
+
+  migrate:
+    build:
+      context: .
+      dockerfile: services/api/Dockerfile
+    image: rescue-api:dev
+    environment:
+      ROLE: migrate
+      NODE_ENV: development
+      DATABASE_URL: postgres://rescue:rescue@db:5432/rescue
+      DATABASE_DIRECT_URL: postgres://rescue:rescue@db:5432/rescue
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+  api:
+    build:
+      context: .
+      dockerfile: services/api/Dockerfile
+    image: rescue-api:dev
+    environment:
+      ROLE: api
+      NODE_ENV: development
+      PORT: 8080
+      DATABASE_URL: postgres://rescue:rescue@db:5432/rescue
+      DATABASE_DIRECT_URL: postgres://rescue:rescue@db:5432/rescue
+      # Development-only peppers. Rotating these in production invalidates every
+      # family's private link — they are durable secrets, not config.
+      TOKEN_PEPPER: dev-token-pepper-change-me
+      IP_PEPPER: dev-ip-pepper-change-me
+      CORS_ORIGINS: "*"
+      STORAGE_DRIVER: fs
+      STORAGE_ROOT_DIR: /data/media
+      LOG_LEVEL: info
+    ports:
+      - "${API_PORT:-8080}:8080"
+    volumes:
+      - media:/data/media
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+
+  worker:
+    build:
+      context: .
+      dockerfile: services/api/Dockerfile
+    image: rescue-api:dev
+    environment:
+      ROLE: worker
+      NODE_ENV: development
+      DATABASE_URL: postgres://rescue:rescue@db:5432/rescue
+      TOKEN_PEPPER: dev-token-pepper-change-me
+      IP_PEPPER: dev-ip-pepper-change-me
+      STORAGE_DRIVER: fs
+      STORAGE_ROOT_DIR: /data/media
+      WORKER_CONCURRENCY: 2
+    volumes:
+      - media:/data/media
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+
+  # Synthetic incident + reports with known duplicates. This is what makes the
+  # correlation weights measurable instead of a guess.
+  seed:
+    build:
+      context: .
+      dockerfile: services/api/Dockerfile
+    image: rescue-api:dev
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgres://rescue:rescue@db:5432/rescue
+      TOKEN_PEPPER: dev-token-pepper-change-me
+      IP_PEPPER: dev-ip-pepper-change-me
+      SEED_CASES: "${SEED_CASES:-500}"
+    command: ["node", "dist/seed.js"]
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    profiles: ["tools"]
+    restart: "no"
+
+volumes:
+  dbdata:
+  media:
