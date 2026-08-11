@@ -100,6 +100,10 @@ input:focus, select:focus, textarea:focus { outline: 2px solid rgba(240,136,62,.
   background: var(--panel-2); border: 1px solid var(--line); color: var(--muted);
 }
 .chip.on { background: rgba(240,136,62,.15); border-color: var(--accent); color: var(--accent); }
+/* Blocked, not disabled: it must LOOK unavailable (dashed, faded) and still
+   receive the tap so the form can say why. A chip that merely ignores a tap
+   reads as a broken feature, and got reported as one. */
+.chip.blocked { opacity: .45; border-style: dashed; cursor: not-allowed; }
 
 .netbar { padding: 10px 16px; font-size: 13.5px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--line); }
 .netbar.off { background: rgba(210,153,34,.14); color: #f0c674; }

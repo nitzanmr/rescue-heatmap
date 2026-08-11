@@ -147,3 +147,41 @@ test("unmapped cases are a queue, not an absence", () => {
     "an operator's point goes to the override table — a report is what a citizen said " +
       "and must not be rewritten to record what staff later worked out");
 });
+
+// -----------------------------------------------------------------------------
+// The second field report on this form (Oshri, 11.8): "punto exacto no responde".
+// It was not broken — it was blocked by the accuracy ceiling, silently. A
+// `disabled` chip on a phone gives no reason, so a correct rule read as a dead
+// feature, and three reports of the same child were submitted with no point at
+// all, each one believing it had said "la cuadra".
+// -----------------------------------------------------------------------------
+
+test("a blocked accuracy chip answers the tap instead of swallowing it", () => {
+  const src = read(path.join(WEB, "app/reportar/page.tsx"));
+  const chipBlock = src.slice(src.indexOf("accuracies.map"), src.indexOf("blockedMsg &&"));
+  assert.ok(chipBlock.length > 0, "could not locate the accuracy chip renderer");
+  assert.equal(/[^-]disabled=\{blocked\}/.test(chipBlock), false,
+    "accuracy chips must not use `disabled` — a swallowed tap reads as a broken feature");
+  assert.match(chipBlock, /aria-disabled=\{blocked\}/,
+    "the blocked state must still be announced to assistive tech");
+  assert.match(chipBlock, /setBlockedMsg\(/,
+    "a tap on a blocked chip must set a visible explanation");
+  assert.match(src, /\{blockedMsg && \(/, "and the explanation must be rendered");
+});
+
+test("blocked chips are visually distinct from live ones", () => {
+  const css = read(path.join(WEB, "app/globals.css"));
+  assert.match(css, /\.chip\.blocked\s*\{/,
+    "globals.css must style .chip.blocked — without it a capped chip is " +
+      "indistinguishable from a live one, which is how this was reported as a bug");
+});
+
+test("the acceptance screen says when the accepted report has no point", () => {
+  const src = read(path.join(WEB, "app/reportar/page.tsx"));
+  const accepted = src.slice(src.indexOf("function Accepted("));
+  assert.ok(accepted.length > 0, "could not locate the Accepted component");
+  assert.match(accepted, /last_seen_lat == null \|\| report\.last_seen_lng == null/,
+    "Accepted must derive unmapped-ness from the same payload the server judged");
+  assert.match(accepted, /no tiene punto en el mapa/,
+    "an accepted-but-unmapped report must say so on the LAST screen the family sees");
+});

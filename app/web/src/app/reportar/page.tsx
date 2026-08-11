@@ -364,6 +364,13 @@ function StepPlace({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
   const [busy, setBusy] = useState(false);
   const [geoError, setGeoError] = useState<string | null>(null);
   const [showMap, setShowMap] = useState(false);
+  // Why a tapped-but-blocked chip must ANSWER instead of ignoring: a disabled
+  // button on a phone is indistinguishable from a broken one. The first field
+  // tester tapped "Punto exacto", nothing happened, and reported the feature
+  // dead — while the real state was "you have no point on the map yet". The
+  // rule stands (accuracy is capped by where the point came from); the silence
+  // was the bug.
+  const [blockedMsg, setBlockedMsg] = useState<string | null>(null);
 
   const address = draft.last_seen_address ?? "";
   const mapped = draft.last_seen_lat != null && draft.last_seen_lng != null;
@@ -537,16 +544,31 @@ function StepPlace({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
             return (
               <button
                 key={v}
-                className={`chip ${draft.location_accuracy === v ? "on" : ""}`}
-                disabled={blocked}
-                title={blocked ? "Necesita un punto en el mapa más preciso" : undefined}
-                onClick={() => set({ location_accuracy: v })}
+                className={`chip ${draft.location_accuracy === v ? "on" : ""} ${blocked ? "blocked" : ""}`}
+                aria-disabled={blocked}
+                onClick={() => {
+                  if (!blocked) {
+                    setBlockedMsg(null);
+                    set({ location_accuracy: v });
+                    return;
+                  }
+                  // Not `disabled`: a dead tap explains nothing. Say WHY, in
+                  // terms of the action that unblocks it.
+                  setBlockedMsg(
+                    !mapped
+                      ? "Primero pon el lugar en el mapa: usa «Buscar en el mapa», «Usar mi ubicación actual» o «Marcar en el mapa». La dirección escrita todavía no tiene punto."
+                      : "El punto actual viene de una búsqueda, así que no puede afirmar más precisión que eso. Para «Punto exacto», usa el GPS o arrastra el punto en el mapa hasta el lugar."
+                  );
+                }}
               >
                 {l}
               </button>
             );
           })}
         </div>
+        {blockedMsg && (
+          <p className="small" style={{ color: "#d29922", marginTop: 6 }}>{blockedMsg}</p>
+        )}
       </div>
 
       <label className="field">
@@ -805,11 +827,30 @@ function Accepted({ report, entry }: { report: Report; entry: OutboxEntry }) {
   const reporterUrl = entry.reporter_token
     ? `/r/${report.reference_number}?t=${entry.reporter_token}`
     : null;
+  // Derived from the same payload the server judged, by the same rule
+  // (normaliseLocation: no coordinate ⇒ unmapped). Said HERE because this is
+  // the last screen the family sees: a report accepted without a point is on
+  // the rescuers' queue but NOT on any map, and believing otherwise is the
+  // silent failure this form keeps having to un-teach.
+  const unmapped = report.last_seen_lat == null || report.last_seen_lng == null;
   return (
     <div className="wrap-narrow" style={{ textAlign: "center", paddingTop: 50 }}>
       <div style={{ fontSize: 44 }}>✅</div>
       <h1 style={{ fontSize: 22 }}>Recibido en el centro de coordinación</h1>
       <p className="muted small">Tu reporte ya está en el sistema.</p>
+
+      {unmapped && (
+        <div className="card" style={{ marginTop: 14, borderColor: "rgba(210,153,34,.5)", textAlign: "left" }}>
+          <p className="small" style={{ marginTop: 0 }}>
+            ⚠️ <strong>Este reporte todavía no tiene punto en el mapa.</strong>
+          </p>
+          <p className="small muted" style={{ marginBottom: 0 }}>
+            La dirección se guardó como texto y un equipo la ubicará a mano, pero hasta entonces no
+            aparece en el mapa de calor. Si puedes marcar el lugar, abre tu reporte con el enlace
+            privado y añade el punto.
+          </p>
+        </div>
+      )}
 
       <div className="card" style={{ marginTop: 22 }}>
         <p className="small muted">Tu número de referencia</p>
