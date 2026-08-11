@@ -87,6 +87,19 @@ test("seeding loads the aid layer, so a fresh database is never a blank map", ()
   assert.match(seedTs, /SEED_AID === "0"/, "the loader must be skippable, but on by default");
 });
 
+test("candidate shelters are visible by default — the warning is on the marker, not the toggle", () => {
+  // Decision 11.8: the first real tester never found the hidden layer. A point
+  // that is off by default reads as "does not exist". Safety lives in the
+  // rendering (dashed, faint, 'sin confirmar' in the popup), not in hiding.
+  const mapa = read("app/web/src/app/mapa/page.tsx");
+  assert.match(mapa, /\[showCandidates, setShowCandidates\] = useState\(true\)/,
+    "shelter candidates went back to hidden-by-default; that was reversed on purpose");
+  // And the warning that justifies showing them must still exist on the marker.
+  const pm = read("app/web/src/components/PublicMap.tsx");
+  assert.match(pm, /dashArray/, "unverified sites lost their dashed rendering");
+  assert.match(pm, /Sin verificar/, "unverified sites lost the in-popup warning");
+});
+
 test("the API image ships the reviewed aid-site files", () => {
   // The seeder runs inside the image; a file that exists only in a git checkout
   // is not there at 3 a.m. on a VPS.

@@ -33,10 +33,13 @@ export default function MapaPage() {
   const [sites, setSites] = useState<AidSite[]>([]);
   const [showHeat, setShowHeat] = useState(true);
   const [showSites, setShowSites] = useState(true);
-  // Schools and community centres are OFF by default: they are candidates, not
-  // open shelters, and sending somebody to a locked gate costs more than the
-  // extra tap costs us.
-  const [showCandidates, setShowCandidates] = useState(false);
+  // Schools and community centres are ON by default. They started OFF ("a
+  // locked gate costs more than a tap") but the first real tester never found
+  // the toggle — hidden-by-default reads as "does not exist". The warning moved
+  // from the toggle into the marker itself: dashed, faint, and the popup says
+  // "sin confirmar" in words. The toggle remains for anyone who wants a map of
+  // only-what-is-open.
+  const [showCandidates, setShowCandidates] = useState(true);
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(true);
 
