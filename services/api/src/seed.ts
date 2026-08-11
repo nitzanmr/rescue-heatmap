@@ -197,6 +197,15 @@ export async function seed(total = Number(process.env.SEED_CASES ?? 500)) {
       note   text,
       PRIMARY KEY (a_case, b_case)
     )`);
+  // Not every duplicate pair is equally hard, and averaging them hides which
+  // kind we are losing:
+  //   base-variant    - the original report against a re-telling of it.
+  //   variant-variant - two re-tellings of the same person, neither of them the
+  //                     original. Both names mangled, both GPS points scattered
+  //                     independently, often no shared phone. This is the pair a
+  //                     real event produces most of, and the one a single
+  //                     averaged recall number quietly buries.
+  await query(`ALTER TABLE seed_truth ADD COLUMN IF NOT EXISTS pair_type text`);
   await query(`DELETE FROM seed_truth`);
 
   // 30% of people are reported more than once — that is roughly what a real
@@ -220,10 +229,13 @@ export async function seed(total = Number(process.env.SEED_CASES ?? 500)) {
       for (let i = 0; i < ids.length; i++) {
         for (let j = i + 1; j < ids.length; j++) {
           const [a, b] = ids[i] < ids[j] ? [ids[i], ids[j]] : [ids[j], ids[i]];
+          // ids[0] is the original report; anything else is a re-telling.
+          const pairType = i === 0 ? "base-variant" : "variant-variant";
           await query(
-            `INSERT INTO seed_truth (a_case, b_case, kind, note) VALUES ($1,$2,'duplicate',$3)
+            `INSERT INTO seed_truth (a_case, b_case, kind, note, pair_type)
+             VALUES ($1,$2,'duplicate',$3,$4)
              ON CONFLICT DO NOTHING`,
-            [a, b, p.full_name]
+            [a, b, p.full_name, pairType]
           );
           pairs++;
         }
@@ -233,7 +245,15 @@ export async function seed(total = Number(process.env.SEED_CASES ?? 500)) {
 
   // Exercise the real asynchronous path in drills: the worker must correlate
   // every seeded case, not just the unrelated HTTP smoke-test report.
-  await query(
+  //
+  // Opt-in, and off by default, because this is not free anywhere else: the
+  // correlation test calls seed() in-process while a worker from a previous
+  // drill is still running. The worker would then correlate the test's own cases
+  // concurrently with the test's synchronous pass — the result stays correct (the
+  // insert upserts) but the timing becomes a measurement of two racing processes
+  // and is not reproducible. The drill's seed service sets SEED_ENQUEUE=1.
+  const enqueue = process.env.SEED_ENQUEUE === "1";
+  if (enqueue) await query(
     `INSERT INTO job (kind, payload, dedupe_key)
      SELECT 'correlate', jsonb_build_object('case_id', pc.id), 'correlate:' || pc.id::text
        FROM person_case pc
@@ -245,7 +265,7 @@ export async function seed(total = Number(process.env.SEED_CASES ?? 500)) {
 
   console.log(JSON.stringify({
     level: "info", msg: "seed complete",
-    incident: slug, cases, people, duplicate_pairs: pairs,
+    incident: slug, cases, people, duplicate_pairs: pairs, enqueued: enqueue,
   }));
   return { incidentId: inc.id, cases, people, pairs };
 }
