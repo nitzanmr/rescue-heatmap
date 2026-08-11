@@ -45,6 +45,12 @@ When Supabase ships 18 GA, the bump is a one-line change plus a `make drill`.
 - **Extensions live in an `extensions` schema**, mirroring Supabase and Neon, so
   the same migration applies locally and managed.
 
+- **Environment decides, code does not guess.** No behaviour is inferred from a
+  hostname, a URL substring or `NODE_ENV`. TLS to the database comes from
+  `DB_SSL` (or `sslmode=` in the URL) and nothing else — an earlier version
+  inferred it from `localhost`, and the drill broke the moment the database was
+  reached as `db` inside compose.
+
 ## Safety invariants — these are not negotiable
 
 - **Duplicate cases are never merged automatically.** The engine proposes; a

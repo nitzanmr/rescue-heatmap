@@ -14,6 +14,27 @@ laptop, our recovery story during an event is fiction.
 - Working DNS inside the Docker daemon (the build pulls from the PGDG apt repo
   and the npm registry). If image builds fail to resolve hostnames, fix the
   daemon's DNS before blaming the Dockerfile.
+- Host ports 5432 and 8080 free, **or** override them. If another Postgres
+  already owns 5432:
+
+  ```
+  DB_PORT=55432 make drill      # `make test` follows the same variable
+  API_PORT=8081 make drill
+  ```
+
+## Database TLS
+
+TLS is configuration, never inference. `DB_SSL` decides, `sslmode=` in the URL
+is the fallback, and the default is `require`:
+
+| Setting | Result |
+|---|---|
+| `DB_SSL=disable` | plaintext — what compose sets, because the dev database has no certificate |
+| `DB_SSL=require` / `sslmode=require` | encrypted, chain not verified (Supabase, Neon, Cloud SQL) |
+| `DB_SSL=verify-full` | encrypted, certificate chain verified |
+| unset, no `sslmode` | `require` |
+
+An unrecognised value throws at startup rather than quietly picking a mode.
 
 ## The one command
 

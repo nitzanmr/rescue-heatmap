@@ -3,7 +3,11 @@
 .PHONY: help up down migrate seed test build logs psql drill reset fresh
 
 COMPOSE ?= docker compose
-DB_URL  ?= postgres://rescue:rescue@localhost:5432/rescue
+# Host port for the dev database. Override when 5432 is already taken:
+#   DB_PORT=55432 make drill
+DB_PORT ?= 5432
+export DB_PORT
+DB_URL  ?= postgres://rescue:rescue@localhost:$(DB_PORT)/rescue
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
@@ -28,7 +32,7 @@ seed:    ## Synthetic incident with known duplicates (SEED_CASES=500)
 	$(COMPOSE) run --rm seed
 
 test:    ## Correlation precision/recall against seeded ground truth
-	cd services/api && DATABASE_URL=$(DB_URL) npm test
+	cd services/api && DATABASE_URL=$(DB_URL) DB_SSL=disable npm test
 
 logs:    ## Tail api + worker
 	$(COMPOSE) logs -f api worker

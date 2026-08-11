@@ -51,6 +51,9 @@ services:
     environment:
       ROLE: migrate
       NODE_ENV: development
+      # The local database speaks plaintext on a private compose network. Say so
+      # explicitly -- the code never guesses TLS from a hostname.
+      DB_SSL: disable
       DATABASE_URL: postgres://rescue:rescue@db:5432/rescue
       DATABASE_DIRECT_URL: postgres://rescue:rescue@db:5432/rescue
     depends_on:
@@ -67,6 +70,9 @@ services:
       ROLE: api
       NODE_ENV: development
       PORT: 8080
+      # The local database speaks plaintext on a private compose network. Say so
+      # explicitly -- the code never guesses TLS from a hostname.
+      DB_SSL: disable
       DATABASE_URL: postgres://rescue:rescue@db:5432/rescue
       DATABASE_DIRECT_URL: postgres://rescue:rescue@db:5432/rescue
       # Development-only peppers. Rotating these in production invalidates every
@@ -95,6 +101,9 @@ services:
     environment:
       ROLE: worker
       NODE_ENV: development
+      # The local database speaks plaintext on a private compose network. Say so
+      # explicitly -- the code never guesses TLS from a hostname.
+      DB_SSL: disable
       DATABASE_URL: postgres://rescue:rescue@db:5432/rescue
       TOKEN_PEPPER: dev-token-pepper-change-me
       IP_PEPPER: dev-ip-pepper-change-me
@@ -118,6 +127,9 @@ services:
     image: rescue-api:dev
     environment:
       NODE_ENV: development
+      # The local database speaks plaintext on a private compose network. Say so
+      # explicitly -- the code never guesses TLS from a hostname.
+      DB_SSL: disable
       DATABASE_URL: postgres://rescue:rescue@db:5432/rescue
       TOKEN_PEPPER: dev-token-pepper-change-me
       IP_PEPPER: dev-ip-pepper-change-me

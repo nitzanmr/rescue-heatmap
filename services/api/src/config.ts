@@ -5,6 +5,47 @@ function num(v: string | undefined, d: number) {
   return Number.isFinite(n) ? n : d;
 }
 
+// TLS to the database is a deployment fact, not something to infer from a
+// hostname. Precedence: DB_SSL env -> sslmode= in the URL -> require.
+// "require" is the default on purpose: a managed provider that forgot the
+// parameter must still get an encrypted link, and a local stack says so out
+// loud in docker-compose.yml (DB_SSL=disable).
+export type SslOption = false | { rejectUnauthorized: boolean };
+
+export function sslFor(url: string, envValue = process.env.DB_SSL): SslOption {
+  const fromEnv = (envValue ?? "").trim().toLowerCase();
+  const mode = fromEnv || sslModeFromUrl(url) || "require";
+  switch (mode) {
+    case "disable":
+    case "off":
+    case "false":
+    case "0":
+    case "allow":
+    case "prefer":
+      return false;
+    case "require":
+    case "on":
+    case "true":
+    case "1":
+      // Providers (Supabase, Neon, Cloud SQL) present certs from CAs the image
+      // does not carry; encryption without chain verification is what libpq's
+      // sslmode=require means too.
+      return { rejectUnauthorized: false };
+    case "verify-ca":
+    case "verify-full":
+    case "verify":
+    case "strict":
+      return { rejectUnauthorized: true };
+    default:
+      throw new Error(`invalid DB_SSL/sslmode value: ${mode}`);
+  }
+}
+
+function sslModeFromUrl(url: string): string | "" {
+  const m = /[?&]sslmode=([^&]+)/i.exec(url ?? "");
+  return m ? decodeURIComponent(m[1]).toLowerCase() : "";
+}
+
 export const config = {
   env: process.env.NODE_ENV ?? "development",
   role: (process.env.ROLE ?? "api") as "api" | "worker" | "migrate",
@@ -20,6 +61,7 @@ export const config = {
     // exhaustion exactly when the form goes viral.
     max: num(process.env.DB_POOL_MAX, 8),
     statementTimeoutMs: num(process.env.DB_STATEMENT_TIMEOUT_MS, 8000),
+    ssl: process.env.DB_SSL,
   },
 
   // Rotating these invalidates every reporter link, so treat them as durable secrets.

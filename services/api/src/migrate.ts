@@ -10,7 +10,7 @@ import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import pg from "pg";
-import { config } from "./config.js";
+import { config, sslFor } from "./config.js";
 
 const LOCK_ID = 8_140_2026; // arbitrary but stable
 
@@ -35,7 +35,7 @@ export async function runMigrations(opts: { dir?: string; url?: string } = {}) {
   const client = new pg.Client({
     connectionString: url,
     application_name: "rescue-migrate",
-    ssl: /localhost|127\.0\.0\.1/.test(url) ? undefined : { rejectUnauthorized: false },
+    ssl: sslFor(url),
   });
   await client.connect();
 

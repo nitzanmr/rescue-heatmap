@@ -1,5 +1,5 @@
 import pg from "pg";
-import { config } from "./config.js";
+import { config, sslFor } from "./config.js";
 
 // Never let the driver guess: numerics and bigints as numbers where we know the
 // range, timestamps as ISO strings so JSON output is stable across timezones.
@@ -12,7 +12,7 @@ export const pool = new pg.Pool({
   idleTimeoutMillis: 30_000,
   connectionTimeoutMillis: 10_000,
   application_name: `rescue-${config.role}`,
-  ssl: /localhost|127\.0\.0\.1/.test(config.db.url) ? undefined : { rejectUnauthorized: false },
+  ssl: sslFor(config.db.url),
 });
 
 pool.on("error", (err) => {
