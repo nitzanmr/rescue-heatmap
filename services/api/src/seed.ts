@@ -231,6 +231,18 @@ export async function seed(total = Number(process.env.SEED_CASES ?? 500)) {
     }
   }
 
+  // Exercise the real asynchronous path in drills: the worker must correlate
+  // every seeded case, not just the unrelated HTTP smoke-test report.
+  await query(
+    `INSERT INTO job (kind, payload, dedupe_key)
+     SELECT 'correlate', jsonb_build_object('case_id', pc.id), 'correlate:' || pc.id::text
+       FROM person_case pc
+      WHERE pc.incident_id = $1
+     ON CONFLICT (dedupe_key) WHERE done_at IS NULL AND dedupe_key IS NOT NULL
+     DO UPDATE SET payload = EXCLUDED.payload`,
+    [inc.id]
+  );
+
   console.log(JSON.stringify({
     level: "info", msg: "seed complete",
     incident: slug, cases, people, duplicate_pairs: pairs,
