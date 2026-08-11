@@ -1,0 +1,41 @@
+# Local development database: PostGIS *and* pgvector in one image.
+#
+# Neither official image has both — postgis/postgis lacks pgvector, and
+# pgvector/pgvector lacks PostGIS. Our correlation query touches both in the same
+# statement, so a local stack that is missing one of them cannot exercise the one
+# thing this system does that nothing else does.
+#
+# Managed providers (Supabase, Neon, Cloud SQL) ship both. This image exists only
+# so that the laptop matches them.
+#
+# ---------------------------------------------------------------------------
+# WHY 17 AND NOT 18 (checked against provider docs, 11.8.26)
+#
+# Postgres 18 is the newest major, and it is tempting. It is not what we run:
+#   Neon      — 14–18, 18 available.
+#   Cloud SQL — 18 in Preview only. Preview is not where a disaster response
+#               database lives.
+#   Supabase  — no 18 yet. Their own target slipped past January 2026.
+# 17 is the newest major that is GA on *every* provider we might land on, and
+# parity with the managed target is the entire reason this image exists. The day
+# Supabase ships 18 GA, this is a one-line change plus a `make drill`.
+#
+# PostGIS: 3.6 is current, but postgis/postgis publishes 17-3.6 for Alpine only.
+# The Debian-based 17-3.5 is the newest non-Alpine tag on PG17 (rebuilt 10.8.26)
+# and we want Debian, because PGDG apt is how we get pgvector as a binary.
+# ---------------------------------------------------------------------------
+FROM postgis/postgis:17-3.5
+
+# pgvector now comes from the PGDG apt repository, which the official Postgres
+# image already trusts — a signed binary package instead of a source build. No
+# compiler in the image, no build-deps to purge, nothing to break against PG
+# headers. This was the most likely failure point in the previous version.
+ARG PG_MAJOR=17
+ARG PGVECTOR_PKG_VERSION=0.8.6
+
+RUN set -eux; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends "postgresql-${PG_MAJOR}-pgvector"; \
+    rm -rf /var/lib/apt/lists/*; \
+    # Fail the *build*, not the first query, if the extension did not land.
+    test -f "/usr/share/postgresql/${PG_MAJOR}/extension/vector.control"

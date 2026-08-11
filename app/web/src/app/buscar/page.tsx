@@ -3,6 +3,8 @@ import { useEffect, useMemo, useState } from "react";
 import { Report } from "@/lib/schema";
 import { loadReports, updateReport } from "@/lib/store";
 import { normName } from "@/lib/dedup";
+import StatusBadge from "@/components/StatusBadge";
+import { canListPublicly, canShowPhotoPublicly, coarseArea, isMinor } from "@/lib/publicView";
 
 // PUBLIC view. Privacy rule from form-spec: shows name, approximate age, city/area.
 // NEVER floor, apartment, reporter phone or an exact pin.
@@ -23,7 +25,7 @@ export default function Buscar() {
     return reports.filter((r) => {
       // Consent gate: a report whose listing consent was withdrawn never appears here.
       // It still counts in the heat map and still reaches the rescue teams.
-      if (r.consent_public_listing === false) return false;
+      if (!canListPublicly(r)) return false;
       if (only === "missing" && !["missing", "trapped_alive"].includes(r.status)) return false;
       if (only === "found" && !r.status.startsWith("found")) return false;
       if (!nq) return true;
@@ -70,7 +72,8 @@ export default function Buscar() {
                 <h3 style={{ marginBottom: 4 }}>{r.full_name}</h3>
                 <p className="small">
                   {r.age_approx ? `~${r.age_approx} años · ` : ""}
-                  {r.last_seen_address}
+                  {/* Area only — the public list is coarsened exactly like the shareable card. */}
+                  {coarseArea(r)}
                 </p>
               </div>
               <span className="spacer" />
@@ -81,11 +84,18 @@ export default function Buscar() {
               {(r.reporter_count ?? 1) > 1 ? ` · ${r.reporter_count} personas lo reportaron` : ""}
               {r.status_source === "verified_field" ? " · verificado en terreno" : ""}
             </p>
-            {["missing", "trapped_alive"].includes(r.status) && (
-              <button className="btn ghost block" style={{ marginTop: 12 }} onClick={() => markFound(r)}>
-                Apareció — marcar como encontrada
-              </button>
-            )}
+            <div className="row" style={{ marginTop: 12 }}>
+              {/* Every listed person has a shareable page. The card is the product
+                  that actually travels; the list is only where it starts. */}
+              <a className="btn ghost" style={{ flex: 1 }} href={`/r/${r.reference_number}`}>
+                Compartir
+              </a>
+              {["missing", "trapped_alive"].includes(r.status) && (
+                <button className="btn ghost" style={{ flex: 1 }} onClick={() => markFound(r)}>
+                  Apareció
+                </button>
+              )}
+            </div>
           </div>
         ))}
       </div>
@@ -95,13 +105,13 @@ export default function Buscar() {
 
 // A photo is shown publicly only with its OWN consent flag. Minors are blurred even then.
 function PublicPhoto({ report }: { report: Report }) {
-  const minor = report.is_minor || (typeof report.age_approx === "number" && report.age_approx < 18);
-  if (!report.photo_data_url || report.consent_photo_public !== true) return null;
+  const minor = isMinor(report);
+  if (!canShowPhotoPublicly(report)) return null;
   return (
     <div style={{ position: "relative", marginRight: 10 }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={report.photo_data_url}
+        src={report.photo_data_url ?? undefined}
         alt={report.full_name}
         style={{
           width: 56,
@@ -118,17 +128,4 @@ function PublicPhoto({ report }: { report: Report }) {
       )}
     </div>
   );
-}
-
-export function StatusBadge({ status }: { status: Report["status"] }) {
-  const map: Record<string, [string, string]> = {
-    missing: ["missing", "Se busca"],
-    trapped_alive: ["trapped", "Atrapado con vida"],
-    found_safe: ["safe", "Apareció"],
-    found_injured: ["injured", "Herido"],
-    deceased: ["muted", "Fallecido"],
-    withdrawn: ["muted", "Retirado"],
-  };
-  const [cls, label] = map[status] ?? ["muted", status];
-  return <span className={`badge ${cls}`}>{label}</span>;
 }

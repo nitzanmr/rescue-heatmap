@@ -19,6 +19,31 @@ const relations = ["family", "neighbour", "friend", "witness", "other"] as const
 const channels: Channel[] = ["pwa", "pwa", "pwa", "whatsapp", "whatsapp", "sms", "paper", "node", "field"];
 const accuracies: LocationAccuracy[] = ["exact", "building", "building", "block", "neighbourhood", "unknown"];
 
+// Demo-only stand-in for a real photo: a procedural avatar, never a real face.
+// It exists so the shareable card and the public list can be reviewed with and
+// without an image — a card with a face and one without behave very differently.
+function demoAvatar(name: string, seed: number): string {
+  const hues = [12, 28, 42, 190, 210, 260, 330];
+  const h = hues[seed % hues.length];
+  const initials = name
+    .split(/\s+/)
+    .filter((w) => /^[A-ZÁÉÍÓÚÑ]/.test(w))
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("");
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="hsl(${h},45%,42%)"/><stop offset="100%" stop-color="hsl(${h},50%,24%)"/>
+    </linearGradient></defs>
+    <rect width="400" height="400" fill="url(#g)"/>
+    <circle cx="200" cy="158" r="66" fill="rgba(255,255,255,.28)"/>
+    <path d="M76 400c0-72 56-118 124-118s124 46 124 118z" fill="rgba(255,255,255,.28)"/>
+    <text x="200" y="372" font-family="sans-serif" font-size="34" font-weight="700"
+      text-anchor="middle" fill="rgba(255,255,255,.75)">${initials || "?"}</text>
+  </svg>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+}
+
 function rnd<T>(a: readonly T[]): T {
   return a[Math.floor(Math.random() * a.length)];
 }
@@ -37,6 +62,8 @@ export function mockReports(): Report[] {
     const status: Status =
       Math.random() < 0.06 ? "trapped_alive" : Math.random() < 0.15 ? "found_safe" : Math.random() < 0.05 ? "found_injured" : "missing";
     const ch = rnd(channels);
+    const name = rnd(names);
+    const hasPhoto = Math.random() < 0.55;
     out.push({
       uuid: newUuid(),
       reference_number: newReferenceNumber(incident.countryCode),
@@ -46,7 +73,11 @@ export function mockReports(): Report[] {
       created_at_device: new Date(now - Math.random() * 1000 * 60 * 60 * 30).toISOString(),
       received_at_server: new Date(now - Math.random() * 1000 * 60 * 60 * 20).toISOString(),
       sync_state: Math.random() < 0.08 ? "queued" : "acked",
-      full_name: rnd(names),
+      full_name: name,
+      photo_data_url: hasPhoto ? demoAvatar(name, i) : null,
+      // Publication of the photo is opt-IN: most people grant it, some do not.
+      consent_photo_public: hasPhoto ? Math.random() < 0.75 : false,
+      consent_public_listing: Math.random() > 0.08,
       age_approx: Math.random() < 0.85 ? Math.floor(Math.random() * 78) + 2 : null,
       gender: rnd(["m", "f", "unknown"] as const),
       distinguishing_info: Math.random() < 0.4 ? rnd(["camisa blanca, sandalias", "cicatriz en el brazo", "usa bastón", "camiseta amarilla de la selección"]) : null,

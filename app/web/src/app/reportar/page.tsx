@@ -4,6 +4,7 @@ import { incident, REFERENCE_PREFIX } from "@/lib/incident";
 import { Report, newReferenceNumber, newUuid, LocationAccuracy } from "@/lib/schema";
 import { addReport, loadReports, flushQueue } from "@/lib/store";
 import { findDuplicates, DedupHit } from "@/lib/dedup";
+import ShareSheet from "@/components/ShareSheet";
 
 const DRAFT_KEY = "rh:draft:v1";
 
@@ -492,6 +493,19 @@ function Confirmation({ report, onFlush, flushMsg }: { report: Report; onFlush: 
         </button>
       )}
       {flushMsg && <p className="small" style={{ color: "var(--ok)" }}>{flushMsg}</p>}
+
+      {/* The share moment. It comes BEFORE the secondary links on purpose: this is
+          the single point where a family is most willing to broadcast, and the
+          card is what actually spreads (see docs/adoption-playbook.md). */}
+      {report.consent_public_listing !== false ? (
+        <ShareSheet report={report} />
+      ) : (
+        <p className="small muted" style={{ marginTop: 20 }}>
+          Pediste que este reporte no aparezca públicamente, así que no generamos una tarjeta para
+          compartir. El reporte sí llega a los equipos de rescate.
+        </p>
+      )}
+
       <div className="row" style={{ marginTop: 22, justifyContent: "center" }}>
         <a className="btn ghost" href="/reportar">Reportar a otra persona</a>
         <a className="btn ghost" href="/buscar">Ver la lista</a>

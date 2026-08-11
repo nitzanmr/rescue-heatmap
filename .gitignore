@@ -26,3 +26,9 @@ pnpm-debug.log*
 .DS_Store
 .idea/
 .vscode/
+
+# Backend / infra local state
+services/api/.env
+*.mbtiles
+/data/pg
+.vercel

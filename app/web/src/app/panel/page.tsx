@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { Report, reportWeight } from "@/lib/schema";
 import { loadReports, resetDemo, flushQueue, updateReport } from "@/lib/store";
 import { incident } from "@/lib/incident";
-import { StatusBadge } from "../buscar/page";
+import StatusBadge from "@/components/StatusBadge";
 
 const HeatMap = dynamic(() => import("@/components/HeatMap"), {
   ssr: false,
