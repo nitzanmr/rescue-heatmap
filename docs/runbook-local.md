@@ -4,6 +4,17 @@ Everything below runs with no cloud account, no credit card and no network
 beyond the image pull. That is deliberate: if the system cannot be stood up on a
 laptop, our recovery story during an event is fiction.
 
+## Prerequisites
+
+- Docker Engine with **BuildKit** available. The API `Dockerfile` uses
+  `RUN --mount=type=cache`, which requires BuildKit. On Debian/Ubuntu that means
+  the `docker-buildx-plugin` (or `docker-buildx`) package must be installed —
+  a plain `docker.io` install does not ship it and the build fails on the first
+  `RUN --mount` line.
+- Working DNS inside the Docker daemon (the build pulls from the PGDG apt repo
+  and the npm registry). If image builds fail to resolve hostnames, fix the
+  daemon's DNS before blaming the Dockerfile.
+
 ## The one command
 
 ```
