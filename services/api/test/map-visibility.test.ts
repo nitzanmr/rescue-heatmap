@@ -150,3 +150,38 @@ test("the fallback chain still has more than one option, with OSM last", () => {
   const chain = tileChain();
   assert.ok(chain.length >= 1);
 });
+
+// ---------------------------------------------------------------------------
+// 5 · A published cell must be VISIBLE, and a discarded point must be SAID.
+//
+// Second field report, same tester, same theme as everything above: work that
+// exists but cannot be seen. He filed three reports of one child, each with a
+// confirmed geocoder point, and saw nothing — because (a) heat intensity was
+// normalised against the hottest seeded cell, so a legitimate 3-report cell
+// rendered below the first gradient stop, and (b) editing the address after
+// picking a result silently discarded the coordinate, with no visible event.
+// ---------------------------------------------------------------------------
+const publicMapTsx = read("app/web/src/components/PublicMap.tsx");
+const reportarTsx = read("app/web/src/app/reportar/page.tsx");
+
+test("public heat has an intensity floor: passing the k-anon gate earns visibility", () => {
+  const m = publicMapTsx.match(/HEAT_FLOOR = (\d*\.?\d+)/);
+  assert.ok(m, "PublicMap must define HEAT_FLOOR — without it a quiet cell renders invisibly");
+  const floor = Number(m![1]);
+  assert.ok(floor >= 0.25, `floor ${floor} sits below the gradient's first stop — still invisible`);
+  assert.ok(floor <= 0.6, `floor ${floor} flattens the gradient — the map stops ranking cells`);
+  assert.match(publicMapTsx, /HEAT_FLOOR \+ \(1 - HEAT_FLOOR\)/, "intensity must interpolate above the floor, not clip at it");
+});
+
+test("editing the address after a geocoded pick announces the discarded point", () => {
+  // The discard itself is correct and must stay (a stale point on new text is
+  // worse than no point). What must never come back is the silence around it.
+  assert.match(reportarTsx, /setPointLost\(true\)/, "clearing the point must raise the pointLost event");
+  assert.match(reportarTsx, /Al cambiar la dirección se quitó el punto del mapa/,
+    "the banner must say, in words, that the point was removed");
+  // And it must survive further typing: geoError is wiped per keystroke, so the
+  // notice may not live in geoError.
+  const cleared = reportarTsx.match(/setGeoError\(null\)/g) ?? [];
+  assert.ok(cleared.length >= 1);
+  assert.ok(!/setGeoError\([^)]*quitó el punto/.test(reportarTsx), "the notice must not be stored in geoError");
+});

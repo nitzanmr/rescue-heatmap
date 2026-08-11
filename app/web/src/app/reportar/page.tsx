@@ -371,6 +371,15 @@ function StepPlace({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
   // rule stands (accuracy is capped by where the point came from); the silence
   // was the bug.
   const [blockedMsg, setBlockedMsg] = useState<string | null>(null);
+  // Removing a point is an EVENT the person must see, not a side effect.
+  // Editing the address after picking a geocoder result silently discarded the
+  // coordinate (correctly — a point resolved from the old text must not stick
+  // to the new text), but nothing said so: the tester confirmed a search
+  // result, refined the address, and submitted a report that was no longer on
+  // the map — while remembering, truthfully, that he HAD picked a point.
+  // Kept as its own state because geoError is cleared on every keystroke,
+  // which would erase this notice one character after it appeared.
+  const [pointLost, setPointLost] = useState(false);
 
   const address = draft.last_seen_address ?? "";
   const mapped = draft.last_seen_lat != null && draft.last_seen_lng != null;
@@ -382,6 +391,7 @@ function StepPlace({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
     setResults(null);
     setGeoError(null);
     if (mapped && source !== "device_gps" && source !== "map_pick") {
+      setPointLost(true);
       set({ last_seen_address: v, last_seen_lat: null, last_seen_lng: null, location_source: "none", location_accuracy: "unknown" });
     } else {
       set({ last_seen_address: v });
@@ -390,6 +400,7 @@ function StepPlace({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
 
   const applyPlace = (p: Place) => {
     setResults(null);
+    setPointLost(false);
     set({
       last_seen_lat: p.lat,
       last_seen_lng: p.lng,
@@ -512,10 +523,15 @@ function StepPlace({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
           </span>
         ) : (
           <span className="small">
-            ⚠️ <strong>La dirección se guardará como texto, todavía sin punto en el mapa.</strong>
+            ⚠️ <strong>
+              {pointLost
+                ? "Al cambiar la dirección se quitó el punto del mapa."
+                : "La dirección se guardará como texto, todavía sin punto en el mapa."}
+            </strong>
             <span className="muted" style={{ display: "block", marginTop: 4 }}>
-              El reporte se envía igual y un equipo lo revisará, pero no aparecerá en el mapa de calor
-              hasta que alguien lo ubique.
+              {pointLost
+                ? "El punto anterior venía de la dirección anterior y no puede quedarse pegado a la nueva. Vuelve a «Buscar en el mapa», usa el GPS o marca el punto."
+                : "El reporte se envía igual y un equipo lo revisará, pero no aparecerá en el mapa de calor hasta que alguien lo ubique."}
             </span>
           </span>
         )}

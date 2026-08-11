@@ -95,7 +95,16 @@ export default function PublicMap({ cells, sites, showHeat, showSites, cellM }: 
     }
     if (!showHeat || !cells.length) return;
     const max = Math.max(...cells.map((c) => c.weight)) || 1;
-    const pts = cells.map((c) => [c.lat, c.lng, c.weight / max] as [number, number, number]);
+    // Every cell in this array has already passed the k-anonymity gate (>= 2
+    // cases), so it has EARNED visibility. Normalising against the hottest cell
+    // alone let a quiet cell (e.g. three fresh reports of one child, weight ~2.7
+    // against a seeded max of 20+) fall under the first gradient stop and render
+    // as nothing. Publishing a cell and then drawing it invisibly is the same
+    // silent failure as not publishing it — hence the intensity floor.
+    const HEAT_FLOOR = 0.35;
+    const pts = cells.map(
+      (c) => [c.lat, c.lng, HEAT_FLOOR + (1 - HEAT_FLOOR) * (c.weight / max)] as [number, number, number]
+    );
     // Warmer, lighter ramp than the panel's: this sits on a light basemap and is
     // read by civilians, not by a night shift in a command room.
     // @ts-expect-error leaflet.heat has no bundled types
