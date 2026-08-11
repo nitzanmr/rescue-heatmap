@@ -90,6 +90,25 @@ export default function MapaPage() {
       {err && <p className="muted small">{err}</p>}
       {loading && !cells.length && !sites.length && <p className="muted small">Cargando…</p>}
 
+      {/* An empty map must say WHY it is empty. A map that renders perfectly with
+          nothing on it is read as "the site is broken" — or worse, as "nobody has
+          reported anything", which is a claim we are not entitled to make. Each
+          of the three reasons below is a different situation, and the operator
+          reading this page needs to tell them apart. */}
+      {!loading && !err && !cells.length && (
+        <p className="muted small" style={{ maxWidth: 720 }}>
+          No hay zonas con reportes para mostrar todavía. El mapa público sólo dibuja una celda cuando hay{" "}
+          <strong>dos o más casos</strong> en {CELL_M} m: un reporte aislado se vería como una dirección, y por eso
+          nunca se publica. <strong>Su reporte sí fue recibido</strong> aunque no aparezca aquí — consulte su código
+          de referencia en <Link href="/buscar">buscar</Link>.
+        </p>
+      )}
+      {!loading && !err && !sites.length && (
+        <p className="muted small" style={{ maxWidth: 720 }}>
+          No hay sitios de ayuda cargados para esta zona.
+        </p>
+      )}
+
       <PublicMap cells={cells} sites={visible} showHeat={showHeat} showSites={showSites} cellM={CELL_M} />
 
       <div className="chips" style={{ marginTop: 12 }}>

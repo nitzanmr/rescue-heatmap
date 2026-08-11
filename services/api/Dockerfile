@@ -52,6 +52,9 @@ COPY services/api/package.json          ./package.json
 # Migrations ship inside the image: the artefact that runs is the artefact that
 # knows its own schema. No "which branch were the migrations from" at 3 a.m.
 COPY db/migrations ./db/migrations
+# Reviewed aid-site files ship too: an activation with no outbound internet must
+# still come up with shelters and hospitals on the public map.
+COPY data/aid-sites ./data/aid-sites
 
 # Non-root, and a writable media dir for STORAGE_DRIVER=fs.
 RUN mkdir -p /data/media && chown -R node:node /data /app

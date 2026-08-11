@@ -120,7 +120,7 @@ drill:   ## Full rehearsal: fresh db -> migrate -> seed -> smoke test
 	@curl -fsS $(EDGE_URL)/api/readyz && echo "" || (echo "READY CHECK FAILED"; exit 1)
 	@curl -fsS -X POST $(EDGE_URL)/api/v1/reports \
 	  -H 'content-type: application/json' \
-	  -d '{"full_name":"Prueba Simulacro Perez Garcia","incident_slug":"drill-bogota","last_seen_lat":4.6533,"last_seen_lng":-74.0836,"location_accuracy":"building","status":"missing"}' \
+	  -d '{"full_name":"Prueba Simulacro Perez Garcia","incident_slug":"drill-quibdo","last_seen_lat":5.6947,"last_seen_lng":-76.6611,"location_accuracy":"building","status":"missing"}' \
 	  && echo "" || (echo "INTAKE FAILED"; exit 1)
 	@# The front end is part of the system, not a demo beside it, and since the
 	@# edge went in there is exactly one address for both tiers. The drill proves
@@ -140,7 +140,7 @@ drill:   ## Full rehearsal: fresh db -> migrate -> seed -> smoke test
 	@# then read it back through the public card endpoint the shared link uses.
 	@ref=$$(curl -fsS -X POST $(EDGE_URL)/api/v1/reports \
 	  -H 'content-type: application/json' \
-	  -d '{"full_name":"Simulacro Web Ramirez Mosquera","incident_slug":"drill-bogota","last_seen_lat":4.6540,"last_seen_lng":-74.0840,"location_accuracy":"building","status":"missing","consent_public_listing":true}' \
+	  -d '{"full_name":"Simulacro Web Ramirez Mosquera","incident_slug":"drill-quibdo","last_seen_lat":5.6952,"last_seen_lng":-76.6618,"location_accuracy":"building","status":"missing","consent_public_listing":true}' \
 	  | sed -n 's/.*"reference_number":"\([^"]*\)".*/\1/p'); \
 	if [ -z "$$ref" ]; then echo "WEB INTAKE FAILED"; exit 1; fi; \
 	echo "web intake ok: $$ref"; \
@@ -157,7 +157,7 @@ drill:   ## Full rehearsal: fresh db -> migrate -> seed -> smoke test
 	@# claim is DOWNGRADED to unknown, and it lands in the operator queue.
 	@aref=$$(curl -fsS -X POST $(EDGE_URL)/api/v1/reports \
 	  -H 'content-type: application/json' \
-	  -d '{"full_name":"Simulacro Sin Punto Benson","incident_slug":"drill-bogota","last_seen_address":"Cra 1 con Calle 24, casa azul","location_accuracy":"exact","status":"missing"}' \
+	  -d '{"full_name":"Simulacro Sin Punto Benson","incident_slug":"drill-quibdo","last_seen_address":"Cra 1 con Calle 24, casa azul","location_accuracy":"exact","status":"missing"}' \
 	  | sed -n 's/.*"reference_number":"\([^"]*\)".*/\1/p'); \
 	if [ -z "$$aref" ]; then echo "ADDRESS-ONLY INTAKE REJECTED"; exit 1; fi; \
 	echo "address-only intake ok: $$aref"
@@ -218,6 +218,30 @@ drill:   ## Full rehearsal: fresh db -> migrate -> seed -> smoke test
 	  | tr -d '[:space:]'); \
 	if [ "$${decided:-1}" != "0" ]; then \
 	  echo "AUTO-DECIDED $$decided CANDIDATES WITHOUT AN OPERATOR"; exit 1; fi
+	@# THE MAP MUST NOT BE EMPTY.
+	@# Every check above passed on a build whose public map showed nothing at all:
+	@# the seed sat 400 km from where the front end was looking, and the reviewed
+	@# aid-site file was never loaded into any database. Both are silent failures --
+	@# the endpoints answered 200 with an empty array. So the drill now asserts
+	@# that the two public layers actually carry data, and that the heat lands
+	@# inside the incident's bounding box rather than merely existing somewhere.
+	@cells=$$(curl -fsS "$(EDGE_URL)/api/v1/public/heat?incident=drill-quibdo" \
+	  | grep -o '"lat"' | wc -l | tr -d '[:space:]'); \
+	if [ "$${cells:-0}" -lt 1 ]; then \
+	  echo "PUBLIC HEAT IS EMPTY - the map would render blank"; exit 1; fi; \
+	echo "public heat cells: $$cells"
+	@out=$$($(COMPOSE) exec -T db psql -U rescue -d rescue -tAc \
+	  "SELECT count(*) FROM public.heat_cells((SELECT id FROM incident WHERE slug='drill-quibdo'), 500, NULL) h \
+	    WHERE h.lat NOT BETWEEN 5.60 AND 5.79 OR h.lng NOT BETWEEN -76.74 AND -76.58" \
+	  | tr -d '[:space:]'); \
+	if [ "$${out:-1}" != "0" ]; then \
+	  echo "HEAT OUTSIDE THE INCIDENT BBOX ($$out cells) - the map is centred somewhere the data is not"; exit 1; fi; \
+	echo "heat inside the incident bbox ok"
+	@sites=$$(curl -fsS "$(EDGE_URL)/api/v1/public/aid-sites?country=CO" \
+	  | grep -o '"kind"' | wc -l | tr -d '[:space:]'); \
+	if [ "$${sites:-0}" -lt 1 ]; then \
+	  echo "AID SITE LAYER IS EMPTY - the reviewed GeoJSON never reached the database"; exit 1; fi; \
+	echo "aid sites published: $$sites"
 	@echo "drill passed."
 
 reset:   ## Drop the database volume (LOCAL DEV DATA ONLY)

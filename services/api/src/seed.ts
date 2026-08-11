@@ -10,8 +10,11 @@
 // Ground truth is written to `seed_truth` so the correlation test can compute
 // precision and recall instead of eyeballing a list.
 import crypto from "node:crypto";
-import { pathToFileURL } from "node:url";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { pool, query, one, tx } from "./db.js";
+import { fromGeoJSONFile } from "./aid-sites.js";
 
 const GIVEN_M = ["Jose", "Juan", "Carlos", "Luis", "Miguel", "Andres", "Diego", "Jorge", "Ivan", "Nicolas"];
 const GIVEN_F = ["Maria", "Ana", "Luisa", "Carmen", "Sofia", "Valentina", "Camila", "Paula", "Daniela", "Lucia"];
@@ -44,8 +47,17 @@ const r = rng(Number(process.env.SEED_RANDOM ?? 20260811));
 const pick = <T,>(a: readonly T[]) => a[Math.floor(r() * a.length)];
 const chance = (p: number) => r() < p;
 
-// Bogotá-ish centre. Coordinates are fictional; nothing here is real data.
-const CENTRE = { lat: 4.6533, lng: -74.0836 };
+// The synthetic incident sits where the FRONT END is looking.
+//
+// It used to sit in Bogotá while app/web/src/lib/incident.ts centred the map on
+// Quibdó, 400 km away. Everything worked — cells were computed, the endpoint
+// answered, the map rendered — and the map was empty, because the data was off
+// screen. Nothing failed, so nothing reported a failure.
+// test/map-visibility.test.ts fails if these two ever drift apart again.
+const CENTRE = {
+  lat: Number(process.env.SEED_CENTRE_LAT ?? 5.6947),
+  lng: Number(process.env.SEED_CENTRE_LNG ?? -76.6611),
+};
 
 interface Person {
   full_name: string;
@@ -190,8 +202,55 @@ async function insertCase(incidentId: string, prefix: string, payload: Record<st
   });
 }
 
+// ---------------------------------------------------------------------------
+// Aid sites: load every reviewed GeoJSON committed to the repo.
+//
+// This is a seed step, not an import step: it reads files that a human already
+// reviewed and committed, and it never touches the network. The two-step
+// pull/review/commit workflow in import-aid-sites.ts is unchanged — what changed
+// is that a fresh database is no longer left with an empty aid layer, which is
+// indistinguishable, on screen, from a broken one.
+//
+// Rows a person verified in the field are never overwritten (same rule as the
+// importer), so re-running seed on a live database cannot erase field work.
+// ---------------------------------------------------------------------------
+function aidSitesDir(): string | null {
+  const here = path.dirname(fileURLToPath(import.meta.url));
+  const candidates = [
+    process.env.AID_SITES_DIR,
+    path.resolve(here, "../data/aid-sites"),      // inside the image (/app/dist -> /app/data)
+    path.resolve(here, "../../../data/aid-sites"), // services/api/src -> repo root
+  ].filter(Boolean) as string[];
+  return candidates.find((d) => fs.existsSync(d)) ?? null;
+}
+
+export async function seedAidSites(country = process.env.SEED_AID_COUNTRY ?? "CO"): Promise<number> {
+  const dir = aidSitesDir();
+  if (!dir) return 0;
+  const files = fs.readdirSync(dir).filter((f) => f.endsWith(".geojson"));
+  let loaded = 0;
+  for (const f of files) {
+    for (const s of fromGeoJSONFile(path.join(dir, f))) {
+      await query(
+        `INSERT INTO aid_site (country_code, kind, name, geom, address, phone, capacity,
+                               source, source_ref, source_url)
+         VALUES (upper($1), $2, $3, ST_SetSRID(ST_MakePoint($5, $4), 4326)::geography,
+                 $6, $7, $8, $9, $10, $11)
+         ON CONFLICT (source, source_ref) WHERE source_ref IS NOT NULL DO UPDATE SET
+           geom       = EXCLUDED.geom,
+           name       = CASE WHEN aid_site.verified_at IS NULL THEN EXCLUDED.name ELSE aid_site.name END,
+           updated_at = now()`,
+        [country, s.kind, s.name, s.lat, s.lng, s.address ?? null, s.phone ?? null,
+         s.capacity ?? null, s.source, s.source_ref ?? null, s.source_url ?? null]
+      );
+      loaded++;
+    }
+  }
+  return loaded;
+}
+
 export async function seed(total = Number(process.env.SEED_CASES ?? 500)) {
-  const slug = process.env.SEED_INCIDENT ?? "drill-bogota";
+  const slug = process.env.SEED_INCIDENT ?? "drill-quibdo";
 
   const inc = await one<{ id: string; ref_prefix: string }>(
     `INSERT INTO incident (slug, name, country, ref_prefix, centre, public_expires_at)
@@ -200,7 +259,7 @@ export async function seed(total = Number(process.env.SEED_CASES ?? 500)) {
              now() + interval '30 days')
      ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name
      RETURNING id, ref_prefix`,
-    [slug, "Simulacro Bogotá (datos sintéticos)", CENTRE.lng, CENTRE.lat]
+    [slug, "Simulacro Quibdó (datos sintéticos)", CENTRE.lng, CENTRE.lat]
   );
   if (!inc) throw new Error("could not create incident");
 
@@ -279,11 +338,17 @@ export async function seed(total = Number(process.env.SEED_CASES ?? 500)) {
     [inc.id]
   );
 
+  // The aid layer is data too, and a map with no shelters on it is the same
+  // empty screen as a map with no reports on it. The reviewed GeoJSON is
+  // committed to the repo precisely so this needs no outbound network.
+  const aidLoaded = process.env.SEED_AID === "0" ? 0 : await seedAidSites();
+
   console.log(JSON.stringify({
     level: "info", msg: "seed complete",
     incident: slug, cases, people, duplicate_pairs: pairs, enqueued: enqueue,
+    aid_sites: aidLoaded,
   }));
-  return { incidentId: inc.id, cases, people, pairs };
+  return { incidentId: inc.id, cases, people, pairs, aidLoaded };
 }
 
 const invokedDirectly =

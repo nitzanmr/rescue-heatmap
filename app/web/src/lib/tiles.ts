@@ -32,7 +32,10 @@ export interface TileProvider {
   note?: string;
 }
 
-const MAPBOX = process.env.NEXT_PUBLIC_MAPBOX_TOKEN ?? "";
+// Free tiers only, by decision (11 Aug 2026): a provider that needs a card on
+// file needs a legal entity, and we do not have one. Mapbox was in this chain
+// and is out. `tileChain()` is asserted against this rule in a test, so nobody
+// can add a billable provider back without arguing with a failing build.
 const STADIA = process.env.NEXT_PUBLIC_STADIA_KEY ?? "";
 const MAPTILER = process.env.NEXT_PUBLIC_MAPTILER_KEY ?? "";
 
@@ -67,14 +70,6 @@ export const PROVIDERS: TileProvider[] = [
     maxZoom: 20,
     ready: Boolean(MAPTILER),
     note: "free tier ~100k tiles/month",
-  },
-  {
-    id: "mapbox",
-    url: `https://api.mapbox.com/styles/v1/mapbox/light-v11/tiles/{z}/{x}/{y}?access_token=${MAPBOX}`,
-    attribution: "&copy; Mapbox &copy; OpenStreetMap contributors",
-    maxZoom: 20,
-    ready: Boolean(MAPBOX),
-    note: "50k free map loads/month, then billed — needs a card on file, i.e. a legal entity",
   },
   {
     id: "carto",

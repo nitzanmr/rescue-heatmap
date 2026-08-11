@@ -130,7 +130,7 @@ only starts with real reports.
 make build-api  # build the shared API image (api, worker, migrate, seed)
 make build      # build everything, including the dev database image
 make up         # db + migrations + api + worker
-make seed       # synthetic incident 'drill-bogota' with ground truth
+make seed       # synthetic incident 'drill-quibdo' with ground truth
 make test       # correlation precision / recall
 make psql       # interactive database
 make logs       # tail api + worker

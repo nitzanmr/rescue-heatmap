@@ -207,6 +207,20 @@ When Supabase ships 18 GA, the bump is a one-line change plus a `make drill`.
 - **An operator's correction does not overwrite what a citizen said.** Staff
   points go to `case_location_override`; the report stays the account of what was
   actually reported.
+- **An empty map is a failure, and nothing in a green build says so.** The seed
+  sat 400 km from the viewport in `incident.ts`, and the reviewed aid-site file
+  in the repo was never loaded anywhere; both layers answered 200 with an empty
+  array, which is what an unaffected city looks like. Rules that follow: the
+  synthetic incident is pinned to the front end's bbox by a test; a data file
+  committed to the repo is not data until something loads it, so `seed` loads it
+  and the image ships it; and the drill fails when either public layer is empty
+  or when heat lands outside the incident box.
+- **A threshold that hides data must say so on screen.** Public heat needs two
+  or more cases per cell — correct, and indistinguishable from "the site is
+  broken" unless the empty state explains it and confirms the report was
+  received.
+- **Basemaps: free tiers only.** A provider that needs a card on file needs a
+  legal entity, which we do not have. Enforced in a test, not in a comment.
 
 ## Reporting
 
