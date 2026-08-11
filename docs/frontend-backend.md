@@ -97,6 +97,29 @@ It is printed once, hashed at rest, and expires. The export button carries the
 token rather than being a plain link, because the export is audited: "who took a
 copy of the missing list" is a question we must be able to answer.
 
+### Undoing a merge
+
+The dedup card told the operator, in Spanish, that a merge can be taken back.
+There was no button, and the undo behind it was not a full reversal. Both are
+fixed:
+
+- `GET /v1/panel/merges` — the ledger (`case_merge_ledger`), newest first, undo
+  rows folded in as a flag;
+- `POST /v1/panel/merges/:id/undo` — the reversal, wired to **Deshacer** in
+  *Uniones recientes*.
+
+What 0009 changed, and why each one was load-bearing:
+
+| Was | Now |
+|---|---|
+| Only report ids were recorded; sightings, media and **reporter tokens** moved unrecorded. | Every moved id is in the ledger. The family's private link goes back to their own case. |
+| The merge set `public_listed = false` and nothing remembered the previous value. | `merged_public_listed` is captured before the merge hides the case and restored on undo. |
+| `undone_at` was checked on the merge row, but the undo wrote a *new* row (the table is append-only for `app_rw`), so the guard never fired and an undo could be replayed. | The undo row carries `undoes_merge_id`, with a unique index. Two operators pressing the button at once are stopped by the schema. |
+| The candidate stayed `merged`, so an undone pair vanished from the queue forever. | The pair returns to `pending`. "I was wrong" is not "these are different people" — only an explicit reject means that. |
+
+Merges recorded before 0009 are flagged `fully_recorded: false` and the panel
+warns that their reversal is partial, instead of promising a clean one.
+
 ## Running it
 
 ```
@@ -133,4 +156,9 @@ repository shipped with, and a green drill must not be able to hide it.
 - **Sightings do not notify anyone.** They land in the panel and in the family's
   private page; nothing pushes them.
 - **No service worker.** The outbox survives a closed tab, but the app itself
-  must be loaded once while online. A real PWA install story is separate work.
+  must be loaded once while online. A real PWA install story is separate work,
+  and until it exists "works offline" means "keeps working offline", not "opens
+  offline".
+- **The merge/undo path has no live drill assertion.** It is covered by static
+  checks (`test/merge-undo.test.ts`); exercising it end to end needs an operator
+  token minted inside the drill.

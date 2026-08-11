@@ -120,22 +120,45 @@ export default async function panelRoutes(app: FastifyInstance) {
       throw new HttpError(400, "survivor must be one of the pair", "bad_survivor");
     }
 
+    // Everything moved is recorded, not just the reports. An undo that returns
+    // the reports and leaves the family's private token on the survivor is a
+    // reversal on paper only -- and it is the kind of failure nobody notices
+    // until a family opens their link and reads about a stranger.
+    const ledger: { mergeId: number | null } = { mergeId: null };
     await tx(async (c) => {
       const moved = await c.query(
         `UPDATE report SET case_id = $1 WHERE case_id = $2 RETURNING id`, [survivor, merged]
       );
-      await c.query(`UPDATE sighting SET case_id = $1 WHERE case_id = $2`, [survivor, merged]);
-      await c.query(`UPDATE media    SET case_id = $1 WHERE case_id = $2`, [survivor, merged]);
-      await c.query(`UPDATE reporter_token SET case_id = $1 WHERE case_id = $2`, [survivor, merged]);
-      await c.query(
-        `UPDATE person_case SET merged_into = $1, public_listed = false, updated_at = now()
-          WHERE id = $2`, [survivor, merged]
+      const movedSightings = await c.query(
+        `UPDATE sighting SET case_id = $1 WHERE case_id = $2 RETURNING id`, [survivor, merged]);
+      const movedMedia = await c.query(
+        `UPDATE media    SET case_id = $1 WHERE case_id = $2 RETURNING id`, [survivor, merged]);
+      const movedTokens = await c.query(
+        `UPDATE reporter_token SET case_id = $1 WHERE case_id = $2 RETURNING token_hash`,
+        [survivor, merged]);
+      // The CTE reads the pre-update snapshot, so we capture what public_listed
+      // was before the merge hides the case. Without it, an undo restores the
+      // person but leaves them invisible to public search.
+      const hidden = await c.query(
+        `WITH before AS (SELECT public_listed FROM person_case WHERE id = $2)
+         UPDATE person_case SET merged_into = $1, public_listed = false, updated_at = now()
+          WHERE id = $2
+      RETURNING (SELECT public_listed FROM before) AS was_listed`, [survivor, merged]
       );
-      await c.query(
-        `INSERT INTO case_merge (survivor_id, merged_id, moved_reports, candidate_id, actor)
-         VALUES ($1,$2,$3,$4,$5)`,
-        [survivor, merged, moved.rows.map((r: any) => r.id), Number(req.params.id), op.userId]
+      const inserted = await c.query(
+        `INSERT INTO case_merge (survivor_id, merged_id, moved_reports, moved_sightings,
+                                 moved_media, moved_tokens, merged_public_listed,
+                                 candidate_id, actor)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING id`,
+        [survivor, merged,
+         moved.rows.map((r: any) => r.id),
+         movedSightings.rows.map((r: any) => r.id),
+         movedMedia.rows.map((r: any) => r.id),
+         movedTokens.rows.map((r: any) => r.token_hash),
+         hidden.rows[0]?.was_listed ?? false,
+         Number(req.params.id), op.userId]
       );
+      ledger.mergeId = Number(inserted.rows[0].id);
       await c.query(
         `UPDATE dedup_candidate SET state='merged', decided_by=$2, decided_at=now() WHERE id=$1`,
         [req.params.id, op.userId]
@@ -151,32 +174,91 @@ export default async function panelRoutes(app: FastifyInstance) {
 
     await enqueue("correlate", { case_id: survivor }, `correlate:${survivor}`);
     await audit(req.actor, "dedup.merge", survivor, { merged, candidate: req.params.id, note });
-    return { ok: true, state: "merged", survivor_case_id: survivor, merged_case_id: merged };
+    return {
+      ok: true, state: "merged", survivor_case_id: survivor, merged_case_id: merged,
+      // The handle the panel needs to offer "deshacer" without a second round trip.
+      merge_id: ledger.mergeId,
+    };
   });
 
+  // The merge ledger. Newest first, undone flag folded in, so the panel can show
+  // what it just did and take it back.
+  app.get<{ Querystring: { limit?: string; include_undone?: string } }>(
+    "/v1/panel/merges",
+    async (req) => {
+      requireOperator(req.actor);
+      const limit = Math.min(Number(req.query.limit ?? 20) || 20, 100);
+      const rows = await query(
+        `SELECT * FROM case_merge_ledger
+          WHERE ($1::bool OR NOT undone)
+          ORDER BY at DESC LIMIT $2`,
+        [req.query.include_undone === "1", limit]
+      );
+      return { merges: rows };
+    }
+  );
+
   // Un-merge. The reason the merge only re-pointed ids instead of deleting rows.
+  //
+  // case_merge is append-only for the app role (0005), so an undo is a new row
+  // pointing at the merge it reverses (0009). "Already undone" is therefore a
+  // question about the existence of that row -- the old code checked undone_at
+  // on the merge itself, which nothing ever set, so an undo could be replayed.
   app.post<{ Params: { id: string } }>("/v1/panel/merges/:id/undo", async (req) => {
     const op = requireOperator(req.actor);
-    const m = await one<{ survivor_id: string; merged_id: string; moved_reports: string[] }>(
-      `SELECT survivor_id, merged_id, moved_reports FROM case_merge
-        WHERE id = $1 AND undone_at IS NULL`, [req.params.id]
+    const m = await one<{
+      survivor_id: string; merged_id: string; moved_reports: string[];
+      moved_sightings: string[]; moved_media: string[]; moved_tokens: string[];
+      merged_public_listed: boolean | null; candidate_id: number | null;
+    }>(
+      `SELECT m.survivor_id, m.merged_id, m.moved_reports, m.moved_sightings,
+              m.moved_media, m.moved_tokens, m.merged_public_listed, m.candidate_id
+         FROM case_merge m
+        WHERE m.id = $1
+          AND m.undoes_merge_id IS NULL
+          AND NOT EXISTS (SELECT 1 FROM case_merge u WHERE u.undoes_merge_id = m.id)`,
+      [req.params.id]
     );
     if (!m) throw new HttpError(404, "not found or already undone", "not_found");
 
     await tx(async (c) => {
-      await c.query(`UPDATE report SET case_id = $1 WHERE id = ANY($2::uuid[])`,
+      await c.query(`UPDATE report   SET case_id = $1 WHERE id = ANY($2::uuid[])`,
         [m.merged_id, m.moved_reports]);
-      await c.query(`UPDATE person_case SET merged_into = NULL, updated_at = now() WHERE id = $1`,
-        [m.merged_id]);
+      await c.query(`UPDATE sighting SET case_id = $1 WHERE id = ANY($2::uuid[])`,
+        [m.merged_id, m.moved_sightings ?? []]);
+      await c.query(`UPDATE media    SET case_id = $1 WHERE id = ANY($2::uuid[])`,
+        [m.merged_id, m.moved_media ?? []]);
+      // The family's private link goes home. This is the one that silently broke.
+      await c.query(`UPDATE reporter_token SET case_id = $1 WHERE token_hash = ANY($2::text[])`,
+        [m.merged_id, m.moved_tokens ?? []]);
       await c.query(
-        `INSERT INTO case_merge (survivor_id, merged_id, actor, undone_at, undone_by)
-         VALUES ($1,$2,$3,now(),$3)`, [m.survivor_id, m.merged_id, op.userId]
+        `UPDATE person_case SET merged_into = NULL, public_listed = $2, updated_at = now()
+          WHERE id = $1`,
+        [m.merged_id, m.merged_public_listed ?? false]
       );
+      // Insert the undo BEFORE any further work: the unique index on
+      // undoes_merge_id is what stops two operators undoing the same merge.
+      await c.query(
+        `INSERT INTO case_merge (survivor_id, merged_id, actor, undoes_merge_id,
+                                 undone_at, undone_by)
+         VALUES ($1,$2,$3,$4,now(),$3)`,
+        [m.survivor_id, m.merged_id, op.userId, Number(req.params.id)]
+      );
+      // The pair goes back to the queue rather than disappearing. An operator who
+      // undoes a merge has said "not proven", not "never ask me again"; only an
+      // explicit reject means that.
+      if (m.candidate_id != null) {
+        await c.query(
+          `UPDATE dedup_candidate SET state='pending', decided_by=NULL, decided_at=NULL
+            WHERE id = $1 AND state = 'merged'`, [m.candidate_id]
+        );
+      }
       await c.query(`SELECT public.refresh_person_index($1)`, [m.survivor_id]);
       await c.query(`SELECT public.refresh_person_index($1)`, [m.merged_id]);
     });
-    await audit(req.actor, "dedup.unmerge", m.survivor_id, { restored: m.merged_id });
-    return { ok: true };
+    await audit(req.actor, "dedup.unmerge", m.survivor_id,
+      { restored: m.merged_id, merge: req.params.id });
+    return { ok: true, restored_case_id: m.merged_id };
   });
 
   // Verified status change. Only field/official sources may declare injury or death.

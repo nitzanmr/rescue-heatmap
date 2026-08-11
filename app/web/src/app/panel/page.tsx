@@ -9,7 +9,7 @@
 // trust it.
 import { useCallback, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { api, ApiError, HeatCell, operatorToken, setOperatorToken } from "@/lib/api";
+import { api, ApiError, HeatCell, MergeRecord, operatorToken, setOperatorToken } from "@/lib/api";
 import { incident } from "@/lib/incident";
 import StatusBadge from "@/components/StatusBadge";
 
@@ -79,6 +79,7 @@ function Login({ onDone }: { onDone: () => void }) {
 
 function PanelBody({ onSignOut }: { onSignOut: () => void }) {
   const [pending, setPending] = useState<any[]>([]);
+  const [merges, setMerges] = useState<MergeRecord[]>([]);
   const [cells, setCells] = useState<HeatCell[]>([]);
   const [cellM, setCellM] = useState(100);
   const [mode, setMode] = useState<"heat" | "points">("heat");
@@ -88,8 +89,13 @@ function PanelBody({ onSignOut }: { onSignOut: () => void }) {
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const [q, h] = await Promise.all([api.dedupQueue(50), api.panelHeat(cellM)]);
+      const [q, h, m] = await Promise.all([
+        api.dedupQueue(50),
+        api.panelHeat(cellM),
+        api.merges(20),
+      ]);
       setPending(q.pending);
+      setMerges(m.merges);
       setCells(h.cells);
       setCellM(h.cell_m);
       setError(null);
@@ -176,6 +182,9 @@ function PanelBody({ onSignOut }: { onSignOut: () => void }) {
       )}
 
       {/* ---------------------------------------------------------------- */}
+      <MergeLedger merges={merges} onChanged={() => void load()} />
+
+      {/* ---------------------------------------------------------------- */}
       <div className="section-title">Mapa operativo</div>
       <div className="row" style={{ marginBottom: 12 }}>
         <div className="chips">
@@ -259,9 +268,82 @@ function DedupPair({ pair, onDecided }: { pair: any; onDecided: () => void }) {
         </button>
       </div>
       <p className="small muted" style={{ marginTop: 8, marginBottom: 0 }}>
-        Unir es reversible: solo se reasignan los reportes al caso que queda.
+        Unir es reversible: los reportes, avistamientos, fotos y el enlace privado de la familia se
+        reasignan al caso que queda, y quedan registrados para poder devolverlos. Si se equivoca,
+        use «Deshacer» en «Uniones recientes», más abajo.
       </p>
     </div>
+  );
+}
+
+// The merge ledger. This section exists because the card above promises the
+// operator that a merge can be taken back, and a promise with no button is a
+// lie told at the worst possible moment. Undoing returns the pair to the queue:
+// "I was wrong" is not the same statement as "these are different people".
+function MergeLedger({ merges, onChanged }: { merges: MergeRecord[]; onChanged: () => void }) {
+  const [busy, setBusy] = useState<number | null>(null);
+  const [err, setErr] = useState("");
+
+  const undo = async (m: MergeRecord) => {
+    setBusy(m.id);
+    setErr("");
+    try {
+      await api.undoMerge(m.id);
+      onChanged();
+    } catch (e) {
+      setErr((e as Error).message);
+    } finally {
+      setBusy(null);
+    }
+  };
+
+  return (
+    <>
+      <div className="section-title">Uniones recientes</div>
+      {merges.length === 0 ? (
+        <div className="card">
+          <p className="small muted" style={{ margin: 0 }}>Todavía no se ha unido ningún caso.</p>
+        </div>
+      ) : (
+        <div className="card">
+          {err && <p className="small" style={{ color: "var(--warn)" }}>{err}</p>}
+          {merges.map((m) => (
+            <div
+              key={m.id}
+              className="row"
+              style={{ padding: "10px 0", borderBottom: "1px solid var(--line)", gap: 10 }}
+            >
+              <div style={{ minWidth: 0 }}>
+                <div>
+                  <strong>{m.merged_name ?? m.merged_ref}</strong>{" "}
+                  <span className="muted">→</span>{" "}
+                  <strong>{m.survivor_name ?? m.survivor_ref}</strong>
+                </div>
+                <p className="small muted" style={{ margin: "4px 0 0" }}>
+                  {new Date(m.at).toLocaleString("es")} · {m.actor} · {m.moved_reports} reporte(s)
+                  {" "}· Ref. {m.merged_ref} → {m.survivor_ref}
+                </p>
+                {!m.fully_recorded && (
+                  <p className="small" style={{ margin: "4px 0 0", color: "var(--warn)" }}>
+                    Unión anterior al registro completo: al deshacer se devuelven los reportes, pero
+                    no se puede garantizar la devolución de fotos, avistamientos ni del enlace
+                    privado. Revise el caso después.
+                  </p>
+                )}
+              </div>
+              <span className="spacer" />
+              <button className="btn ghost" disabled={busy === m.id} onClick={() => void undo(m)}>
+                {busy === m.id ? "Deshaciendo…" : "Deshacer"}
+              </button>
+            </div>
+          ))}
+          <p className="small muted" style={{ margin: "10px 0 0" }}>
+            Deshacer devuelve el par a la cola de revisión, no lo descarta. Toda unión y toda
+            reversión quedan en la auditoría.
+          </p>
+        </div>
+      )}
+    </>
   );
 }
 

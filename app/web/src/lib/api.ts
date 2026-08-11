@@ -197,6 +197,27 @@ export interface AidSite {
   updated_at: string;
 }
 
+// One row of the merge ledger. `fully_recorded` is false for merges performed
+// before 0009: those can only be partially reversed, and the panel says so
+// instead of promising a clean undo.
+export interface MergeRecord {
+  id: number;
+  survivor_id: string;
+  merged_id: string;
+  candidate_id: number | null;
+  actor: string;
+  at: string;
+  undone: boolean;
+  undone_at: string | null;
+  undone_by: string | null;
+  moved_reports: number;
+  fully_recorded: boolean;
+  survivor_ref: string;
+  survivor_name: string | null;
+  merged_ref: string;
+  merged_name: string | null;
+}
+
 export const api = {
   meta: () => apiFetch<{ version: string; incidents: { slug: string; name: string; ref_prefix: string }[] }>("/v1/meta"),
 
@@ -254,7 +275,24 @@ export const api = {
     apiFetch<{ pending: any[] }>(`/v1/panel/dedup?limit=${limit}`, { auth: "operator" }),
 
   decide: (candidateId: string, body: { decision: "merge" | "reject"; survivor_case_id?: string; note?: string }) =>
-    apiFetch<{ ok: true; state: string }>(`/v1/panel/dedup/${candidateId}/decide`, { body, auth: "operator" }),
+    apiFetch<{ ok: true; state: string; merge_id?: number | null; merged_case_id?: string }>(
+      `/v1/panel/dedup/${candidateId}/decide`,
+      { body, auth: "operator" }
+    ),
+
+  // The merge ledger and its undo. The panel card tells the operator a merge can
+  // be taken back; until these were wired, that sentence was decoration.
+  merges: (limit = 20, includeUndone = false) =>
+    apiFetch<{ merges: MergeRecord[] }>(
+      `/v1/panel/merges?limit=${limit}${includeUndone ? "&include_undone=1" : ""}`,
+      { auth: "operator" }
+    ),
+
+  undoMerge: (mergeId: number) =>
+    apiFetch<{ ok: true; restored_case_id: string }>(`/v1/panel/merges/${mergeId}/undo`, {
+      method: "POST",
+      auth: "operator",
+    }),
 
   panelCase: (caseId: string) => apiFetch<any>(`/v1/panel/cases/${caseId}`, { auth: "operator" }),
 
