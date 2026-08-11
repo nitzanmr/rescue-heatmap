@@ -44,3 +44,25 @@ test("0001 puts the extensions schema on the search_path before using it", () =>
   assert.ok(setPath > createSchema, "search_path must be set after the schema exists");
   assert.ok(setPath < firstExtension, "search_path must be set before extensions are used");
 });
+
+// 0003 declared hours_apart as double precision but fed it
+// extract(epoch FROM interval), which is numeric in PG 14+. plpgsql only
+// notices at RETURN time, so correlate_case() threw "structure of query does
+// not match function result type" at runtime while every static check passed.
+// 0003 is applied and append-only, so it keeps the bug; 0007 replaces the
+// function with the cast. This pins the shape of the fix on whatever the
+// newest definition is.
+test("the newest definition of correlate_case casts hours_apart", () => {
+  const defining = files
+    .filter((f) => /CREATE OR REPLACE FUNCTION public\.correlate_case/.test(
+      fs.readFileSync(path.join(dir, f), "utf8")))
+    .sort();
+  assert.ok(defining.length >= 1, "correlate_case must be defined somewhere");
+  const newest = defining[defining.length - 1]!;
+  const sql = statementsOf(fs.readFileSync(path.join(dir, newest), "utf8"));
+  assert.match(
+    sql,
+    /\)::double precision END AS hours_apart/,
+    `${newest}: hours_apart must be cast to double precision`
+  );
+});

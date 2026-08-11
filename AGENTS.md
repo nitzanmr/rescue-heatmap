@@ -65,10 +65,17 @@ When Supabase ships 18 GA, the bump is a one-line change plus a `make drill`.
   looking for someone who is still under the rubble.
 - **Public output is location-rounded.** The public API and the public map never
   emit a precise coordinate. Listing in public search is opt-out; publishing a
-  photo is opt-in. `publicView.ts` is the single filter — do not bypass it.
+  photo is opt-in. The single filter is the `public_case_view` view in `0003`
+  (coarse lat/lng, no phone, no id4, no narrative) and `src/routes/public.ts`
+  only ever selects from it — do not bypass it with a direct table query.
 - **Sensitive actions are audited.** Deletion and anonymisation included.
 - **Do not fake a stub.** `media_derive` is empty on purpose. An honest gap beats
   a pipeline that pretends to work.
+- **A green drill must mean the engine ran.** `make drill` asserts that the job
+  queue drained, that no job carries a `last_error`, and that the correlation
+  engine produced candidates. This exists because a runtime type error in
+  `correlate_case()` once left dedup completely dead while the drill printed
+  `drill passed` — the HTTP path was fine and the failure lived in the worker.
 
 ## Reporting
 
