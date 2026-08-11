@@ -64,15 +64,32 @@ because a function behind an index must not depend on the caller's path.
 make drill
 ```
 
-Fresh database → migrations → 500 synthetic reports with known duplicates → API
-and worker up → readiness check → a real `POST /v1/reports`. It prints
-`drill passed.` or it fails loudly. Takes ~1 minute on a first run (it installs
-the pgvector package into the PostGIS image once — a PGDG binary, not a build).
+Rebuild of the API image → fresh database → migrations → 500 synthetic reports
+with known duplicates → API and worker up → readiness check → a real
+`POST /v1/reports` → the worker queue must drain with zero failed jobs and at
+least one dedup candidate. It prints `drill passed.` or it fails loudly. Takes
+~1 minute on a first run (it installs the pgvector package into the PostGIS
+image once — a PGDG binary, not a build).
+
+**Why the drill rebuilds the API image first, and only that one.** `migrate`,
+`seed`, `api` and `worker` all run the same `rescue-api:dev` image, and the
+migrations are baked into it. A stale image therefore makes the drill test an
+old checkout: one run applied migrations 0001–0006 and never saw 0007, then
+failed on a queue that could not drain. The drill builds `api` explicitly.
+
+It deliberately does **not** run a full `compose build`. The database image
+installs PostGIS and pgvector from apt, so on a host whose docker build network
+cannot resolve `deb.debian.org` / `apt.postgresql.org` a full build fails before
+the drill even starts — for a rebuild nothing asked for. `compose up -d db`
+still builds that image on demand the first time. If you do need to rebuild it
+(after editing `ops/dev/Dockerfile.db`), run `make build` on a host with working
+build-network DNS, or pass `--network=host` to the daemon's build.
 
 ## Step by step
 
 ```
-make build      # build the API image
+make build-api  # build the shared API image (api, worker, migrate, seed)
+make build      # build everything, including the dev database image
 make up         # db + migrations + api + worker
 make seed       # synthetic incident 'drill-bogota' with ground truth
 make test       # correlation precision / recall

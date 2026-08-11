@@ -1,6 +1,6 @@
 # One entry point for the whole stack. The target that matters is `drill`:
 # from an empty machine to a running system with data, in one command.
-.PHONY: help up down migrate seed test build logs psql drill reset fresh
+.PHONY: help up down migrate seed test build build-api logs psql drill reset fresh
 
 COMPOSE ?= docker compose
 # Host port for the dev database. Override when 5432 is already taken:
@@ -13,8 +13,11 @@ help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 	  awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-12s\033[0m %s\n", $$1, $$2}'
 
-build:   ## Build the API image (same image runs api, worker and migrations)
+build:   ## Build every image (api + the dev database image)
 	$(COMPOSE) build
+
+build-api: ## Build only the shared API image (api, worker, migrate, seed)
+	$(COMPOSE) build api
 
 up:      ## Start db + api + worker (migrations run first, automatically)
 	$(COMPOSE) up -d db
@@ -43,6 +46,13 @@ psql:    ## Interactive shell on the dev database
 # The drill from ops/drill-checklist.md: nothing, to a working system, to nothing.
 # If this fails, our recovery story is fiction. Run it before an event, not during.
 drill:   ## Full rehearsal: fresh db -> migrate -> seed -> smoke test
+	@# Build the API image FIRST, and only that one. migrate/seed/api/worker all
+	@# run rescue-api:dev, so a stale image means the drill silently tests an old
+	@# checkout -- that is how a run applied 0001-0006 and never saw 0007.
+	@# Only `build api`: the db image installs PostGIS/pgvector from apt, and a
+	@# host whose docker build network cannot resolve deb.debian.org would fail
+	@# here for no reason. `up -d db` builds it on demand when it is missing.
+	$(COMPOSE) build api
 	$(COMPOSE) down -v
 	$(COMPOSE) up -d db
 	$(COMPOSE) run --rm migrate

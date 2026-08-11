@@ -76,6 +76,11 @@ When Supabase ships 18 GA, the bump is a one-line change plus a `make drill`.
   engine produced candidates. This exists because a runtime type error in
   `correlate_case()` once left dedup completely dead while the drill printed
   `drill passed` — the HTTP path was fine and the failure lived in the worker.
+- **The drill must test the current checkout.** Migrations are baked into
+  `rescue-api:dev`, which `migrate`, `seed`, `api` and `worker` all share, so
+  the drill rebuilds that image first. It builds **only** `api`: rebuilding the
+  database image pulls PostGIS/pgvector over apt and fails on hosts whose build
+  network has no DNS — a failure that has nothing to do with the drill.
 
 ## Reporting
 
