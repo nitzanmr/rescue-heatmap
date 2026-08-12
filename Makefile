@@ -1,6 +1,6 @@
 # One entry point for the whole stack. The target that matters is `drill`:
 # from an empty machine to a running system with data, in one command.
-.PHONY: help up down migrate seed test ablation rank-ablation build build-api build-web logs logs-edge psql drill reset fresh web operator-token
+.PHONY: help up down migrate seed test ablation rank-ablation places-top nominate build build-api build-web logs logs-edge psql drill reset fresh web operator-token
 
 COMPOSE ?= docker compose
 # Host port for the dev database. Override when 5432 is already taken:
@@ -297,3 +297,17 @@ fresh: reset up ## reset + up
 # argument. FILE=data/external/ctb-full.ndjson make places
 places:  ## Classify the place lines in a harvested NDJSON (FILE=...)
 	@cd services/api && npx tsx src/import-external.ts --file "../../$${FILE:-data/external/ctb-full.ndjson}"
+
+# Which named structure has the most people attached to it? Reads the harvested
+# file, folds spellings ("Hotel Dibeni" / "hotel debani" / "Dibeni Hotel") and
+# prints the top structures. No database, no writes, nothing reaches the map.
+# FILE=data/external/ctb-full.ndjson make places-top
+places-top: ## Rank the structures many people named at once (file only, read-only)
+	@cd services/api && npx tsx src/place-nominate.ts --file "../../$${FILE:-data/external/ctb-full.ndjson}"
+
+# The same ranking against the imported rows, written as a review queue: it
+# backfills each case's place verdict and upserts one PENDING nomination per
+# structure. Still no coordinates -- a nomination is a question for a person,
+# and only a signed approval puts anything on a map. INCIDENT=... make nominate
+nominate: ## Queue place nominations for human review (INCIDENT=... , add LOAD=1 to write)
+	@cd services/api && npx tsx src/place-nominate.ts --incident "$${INCIDENT:?set INCIDENT=<slug>}" $${LOAD:+--load}

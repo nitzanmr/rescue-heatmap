@@ -21,6 +21,16 @@ test("a named landmark is the only thing that earns a coordinate", () => {
   }
 });
 
+test("a building named before its type is still that building", () => {
+  // The same hotel arrives written both ways in one registry. If only one of
+  // them is a point, one collapsed building becomes two half-sized facts.
+  assert.equal(classifyPlace("Dibeni Hotel - Pereira, Risaralda").resolution, "point");
+  assert.equal(classifyPlace("Hotel Dibeni - Pereira, Risaralda").resolution, "point");
+  // A preposition in front of a bare type word still names a category.
+  assert.equal(classifyPlace("cerca del hotel").resolution, "neighbourhood");
+  assert.equal(classifyPlace("el hospital").resolution, "neighbourhood");
+});
+
 test("an address with a house number is a point; a street without one is not", () => {
   assert.equal(classifyPlace("Calle 12 # 34-56, Quibdó").resolution, "point");
   assert.equal(classifyPlace("Cra 8 No 12-30 barrio Yesquita").resolution, "point");

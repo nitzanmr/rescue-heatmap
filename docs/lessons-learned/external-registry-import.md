@@ -91,3 +91,76 @@ is quoted to anyone.
 ```sql
 SELECT * FROM public.forget_external_source('colombiatebusca');
 ```
+
+---
+
+## Second pass: from "how precise is this line?" to "which building?"
+
+Classifying each place line (`place-resolution.ts`) answered the safety
+question — 1,052 of 4,989 lines are precise enough that a coordinate could ever
+be sought, and 3,937 are not. But the operationally important fact was still
+invisible, because it does not live in any single row.
+
+Grouping the eligible lines into structures (`place-clusters.ts`) produced it:
+
+| people named | structure |
+|---|---|
+| 93 | Hotel Dibeni, Pereira |
+| 37 | Torres del Limonar, Cali |
+| 26 | Parque Industrial, Pereira |
+| 16 | Edificio Vanessa, Cali |
+| 14 | Hospital Universitario del Valle, Cali |
+| 13 | Clínica Comfamiliar, Pereira |
+| 13 | Universidad Tecnológica de Pereira |
+
+654 distinct structures; **48 named by three or more people**. That is the whole
+review queue — an afternoon of human attention, not a project.
+
+### What the folding had to survive
+
+Every one of these arrived spelled several ways, and each variant class had to
+be handled without becoming a machine that merges different buildings:
+
+- **Vowels.** `dibeni` / `debani` / `dibani` — two edits apart. A blind
+  two-edit rule at that length also swallows names that merely rhyme, so the
+  rule is: two edits pass only when the *consonant skeleton* is identical
+  (Spanish s/z/c, b/v, y/ll, silent h folded first). Same consonants, different
+  vowels, is one word said twice.
+- **Word order.** `Hotel Dibeni` / `Dibeni Hotel`. Type words are dropped from
+  the identity key and the remainder is sorted. This also exposed a classifier
+  gap: `Dibeni Hotel` scored *neighbourhood* while `Hotel Dibeni` scored
+  *point*, so one collapsed building was two half-sized facts.
+- **Type words.** `Torres del Limonar` / `Edificio Torres del Limonar` /
+  `Conjunto Torres del Limonar` — one building.
+- **Digits, which must NOT fold.** `bloque 1` and `bloque 2` are two buildings,
+  and a team in the wrong one is exactly the failure this tool exists to avoid.
+- **A trap found only by running it.** Dropping type words made
+  `Aeropuerto de Pereira` and `Alcaldía de Pereira` both reduce to `pereira` —
+  an airport and a town hall counted as one structure. When nothing but a town
+  name survives the stripping, the type word *is* the identity and goes back in.
+
+### Known and deliberate: it under-folds
+
+`Edificio Vanessa` (16) and `Edificio Vanessa, Carrera 44 #9-35` (8) stay
+separate, as do `Torres del Limonar` and `Torres del Limonar, Capri`. Almost
+certainly the same buildings. Merging them needs containment rules that also
+merge things that merely share a word, and the cost is asymmetric: an
+under-fold shows a reviewer two rows instead of one, an over-fold sends a team
+somewhere nobody is. A person reading the queue joins them in a second.
+
+### What is deliberately still missing
+
+**No coordinate.** Nothing here geocodes. Migration 0015 stores each cluster as
+a `place_nomination` — a question addressed to a person — and the table refuses
+to hold a latitude in `pending`, refuses an unsigned decision, and exposes
+coordinates only through the `approved_place` view. The map reads that view and
+nothing else.
+
+The reason is not caution for its own sake. The source field means *last seen
+at*, not *buried under*. "93 people were last seen at this hotel" is the
+strongest lead in the file and still not a claim about rubble. A human decides
+which it is — the same rule as the dedup queue.
+
+Erasure keeps its one-statement promise: `forget_external_source` now sweeps
+nominations first, so a labelled address with a count of zero cannot survive
+the deletion of the people it was derived from.

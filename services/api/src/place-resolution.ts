@@ -213,7 +213,7 @@ function classifySegment(raw: string | null | undefined): PlaceVerdict {
   if (street && (number || crossing || plate)) {
     signals.push(crossing ? "street:crossing" : number ? "street:number" : "street:plate");
     resolution = "point";
-  } else if (landmarks.length && namedAfter(normalized, landmarks[0])) {
+  } else if (landmarks.length && (namedAfter(normalized, landmarks[0]) || brandedBefore(normalized, landmarks[0]))) {
     // "parque" alone is a noun; "parque la libertad" is a place. A landmark word
     // with nothing following it names a category, not an address.
     signals.push(`landmark:${landmarks[0]}`);
@@ -248,6 +248,42 @@ function classifySegment(raw: string | null | undefined): PlaceVerdict {
   if (resolution === "point" && movement.length) signals.push("demoted:movement");
 
   return { resolution, signals, eligible, normalized };
+}
+
+/**
+ * Is this a building whose name was written BEFORE its type? "Dibeni Hotel",
+ * "Limonar Torres".
+ *
+ * Spanish normally puts the type first, so this is deliberately narrow: only
+ * building words, only a real word immediately in front of them, never a
+ * preposition. It exists because the same hotel arrives written both ways in
+ * the same registry, and a classifier that calls one of them a point and the
+ * other a neighbourhood splits one collapsed building into two half-sized
+ * facts.
+ */
+function brandedBefore(text: string, word: string): boolean {
+  const BUILDING = new Set([
+    "hotel", "edificio", "torre", "conjunto", "residencia", "residencias",
+    "bloque", "centro comercial", "hospital", "clinica", "colegio",
+    "universidad",
+  ]);
+  const w = word.trim();
+  if (!BUILDING.has(w)) return false;
+  const i = text.indexOf(w);
+  if (i <= 0) return false;
+  const before = text
+    .slice(0, i)
+    .split(/[\s,]+/)
+    .filter(Boolean);
+  const prev = before[before.length - 1];
+  if (!prev || prev.length < 3) return false;
+  const notNames = new Set([
+    ...["de", "del", "la", "el", "los", "las", "en", "y", "al", "a", "un", "una",
+       "hacia", "cerca", "frente", "junto", "detras", "dentro", "por", "para",
+       "desde", "sobre", "con", "su", "mi", "este", "ese"],
+    ...[...AREA, ...LANDMARK].map((x) => x.trim()),
+  ]);
+  return !notNames.has(prev);
 }
 
 function wordCount(s: string): number {

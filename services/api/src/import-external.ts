@@ -249,12 +249,20 @@ async function load(rows: Rec[], source: string, incidentSlug: string, adoptStat
         [caseId, incident.id, JSON.stringify(payload), `${source}:${r.source_id}`,
          parseSourceDate(r.registered_at_text)]
       );
+      // The place verdict is stored on the row, not only inside the report
+      // payload: "how many imported rows could ever be a cell?" and "which
+      // structure has the most people on it?" are SQL questions, and a verdict
+      // buried in JSON cannot answer them. See migration 0015.
+      const placeText = payload.address_text as string | null;
+      const verdict = classifyPlace(placeText);
       await c.query(
         `INSERT INTO external_case (case_id, source, source_ref, source_code, source_url,
-                                    source_status, source_payload)
-         VALUES ($1,$2,$3,$4,$5,$6,$7)`,
+                                    source_status, source_payload,
+                                    place_text, place_resolution, place_eligible)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`,
         [caseId, source, r.source_id, r.source_code ?? null, r.source_url ?? null,
-         r.status ?? null, JSON.stringify(r)]
+         r.status ?? null, JSON.stringify(r),
+         placeText, verdict.resolution, verdict.eligible]
       );
       await c.query(`SELECT public.refresh_person_index($1)`, [caseId]);
       created++;
