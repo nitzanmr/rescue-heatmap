@@ -40,6 +40,9 @@ type Rec = {
   age?: number | null;
   sex?: string | null;
   place_listing?: string | null;
+  place_detail?: string | null;
+  place?: string | null;
+  place_source?: string | null;
   last_seen_text?: string | null;
   registered_at_text?: string | null;
   [k: string]: unknown;
@@ -100,7 +103,12 @@ export function toPayload(r: Rec, source: string): Record<string, unknown> {
     age_approx: typeof r.age === "number" ? r.age : null,
     sex: r.sex === "masculino" ? "M" : r.sex === "femenino" ? "F" : null,
     // Address text only. No lat/lng: see rule 1 at the top of this file.
-    address_text: r.last_seen_text ?? r.place_listing ?? null,
+    // The harvester already decided which place wins (detail line over listing
+    // municipality) and wrote it to `place`; older files predate that field, so
+    // we fall back to the same precedence rather than to the coarser value.
+    address_text: r.place ?? r.place_detail ?? r.last_seen_text ?? r.place_listing ?? null,
+    // The municipality stays the coarse value on purpose: it is what the
+    // by-municipality counts are grouped on, and a landmark cannot serve there.
     municipality: r.place_listing ?? null,
     location_accuracy: "unknown",
     reporter_phone: null,
@@ -132,7 +140,9 @@ function summarise(rows: Rec[]) {
   console.log(`records            ${rows.length}`);
   console.log(`no name            ${rows.filter((r) => !r.name).length}`);
   console.log(`no age             ${rows.filter((r) => r.age == null).length}`);
-  console.log(`no place at all    ${rows.filter((r) => !r.place_listing && !r.last_seen_text).length}`);
+  const placeOf = (r: Rec) => r.place ?? r.place_detail ?? r.last_seen_text ?? r.place_listing ?? null;
+  console.log(`no place at all    ${rows.filter((r) => !placeOf(r)).length}`);
+  console.log(`place from detail  ${rows.filter((r) => (r.place_source ?? (r.place_detail ? "detail" : null)) === "detail").length}`);
   console.log(`status             ${JSON.stringify(by((r) => String(r.status)))}`);
   console.log(`category (top 5)   ${JSON.stringify(by((r) => String(r.category)).slice(0, 5))}`);
   console.log(`place (top 5)      ${JSON.stringify(by((r) => String(r.place_listing)).slice(0, 5))}`);

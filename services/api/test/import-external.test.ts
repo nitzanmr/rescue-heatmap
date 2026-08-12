@@ -69,3 +69,38 @@ test("falls back to the municipality when there is no detail text", () => {
   );
   assert.equal(p.address_text, "Cali, Valle del Cauca");
 });
+
+test("the harvester's chosen place overrides the listing municipality", () => {
+  // The detail drawer is the only field that can ever become a 500 m cell.
+  // If the importer preferred the coarse listing value, the extra request per
+  // person would buy nothing.
+  const p = toPayload(
+    {
+      source_id: "x",
+      name: "Ana",
+      place: "Edificio Victoria - Pereira, Risaralda",
+      place_source: "detail",
+      place_detail: "Edificio Victoria - Pereira, Risaralda",
+      place_listing: "Pereira, Risaralda",
+      status: "missing",
+    },
+    "colombiatebusca"
+  );
+  assert.equal(p.address_text, "Edificio Victoria - Pereira, Risaralda");
+  // The coarse value still drives by-municipality grouping; a landmark cannot.
+  assert.equal(p.municipality, "Pereira, Risaralda");
+});
+
+test("a file harvested before the override existed still resolves to the finer place", () => {
+  const p = toPayload(
+    {
+      source_id: "x",
+      name: "Ana",
+      place_detail: "Parque la Libertad - Pereira, Risaralda",
+      place_listing: "Pereira, Risaralda",
+      status: "missing",
+    },
+    "colombiatebusca"
+  );
+  assert.equal(p.address_text, "Parque la Libertad - Pereira, Risaralda");
+});

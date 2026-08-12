@@ -5,7 +5,7 @@ Two commands, and a human between them.
 ```bash
 # 1. Pull. Writes a file. Touches no database.
 python3 ops/scrape/colombiatebusca.py --out data/external/ctb-full.ndjson \
-        --details --category Terremoto
+        --category Terremoto     # detail pages are fetched by default
 
 # 2. Look at it. This step is not optional.
 cd services/api && npm run import-external -- \
@@ -27,11 +27,22 @@ patterns — the population our dedup engine was never measured on. Ranking
 ablation on synthetic seed data told us the engine is good enough; this is the
 first chance to check that claim against reality.
 
-**Is not:** more dots on the heat map. The source publishes a municipality
-("Pereira, Risaralda"), not a coordinate. Imported cases therefore land with
-`location_source = 'none'` and appear in the unmapped queue, exactly like our own
-address-only reports. Dropping a municipality centroid on the map would invent a
-hot cell nobody reported and send a team to a plaza.
+## Which place we keep
+
+The listing card shows a municipality. The person's own page shows the line a
+relative actually typed — `Parque la Libertad - Pereira, Risaralda`. The harvester
+fetches that page for every record and the detail line **overrides** the listing
+value; `place` is the resolved field, `place_source` says which one won, and both
+raw values are kept so the decision can be audited without harvesting again.
+
+That override is the difference between data that can and cannot reach the map.
+A municipality is tens of kilometres wide and a heat cell is 500 m; a landmark is
+something a geocoder can turn into a point.
+
+**Still not, today:** more dots on the heat map. A finer *string* is not a
+coordinate. Imported cases continue to land with `location_source = 'none'` in
+the unmapped queue until a geocoding step exists and its output is reviewed —
+guessing a point from free text is how a team gets sent to a plaza.
 
 ## Undoing it
 
