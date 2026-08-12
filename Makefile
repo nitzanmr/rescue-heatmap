@@ -1,6 +1,6 @@
 # One entry point for the whole stack. The target that matters is `drill`:
 # from an empty machine to a running system with data, in one command.
-.PHONY: help up down migrate seed test ablation rank-ablation places places-top nominate geocode harvest incident import build build-api build-web logs logs-edge psql drill reset fresh web operator-token
+.PHONY: help up down migrate seed test ablation rank-ablation places places-top nominate geocode harvest incident import census retire purge build build-api build-web logs logs-edge psql drill reset fresh web operator-token
 
 COMPOSE ?= docker compose
 # Host port for the dev database. Override when 5432 is already taken:
@@ -109,6 +109,27 @@ logs-edge: ## Tail the edge (nginx) access log -- which tier a request went to
 
 psql:    ## Interactive shell on the dev database
 	$(COMPOSE) exec db psql -U rescue -d rescue
+
+# What is actually in the database, per incident. Read-only. Run it before and
+# after anything below: "is the mock data gone?" has to be a count.
+census:  ## Count cases/reports/nominations per incident (read-only)
+	@$(COMPOSE) exec -T db psql -U rescue -d rescue -v ON_ERROR_STOP=1 -f - < ops/sql/incident-census.sql
+
+# Close an incident without deleting it: the public map picks the most recent
+# OPEN incident when no slug is given, so ending the drill takes the synthetic
+# data off the public map immediately, and is undoable.
+retire:  ## Mark an incident ended (SLUG=drill-quibdo) -- reversible
+	@$(COMPOSE) exec -T db psql -U rescue -d rescue -v ON_ERROR_STOP=1 -c \
+	  "UPDATE incident SET ended_at = coalesce(ended_at, now()) \
+	    WHERE slug = '$${SLUG:?set SLUG=<slug>}' RETURNING slug, ended_at;"
+
+# Delete one incident and everything under it. Irreversible; CONFIRM=yes is not
+# a formality -- `make drill` wipes the WHOLE database, and the day this matters
+# is the day the same database also holds real reports.
+purge:   ## Delete an incident and all its data (SLUG=... CONFIRM=yes) -- IRREVERSIBLE
+	@test "$${CONFIRM}" = "yes" || { echo "refusing: re-run with CONFIRM=yes (this cannot be undone)"; exit 1; }
+	@$(COMPOSE) exec -T db psql -U rescue -d rescue -v ON_ERROR_STOP=1 \
+	  -v slug="$${SLUG:?set SLUG=<slug>}" -f - < ops/sql/purge-incident.sql
 
 # The drill from ops/drill-checklist.md: nothing, to a working system, to nothing.
 # If this fails, our recovery story is fiction. Run it before an event, not during.

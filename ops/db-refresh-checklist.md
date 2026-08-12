@@ -14,6 +14,44 @@ Prerequisites: `git pull` (migrations 0014/0015/0016 are new), `python3`.
 Do NOT run `make drill` — it does `down -v` and deletes the database, including
 any reports testers entered.
 
+## 0b. Deal with the synthetic drill data FIRST
+
+`make seed` wrote ~500 invented people into the `drill-quibdo` incident. They
+sit in the same tables, with the same columns, and produce the same heat cells
+as real cases. Import 5,000 real names next to them and every number the tool
+prints afterwards is a blend of a collapsed building and a rehearsal — and the
+public map, asked for no slug, answers with **the most recent open incident**,
+which today is the drill.
+
+See what is actually in there:
+
+    make census
+
+Then pick one:
+
+**A — retire it (reversible, recommended while testers are still poking):**
+
+    SLUG=drill-quibdo make retire
+
+Sets `ended_at`. The synthetic incident stops being the default incident and
+drops off the public map, but the rows survive and `make test` /
+`make ablation` still have their ground truth. Undo: set `ended_at = NULL`.
+
+**B — purge it (irreversible, before anything goes to a field team):**
+
+    SLUG=drill-quibdo CONFIRM=yes make purge
+
+Deletes the incident and everything under it — cases, reports, sightings,
+dedup queue, merge ledger, nominations — in one transaction, and drops
+`seed_truth` so no later test can quietly score itself against dangling ids.
+Aid sites are detached, never deleted: a hospital exists before the earthquake.
+
+Run `make census` again afterwards. A half-purged incident is worse than an
+untouched one, because the remainder looks like real data.
+
+> Reseeding later is one command (`make seed`), so B costs nothing but the
+> testers' own reports — check with them first if they entered any.
+
 ## 1. Harvest the registry into a file
 
     OUT=data/external/ctb-full.ndjson make harvest
@@ -71,6 +109,19 @@ human approval is what puts a point on a map.
       order by case_count desc limit 20;
 
 ---
+
+## The front end still says Quibdó
+
+`app/web/src/lib/incident.ts` is the one file activation edits, and it is still
+filled in for the drill: centre and zoom on Quibdó, a bbox of
+`5.60..5.79 / -76.74..-76.58`, six invented landmarks, and `NEXT_PUBLIC_DEMO`
+defaulting to on. The registry data is Pereira and Cali — **500 km outside that
+bbox**. Until this file is updated the map opens on an empty jungle and the
+location picker rejects every real point.
+
+This is deliberate mock configuration, not a bug, but it has to be changed in
+the same breath as the import — otherwise the demo banner is the only thing
+still telling the truth.
 
 ## Photos
 
