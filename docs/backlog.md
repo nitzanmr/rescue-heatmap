@@ -78,3 +78,56 @@ Warning already learned from the data: some clusters are neighbourhoods, not
 buildings (Parque Industrial, Pereira — 59 records across `sector A..E`). A roster
 UI must let a site be split into sub-sites, or it will invite a team to treat a
 neighbourhood as one worksite.
+
+---
+
+## RH-03 — Click a heatmap cell in the panel and see who was reported there
+
+**Status:** open · **Raised by:** Nitzan, 12.8.2026 · **Evidence:** Oshri, same day
+· **Size:** ~a day
+
+**What breaks today.** The heatmap endpoint returns *aggregates only* — cell
+centroid, weight, case count. Names and reference codes never reach the browser.
+That is the correct privacy boundary for the public map, but the panel inherits it,
+and there it is wrong: an authenticated operator who sees a hot cell and cannot ask
+"who is in it" is looking at a picture they cannot act on.
+
+This is not theoretical. Oshri filed three reports at a point he marked himself,
+saw three cases appear on the panel map, and had **no way to tell which cases they
+were** — he only knew because he had picked the coordinate personally. In the field
+nobody will have that.
+
+**Done means.** In `/panel`, clicking a cell (or a clustered site) opens a side
+panel listing, for every case inside that cell:
+- display name, age, reference code, status;
+- number of distinct reports and whether a merge is pending in the review queue;
+- source — our intake form vs. external registry — visibly different, because
+  "where they were when the building fell" and "where they were last seen" are not
+  the same claim;
+- link back to the source record for imported rows;
+- export the list for the site (CSV) for a team going out.
+
+Cell radius follows the panel's existing 100 m grid; a click on the coarser public
+grid resolves to the finer cells beneath it.
+
+**Must refuse to do.**
+- **Panel only, behind auth.** The public map keeps returning aggregates with the
+  `cases >= 2` floor. No route added here may serve names unauthenticated.
+- No lookup by free coordinate — the query takes a cell id / site id the server
+  itself issued, so the endpoint cannot be walked as a "who is at this address"
+  API.
+- Every open of a roster writes an access audit row. Reading names is an action.
+- No implicit merging in this view. Two rows that look like the same person stay
+  two rows and go to the review queue; the roster shows the suspicion, a human
+  decides.
+
+**Notes for whoever builds it.**
+- Server side: a `GET /v1/panel/cells/:cellId/cases` next to the existing heatmap
+  route in `services/api/src/routes/panel.ts`, reusing the same cell function so
+  the list can never disagree with the square that was clicked.
+- This is the read half of RH-02. Build it first: the roster state machine
+  (rescued / recovered / found outside / site cleared) is worth much more once
+  there is a screen that shows the names at all.
+- Related wording bug found the same day: the intake button `sumar mi información`
+  reads as "add me to that case" but actually files a separate report with a note.
+  Fix the copy while in this area.
