@@ -180,7 +180,7 @@ test("imported sites carry provenance and are unverified by construction", () =>
 });
 
 test("the committed dataset is loadable and non-trivial", () => {
-  const file = path.join(root, "data/aid-sites/quibdo-co.geojson");
+  const file = path.join(root, "data/aid-sites/pereira-co.geojson");
   const fc = JSON.parse(fs.readFileSync(file, "utf8"));
   assert.ok(fc.features.length > 50, `only ${fc.features.length} sites committed`);
   // Every feature must be usable offline: name + coordinates, no exceptions.

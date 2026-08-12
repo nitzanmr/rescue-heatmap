@@ -1,0 +1,8986 @@
+{
+ "type": "FeatureCollection",
+ "attribution": "© OpenStreetMap contributors (ODbL)",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.5669361,
+     4.9719837
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "San Julián",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/703213632",
+    "source_url": "https://www.openstreetmap.org/node/703213632"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6492304,
+     4.8281998
+    ]
+   },
+   "properties": {
+    "kind": "water",
+    "name": "Buena Vista",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/703494730",
+    "source_url": "https://www.openstreetmap.org/node/703494730"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6889782,
+     4.8540421
+    ]
+   },
+   "properties": {
+    "kind": "water",
+    "name": "Santana Baja",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/703494741",
+    "source_url": "https://www.openstreetmap.org/node/703494741"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6988727,
+     4.8341525
+    ]
+   },
+   "properties": {
+    "kind": "water",
+    "name": "El Estanquillo",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/703494743",
+    "source_url": "https://www.openstreetmap.org/node/703494743"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6386079,
+     4.8584805
+    ]
+   },
+   "properties": {
+    "kind": "water",
+    "name": "Boqueron",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/703494780",
+    "source_url": "https://www.openstreetmap.org/node/703494780"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9128027,
+     4.7504063
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "La Rebaja",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1223397142",
+    "source_url": "https://www.openstreetmap.org/node/1223397142"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9125249,
+     4.7501284
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "La Economia",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1242121286",
+    "source_url": "https://www.openstreetmap.org/node/1242121286"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7585559,
+     4.7733673
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "IPS ESE Salud Pereira - Puesto de Salud Morelia",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1393085033",
+    "source_url": "https://www.openstreetmap.org/node/1393085033"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.707318,
+     4.8121829
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Multidrogas",
+    "address": "Carrera 13, Pereira",
+    "phone": "+57 606 3333335",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1398072373",
+    "source_url": "https://www.openstreetmap.org/node/1398072373"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6366433,
+     4.7290434
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro Docente Laguneta",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1398079558",
+    "source_url": "https://www.openstreetmap.org/node/1398079558"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9100008,
+     4.7448051
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Manuel Quintero Penilla",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1447545029",
+    "source_url": "https://www.openstreetmap.org/node/1447545029"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6813094,
+     4.8082505
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Farmacia Pasteur",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1457383186",
+    "source_url": "https://www.openstreetmap.org/node/1457383186"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7319939,
+     4.8223789
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Estacion de Policia Ciudadela del Cafe",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1613130904",
+    "source_url": "https://www.openstreetmap.org/node/1613130904"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7058804,
+     4.8008269
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Drogueria la Rebaja",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1968370586",
+    "source_url": "https://www.openstreetmap.org/node/1968370586"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7081861,
+     4.7966516
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Drogueria la Rebaja",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1968370588",
+    "source_url": "https://www.openstreetmap.org/node/1968370588"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7076533,
+     4.8024991
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Drogueria Medica",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1968370662",
+    "source_url": "https://www.openstreetmap.org/node/1968370662"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7160115,
+     4.7189182
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Estación de Policía Arabia",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/3243668652",
+    "source_url": "https://www.openstreetmap.org/node/3243668652"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6849077,
+     4.7298302
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "ICA",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/3687099550",
+    "source_url": "https://www.openstreetmap.org/node/3687099550"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6735819,
+     4.7104124
+    ]
+   },
+   "properties": {
+    "kind": "shelter",
+    "name": "Mono aullador",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/3913265177",
+    "source_url": "https://www.openstreetmap.org/node/3913265177"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7154365,
+     4.7190408
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "El campesino",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/3969589257",
+    "source_url": "https://www.openstreetmap.org/node/3969589257"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7157309,
+     4.7212967
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "colegio San Francisco de Asis",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/3983276706",
+    "source_url": "https://www.openstreetmap.org/node/3983276706"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8822104,
+     4.8960827
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Estación de Policía La Virginia",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4072034365",
+    "source_url": "https://www.openstreetmap.org/node/4072034365"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7361028,
+     4.9368914
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Cruz Roja",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4115065991",
+    "source_url": "https://www.openstreetmap.org/node/4115065991"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7393072,
+     4.936408
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Sembrando Vida",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4115176186",
+    "source_url": "https://www.openstreetmap.org/node/4115176186"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7384789,
+     4.9377379
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Posada",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4153666505",
+    "source_url": "https://www.openstreetmap.org/node/4153666505"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6170243,
+     4.865846
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Cruz Roja",
+    "address": "Calle 12, Santa Rosa De Cabal",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4191941143",
+    "source_url": "https://www.openstreetmap.org/node/4191941143"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6211714,
+     4.8636087
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Estación de Bomberos",
+    "address": "Carrera 15, Santa Rosa de Cabal",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4191941145",
+    "source_url": "https://www.openstreetmap.org/node/4191941145"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9147679,
+     4.7515346
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Respirar Unidad Pediátrica",
+    "address": "Calle 13",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4245243189",
+    "source_url": "https://www.openstreetmap.org/node/4245243189"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8993308,
+     4.759337
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Estación de Policia Puerto Caldas",
+    "address": "Puerto Caldas,Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4417728218",
+    "source_url": "https://www.openstreetmap.org/node/4417728218"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.882339,
+     4.8977434
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Cuerpo de Bomberos Voluntarios de La Virginia",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4462380689",
+    "source_url": "https://www.openstreetmap.org/node/4462380689"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.667096,
+     4.8389428
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "La Humanitaria",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4470533701",
+    "source_url": "https://www.openstreetmap.org/node/4470533701"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6713397,
+     4.8407618
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Juan Manuel Gonzalez",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4470533796",
+    "source_url": "https://www.openstreetmap.org/node/4470533796"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6709603,
+     4.8397573
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Club de Leones",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4470533896",
+    "source_url": "https://www.openstreetmap.org/node/4470533896"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8824412,
+     4.8883785
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Estación de Bomberos Voluntarios de Caimalito",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4548084845",
+    "source_url": "https://www.openstreetmap.org/node/4548084845"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.737973,
+     4.9370942
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Comando Policía",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4560646191",
+    "source_url": "https://www.openstreetmap.org/node/4560646191"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6766887,
+     4.8248195
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Farma-Pradera",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4579455793",
+    "source_url": "https://www.openstreetmap.org/node/4579455793"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6879624,
+     4.7952417
+    ]
+   },
+   "properties": {
+    "kind": "water",
+    "name": "Bebedero",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4742328624",
+    "source_url": "https://www.openstreetmap.org/node/4742328624"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.680191,
+     4.8317133
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Cruz verde",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4763295925",
+    "source_url": "https://www.openstreetmap.org/node/4763295925"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6949712,
+     4.7962489
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Cruz Verde",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4763313023",
+    "source_url": "https://www.openstreetmap.org/node/4763313023"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6872808,
+     4.7643684
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "La economía",
+    "address": "Variante Condina",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4795585325",
+    "source_url": "https://www.openstreetmap.org/node/4795585325"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6936041,
+     4.7981091
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Farmacia Ciudad Jardín",
+    "address": "Calle 17 25-50",
+    "phone": "+57 6 3212929",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4867265638",
+    "source_url": "https://www.openstreetmap.org/node/4867265638"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6918468,
+     4.796682
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Drogueria San Antonio Alamos",
+    "address": "Calle 14 27 17",
+    "phone": "+57 6 3216131",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4951964324",
+    "source_url": "https://www.openstreetmap.org/node/4951964324"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6921817,
+     4.7966063
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Drogueria Tiché",
+    "address": "Calle 14 27-30, Pereira",
+    "phone": "+57 6 3172770",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4951973122",
+    "source_url": "https://www.openstreetmap.org/node/4951973122"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.659654,
+     4.8841305
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Estación de Policía Alto de la Cruz",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5169966441",
+    "source_url": "https://www.openstreetmap.org/node/5169966441"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6985411,
+     4.8032929
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "QUIROX",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5171169650",
+    "source_url": "https://www.openstreetmap.org/node/5171169650"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6240679,
+     4.9106101
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Corporación Universitaria Santa Rosa de Cabal (UNISARC)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5252829996",
+    "source_url": "https://www.openstreetmap.org/node/5252829996"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6213203,
+     4.8667885
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Droguería Risaralda",
+    "address": "Carrera 14, Santa Rosa de Cabal",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5253309921",
+    "source_url": "https://www.openstreetmap.org/node/5253309921"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7638877,
+     4.9115266
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela La Nubia",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5266116905",
+    "source_url": "https://www.openstreetmap.org/node/5266116905"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7275318,
+     4.8883939
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "La Convención",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5266145637",
+    "source_url": "https://www.openstreetmap.org/node/5266145637"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.617749,
+     4.8676429
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Lorencita Villegas de Santos",
+    "address": "Carrera 10, Santa Rosa de Cabal",
+    "phone": "+57 606 3661775",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5270924845",
+    "source_url": "https://www.openstreetmap.org/node/5270924845"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6080366,
+     4.9221352
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela La Gorgonia",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5278512870",
+    "source_url": "https://www.openstreetmap.org/node/5278512870"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7591058,
+     4.7732428
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Morelia Subestacion",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5278809624",
+    "source_url": "https://www.openstreetmap.org/node/5278809624"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6821859,
+     4.8206555
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Ips Idime",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5282498049",
+    "source_url": "https://www.openstreetmap.org/node/5282498049"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6252184,
+     4.9339743
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela ?? San Juan",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5292709355",
+    "source_url": "https://www.openstreetmap.org/node/5292709355"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.5827525,
+     4.9027786
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Las Brisas",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5376860189",
+    "source_url": "https://www.openstreetmap.org/node/5376860189"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6778333,
+     4.9142585
+    ]
+   },
+   "properties": {
+    "kind": "water",
+    "name": "Bocatoma 2 La Estrella",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5408171001",
+    "source_url": "https://www.openstreetmap.org/node/5408171001"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6610804,
+     4.7895316
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "El Chocho",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5446891696",
+    "source_url": "https://www.openstreetmap.org/node/5446891696"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6135573,
+     4.8962337
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Subestación de Policía Guacas",
+    "address": "vereda guacas",
+    "phone": "+57 3134429988",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5452312230",
+    "source_url": "https://www.openstreetmap.org/node/5452312230"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8986549,
+     4.7576174
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "CAI Puente Bolívar",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5507001594",
+    "source_url": "https://www.openstreetmap.org/node/5507001594"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8427516,
+     4.8033186
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Droguería La Rebaja",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5528923913",
+    "source_url": "https://www.openstreetmap.org/node/5528923913"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6521108,
+     4.9033067
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "la Gran Colombia",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5863718012",
+    "source_url": "https://www.openstreetmap.org/node/5863718012"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6828668,
+     4.8895378
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "El Chuzo",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5863718014",
+    "source_url": "https://www.openstreetmap.org/node/5863718014"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6858053,
+     4.8752217
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "El Chaquiro",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5863718016",
+    "source_url": "https://www.openstreetmap.org/node/5863718016"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.5938068,
+     4.8993743
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Fermín López",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5864322372",
+    "source_url": "https://www.openstreetmap.org/node/5864322372"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6755359,
+     4.8406391
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro comunitario del barrio san felix",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5963315690",
+    "source_url": "https://www.openstreetmap.org/node/5963315690"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6036973,
+     4.9744282
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Puesto de Salud La Nubia",
+    "address": "Carrera 16c, chinchina",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6116834247",
+    "source_url": "https://www.openstreetmap.org/node/6116834247"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7454928,
+     4.9414765
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Milochenta",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6189114485",
+    "source_url": "https://www.openstreetmap.org/node/6189114485"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6791489,
+     4.8214301
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Droguería Drofarma",
+    "address": "Calle 12 21A",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6192576886",
+    "source_url": "https://www.openstreetmap.org/node/6192576886"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7383298,
+     4.9400309
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "droguería",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6201180589",
+    "source_url": "https://www.openstreetmap.org/node/6201180589"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8265713,
+     4.9196762
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6217316533",
+    "source_url": "https://www.openstreetmap.org/node/6217316533"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6284894,
+     4.870303
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Drogueria Valencia",
+    "address": "Santa Rosa de Cabal",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6219085409",
+    "source_url": "https://www.openstreetmap.org/node/6219085409"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6299245,
+     4.876037
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Megacolegio",
+    "address": "Carrera 23, Santa Rosa de Cabal",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6219132416",
+    "source_url": "https://www.openstreetmap.org/node/6219132416"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6724588,
+     4.9303577
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela La Estrella",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6224956836",
+    "source_url": "https://www.openstreetmap.org/node/6224956836"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.611015,
+     4.8242253
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela La Samaria",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6227494718",
+    "source_url": "https://www.openstreetmap.org/node/6227494718"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9583328,
+     4.9492199
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "BOMBEROS",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6268683443",
+    "source_url": "https://www.openstreetmap.org/node/6268683443"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7440532,
+     4.757956
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "subestacion el Retiro",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6277404946",
+    "source_url": "https://www.openstreetmap.org/node/6277404946"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7439016,
+     4.758258
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela El Retiro",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6277414428",
+    "source_url": "https://www.openstreetmap.org/node/6277414428"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9489393,
+     4.7620021
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "PSICO SALUD Y TRANSFORMACIÓN",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6391724985",
+    "source_url": "https://www.openstreetmap.org/node/6391724985"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9320539,
+     4.9720372
+    ]
+   },
+   "properties": {
+    "kind": "water",
+    "name": "Bocatoma Acueducto La Virginia",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6406489551",
+    "source_url": "https://www.openstreetmap.org/node/6406489551"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9535108,
+     4.9771935
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Llano Grande",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6406580066",
+    "source_url": "https://www.openstreetmap.org/node/6406580066"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6693891,
+     4.836726
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Multidrogas",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6426957053",
+    "source_url": "https://www.openstreetmap.org/node/6426957053"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7957566,
+     4.8115673
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Subestación de Policía Galicia",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6434556399",
+    "source_url": "https://www.openstreetmap.org/node/6434556399"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6984412,
+     4.8155101
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "El Lago",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6453472085",
+    "source_url": "https://www.openstreetmap.org/node/6453472085"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.5992847,
+     4.8931696
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colmenas",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6477958887",
+    "source_url": "https://www.openstreetmap.org/node/6477958887"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.5748645,
+     4.8471119
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Instituto tecnico Marillac",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6481534585",
+    "source_url": "https://www.openstreetmap.org/node/6481534585"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9424357,
+     4.7570823
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Industrial Indalecio Penilla",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6517447986",
+    "source_url": "https://www.openstreetmap.org/node/6517447986"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7320893,
+     4.9005039
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "El Zurrumbo",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6577419627",
+    "source_url": "https://www.openstreetmap.org/node/6577419627"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6362921,
+     4.9658258
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Charco Hondo",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6617568589",
+    "source_url": "https://www.openstreetmap.org/node/6617568589"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6270846,
+     4.9672429
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Los Mangos",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6617568590",
+    "source_url": "https://www.openstreetmap.org/node/6617568590"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6590093,
+     4.9344562
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "El Manzanillo",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6652400285",
+    "source_url": "https://www.openstreetmap.org/node/6652400285"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6388241,
+     4.9160705
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Guamal",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6684944698",
+    "source_url": "https://www.openstreetmap.org/node/6684944698"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6320006,
+     4.9190555
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "El Lembo",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6685322467",
+    "source_url": "https://www.openstreetmap.org/node/6685322467"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7060638,
+     4.8191397
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Augusto Zuluaga Patiño",
+    "address": "Calle 33 Bis, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6687629386",
+    "source_url": "https://www.openstreetmap.org/node/6687629386"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7462696,
+     4.9602339
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "La Linda",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6726872823",
+    "source_url": "https://www.openstreetmap.org/node/6726872823"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7584935,
+     4.9478219
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Corozal",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6726951097",
+    "source_url": "https://www.openstreetmap.org/node/6726951097"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.899554,
+     4.7601581
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Droguería",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6741376854",
+    "source_url": "https://www.openstreetmap.org/node/6741376854"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7575508,
+     4.884531
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "La Oriental",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6757382912",
+    "source_url": "https://www.openstreetmap.org/node/6757382912"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7730002,
+     4.9024748
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Las Tazas",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6773418413",
+    "source_url": "https://www.openstreetmap.org/node/6773418413"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7744005,
+     4.9024938
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Las Tazas",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6773418414",
+    "source_url": "https://www.openstreetmap.org/node/6773418414"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7089646,
+     4.9211522
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "El Salado",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6789342047",
+    "source_url": "https://www.openstreetmap.org/node/6789342047"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7185537,
+     4.9428019
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "San Carlos",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6789342048",
+    "source_url": "https://www.openstreetmap.org/node/6789342048"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6306165,
+     4.9013825
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "La María",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6828162502",
+    "source_url": "https://www.openstreetmap.org/node/6828162502"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6780049,
+     4.9130922
+    ]
+   },
+   "properties": {
+    "kind": "water",
+    "name": "bocatoma 1 vereda la Estrella",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6840877801",
+    "source_url": "https://www.openstreetmap.org/node/6840877801"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6861671,
+     4.9137271
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "La Florida",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6882024252",
+    "source_url": "https://www.openstreetmap.org/node/6882024252"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6613444,
+     4.8452914
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Cristo Rey",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6914081385",
+    "source_url": "https://www.openstreetmap.org/node/6914081385"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7174292,
+     4.8151473
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Clínica odontológica oral Center",
+    "address": "Avenida 30 de Agosto, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6918965885",
+    "source_url": "https://www.openstreetmap.org/node/6918965885"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6553843,
+     4.855584
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Sede renacimiento",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6933108586",
+    "source_url": "https://www.openstreetmap.org/node/6933108586"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.680739,
+     4.8276777
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "La rebaja plus",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6948799097",
+    "source_url": "https://www.openstreetmap.org/node/6948799097"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6995328,
+     4.8152057
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Pasteur",
+    "address": "Carrera 7, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6949394649",
+    "source_url": "https://www.openstreetmap.org/node/6949394649"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6983718,
+     4.8145174
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Alemana",
+    "address": "Calle 24, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6949394663",
+    "source_url": "https://www.openstreetmap.org/node/6949394663"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6006757,
+     4.7541662
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "San Marcos",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6957804085",
+    "source_url": "https://www.openstreetmap.org/node/6957804085"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6111935,
+     4.8243316
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "La Samaria",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7066600489",
+    "source_url": "https://www.openstreetmap.org/node/7066600489"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6959656,
+     4.8279482
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio colombo britanico",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7129235473",
+    "source_url": "https://www.openstreetmap.org/node/7129235473"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6990083,
+     4.8168964
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Policia Risaralda",
+    "address": "Calle 25 Carrera 5, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7146463985",
+    "source_url": "https://www.openstreetmap.org/node/7146463985"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6722527,
+     4.8340422
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Salud total",
+    "address": "Carrera 16, Dosquebradas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7173835986",
+    "source_url": "https://www.openstreetmap.org/node/7173835986"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8128057,
+     4.8017852
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Entrada Comunidad Colonia Crisol",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7176027485",
+    "source_url": "https://www.openstreetmap.org/node/7176027485"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8199379,
+     4.7973425
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Crisol",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7176210286",
+    "source_url": "https://www.openstreetmap.org/node/7176210286"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6960549,
+     4.7981663
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Dr. Carlos Arturo Velásquez",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7206683385",
+    "source_url": "https://www.openstreetmap.org/node/7206683385"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6855492,
+     4.8028159
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Clínica de fracturas Ltda",
+    "address": "Avenida Juan B. Gutiérrez 18 60, Pereria",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/8367607684",
+    "source_url": "https://www.openstreetmap.org/node/8367607684"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.951687,
+     4.7601748
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "The flying cockpits",
+    "address": "Aeropuerto internacional de Santa Ana local 3",
+    "phone": "+57 3166851414",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/8474141918",
+    "source_url": "https://www.openstreetmap.org/node/8474141918"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6922062,
+     4.7963286
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Unidad Renal RTS",
+    "address": "Calle 14 27-54, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/8522106817",
+    "source_url": "https://www.openstreetmap.org/node/8522106817"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7290942,
+     4.8233355
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Kinesiólogo",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/9156230517",
+    "source_url": "https://www.openstreetmap.org/node/9156230517"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6210433,
+     4.8662953
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "SUPER Drogas",
+    "address": "Carrera 14 14-70",
+    "phone": "+57 608 3641470",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/9363038617",
+    "source_url": "https://www.openstreetmap.org/node/9363038617"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6825005,
+     4.8233037
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro Colombiano de Capacitación Laboral “CEDEC”",
+    "address": "Calle 15 17-11, Dosquebradas - B/ Valher",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/9823927205",
+    "source_url": "https://www.openstreetmap.org/node/9823927205"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.920556,
+     4.7489791
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Universidad Remington",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/9962839974",
+    "source_url": "https://www.openstreetmap.org/node/9962839974"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7058038,
+     4.8112905
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Prored Salud Integral",
+    "address": "Carrera 13 Bis, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10126736392",
+    "source_url": "https://www.openstreetmap.org/node/10126736392"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6784576,
+     4.8374511
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Santa Isabel",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10131523489",
+    "source_url": "https://www.openstreetmap.org/node/10131523489"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7064606,
+     4.8123953
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "MHL Laboratorio",
+    "address": "Calle 33 12-50, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10131716195",
+    "source_url": "https://www.openstreetmap.org/node/10131716195"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7059433,
+     4.8116859
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "OffiMedicas MedisFarma",
+    "address": "Calle 32 Bis, Pereira",
+    "phone": "+57 607 6973918 x6552",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10133170161",
+    "source_url": "https://www.openstreetmap.org/node/10133170161"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7059647,
+     4.8115525
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Disfarma",
+    "address": "Calle 32 Bis 13-25, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10133170162",
+    "source_url": "https://www.openstreetmap.org/node/10133170162"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7024119,
+     4.8157036
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Denti White Laboratorio Dental",
+    "address": "Carrera 7, Pereira",
+    "phone": "+57 320 7342505; +57 320 5579543",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10236062202",
+    "source_url": "https://www.openstreetmap.org/node/10236062202"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7010505,
+     4.8157062
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "IPS San Sebastian",
+    "address": "Carrera 7, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10236142814",
+    "source_url": "https://www.openstreetmap.org/node/10236142814"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6973486,
+     4.8151481
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Edificio Antares",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10240011878",
+    "source_url": "https://www.openstreetmap.org/node/10240011878"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6960802,
+     4.815047
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Opti Lentes",
+    "address": "Carrera 7 21-16, Pereira",
+    "phone": "+57 606 3330869; +57 606 3351978",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10240083305",
+    "source_url": "https://www.openstreetmap.org/node/10240083305"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6951438,
+     4.8149275
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "GMO",
+    "address": "Carrera 7, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10240141615",
+    "source_url": "https://www.openstreetmap.org/node/10240141615"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6952186,
+     4.8141621
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Sonria",
+    "address": "Calle 20, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10241123111",
+    "source_url": "https://www.openstreetmap.org/node/10241123111"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6952308,
+     4.8140764
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "GMO",
+    "address": "Calle 20, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10241123113",
+    "source_url": "https://www.openstreetmap.org/node/10241123113"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6959842,
+     4.8147037
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Surti Opticas",
+    "address": "Calle 21 7-36, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10242281494",
+    "source_url": "https://www.openstreetmap.org/node/10242281494"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6959805,
+     4.8147382
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Cosmo Visión",
+    "address": "Calle 21 7-32, Pereira",
+    "phone": "+57 324 2513308",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10242281495",
+    "source_url": "https://www.openstreetmap.org/node/10242281495"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6994015,
+     4.8151899
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Inyectología El Lago",
+    "address": "Carrera 7, Pereira",
+    "phone": "+57 606 3332585",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10242914830",
+    "source_url": "https://www.openstreetmap.org/node/10242914830"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6996237,
+     4.8152121
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Audifarma",
+    "address": "Carrera 7 25-33, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10242914833",
+    "source_url": "https://www.openstreetmap.org/node/10242914833"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6996426,
+     4.8152156
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Unidad Eje Visual",
+    "address": "Carrera 7 25-41, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10242914834",
+    "source_url": "https://www.openstreetmap.org/node/10242914834"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6881062,
+     4.8139078
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Predent",
+    "address": "Carrera 7, Pereira",
+    "phone": "+57 301 6529230; +57 314 7720097",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10268707539",
+    "source_url": "https://www.openstreetmap.org/node/10268707539"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6881893,
+     4.8131631
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Consultorio Dental Angel Lopez",
+    "address": "Carrera 8 11-62, Centro",
+    "phone": "+57 606 3258178; +57 314 8281226",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10268780195",
+    "source_url": "https://www.openstreetmap.org/node/10268780195"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6816377,
+     4.8070369
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Coomeva EPS",
+    "address": "Avenida Circunvalar, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10273338629",
+    "source_url": "https://www.openstreetmap.org/node/10273338629"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6815236,
+     4.8071915
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Cardio Salud",
+    "address": "Avenida Circunvalar 3B-12, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10273338630",
+    "source_url": "https://www.openstreetmap.org/node/10273338630"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6817819,
+     4.8065988
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Saluti",
+    "address": "Avenida Circunvalar 3-49, Universidad",
+    "phone": "+57 606 340 2659",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10273597963",
+    "source_url": "https://www.openstreetmap.org/node/10273597963"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6868354,
+     4.8083218
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Botox Capilar Alisados",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10273752376",
+    "source_url": "https://www.openstreetmap.org/node/10273752376"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.685766,
+     4.8074282
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Entrega de MEdicamentos Droguería",
+    "address": "Avenida Circunvalar, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10273759710",
+    "source_url": "https://www.openstreetmap.org/node/10273759710"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.686428,
+     4.8079968
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Cimder",
+    "address": "Avenida Circunvalar 8-120, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10273759729",
+    "source_url": "https://www.openstreetmap.org/node/10273759729"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6870666,
+     4.8084671
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Unidad Oftalmológica Láser",
+    "address": "Avenida Circunvalar, Pereira",
+    "phone": "+57 320 6803362",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10278012741",
+    "source_url": "https://www.openstreetmap.org/node/10278012741"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6892075,
+     4.8085969
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Mórfosis",
+    "address": "Avenida Circunvalar, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10278128122",
+    "source_url": "https://www.openstreetmap.org/node/10278128122"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6894076,
+     4.8086431
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Ecadent",
+    "address": "Avenida Circunvalar, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10278128125",
+    "source_url": "https://www.openstreetmap.org/node/10278128125"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6905408,
+     4.8080879
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Futuro",
+    "address": "Calle 14 #13-51, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10287759949",
+    "source_url": "https://www.openstreetmap.org/node/10287759949"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6883056,
+     4.8082858
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Dentix",
+    "address": "Avenida Circunvalar 11-09, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10287760006",
+    "source_url": "https://www.openstreetmap.org/node/10287760006"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.685911,
+     4.8072349
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Dr. Christiano",
+    "address": "Avenida Circunvalar, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10287853320",
+    "source_url": "https://www.openstreetmap.org/node/10287853320"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6830059,
+     4.8063898
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Laskin",
+    "address": "Avenida Circunvalar 4-93, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10289527411",
+    "source_url": "https://www.openstreetmap.org/node/10289527411"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6800904,
+     4.8083399
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Oncologos del Occidente S.A.S",
+    "address": "Avenida Circunvalar 1-46, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10289669642",
+    "source_url": "https://www.openstreetmap.org/node/10289669642"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6994473,
+     4.8174711
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "C.A.I.",
+    "address": "Carrera 4 Bis, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10294387431",
+    "source_url": "https://www.openstreetmap.org/node/10294387431"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6935153,
+     4.8162013
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Cendiatra",
+    "address": "Carrera 5 18-33, Pereira",
+    "phone": "+57 606 3400689",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10539014042",
+    "source_url": "https://www.openstreetmap.org/node/10539014042"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7065936,
+     4.8117991
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Asmet Salud",
+    "address": "Carrera 13 32B-59, Pereira",
+    "phone": "+57 606 3290387",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10539193742",
+    "source_url": "https://www.openstreetmap.org/node/10539193742"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7081841,
+     4.8124873
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Nueva EPS",
+    "address": "Calle 35 #35-08, Pereira",
+    "phone": "+57 606 3400990",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10539193759",
+    "source_url": "https://www.openstreetmap.org/node/10539193759"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7040028,
+     4.8111208
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "SaludTotal EPS",
+    "address": "Carrera 13, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10539603894",
+    "source_url": "https://www.openstreetmap.org/node/10539603894"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6935847,
+     4.8162067
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Henry Macayza",
+    "address": "Carrera 5 18-33, Pereira",
+    "phone": "+57 301 2712140; +57 606 3409869",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10539693453",
+    "source_url": "https://www.openstreetmap.org/node/10539693453"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7048836,
+     4.8119729
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "OdontoArte",
+    "address": "Carrera 13, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10555147674",
+    "source_url": "https://www.openstreetmap.org/node/10555147674"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7058974,
+     4.8122899
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Odontoimagen",
+    "address": "Carrera 13, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10555147687",
+    "source_url": "https://www.openstreetmap.org/node/10555147687"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7133102,
+     4.8138003
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "CinéIPS I.P.S. Centro Internacional de Especialistas",
+    "address": "Carrera 13, Pereira",
+    "phone": "+57 606 3402384",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10568025253",
+    "source_url": "https://www.openstreetmap.org/node/10568025253"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8199373,
+     4.7973427
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Crisol",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10587753863",
+    "source_url": "https://www.openstreetmap.org/node/10587753863"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6903698,
+     4.8045017
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Doctor Ricardo De Lima",
+    "address": "Carrera 18 12-75, Pereira",
+    "phone": "+57 317 3239977",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10591731728",
+    "source_url": "https://www.openstreetmap.org/node/10591731728"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7115775,
+     4.812956
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "EPS Sanitas",
+    "address": "Carrera 13 39B-159, Pereira",
+    "phone": "+57 1 800 0919100",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10614865551",
+    "source_url": "https://www.openstreetmap.org/node/10614865551"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7093923,
+     4.8124207
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Nueva EPS Idme",
+    "address": "Carrera 13 #35-08, Pereira",
+    "phone": "+57 606 3400990",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10771286332",
+    "source_url": "https://www.openstreetmap.org/node/10771286332"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7123001,
+     4.8171735
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Unidad intermedia Centro ESE Salud Pereira",
+    "address": "Carrera 7 #40, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10782655735",
+    "source_url": "https://www.openstreetmap.org/node/10782655735"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6894004,
+     4.7986891
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Hospital Universitario Clínica San Rafael",
+    "address": "Calle 11 24-30, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10783326828",
+    "source_url": "https://www.openstreetmap.org/node/10783326828"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6971212,
+     4.8038909
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "A.A. Grupo Una Luz",
+    "address": "Calle 21, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10891278780",
+    "source_url": "https://www.openstreetmap.org/node/10891278780"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6971367,
+     4.8046012
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Farmacenter",
+    "address": "Calle 21 19-05, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10891352843",
+    "source_url": "https://www.openstreetmap.org/node/10891352843"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6964227,
+     4.9303409
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Alto Español",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10903124871",
+    "source_url": "https://www.openstreetmap.org/node/10903124871"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6947996,
+     4.8124369
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Medilaboral",
+    "address": "Calle 19 #9-50 Local 18A, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10927511041",
+    "source_url": "https://www.openstreetmap.org/node/10927511041"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6207588,
+     4.8653279
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Cruz Verde",
+    "address": "Carrera 14, Santa Rosa de Cabal",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10934504146",
+    "source_url": "https://www.openstreetmap.org/node/10934504146"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7121073,
+     4.8130197
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Idime Especialistas",
+    "address": "Avenida 30 de Agosto 30-31, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11069352450",
+    "source_url": "https://www.openstreetmap.org/node/11069352450"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7118439,
+     4.8129576
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Audifarma",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11078698871",
+    "source_url": "https://www.openstreetmap.org/node/11078698871"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7042052,
+     4.8112722
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Idime Profesionales",
+    "address": "Carrera 13 #30-31",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11085709668",
+    "source_url": "https://www.openstreetmap.org/node/11085709668"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7096035,
+     4.8128823
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Meide S.A.S",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11108279914",
+    "source_url": "https://www.openstreetmap.org/node/11108279914"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6991455,
+     4.8082213
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Sonreír",
+    "address": "Calle 24, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11108297442",
+    "source_url": "https://www.openstreetmap.org/node/11108297442"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6996207,
+     4.8186367
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Farmacenter",
+    "address": "Carrera 3, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11158139165",
+    "source_url": "https://www.openstreetmap.org/node/11158139165"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6818529,
+     4.8259599
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Radiología Oral",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11165632854",
+    "source_url": "https://www.openstreetmap.org/node/11165632854"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7435817,
+     4.7998498
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Multidrogas Corales",
+    "address": "Carrera 25 78-115, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11200691593",
+    "source_url": "https://www.openstreetmap.org/node/11200691593"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6725895,
+     4.9297069
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "caseta Junta Accion comunal",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11284407272",
+    "source_url": "https://www.openstreetmap.org/node/11284407272"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6565992,
+     4.8259417
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Casa para el abuelo. Calor de hogar",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11336694091",
+    "source_url": "https://www.openstreetmap.org/node/11336694091"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9102461,
+     4.750186
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Cruz Verde - Cartago Principal",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11472001084",
+    "source_url": "https://www.openstreetmap.org/node/11472001084"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9211251,
+     4.7489805
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Cruz Verde - Llano Cartago",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11472001085",
+    "source_url": "https://www.openstreetmap.org/node/11472001085"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7002857,
+     4.8131191
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Crecer es Psicología",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12106313407",
+    "source_url": "https://www.openstreetmap.org/node/12106313407"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7206765,
+     4.8147718
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Academia de artes y oficios Munich",
+    "address": "Carrera 11 48-180, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12138574089",
+    "source_url": "https://www.openstreetmap.org/node/12138574089"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6163736,
+     4.8622914
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Instafarma",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12207100704",
+    "source_url": "https://www.openstreetmap.org/node/12207100704"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9283393,
+     4.7553096
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "La Rebaja",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12282034010",
+    "source_url": "https://www.openstreetmap.org/node/12282034010"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8112769,
+     4.8409674
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Cauquillo",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12371679044",
+    "source_url": "https://www.openstreetmap.org/node/12371679044"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6833409,
+     4.823079
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Cruz Verde",
+    "address": "Carrera 16 14-16 L 2, Dosquebradas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12484381760",
+    "source_url": "https://www.openstreetmap.org/node/12484381760"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.677867,
+     4.9130404
+    ]
+   },
+   "properties": {
+    "kind": "water",
+    "name": "bocatoma acueducto vereda Caracol",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12720313687",
+    "source_url": "https://www.openstreetmap.org/node/12720313687"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6939909,
+     4.8161142
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Clinica Risaralda",
+    "address": "Calle 19 5 - 13, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12741901785",
+    "source_url": "https://www.openstreetmap.org/node/12741901785"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9185985,
+     4.7431346
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "I.E. Gabo",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12855882907",
+    "source_url": "https://www.openstreetmap.org/node/12855882907"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7150494,
+     4.7202306
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Droguerías Farmacenter",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12916338702",
+    "source_url": "https://www.openstreetmap.org/node/12916338702"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8462172,
+     4.9372361
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Predio la Judea",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13159678987",
+    "source_url": "https://www.openstreetmap.org/node/13159678987"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8827838,
+     4.894336
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Coonfamiliar",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13165554021",
+    "source_url": "https://www.openstreetmap.org/node/13165554021"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8832415,
+     4.8931272
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Casa Sr. Damian",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13166832767",
+    "source_url": "https://www.openstreetmap.org/node/13166832767"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8177822,
+     4.8073303
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "La Pasteur",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13239257002",
+    "source_url": "https://www.openstreetmap.org/node/13239257002"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8180198,
+     4.8072563
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Cruz Verde",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13239257011",
+    "source_url": "https://www.openstreetmap.org/node/13239257011"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8325664,
+     4.8037514
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Droguerías 91-92",
+    "address": "Cerritos",
+    "phone": "+57 6063300192",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13725854404",
+    "source_url": "https://www.openstreetmap.org/node/13725854404"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8318007,
+     4.8036806
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Cruz Verde",
+    "address": "Cerritos",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13725854408",
+    "source_url": "https://www.openstreetmap.org/node/13725854408"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6992167,
+     4.8313512
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Centro Oncológico Dos Quebradas",
+    "address": "carrera 2 1-489",
+    "phone": "+57 606 3341513",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13757363906",
+    "source_url": "https://www.openstreetmap.org/node/13757363906"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6918197,
+     4.8079645
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "La Liga",
+    "address": "172",
+    "phone": "+57 310 2511086",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13759316160",
+    "source_url": "https://www.openstreetmap.org/node/13759316160"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7071737,
+     4.8118843
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Diswifarma",
+    "address": "Avenida 30 de Agosto, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13799826396",
+    "source_url": "https://www.openstreetmap.org/node/13799826396"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6782178,
+     4.8166314
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Centro de Atención Ambulatorio Japón",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13921320519",
+    "source_url": "https://www.openstreetmap.org/node/13921320519"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.674524,
+     4.8144282
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Oral Dentist",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13921320522",
+    "source_url": "https://www.openstreetmap.org/node/13921320522"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7960789,
+     4.8189813
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Centro Geriátrico Los Arcángeles Cerritos",
+    "address": "Ent. 3 Los Lagos #1, Cerritos, Pereira, Risaralda, Colombia, Pereira",
+    "phone": "+57 311 4022395",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13991185816",
+    "source_url": "https://www.openstreetmap.org/node/13991185816"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9102607,
+     4.7511466
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Bomberos Voluntarios Cartago",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/108218661",
+    "source_url": "https://www.openstreetmap.org/way/108218661"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9024071,
+     4.7519309
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "IPS Municipal de Cartago",
+    "address": "Carrera 3 Bis 1-40",
+    "phone": "+57 2 2108335",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/108231663",
+    "source_url": "https://www.openstreetmap.org/way/108231663"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6953094,
+     4.8087023
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro Cultural, Turístico y Gastronómico \"Calle de la Fundación\"",
+    "address": "Carrera 14, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/152344195",
+    "source_url": "https://www.openstreetmap.org/way/152344195"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6876948,
+     4.7947721
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Universidad Tecnologica de Pereira",
+    "address": "Edificio 3",
+    "phone": "+57 (6) 3137141 - 3137513",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/159258534",
+    "source_url": "https://www.openstreetmap.org/way/159258534"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6721153,
+     4.8329093
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Salud Oral Comfamiliar Risaralda",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/185215437",
+    "source_url": "https://www.openstreetmap.org/way/185215437"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6829135,
+     4.8307693
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Fabio Vasquez Botero",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/185448124",
+    "source_url": "https://www.openstreetmap.org/way/185448124"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7231,
+     4.8028166
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Sede SENA",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/244162326",
+    "source_url": "https://www.openstreetmap.org/way/244162326"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6947853,
+     4.7086022
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela la castalia",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/317206043",
+    "source_url": "https://www.openstreetmap.org/way/317206043"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6917945,
+     4.7147002
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Lorencita Villegas de Santos",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/317206044",
+    "source_url": "https://www.openstreetmap.org/way/317206044"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6657685,
+     4.850164
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Cuerpo Oficial de Bomberos de Dosquebradas",
+    "address": null,
+    "phone": "+57 6 3439119; +57 6 3284050",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/318161604",
+    "source_url": "https://www.openstreetmap.org/way/318161604"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.713259,
+     4.7209415
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/322121773",
+    "source_url": "https://www.openstreetmap.org/way/322121773"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7383687,
+     4.7040774
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Locadio Salazar",
+    "address": "Carrera 2",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/323909731",
+    "source_url": "https://www.openstreetmap.org/way/323909731"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7385161,
+     4.703897
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Cuerpo de Bomberos",
+    "address": "Calle 4, Barrio La Gloria",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/323909732",
+    "source_url": "https://www.openstreetmap.org/way/323909732"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7070995,
+     4.7060711
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Estación de policía",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/324877761",
+    "source_url": "https://www.openstreetmap.org/way/324877761"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7081109,
+     4.7067433
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Puesto de salud",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/324877763",
+    "source_url": "https://www.openstreetmap.org/way/324877763"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6247304,
+     4.8794978
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "IPS ESE Hospital San Vicente de Paúl",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/347972748",
+    "source_url": "https://www.openstreetmap.org/way/347972748"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7387756,
+     4.9389163
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Mariscal Sucre",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/409610470",
+    "source_url": "https://www.openstreetmap.org/way/409610470"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7378408,
+     4.9402698
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Hospital San José",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/409611080",
+    "source_url": "https://www.openstreetmap.org/way/409611080"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7375076,
+     4.9379342
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela María Inmaculada",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/409612386",
+    "source_url": "https://www.openstreetmap.org/way/409612386"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7410993,
+     4.9376222
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Juan José Rondón",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/409612605",
+    "source_url": "https://www.openstreetmap.org/way/409612605"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7424311,
+     4.9322727
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Agrícola",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/409618148",
+    "source_url": "https://www.openstreetmap.org/way/409618148"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7376569,
+     4.9331338
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Simón Bolívar",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/409622152",
+    "source_url": "https://www.openstreetmap.org/way/409622152"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.737363,
+     4.7037334
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Estación de Policía Ulloa",
+    "address": "Carrera 2, Ulloa",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/469103833",
+    "source_url": "https://www.openstreetmap.org/way/469103833"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6949358,
+     4.7984065
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "CAI de Policia Boston",
+    "address": "Calle 17 23b - 02, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/477056969",
+    "source_url": "https://www.openstreetmap.org/way/477056969"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7602176,
+     4.8051762
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Universidad Libre",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/489423302",
+    "source_url": "https://www.openstreetmap.org/way/489423302"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7411372,
+     4.8134351
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Bomberos",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/512344410",
+    "source_url": "https://www.openstreetmap.org/way/512344410"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.5853268,
+     4.7322362
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela La Suiza",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/525927781",
+    "source_url": "https://www.openstreetmap.org/way/525927781"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9249124,
+     4.7505701
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Multidrogas Droguerías",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/525980788",
+    "source_url": "https://www.openstreetmap.org/way/525980788"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7624278,
+     4.8070389
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Universidad Autónoma de las Américas",
+    "address": null,
+    "phone": "+57 6 3200303",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/528225118",
+    "source_url": "https://www.openstreetmap.org/way/528225118"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7040054,
+     4.8022716
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "CAI Poblado",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/528774647",
+    "source_url": "https://www.openstreetmap.org/way/528774647"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7378471,
+     4.7935501
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "CAI San Joaquín",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/529496652",
+    "source_url": "https://www.openstreetmap.org/way/529496652"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6821307,
+     4.8227298
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "CAI Valher",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/529780268",
+    "source_url": "https://www.openstreetmap.org/way/529780268"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7359752,
+     4.706981
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Policarpa Salavarrieta",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/534160686",
+    "source_url": "https://www.openstreetmap.org/way/534160686"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.611397,
+     4.7584127
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Subestación de policia La Florida",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/536790491",
+    "source_url": "https://www.openstreetmap.org/way/536790491"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6992624,
+     4.8086623
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "CAI Centenario",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/541085401",
+    "source_url": "https://www.openstreetmap.org/way/541085401"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6722001,
+     4.8078061
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "CAI Kennedy",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/542094481",
+    "source_url": "https://www.openstreetmap.org/way/542094481"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6794828,
+     4.8221365
+    ]
+   },
+   "properties": {
+    "kind": "pharmacy",
+    "name": "Famidrogas",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/546407578",
+    "source_url": "https://www.openstreetmap.org/way/546407578"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6903482,
+     4.8074881
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "CEDICAF",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/547106592",
+    "source_url": "https://www.openstreetmap.org/way/547106592"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7096571,
+     4.8123257
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Pasbisalud IPS",
+    "address": "Calle 37, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/547116563",
+    "source_url": "https://www.openstreetmap.org/way/547116563"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6765575,
+     4.7557079
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Bomberos Tribunas",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/563678453",
+    "source_url": "https://www.openstreetmap.org/way/563678453"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7400009,
+     4.9354456
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Estrada",
+    "address": "Marsella",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/563908332",
+    "source_url": "https://www.openstreetmap.org/way/563908332"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9031571,
+     4.7515855
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Hospital Sagrado Corazón de Jesús",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/575720026",
+    "source_url": "https://www.openstreetmap.org/way/575720026"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6943818,
+     4.7940619
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "CDV San Luis",
+    "address": "15 87, Pereira",
+    "phone": "+57 3155311344",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/576093894",
+    "source_url": "https://www.openstreetmap.org/way/576093894"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9588257,
+     4.9510188
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Estación de Policía Balboa",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/577569582",
+    "source_url": "https://www.openstreetmap.org/way/577569582"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6899031,
+     4.8040674
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Clínica San Rafael",
+    "address": "Carrera 18 #12-32, Pereira",
+    "phone": "+57 606 3115411",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/633519170",
+    "source_url": "https://www.openstreetmap.org/way/633519170"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.5857654,
+     4.7323863
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "JAC",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/638279989",
+    "source_url": "https://www.openstreetmap.org/way/638279989"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6931297,
+     4.7982505
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Instituto Tecnico Superior - Seccion Primaria",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/652454119",
+    "source_url": "https://www.openstreetmap.org/way/652454119"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6052471,
+     4.9789694
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Santander",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/652504709",
+    "source_url": "https://www.openstreetmap.org/way/652504709"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6798892,
+     4.8286218
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Medimas IPS",
+    "address": "Dosquebradas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/658206192",
+    "source_url": "https://www.openstreetmap.org/way/658206192"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6193819,
+     4.8672175
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Estacion de Policía Santa Rosa de Cabal",
+    "address": "Carrera 12, Santa Rosa de Cabal",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/666951254",
+    "source_url": "https://www.openstreetmap.org/way/666951254"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6651058,
+     4.8438396
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Antonio José de Sucre",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/685761253",
+    "source_url": "https://www.openstreetmap.org/way/685761253"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6421512,
+     4.9237896
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "El Lembo - SENA",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/692098973",
+    "source_url": "https://www.openstreetmap.org/way/692098973"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7140421,
+     4.7339765
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro Docente María Cristina Gómez",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/692619272",
+    "source_url": "https://www.openstreetmap.org/way/692619272"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7129664,
+     4.739832
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "IPS ESE Salud Pereira - Puesto de Salud Altagracia",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/692619273",
+    "source_url": "https://www.openstreetmap.org/way/692619273"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7549604,
+     4.8114689
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "CAI Belmonte",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/698692603",
+    "source_url": "https://www.openstreetmap.org/way/698692603"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6167533,
+     4.8609012
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Nacional Francisco José de Caldas",
+    "address": "Calle 7, Santa Rosa de Cabal",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/705578535",
+    "source_url": "https://www.openstreetmap.org/way/705578535"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.614796,
+     4.8601985
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Instituto Técnico Industrial",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/705578536",
+    "source_url": "https://www.openstreetmap.org/way/705578536"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6140247,
+     4.8645754
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Veracruz",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/705581278",
+    "source_url": "https://www.openstreetmap.org/way/705581278"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6985106,
+     4.8152784
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "La Rebaja",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/742337191",
+    "source_url": "https://www.openstreetmap.org/way/742337191"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6700792,
+     4.8205983
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Fabio Vásquez Botero",
+    "address": "Calle 23 27-15, Dosquebradas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/747177508",
+    "source_url": "https://www.openstreetmap.org/way/747177508"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7001595,
+     4.8134756
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Urgencias Clinica los Rosales",
+    "address": "Calle 26, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/806154785",
+    "source_url": "https://www.openstreetmap.org/way/806154785"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6866035,
+     4.808865
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Clinica Fracturas y Fracturas",
+    "address": "Carrera 12 Bis 9 22, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/900778817",
+    "source_url": "https://www.openstreetmap.org/way/900778817"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7354826,
+     4.7016686
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Hospital Local Pedro Sáenz Díaz",
+    "address": "7 - 06",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/910554129",
+    "source_url": "https://www.openstreetmap.org/way/910554129"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7549637,
+     4.8118784
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Hospital Mental Universitario de Risaralda",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/946551606",
+    "source_url": "https://www.openstreetmap.org/way/946551606"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7390367,
+     4.8074906
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Estación de Bomberos San Fernando",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/949423100",
+    "source_url": "https://www.openstreetmap.org/way/949423100"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6618278,
+     4.8555321
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "CAI de Policía Bosques de la Acuarela",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1012254657",
+    "source_url": "https://www.openstreetmap.org/way/1012254657"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7711011,
+     4.8032657
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Fundación Liceo Inglés",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1028998428",
+    "source_url": "https://www.openstreetmap.org/way/1028998428"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6980712,
+     4.8214921
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución educativa Ruben Sanin Mejía",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1030231344",
+    "source_url": "https://www.openstreetmap.org/way/1030231344"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6679773,
+     4.8404617
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Fundación Comunitaria Luna Nueva",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1042673240",
+    "source_url": "https://www.openstreetmap.org/way/1042673240"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9583679,
+     4.949173
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Bomberos",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1049151033",
+    "source_url": "https://www.openstreetmap.org/way/1049151033"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9591923,
+     4.9513147
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "ESE Hospital Cristo Rey",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1049151079",
+    "source_url": "https://www.openstreetmap.org/way/1049151079"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.731897,
+     4.8066255
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Caseta Comunal Barrio el Cortés",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1065723241",
+    "source_url": "https://www.openstreetmap.org/way/1065723241"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7065206,
+     4.8173564
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Bomberos Pereira",
+    "address": "Calle 33 Carrer 6, Pereira",
+    "phone": "+57 660 331 2897, +57 606 331 2846 +57 606 331 2905",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1107077877",
+    "source_url": "https://www.openstreetmap.org/way/1107077877"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.714743,
+     4.8172672
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Laboratorio de Salud CA",
+    "address": "Carrera 7 #43-30, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1121512804",
+    "source_url": "https://www.openstreetmap.org/way/1121512804"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6935503,
+     4.8161305
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Centro de Especialistas de Risaralda",
+    "address": "Carrera 5 #18-33, Pereira",
+    "phone": "+57 606 3359885",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1130910365",
+    "source_url": "https://www.openstreetmap.org/way/1130910365"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6564067,
+     4.8259566
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Casa para el abuelo. Calor de hogar",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1152385486",
+    "source_url": "https://www.openstreetmap.org/way/1152385486"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7286214,
+     4.7868424
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Instituto Psicopedagogico Harvard",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1156341522",
+    "source_url": "https://www.openstreetmap.org/way/1156341522"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6987921,
+     4.8163402
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Universidad CIAF",
+    "address": "Carrera 6 24 - 56, Pereira, Risaralda",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1157704716",
+    "source_url": "https://www.openstreetmap.org/way/1157704716"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9003094,
+     4.7590457
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "C.E Enrique Millan Rubio",
+    "address": "Puerto Caldas,Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1170413416",
+    "source_url": "https://www.openstreetmap.org/way/1170413416"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9005214,
+     4.7589406
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Puesto de Salud Puerto Caldas",
+    "address": "Puerto Caldas,Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1170413417",
+    "source_url": "https://www.openstreetmap.org/way/1170413417"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8517465,
+     4.7981331
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Corporación Club Campestre de Pereira",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1172192593",
+    "source_url": "https://www.openstreetmap.org/way/1172192593"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8236685,
+     4.8041803
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "I.E Comunitaria Cerritos Sede Sagrado Corazón",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1180283341",
+    "source_url": "https://www.openstreetmap.org/way/1180283341"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6225631,
+     4.8656145
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Clínica Santa Clara",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1182584186",
+    "source_url": "https://www.openstreetmap.org/way/1182584186"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6187833,
+     4.8655737
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Santa María Goretti",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1182584187",
+    "source_url": "https://www.openstreetmap.org/way/1182584187"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7276729,
+     4.8011206
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Centro de Salud Villa Consota",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1191938373",
+    "source_url": "https://www.openstreetmap.org/way/1191938373"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8237362,
+     4.8044998
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Puesto de Salud fonda Central",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1191941208",
+    "source_url": "https://www.openstreetmap.org/way/1191941208"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7034152,
+     4.81845
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Comfamiliar",
+    "address": "Carrera 4, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1202215320",
+    "source_url": "https://www.openstreetmap.org/way/1202215320"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6951229,
+     4.8159591
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Clínica los Nevados",
+    "address": "Carrera 6 20 -04/40, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1221791171",
+    "source_url": "https://www.openstreetmap.org/way/1221791171"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7911325,
+     4.8135374
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Jardin Infantil Volteretas",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1229181602",
+    "source_url": "https://www.openstreetmap.org/way/1229181602"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9007937,
+     4.7606659
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Bomberos Puerto Caldas",
+    "address": "Puerto Caldas,Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1273139579",
+    "source_url": "https://www.openstreetmap.org/way/1273139579"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9154082,
+     4.7840598
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "CE Puerto Caldas",
+    "address": "Puerto Cladas, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1273428383",
+    "source_url": "https://www.openstreetmap.org/way/1273428383"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8977263,
+     4.7630636
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro de desarrollo Infantil",
+    "address": "Puerto Caldas,Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1273951046",
+    "source_url": "https://www.openstreetmap.org/way/1273951046"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9261149,
+     4.7542159
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Oncologos de Occidente",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1281449541",
+    "source_url": "https://www.openstreetmap.org/way/1281449541"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6946051,
+     4.8166935
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "CRAI UNIVERSIDAD CIAF",
+    "address": "Calle 20 4 -57, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1283017829",
+    "source_url": "https://www.openstreetmap.org/way/1283017829"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6913849,
+     4.8187981
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "UNDMO",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1285006031",
+    "source_url": "https://www.openstreetmap.org/way/1285006031"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7148505,
+     4.8167205
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Pablo Emilio Cardona",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1301548728",
+    "source_url": "https://www.openstreetmap.org/way/1301548728"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9369491,
+     4.7510862
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "I.E.  Diocesana Paulo VI",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1303298073",
+    "source_url": "https://www.openstreetmap.org/way/1303298073"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9424202,
+     4.7570412
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "I.E Indalecio Penilla",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1303302303",
+    "source_url": "https://www.openstreetmap.org/way/1303302303"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.92464,
+     4.7512415
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Tecnico Comercial Dioscesano Santa Maria",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1303332274",
+    "source_url": "https://www.openstreetmap.org/way/1303332274"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9252163,
+     4.759778
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Clinica Comfandi Cartago",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1304699066",
+    "source_url": "https://www.openstreetmap.org/way/1304699066"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9096343,
+     4.7338898
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Universidad del Valle Sede Cartago",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1304708111",
+    "source_url": "https://www.openstreetmap.org/way/1304708111"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7189794,
+     4.814337
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "IPS CGI Colombia",
+    "address": "Carrera 11 47 - 35, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1311359221",
+    "source_url": "https://www.openstreetmap.org/way/1311359221"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8190678,
+     4.8052631
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Liceo Meraní",
+    "address": "Km.8 Vía Cerritos Pereira Entrada 12, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1313339555",
+    "source_url": "https://www.openstreetmap.org/way/1313339555"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9055316,
+     4.744091
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "I.E Ramón Martínez Benítez, sede C.D.V",
+    "address": "Calle 4 10 - 42, Cartago Valle",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1314677269",
+    "source_url": "https://www.openstreetmap.org/way/1314677269"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6898015,
+     4.8038223
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Urgencias Clinica San rafael Sede Pinares",
+    "address": "Calle 12 18 - 50, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1321867155",
+    "source_url": "https://www.openstreetmap.org/way/1321867155"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6949287,
+     4.8162041
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Urgencias Clinica Los nevados",
+    "address": "Calle 20 5 - 21, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1321873693",
+    "source_url": "https://www.openstreetmap.org/way/1321873693"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.796903,
+     4.8178174
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Instituto del Sistema Nervioso del Risaralda",
+    "address": "Entrada 4 Las Cascadas, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1333241907",
+    "source_url": "https://www.openstreetmap.org/way/1333241907"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9234159,
+     4.7481501
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "I.E Sor María Juliana Sede Principal",
+    "address": "Calle 21 5 - 111, Cartago Valle del Cauca",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1345120059",
+    "source_url": "https://www.openstreetmap.org/way/1345120059"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9230702,
+     4.748771
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Sor María Juliana Sede Lastenia Durán Vernaza",
+    "address": "Calle 20 5 - 84, Cartago Valle del Cauca",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1345127785",
+    "source_url": "https://www.openstreetmap.org/way/1345127785"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9252704,
+     4.7518388
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "IE Sor María Juliana sede Rigoberto Orozco Cardona",
+    "address": "Calle 21A, Cartago Valle del Cauca",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1345133690",
+    "source_url": "https://www.openstreetmap.org/way/1345133690"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9220069,
+     4.7473088
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Sor María Anastasia",
+    "address": "Calle 19 6 - 42, Cartago Valle del Cauca",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1345136183",
+    "source_url": "https://www.openstreetmap.org/way/1345136183"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9175044,
+     4.7422905
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Nacional Académico",
+    "address": "Carrera 11 15 - 46, Cartago Valle del Cauca",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1345139729",
+    "source_url": "https://www.openstreetmap.org/way/1345139729"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9074674,
+     4.726737
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "IE Lázaro de Gardea",
+    "address": "Cartago",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1353030236",
+    "source_url": "https://www.openstreetmap.org/way/1353030236"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.91221,
+     4.7474564
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "I.E Alfonso Lopez Pumarejo",
+    "address": "Calle 11, Cártago",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1353030543",
+    "source_url": "https://www.openstreetmap.org/way/1353030543"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.765532,
+     4.8126528
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Clinica Central del Eje",
+    "address": "Avenida 30 de Agosto 45 - 80, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1373456585",
+    "source_url": "https://www.openstreetmap.org/way/1373456585"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.686872,
+     4.8019463
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Pinares Médica",
+    "address": "Calle 9 20 - 15, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1373762837",
+    "source_url": "https://www.openstreetmap.org/way/1373762837"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6596574,
+     4.8562925
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Rodolfo Llinas",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1378424936",
+    "source_url": "https://www.openstreetmap.org/way/1378424936"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8808882,
+     4.9001912
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1396028090",
+    "source_url": "https://www.openstreetmap.org/way/1396028090"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.930036,
+     4.7505922
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Uniminuto",
+    "address": "Carrera 4, Cartago Valle",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1425868655",
+    "source_url": "https://www.openstreetmap.org/way/1425868655"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9307828,
+     4.7518145
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Hermanitas de los pobre \"Mi casa\"",
+    "address": "Carrera 4 26 - 47, Cartago Valle",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1425868658",
+    "source_url": "https://www.openstreetmap.org/way/1425868658"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7144663,
+     4.8062228
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Farmatodo",
+    "address": "Avenida de las Américas, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1432137012",
+    "source_url": "https://www.openstreetmap.org/way/1432137012"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7653614,
+     4.8131872
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Clinica Central del Eje",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1432635194",
+    "source_url": "https://www.openstreetmap.org/way/1432635194"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8142558,
+     4.8087649
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Farmatodo - Cerritos",
+    "address": "Cerritos ,Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1443066265",
+    "source_url": "https://www.openstreetmap.org/way/1443066265"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.668903,
+     4.7488756
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Universidad del Quindio - Sede Pereira",
+    "address": null,
+    "phone": "+57 316 4782363",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1445394496",
+    "source_url": "https://www.openstreetmap.org/way/1445394496"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6676095,
+     4.7495433
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Jardín Escolar Sagrados Corazones Pereira",
+    "address": null,
+    "phone": "+57 313 6088585",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1445394516",
+    "source_url": "https://www.openstreetmap.org/way/1445394516"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6676985,
+     4.7468233
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa José Antonio Galán",
+    "address": "Vía Pereira Armenia Km 7",
+    "phone": "+57 633 86344",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1445394525",
+    "source_url": "https://www.openstreetmap.org/way/1445394525"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.681373,
+     4.8123569
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro de Adulto Mayor - Alcaldía de Pereira",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1452387829",
+    "source_url": "https://www.openstreetmap.org/way/1452387829"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6724018,
+     4.9318375
+    ]
+   },
+   "properties": {
+    "kind": "shelter",
+    "name": "construcción abandonada",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1486415563",
+    "source_url": "https://www.openstreetmap.org/way/1486415563"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7003632,
+     4.8316941
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Centro Oncológico Dos Quebradas",
+    "address": "Variante Romelia - El Pollo 29, Dos Quebradas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1504570134",
+    "source_url": "https://www.openstreetmap.org/way/1504570134"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9064236,
+     4.7411556
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Estacion de policia de Cartago El Berlin",
+    "address": "Cartago",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1536649934",
+    "source_url": "https://www.openstreetmap.org/way/1536649934"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6661936,
+     4.8382933
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Estación de Policía Dosquebradas",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/5279192",
+    "source_url": "https://www.openstreetmap.org/relation/5279192"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6731403,
+     4.8233312
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Santa Juana",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/6038287",
+    "source_url": "https://www.openstreetmap.org/relation/6038287"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.689112,
+     4.7942536
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Universidad Tecnológica de Pereira",
+    "address": "Pereira",
+    "phone": "+57 6 3137300",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/6794266",
+    "source_url": "https://www.openstreetmap.org/relation/6794266"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6870441,
+     4.7913292
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Inmaculado Corazón de María Franciscanas",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/6794304",
+    "source_url": "https://www.openstreetmap.org/relation/6794304"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6883923,
+     4.7977808
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Instituto Técnico Superior de Pereira",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/6794305",
+    "source_url": "https://www.openstreetmap.org/relation/6794305"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7252253,
+     4.8055763
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Universidad Católica de Pereira",
+    "address": "Avenida de las Americas #45-95, Pereira",
+    "phone": "+57 606 3124000",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/6794329",
+    "source_url": "https://www.openstreetmap.org/relation/6794329"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7377561,
+     4.7042342
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Leocadio Salazar",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/6921665",
+    "source_url": "https://www.openstreetmap.org/relation/6921665"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7450489,
+     4.8065522
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Luis Carlos González Mejía",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7350942",
+    "source_url": "https://www.openstreetmap.org/relation/7350942"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7449005,
+     4.8048019
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Fundación CINDES",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7350943",
+    "source_url": "https://www.openstreetmap.org/relation/7350943"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7419814,
+     4.7982369
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Unidad Intermedia Cuba ESE Salud",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7367016",
+    "source_url": "https://www.openstreetmap.org/relation/7367016"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7423637,
+     4.8010599
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Cooperativo",
+    "address": "Carrera 25 75b - 22, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7414485",
+    "source_url": "https://www.openstreetmap.org/relation/7414485"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7006344,
+     4.8141299
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "SENA Pereira",
+    "address": "Carrera 8 #26-79, Pereira",
+    "phone": "+57 1 800 0910270",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7423878",
+    "source_url": "https://www.openstreetmap.org/relation/7423878"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7370998,
+     4.8111754
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Alfonso Jaramillo Gutiérrez. Sede La Villa",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7435670",
+    "source_url": "https://www.openstreetmap.org/relation/7435670"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7020672,
+     4.8061241
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institucion Educativa Deogracias Cardona",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7616193",
+    "source_url": "https://www.openstreetmap.org/relation/7616193"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7044413,
+     4.8031897
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institucion Educativa Remigio Antonio Cañarte",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7616194",
+    "source_url": "https://www.openstreetmap.org/relation/7616194"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7114556,
+     4.8159811
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa La Inmaculada",
+    "address": "Carrera 8 #39-40, Pereira",
+    "phone": "+57 606 3486456",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7616320",
+    "source_url": "https://www.openstreetmap.org/relation/7616320"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7120383,
+     4.8164429
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Universidad Libre",
+    "address": "Calle 40 #7-30, Pereira",
+    "phone": "+57 606 3401081",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7616322",
+    "source_url": "https://www.openstreetmap.org/relation/7616322"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7124398,
+     4.8164915
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Nuestra Señora de Fátima",
+    "address": "Carrera 8, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7616323",
+    "source_url": "https://www.openstreetmap.org/relation/7616323"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7365263,
+     4.8044048
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Ciudadela Cuba",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7622794",
+    "source_url": "https://www.openstreetmap.org/relation/7622794"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7443914,
+     4.803016
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Jesus Maria Ormaza",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7622799",
+    "source_url": "https://www.openstreetmap.org/relation/7622799"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.717868,
+     4.8056596
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Comando de Policia Risaralda",
+    "address": "Avenida de las Americas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7623040",
+    "source_url": "https://www.openstreetmap.org/relation/7623040"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7186934,
+     4.8101076
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Normal Superior El Jardín de Risaralda",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7623043",
+    "source_url": "https://www.openstreetmap.org/relation/7623043"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6942904,
+     4.8176961
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Carlota Sanchez",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7625277",
+    "source_url": "https://www.openstreetmap.org/relation/7625277"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7392377,
+     4.793739
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Hans Drews Arango",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7628546",
+    "source_url": "https://www.openstreetmap.org/relation/7628546"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7372903,
+     4.792266
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa San Joaquín",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7628547",
+    "source_url": "https://www.openstreetmap.org/relation/7628547"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7397986,
+     4.7895891
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Carlos E. Vasco",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7628548",
+    "source_url": "https://www.openstreetmap.org/relation/7628548"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.747151,
+     4.7913877
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Salamanca",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7628582",
+    "source_url": "https://www.openstreetmap.org/relation/7628582"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7377313,
+     4.7987224
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Leningrado",
+    "address": "Carrera 28C 80-00",
+    "phone": "3373653",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7628583",
+    "source_url": "https://www.openstreetmap.org/relation/7628583"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7332911,
+     4.7823133
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Bethlemitas",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7639779",
+    "source_url": "https://www.openstreetmap.org/relation/7639779"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7146092,
+     4.8082747
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Normal Superior El Jardín de Risaralda",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7639901",
+    "source_url": "https://www.openstreetmap.org/relation/7639901"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7435988,
+     4.8018803
+    ]
+   },
+   "properties": {
+    "kind": "shelter",
+    "name": "Esta es mi casa",
+    "address": null,
+    "phone": "+57 6 3375655",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7641296",
+    "source_url": "https://www.openstreetmap.org/relation/7641296"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7333405,
+     4.7968988
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Byron Gaviria",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7650166",
+    "source_url": "https://www.openstreetmap.org/relation/7650166"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7096859,
+     4.7959253
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Diego Maya Salazar",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7668932",
+    "source_url": "https://www.openstreetmap.org/relation/7668932"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7215622,
+     4.8120829
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Oncólogos De Occidente Maraya",
+    "address": "Calle 50, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7674027",
+    "source_url": "https://www.openstreetmap.org/relation/7674027"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7189738,
+     4.8122342
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Calasanz Pereira",
+    "address": "Carrera 19 #46-50, Pereira",
+    "phone": "+57 606 3400191; +57 316 8302809",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7681664",
+    "source_url": "https://www.openstreetmap.org/relation/7681664"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7162129,
+     4.8112444
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "INEM Felipe Pérez",
+    "address": "Avenida Jardin 1 Etapa Carrera 19 #45-50, Pereira",
+    "phone": "+12 34567890",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7681665",
+    "source_url": "https://www.openstreetmap.org/relation/7681665"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6115495,
+     4.7590515
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro Docente Francisco Miranda",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7706880",
+    "source_url": "https://www.openstreetmap.org/relation/7706880"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.61146,
+     4.7587196
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Héctor Angel Arcila",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7706881",
+    "source_url": "https://www.openstreetmap.org/relation/7706881"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7170689,
+     4.8169452
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Clínica Noe",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7707093",
+    "source_url": "https://www.openstreetmap.org/relation/7707093"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6800241,
+     4.8240598
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "IPS ESE Hospital Santa Mónica",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7734964",
+    "source_url": "https://www.openstreetmap.org/relation/7734964"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6646154,
+     4.8344626
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Pablo Sexto",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7735010",
+    "source_url": "https://www.openstreetmap.org/relation/7735010"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6647608,
+     4.8472951
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Los Andes",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7735017",
+    "source_url": "https://www.openstreetmap.org/relation/7735017"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6815457,
+     4.8372442
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "SENA Centro de Diseño e Innovacion Tecnologica Industrial (CDITI)",
+    "address": "Diagonal 27A #4-2  #4-114, Dosquebradas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7735028",
+    "source_url": "https://www.openstreetmap.org/relation/7735028"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6981312,
+     4.8136485
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Universitaria del Área Andina Pereira",
+    "address": "calle 24 8 - 55, Pereira, Risaralda",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7736580",
+    "source_url": "https://www.openstreetmap.org/relation/7736580"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6989003,
+     4.8182114
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "ESE Hospital Universitario San Jorge",
+    "address": "Carrera 4 #24-88, Pereira",
+    "phone": "+57 606 3206815; +57 606 3206819",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7739309",
+    "source_url": "https://www.openstreetmap.org/relation/7739309"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6953089,
+     4.7981052
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Suroccidental",
+    "address": "Calle 17 23b - 20, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7740572",
+    "source_url": "https://www.openstreetmap.org/relation/7740572"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6993723,
+     4.8037964
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Providencia",
+    "address": "Carrera 20, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7740576",
+    "source_url": "https://www.openstreetmap.org/relation/7740576"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.680832,
+     4.8067478
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Clínica Comfamiliar Pereira",
+    "address": "Avenida Circunvalar, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7747863",
+    "source_url": "https://www.openstreetmap.org/relation/7747863"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6763479,
+     4.8071024
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Fundación Gimnasio Pereira",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7747939",
+    "source_url": "https://www.openstreetmap.org/relation/7747939"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.680137,
+     4.8077112
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio La Enseñanza",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7747942",
+    "source_url": "https://www.openstreetmap.org/relation/7747942"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.673085,
+     4.7933425
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Jaime Salazar Robledo",
+    "address": "Carrera 25 2E 35, Pereira",
+    "phone": "3317771",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7750105",
+    "source_url": "https://www.openstreetmap.org/relation/7750105"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6720461,
+     4.806941
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Instituto Kennedy",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7750106",
+    "source_url": "https://www.openstreetmap.org/relation/7750106"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6776689,
+     4.7928127
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Jardín Social Perlitas del Otún",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7750110",
+    "source_url": "https://www.openstreetmap.org/relation/7750110"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6712617,
+     4.8069428
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "ESE Salud Pereira - Unidad Intermedia Kennedy",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7750111",
+    "source_url": "https://www.openstreetmap.org/relation/7750111"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6947276,
+     4.7939491
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Suroriental",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7752458",
+    "source_url": "https://www.openstreetmap.org/relation/7752458"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.693416,
+     4.7972752
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Universidad Antonio Nariño",
+    "address": "Carrera 27, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7752531",
+    "source_url": "https://www.openstreetmap.org/relation/7752531"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6903654,
+     4.8041431
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "MegaCentro Pinares PH",
+    "address": "Carrera 18 12-75, Pereira",
+    "phone": "+57 606 3213222",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7753429",
+    "source_url": "https://www.openstreetmap.org/relation/7753429"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6721842,
+     4.8089589
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Hogar infantil Kennedy",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7755483",
+    "source_url": "https://www.openstreetmap.org/relation/7755483"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6764984,
+     4.8117788
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Jorge Eliecer Gaitan",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7757022",
+    "source_url": "https://www.openstreetmap.org/relation/7757022"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7309907,
+     4.8275642
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio de Malaga",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7766986",
+    "source_url": "https://www.openstreetmap.org/relation/7766986"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.666336,
+     4.8045152
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro de Interpretación la CARDER",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7801585",
+    "source_url": "https://www.openstreetmap.org/relation/7801585"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6693507,
+     4.8030534
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institucion Educativa Villa Santana",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7801591",
+    "source_url": "https://www.openstreetmap.org/relation/7801591"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6740243,
+     4.7971892
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro Educativo Canceles",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7827527",
+    "source_url": "https://www.openstreetmap.org/relation/7827527"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7421079,
+     4.804479
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro Educativo Juan XXIII",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7895397",
+    "source_url": "https://www.openstreetmap.org/relation/7895397"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7400844,
+     4.8061586
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Estación de Policia Cuba",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7895398",
+    "source_url": "https://www.openstreetmap.org/relation/7895398"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7393534,
+     4.8054633
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa San Fernando",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7895401",
+    "source_url": "https://www.openstreetmap.org/relation/7895401"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7388357,
+     4.8064783
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Santa Rosa de Lima",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7895651",
+    "source_url": "https://www.openstreetmap.org/relation/7895651"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7413499,
+     4.8015783
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "IPS Clínica San Rafael",
+    "address": "Avenida de las Americas 74a - 87, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7896011",
+    "source_url": "https://www.openstreetmap.org/relation/7896011"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6706029,
+     4.830096
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "UNAL Dosquebradas",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/8136512",
+    "source_url": "https://www.openstreetmap.org/relation/8136512"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6725319,
+     4.8310582
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Salesiano",
+    "address": "Dosquebradas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/8136515",
+    "source_url": "https://www.openstreetmap.org/relation/8136515"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.704711,
+     4.8090128
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institucion Educativa San Nicolás",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/8247153",
+    "source_url": "https://www.openstreetmap.org/relation/8247153"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6791091,
+     4.8224309
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro De Desarrollo Infantil La Aurora",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/9052444",
+    "source_url": "https://www.openstreetmap.org/relation/9052444"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6533214,
+     4.8513876
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Oficial Manuel Elkin Patarroyo",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/9586238",
+    "source_url": "https://www.openstreetmap.org/relation/9586238"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7607268,
+     4.8043346
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "CRUE",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/9610974",
+    "source_url": "https://www.openstreetmap.org/relation/9610974"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.754951,
+     4.81192
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "IPS ESE Hospital Mental Universitario de Risaralda",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/9707907",
+    "source_url": "https://www.openstreetmap.org/relation/9707907"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6988251,
+     4.8171397
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Departamento de Policia Risaralda",
+    "address": "Carrera 5, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/10263987",
+    "source_url": "https://www.openstreetmap.org/relation/10263987"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6998711,
+     4.8134315
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Clinica Los Rosales",
+    "address": "Carrera 9 25-25, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/10263988",
+    "source_url": "https://www.openstreetmap.org/relation/10263988"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6951421,
+     4.7768218
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Liceo Francés de Pereira",
+    "address": "Via Armenia Pereira., Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/10266909",
+    "source_url": "https://www.openstreetmap.org/relation/10266909"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.910986,
+     4.7506512
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Corporación de estudios Tecnológicos del Norte del Valle",
+    "address": "Calle 10 3-95",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/10817733",
+    "source_url": "https://www.openstreetmap.org/relation/10817733"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9184566,
+     4.7532582
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio María Auxiliadora",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/10817767",
+    "source_url": "https://www.openstreetmap.org/relation/10817767"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.920131,
+     4.7529068
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Liceo Cartago",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/10817768",
+    "source_url": "https://www.openstreetmap.org/relation/10817768"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.925206,
+     4.7597883
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Clínica Comfandi Cartago",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/10817821",
+    "source_url": "https://www.openstreetmap.org/relation/10817821"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9161289,
+     4.7509777
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela Caldas - Biblioteca Publica",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/10824556",
+    "source_url": "https://www.openstreetmap.org/relation/10824556"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8830205,
+     4.8969092
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Liceo Gabriela Mistral",
+    "address": "Calle 9 7 83, La Virginia Risaralda",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/11905914",
+    "source_url": "https://www.openstreetmap.org/relation/11905914"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8793283,
+     4.9002886
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "IPS ESE Hospital San Pedro y San Pablo",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/11905927",
+    "source_url": "https://www.openstreetmap.org/relation/11905927"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8808466,
+     4.8977365
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Bernardo Arias Trujillo",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/11905929",
+    "source_url": "https://www.openstreetmap.org/relation/11905929"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.883551,
+     4.9014166
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Alfonso López Pumarejo",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/11905964",
+    "source_url": "https://www.openstreetmap.org/relation/11905964"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.917749,
+     4.7602248
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Clinica Nueva de Cartago SAS",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/12267309",
+    "source_url": "https://www.openstreetmap.org/relation/12267309"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6641537,
+     4.8122323
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Puesto de Salud Frailes",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/12607707",
+    "source_url": "https://www.openstreetmap.org/relation/12607707"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6859473,
+     4.8233722
+    ]
+   },
+   "properties": {
+    "kind": "responder",
+    "name": "Estación de Bomberos",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/12618152",
+    "source_url": "https://www.openstreetmap.org/relation/12618152"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6733125,
+     4.8178243
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Faraón Hotel Club Campestre",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/12636988",
+    "source_url": "https://www.openstreetmap.org/relation/12636988"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7566452,
+     4.8051228
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Establecimiento de Sanidad Policial Risaralda",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/13550560",
+    "source_url": "https://www.openstreetmap.org/relation/13550560"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6275765,
+     4.8668596
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Veracruz",
+    "address": "Santa Rosa de Cabal",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/13923501",
+    "source_url": "https://www.openstreetmap.org/relation/13923501"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6276632,
+     4.8683451
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Escuela La Hermosa",
+    "address": "Santa Rosa de Cabal",
+    "phone": "+57 606 3642386",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/13923502",
+    "source_url": "https://www.openstreetmap.org/relation/13923502"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6681777,
+     4.8407597
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "San Pedro y San Pablo",
+    "address": "Calle 50",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/13951605",
+    "source_url": "https://www.openstreetmap.org/relation/13951605"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6679384,
+     4.8405285
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Sede Social",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/13951606",
+    "source_url": "https://www.openstreetmap.org/relation/13951606"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6634551,
+     4.8430666
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Puesto de Salud Santa Mónica",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/14163732",
+    "source_url": "https://www.openstreetmap.org/relation/14163732"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7313932,
+     4.8060629
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Centro Educativo Hans Drews Arango Sede La Unión",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/14207893",
+    "source_url": "https://www.openstreetmap.org/relation/14207893"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7524934,
+     4.7999633
+    ]
+   },
+   "properties": {
+    "kind": "shelter",
+    "name": "Granja Infantíl Jesús de la Buena Esperanza",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/14366785",
+    "source_url": "https://www.openstreetmap.org/relation/14366785"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7324021,
+     4.8225426
+    ]
+   },
+   "properties": {
+    "kind": "shelter",
+    "name": "Centro de salud y casa del abuelo",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/15713252",
+    "source_url": "https://www.openstreetmap.org/relation/15713252"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7325753,
+     4.8216974
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Ciudad Boquia",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/15713253",
+    "source_url": "https://www.openstreetmap.org/relation/15713253"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.811558,
+     4.8106678
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Colegio Saint Andrews",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/16792762",
+    "source_url": "https://www.openstreetmap.org/relation/16792762"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8274008,
+     4.8031292
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Comunitario Cerritos",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/16792769",
+    "source_url": "https://www.openstreetmap.org/relation/16792769"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9061777,
+     4.7600869
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Institución Educativa Carlos Castro Saavedra",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/17538285",
+    "source_url": "https://www.openstreetmap.org/relation/17538285"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6867762,
+     4.8017069
+    ]
+   },
+   "properties": {
+    "kind": "medical",
+    "name": "Pinares Medica",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/18136361",
+    "source_url": "https://www.openstreetmap.org/relation/18136361"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7868591,
+     4.8171209
+    ]
+   },
+   "properties": {
+    "kind": "shelter_candidate",
+    "name": "Club del Comercio Campestre",
+    "address": "Vía la salle, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/19824731",
+    "source_url": "https://www.openstreetmap.org/relation/19824731"
+   }
+  }
+ ]
+}

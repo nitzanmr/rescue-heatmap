@@ -3,8 +3,8 @@
 // between them, and it is committed to the repo so an activation with no
 // outbound internet still has the layer.
 //
-//   npm run aid-sites -- --bbox 5.55,-76.80,5.85,-76.55 --out ../../data/aid-sites/quibdo.geojson
-//   npm run aid-sites -- --file ../../data/aid-sites/quibdo.geojson --country CO --load
+//   npm run aid-sites -- --bbox 4.70,-75.96,4.98,-75.56 --out ../../data/aid-sites/pereira-co.geojson
+//   npm run aid-sites -- --file ../../data/aid-sites/pereira-co.geojson --country CO --load
 //
 // Loading never overwrites a human. A row somebody verified in the field keeps
 // its name, status and phone; only geometry and provenance are refreshed.

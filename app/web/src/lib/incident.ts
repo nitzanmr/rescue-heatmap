@@ -1,10 +1,10 @@
 // Per-incident configuration. In a real deployment this is the ONE file the team
 // edits during activation (see docs/deployment-playbook.md).
 export const incident = {
-  id: "CO-2026-08-CHOCO",
-  name: "Sismo Chocó, Colombia",
+  id: "CO-2026-08-PEREIRA",
+  name: "Sismo Eje Cafetero, Colombia",
   country: "Colombia",
-  city: "Quibdó",
+  city: "Pereira",
   // Short, readable-over-the-radio host. Everything shared publicly points here.
   //
   // Precedence (see publicUrlFor): an explicit NEXT_PUBLIC_BASE_URL wins, then
@@ -18,23 +18,38 @@ export const incident = {
   countryCode: "CO",
   quakeAt: "2026-08-10T12:34:00Z",
   languages: ["es", "en"] as const,
-  center: { lat: 5.6947, lng: -76.6611 }, // Quibdó
+  // Pereira, Risaralda. The registry data is overwhelmingly Pereira and its
+  // metro ring (Dosquebradas, La Virginia); Quibdó was the drill's setting and
+  // is 200 km away.
+  center: { lat: 4.8133, lng: -75.6961 }, // Pereira, Centro
   zoom: 13,
   // Everything the geocoder returns must land inside this box. A geocoder asked
   // for "Calle 24" will happily answer with a Calle 24 in Bogotá, 500 km away —
   // and a coordinate that far off does not read as an error on a map, it reads
   // as a second disaster site with people under it.
-  bbox: { minLat: 5.60, minLng: -76.74, maxLat: 5.79, maxLng: -76.58 },
+  //
+  // The box covers the Pereira metro area: Pereira, Dosquebradas and La
+  // Virginia. It deliberately does NOT cover Cali — Cali is ~200 km south, a
+  // separate city with its own responders, and ~70 registry records point
+  // there. Those records must NOT be silently placed on this map; they belong
+  // to a second incident. Widening the box to swallow them would produce one
+  // heat map spanning two departments, which reads as a single search area.
+  bbox: { minLat: 4.74, minLng: -75.92, maxLat: 4.94, maxLng: -75.60 },
   // Pre-loaded landmarks for location picking. These carry COORDINATES on
   // purpose: offline there is no geocoder, and a landmark name without a point
   // is exactly the bug this list was supposed to prevent.
+  //
+  // Every coordinate below was resolved against Nominatim and is cached in
+  // data/external/geocode-cache.json — none of them are typed by hand.
   landmarks: [
-    { name: "Coliseo Municipal", lat: 5.6926, lng: -76.6585 },
-    { name: "Hospital San Francisco de Asís", lat: 5.6939, lng: -76.6552 },
-    { name: "Parque Manuel Mosquera", lat: 5.6919, lng: -76.6616 },
-    { name: "Colegio Carrasquilla", lat: 5.6892, lng: -76.6603 },
-    { name: "Iglesia San Francisco", lat: 5.6913, lng: -76.6628 },
-    { name: "Terminal de Transportes", lat: 5.6836, lng: -76.6470 },
+    { name: "Parque La Libertad", lat: 4.8149, lng: -75.6882 },
+    { name: "Plaza de Bolívar (Centro)", lat: 4.8171, lng: -75.6959 },
+    { name: "Hospital Universitario San Jorge", lat: 4.8181, lng: -75.6989 },
+    { name: "Clínica Comfamiliar", lat: 4.8066, lng: -75.6808 },
+    { name: "Clínica Los Rosales", lat: 4.8135, lng: -75.7002 },
+    { name: "Universidad Tecnológica de Pereira", lat: 4.7943, lng: -75.6889 },
+    { name: "Barrio Parque Industrial", lat: 4.8231, lng: -75.7311 },
+    { name: "Aeropuerto Matecaña", lat: 4.8125, lng: -75.7403 },
   ],
 };
 

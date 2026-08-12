@@ -55,8 +55,8 @@ const chance = (p: number) => r() < p;
 // screen. Nothing failed, so nothing reported a failure.
 // test/map-visibility.test.ts fails if these two ever drift apart again.
 const CENTRE = {
-  lat: Number(process.env.SEED_CENTRE_LAT ?? 5.6947),
-  lng: Number(process.env.SEED_CENTRE_LNG ?? -76.6611),
+  lat: Number(process.env.SEED_CENTRE_LAT ?? 4.8133),
+  lng: Number(process.env.SEED_CENTRE_LNG ?? -75.6961),
 };
 
 interface Person {
@@ -361,7 +361,7 @@ export async function seed(total = Number(process.env.SEED_CASES ?? 500)) {
              now() + interval '30 days')
      ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name
      RETURNING id, ref_prefix`,
-    [slug, "Simulacro Quibdó (datos sintéticos)", CENTRE.lng, CENTRE.lat]
+    [slug, "Simulacro Pereira (datos sintéticos)", CENTRE.lng, CENTRE.lat]
   );
   if (!inc) throw new Error("could not create incident");
 

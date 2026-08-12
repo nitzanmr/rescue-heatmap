@@ -66,8 +66,8 @@ seed:    ## Synthetic incident with known duplicates (SEED_CASES=500)
 # Two steps on purpose: PULL writes a GeoJSON a human reviews and commits, LOAD
 # puts a reviewed file into the database. An activation with no outbound network
 # still has the layer, because the file is in the repo.
-#   make aid-sites-pull BBOX=5.55,-76.80,5.85,-76.55 OUT=data/aid-sites/quibdo-co.geojson
-#   make aid-sites-load FILE=data/aid-sites/quibdo-co.geojson COUNTRY=CO
+#   make aid-sites-pull BBOX=4.70,-75.96,4.98,-75.56 OUT=data/aid-sites/pereira-co.geojson
+#   make aid-sites-load FILE=data/aid-sites/pereira-co.geojson COUNTRY=CO
 aid-sites-pull: ## Pull aid sites from OpenStreetMap into a GeoJSON file (BBOX=s,w,n,e OUT=...)
 	@test -n "$(BBOX)" || (echo "BBOX=south,west,north,east is required"; exit 1)
 	cd services/api && npm run aid-sites -- --bbox $(BBOX) --out ../../$${OUT:-../../data/aid-sites/sites.geojson}

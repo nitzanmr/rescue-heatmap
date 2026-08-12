@@ -10,7 +10,8 @@ same as absent.
 
 | File | Area | Sites | Source |
 |------|------|-------|--------|
-| `quibdo-co.geojson` | Quibdó, Chocó (5.55,-76.80 → 5.85,-76.55) | 108 | OpenStreetMap via Overpass, pulled 11 Aug 2026 |
+| `pereira-co.geojson` | Pereira metro, Risaralda (4.70,-75.96 → 4.98,-75.56) | 449 | OpenStreetMap via Overpass, pulled 12 Aug 2026 |
+| `archive/quibdo-co.geojson` | Quibdó, Chocó (5.55,-76.80 → 5.85,-76.55) | 108 | Kept for the drill's history. Files under `archive/` are **not** loaded by seeding. |
 
 Attribution is **mandatory**: © OpenStreetMap contributors (ODbL). The API
 returns it on every response and the map prints it.
@@ -18,9 +19,9 @@ returns it on every response and the map prints it.
 ## Refresh / add an area
 
 ```
-make aid-sites-pull BBOX=5.55,-76.80,5.85,-76.55 OUT=data/aid-sites/quibdo-co.geojson
+make aid-sites-pull BBOX=4.70,-75.96,4.98,-75.56 OUT=data/aid-sites/pereira-co.geojson
 # review the diff — this is a human step, not a formality
-make aid-sites-load FILE=data/aid-sites/quibdo-co.geojson COUNTRY=CO
+make aid-sites-load FILE=data/aid-sites/pereira-co.geojson COUNTRY=CO
 ```
 
 The file is committed so an activation with no outbound internet still has the
