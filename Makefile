@@ -1,6 +1,6 @@
 # One entry point for the whole stack. The target that matters is `drill`:
 # from an empty machine to a running system with data, in one command.
-.PHONY: help up down migrate seed test ablation rank-ablation places-top nominate build build-api build-web logs logs-edge psql drill reset fresh web operator-token
+.PHONY: help up down migrate seed test ablation rank-ablation places-top nominate geocode build build-api build-web logs logs-edge psql drill reset fresh web operator-token
 
 COMPOSE ?= docker compose
 # Host port for the dev database. Override when 5432 is already taken:
@@ -311,3 +311,15 @@ places-top: ## Rank the structures many people named at once (file only, read-on
 # and only a signed approval puts anything on a map. INCIDENT=... make nominate
 nominate: ## Queue place nominations for human review (INCIDENT=... , add LOAD=1 to write)
 	@cd services/api && npx tsx src/place-nominate.ts --incident "$${INCIDENT:?set INCIDENT=<slug>}" $${LOAD:+--load}
+
+# Ask a gazetteer where the most-named structures are, and grade every answer.
+# A graded suggestion lands in the cand_* columns and NOWHERE else: it is not a
+# decision, the map cannot read it, and only a signed human approval can.
+# File mode needs no database and no import:
+#   TOP=30 make geocode
+# Against the queued nominations:
+#   INCIDENT=quibdo-2026 TOP=40 LOAD=1 make geocode
+geocode: ## Grade a geocoder's guess for the top structures (TOP=30; INCIDENT=... LOAD=1 to store)
+	@cd services/api && npx tsx src/place-geocode.ts \
+	  $${INCIDENT:+--incident $$INCIDENT} $${INCIDENT:---file ../../$${FILE:-data/external/ctb-full.ndjson}} \
+	  --top $${TOP:-30} $${LOAD:+--load}

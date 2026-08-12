@@ -49,6 +49,13 @@ export type PlaceCluster = {
   /** The spelling the most people used. What a reviewer reads. */
   label: string;
   municipality: string | null;
+  /**
+   * The municipality as a person wrote it ("Cali, Valle del Cauca"), as opposed
+   * to `municipality`, which is the order-independent identity key
+   * ("cali cauca valle"). The key is right for grouping and wrong for reading —
+   * and wrong for a gazetteer, which parses the string as an address.
+   */
+  municipalityLabel: string | null;
   /** Every distinct raw spelling folded in, most common first. */
   variants: string[];
   ids: string[];
@@ -139,6 +146,42 @@ export function clusterKey(raw: string): string {
   return [...new Set(kept)].sort().join(" ");
 }
 
+/**
+ * Does this label name a CATEGORY rather than a building?
+ *
+ * "clinica", "el edificio", "hospital, Cali" — lines like these survive
+ * clustering (they have to group with themselves) but they must never be sent
+ * to a gazetteer, because a gazetteer will happily return *a* clinic. The live
+ * run on this registry did exactly that: the bare word "clinica" in Pereira
+ * came back as a precise, confident, arbitrary point.
+ */
+export function isGenericLabel(raw: string | null | undefined): boolean {
+  if (!raw) return true;
+  const words = head(raw)
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter(Boolean);
+  if (!words.length) return true;
+  const onlyKnownWords = words.every(
+    (w) => TYPE_WORDS.has(w) || STOP_WORDS.has(w) || ADMIN_WORDS.has(w)
+  );
+  if (!onlyKnownWords) return false;
+
+  // "Aeropuerto de Pereira" is only known words too — and it is a real,
+  // findable building, because a town has one airport. A town has forty
+  // clinics. So a type word plus a town name is a name only when the type
+  // itself is singular in a town.
+  const types = words.filter((w) => TYPE_WORDS.has(w));
+  const towns = words.filter((w) => ADMIN_WORDS.has(w));
+  return !(towns.length > 0 && types.some((t) => SINGULAR_TYPES.has(t)));
+}
+
+/** Structure kinds a municipality has exactly one of, so "of <town>" names it. */
+const SINGULAR_TYPES = new Set([
+  "aeropuerto", "terminal", "estadio", "alcaldia", "coliseo", "cementerio",
+  "universidad", "sena",
+]);
+
 /** Cheap bounded edit distance. Returns >max as soon as it can. */
 export function editDistance(a: string, b: string, max = 2): number {
   if (Math.abs(a.length - b.length) > max) return max + 1;
@@ -218,6 +261,7 @@ export function clusterPlaces(rows: PlaceRow[]): PlaceCluster[] {
     municipality: string | null;
     ids: string[];
     spellings: Map<string, number>;
+    muniSpellings: Map<string, number>;
   };
   const buckets: Bucket[] = [];
   const byExact = new Map<string, Bucket>();
@@ -240,7 +284,7 @@ export function clusterPlaces(rows: PlaceRow[]): PlaceCluster[] {
       if (bucket) {
         byExact.set(exactId, bucket);
       } else {
-        bucket = { key, municipality: muni, ids: [], spellings: new Map() };
+        bucket = { key, municipality: muni, ids: [], spellings: new Map(), muniSpellings: new Map() };
         buckets.push(bucket);
         byExact.set(exactId, bucket);
       }
@@ -248,6 +292,8 @@ export function clusterPlaces(rows: PlaceRow[]): PlaceCluster[] {
     bucket.ids.push(r.id);
     const spelling = head(r.place);
     bucket.spellings.set(spelling, (bucket.spellings.get(spelling) ?? 0) + 1);
+    const rawMuni = (r.municipality ?? "").trim();
+    if (rawMuni) bucket.muniSpellings.set(rawMuni, (bucket.muniSpellings.get(rawMuni) ?? 0) + 1);
   }
 
   return buckets
@@ -261,6 +307,9 @@ export function clusterPlaces(rows: PlaceRow[]): PlaceCluster[] {
         // one person's typo must not become the name on an operator's screen.
         label: variants[0],
         municipality: b.municipality,
+        municipalityLabel:
+          [...b.muniSpellings.entries()].sort((x, y) => y[1] - x[1] || x[0].localeCompare(y[0]))[0]?.[0] ??
+          null,
         variants,
         ids: b.ids,
         count: b.ids.length,

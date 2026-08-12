@@ -164,3 +164,51 @@ which it is — the same rule as the dedup queue.
 Erasure keeps its one-statement promise: `forget_external_source` now sweeps
 nominations first, so a labelled address with a count of zero cannot survive
 the deletion of the people it was derived from.
+
+## Geocoding: the answer is easy, the grade is the work (12 Aug 2026)
+
+Turning a clustered structure into a coordinate took about 40 lines. Deciding
+which coordinates to believe took the rest, and is the only part worth reading.
+
+A geocoder always answers. Live, on this registry:
+
+| line | what came back | usable? |
+|---|---|---|
+| Universidad Tecnológica de Pereira | amenity/university, rank 30 | yes — a campus |
+| Parque la Libertad, Pereira | boundary/administrative, rank 18 | **no** — the *sector named after* the park, ~900 m across |
+| Parque industrial, Pereira | place/city, rank 16 | **no** — the town centroid |
+| clínica, Pereira | a real clinic, precisely located | **no** — an arbitrary one |
+
+All four have the same shape in JSON. So every answer is graded, and the grade
+is stored beside the point: `exact` (a building/amenity feature) / `street` /
+`area` (a boundary that merely carries the name) / `town` (the municipality
+centroid — the failure that puts a hot cell on a town square) / `none`.
+
+Rules the live run forced, none of which were obvious beforehand:
+
+- **Most precise wins, not most popular.** The provider ranks by importance, so
+  the famous sector outranks the building inside it. Take the best *grade* out
+  of five results, not the first result.
+- **Wrong municipality ⇒ no coordinate at all**, not a low score. "Parque
+  Central" exists in every town in Colombia; a confident point 400 km away is
+  not a near miss, it is a team sent to another department.
+- **A category is never asked about.** `clínica`, `el edificio` — a gazetteer
+  answers with *a* clinic, precisely. But `aeropuerto de Pereira` *is* a name,
+  because a town has one airport and forty clinics. The distinction is a small
+  list of singular structure types.
+- **Query with the readable municipality, not the identity key.** Clustering
+  folds "Cali, Valle del Cauca" to the sorted key `cali cauca valle`; a
+  gazetteer parses that as an address and fails. Clusters now carry both.
+
+Result on the top 40 structures: 11 `exact` (74 people), 1 `street`, 1 `area`,
+1 `town`, 26 `none`. **The two largest clusters — the hotel with 93 names and
+the Cali residential towers with 37 — are not in OpenStreetMap at all.** That is
+the honest headline: for private buildings, which is what collapses, automatic
+geocoding does not answer the question. It clears the easy third so a human hour
+goes to the hard two-thirds.
+
+Migration 0016 keeps the suggestion in `cand_*` columns, physically separate
+from the human-signed `lat/lng` from 0015. Reason: in the type system they are
+identical, in meaning they are not, and one pre-filled form is all it takes for
+a lookup to become a signature. `approved_place` still reads only the human
+columns. `place_review_queue` shows both, with the next action spelled out.
