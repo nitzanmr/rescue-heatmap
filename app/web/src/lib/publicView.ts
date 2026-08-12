@@ -82,10 +82,20 @@ export interface PublicCardData {
   incidentName: string;
 }
 
+// The link printed on every shared card and QR.
+//
+// Order matters. NEXT_PUBLIC_BASE_URL is the deliberate override (a short host
+// that reads well over the radio, or a staging build that must not emit
+// production links). Absent that we use the origin the browser is on right now,
+// so a card shared from the tailscale deployment, from localhost, or from a
+// future production host all point back at the deployment that issued them.
+// The literal host is only a last resort for server-side rendering, where there
+// is no origin to read — and every consumer of this URL (share sheet, canvas
+// poster, QR) runs in the browser.
 export function publicUrlFor(reference: string): string {
   const base =
-    incident.publicBaseUrl ||
-    (typeof window !== "undefined" ? window.location.origin : "https://ejemplo.org");
+    incident.publicBaseUrlExplicit ||
+    (typeof window !== "undefined" ? window.location.origin : incident.publicBaseUrl);
   return `${base.replace(/\/$/, "")}/r/${reference}`;
 }
 

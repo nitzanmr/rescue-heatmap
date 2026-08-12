@@ -6,7 +6,12 @@ export const incident = {
   country: "Colombia",
   city: "Quibdó",
   // Short, readable-over-the-radio host. Everything shared publicly points here.
-  // Overridable at deploy time so a staging build never emits production links.
+  //
+  // Precedence (see publicUrlFor): an explicit NEXT_PUBLIC_BASE_URL wins, then
+  // the origin the page is actually being served from, and only then this
+  // fallback. A hardcoded host is the wrong default for a link that has to work
+  // — whoever receives the card must land on the deployment that issued it.
+  publicBaseUrlExplicit: process.env.NEXT_PUBLIC_BASE_URL || "",
   publicBaseUrl: process.env.NEXT_PUBLIC_BASE_URL || "https://buscamos.co",
   // Shown on every page while true. Set NEXT_PUBLIC_DEMO=0 only for a real activation.
   demo: process.env.NEXT_PUBLIC_DEMO !== "0",
