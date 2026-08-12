@@ -335,7 +335,7 @@ function PhotoField({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
           <input type="file" accept="image/*" capture="environment" onChange={onFile} style={{ display: "none" }} />
         </label>
       )}
-      {err && <span className="small" style={{ color: "var(--danger, #c1121f)" }}>{err}</span>}
+      {err && <span className="small" style={{ color: "var(--danger)" }}>{err}</span>}
 
       {/* SEPARATE consent. Attaching a photo is not the same decision as publishing it.
           Opt-IN: unchecked by default. The photo still reaches the rescue teams either way. */}
@@ -519,7 +519,7 @@ function StepPlace({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
       )}
 
       {geoError && (
-        <p className="small" style={{ color: "#d29922", marginTop: 0 }}>{geoError}</p>
+        <p className="small" style={{ color: "var(--warn)", marginTop: 0 }}>{geoError}</p>
       )}
 
       {/* The honest state banner. This is the whole point of the fix: a report
@@ -592,7 +592,7 @@ function StepPlace({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
           })}
         </div>
         {blockedMsg && (
-          <p className="small" style={{ color: "#d29922", marginTop: 6 }}>{blockedMsg}</p>
+          <p className="small" style={{ color: "var(--warn)", marginTop: 6 }}>{blockedMsg}</p>
         )}
       </div>
 

@@ -90,6 +90,20 @@ export default function MapaPage() {
         </button>
       </div>
 
+      {/* The heat ramp is read as CATEGORIES, not as a shade. Without a printed
+          legend an operator invents his own thresholds, and two people looking at
+          the same map disagree about what "orange" means. */}
+      {showHeat && cells.length > 0 && (
+        <div className="heat-legend" style={{ margin: "10px 0 14px" }}>
+          <span>Reportes en la zona:</span>
+          <span className="sw"><i className="heat-1" />2</span>
+          <span className="sw"><i className="heat-2" />3</span>
+          <span className="sw"><i className="heat-3" />4</span>
+          <span className="sw"><i className="heat-4" />5</span>
+          <span className="sw"><i className="heat-5" />6+</span>
+        </div>
+      )}
+
       {err && <p className="muted small">{err}</p>}
       {loading && !cells.length && !sites.length && <p className="muted small">Cargando…</p>}
 

@@ -113,7 +113,7 @@ export default function PublicMap({ cells, sites, showHeat, showSites, cellM }: 
       blur: 18,
       maxZoom: 16,
       minOpacity: 0.25,
-      gradient: { 0.2: "#ffe08a", 0.5: "#f0883e", 0.8: "#ff5c5c", 1.0: "#c02020" },
+      gradient: { 0.2: "#fbe3b8", 0.45: "#f4c07c", 0.7: "#e9924b", 0.85: "#d3602f", 1.0: "#a8281c" },
     }).addTo(m);
   }, [cells, showHeat]);
 

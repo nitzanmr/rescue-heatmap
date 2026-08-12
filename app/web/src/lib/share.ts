@@ -17,14 +17,17 @@ import { PublicCardData } from "./publicView";
 export type CardFormat = "link" | "story";
 
 const C = {
-  bg: "#0d1117",
-  panel: "#161b22",
-  line: "#2a3441",
-  text: "#e6edf3",
-  muted: "#8b98a9",
-  accent: "#f0883e",
-  danger: "#ff5c5c",
-  ok: "#3fb950",
+  // Paper-and-ink, matching the site. A dark card with an orange accent looked
+  // like every AI-built landing page; a cream poster with heavy ink type reads as
+  // an official notice, which is what makes a stranger forward it.
+  bg: "#f3efe5",
+  panel: "#fbf9f3",
+  line: "#d9d2c2",
+  text: "#16232f",
+  muted: "#5d6b78",
+  accent: "#1d4e89",
+  danger: "#a3251c",
+  ok: "#1c6b3f",
 };
 
 function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
@@ -172,7 +175,8 @@ async function draw(d: PublicCardData, format: CardFormat): Promise<HTMLCanvasEl
     roundRect(ctx, pad, 110, pillW, 68, 34);
     ctx.fillStyle = accent;
     ctx.fill();
-    ctx.fillStyle = "#150c04";
+    // The pill is now a saturated ink colour, so its text must be paper-white.
+    ctx.fillStyle = "#ffffff";
     ctx.fillText(d.statusLabel, pad + 28, 110 + 18);
 
     const photoSize = W - pad * 2;

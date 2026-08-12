@@ -60,13 +60,15 @@ export default function HeatMap({ cells, mode, cellM = 100 }: Props) {
         radius: 28,
         blur: 22,
         maxZoom: 17,
-        gradient: { 0.2: "#2b6cb0", 0.45: "#f0c674", 0.7: "#f0883e", 1.0: "#ff3b3b" },
+        // Categorical ramp, same five bands as the legend: an operator reads a band,
+        // not a shade. Cool blue is gone — warm colour means "people", nothing else.
+        gradient: { 0.2: "#fbe3b8", 0.4: "#f4c07c", 0.6: "#e9924b", 0.8: "#d3602f", 1.0: "#a8281c" },
       }).addTo(m);
     } else {
       const group = L.layerGroup();
       cells.forEach((c) => {
         const intensity = c.weight / max;
-        const colour = intensity > 0.66 ? "#ff3b3b" : intensity > 0.33 ? "#f0c674" : "#2b6cb0";
+        const colour = intensity > 0.66 ? "#a8281c" : intensity > 0.33 ? "#e9924b" : "#f4c07c";
         const marker = L.circleMarker([c.lat, c.lng], {
           radius: 5 + Math.min(c.cases, 8),
           color: colour,

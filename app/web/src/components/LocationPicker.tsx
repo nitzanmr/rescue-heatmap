@@ -97,7 +97,7 @@ export default function LocationPicker({ lat, lng, onPick }: Props) {
         Toca el mapa o arrastra el punto hasta el lugar exacto.
       </p>
       {outside && (
-        <p className="small" style={{ color: "#ff5c5c", marginTop: 4 }}>
+        <p className="small" style={{ color: "var(--danger)", marginTop: 4 }}>
           Ese punto está fuera de la zona del evento. No se guardó.
         </p>
       )}

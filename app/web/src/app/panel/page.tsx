@@ -161,6 +161,13 @@ function PanelBody({ onSignOut }: { onSignOut: () => void }) {
         <button className="btn ghost" onClick={onSignOut}>Salir</button>
       </div>
 
+      {/* Said in the interface, not only in the terms of use. Everything below is
+          a RANKING and a SUGGESTION: nothing on this screen merges two people or
+          dispatches a team on its own. */}
+      <div className="human-rule" style={{ marginTop: 14 }}>
+        Esta pantalla propone. Una persona decide. Ninguna fusión ni prioridad se aplica sin confirmación humana.
+      </div>
+
       {error && <p className="small" style={{ color: "var(--warn)" }}>{error}</p>}
 
       <div className="grid cols-4" style={{ marginTop: 20 }}>
