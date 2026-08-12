@@ -32,3 +32,10 @@ services/api/.env
 *.mbtiles
 /data/pg
 .vercel
+
+# Harvested third-party registries. These files hold the names of real missing
+# people, copied from someone else's site under someone else's privacy notice.
+# Committing them would make that copy permanent and unerasable in every clone —
+# the exact opposite of what Ley 1581/2012 requires of us. The harvester and the
+# importer are in the repo; the personal data stays on the machine that pulled it.
+data/external/
