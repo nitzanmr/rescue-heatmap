@@ -39,6 +39,27 @@ That override is the difference between data that can and cannot reach the map.
 A municipality is tens of kilometres wide and a heat cell is 500 m; a landmark is
 something a geocoder can turn into a point.
 
+## How precise is that line, really?
+
+A finer string is not automatically a precise one. The same column holds
+`Parque la Libertad - Pereira` (~100 m), `Barrio San Judas` (~1 km),
+`Pereira, Risaralda` (~30 km) and `salió de la casa hacia el trabajo` (a story).
+A geocoder answers all four with equal confidence, and that is exactly how a
+municipality centroid becomes a red cell over an empty plaza.
+
+So classification comes before geocoding — `services/api/src/place-resolution.ts`
+labels every line `point | neighbourhood | municipality | narrative | none`, and
+only `point` may ever be nominated for a coordinate. Lines about someone in
+motion ("salió hacia el parque") stay `point` but are marked ineligible: a
+sighting on a route is not a person under rubble, and our cells mean "dig here".
+
+```bash
+FILE=data/external/ctb-full.ndjson make places   # the histogram, no database
+```
+
+The dry run of the importer prints the same table, so the claim "most of this
+data cannot be mapped" is always a number on screen rather than an assertion.
+
 **Still not, today:** more dots on the heat map. A finer *string* is not a
 coordinate. Imported cases continue to land with `location_source = 'none'` in
 the unmapped queue until a geocoding step exists and its output is reviewed —

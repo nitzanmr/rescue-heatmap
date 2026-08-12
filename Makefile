@@ -290,3 +290,10 @@ reset:   ## Drop the database volume (LOCAL DEV DATA ONLY)
 	$(COMPOSE) down -v
 
 fresh: reset up ## reset + up
+
+# What resolution the places in a harvested file actually have, before anybody
+# geocodes anything. No database, no writes -- it reads the file and prints the
+# histogram, so "how many of these could ever be a cell?" is a number and not an
+# argument. FILE=data/external/ctb-full.ndjson make places
+places:  ## Classify the place lines in a harvested NDJSON (FILE=...)
+	@cd services/api && npx tsx src/import-external.ts --file "../../$${FILE:-data/external/ctb-full.ndjson}"

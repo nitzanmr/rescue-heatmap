@@ -29,6 +29,7 @@
 //      a foreign site saying "localizada" is evidence, not a command.
 import fs from "node:fs";
 import path from "node:path";
+import { classifyPlace, summariseResolutions } from "./place-resolution.js";
 
 type Rec = {
   source_id: string;
@@ -111,6 +112,16 @@ export function toPayload(r: Rec, source: string): Record<string, unknown> {
     // by-municipality counts are grouped on, and a landmark cannot serve there.
     municipality: r.place_listing ?? null,
     location_accuracy: "unknown",
+    // How precise that address text actually is, decided before anybody thinks
+    // about geocoding it. "Pereira, Risaralda" and "Parque la Libertad" are the
+    // same column and not the same claim; only `place_eligible` rows may ever
+    // be nominated for a coordinate, and only a human may grant one.
+    place_resolution: classifyPlace(
+      r.place ?? r.place_detail ?? r.last_seen_text ?? r.place_listing ?? null
+    ).resolution,
+    place_eligible: classifyPlace(
+      r.place ?? r.place_detail ?? r.last_seen_text ?? r.place_listing ?? null
+    ).eligible,
     reporter_phone: null,
     subject_phone: null,
     external: {
@@ -146,6 +157,17 @@ function summarise(rows: Rec[]) {
   console.log(`status             ${JSON.stringify(by((r) => String(r.status)))}`);
   console.log(`category (top 5)   ${JSON.stringify(by((r) => String(r.category)).slice(0, 5))}`);
   console.log(`place (top 5)      ${JSON.stringify(by((r) => String(r.place_listing)).slice(0, 5))}`);
+
+  // The number that decides whether this file can ever touch the heat map.
+  // Printed on every dry run so nobody has to take the claim on trust.
+  const s = summariseResolutions(rows.map(placeOf));
+  const pct = (n: number) => `${((100 * n) / (rows.length || 1)).toFixed(1)}%`;
+  console.log(`\nplace resolution`);
+  for (const k of ["point", "neighbourhood", "municipality", "narrative", "none"] as const) {
+    console.log(`  ${k.padEnd(15)} ${String(s.counts[k]).padStart(6)}  ${pct(s.counts[k])}`);
+  }
+  console.log(`  ${"-> geocodable".padEnd(15)} ${String(s.eligible).padStart(6)}  ${pct(s.eligible)}` +
+              `   (point, minus lines that are about someone in motion)`);
 }
 
 async function load(rows: Rec[], source: string, incidentSlug: string, adoptStatus: boolean) {
