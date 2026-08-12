@@ -192,7 +192,13 @@ async function load(rows: Rec[], source: string, incidentSlug: string, adoptStat
       }
       if (!ref) throw new Error("could not allocate a reference number in 8 attempts");
 
-      const isMinor = typeof r.age === "number" ? r.age < 18 : null;
+      // is_minor is NOT NULL in our schema, so it cannot say "unknown". The
+      // source leaves age blank on 1,168 of ~5,000 entries; those become false,
+      // and the real answer stays verbatim in external_case.source_payload.
+      // False here means "not known to be a minor", never "known to be adult" —
+      // and imported cases are public_listed = false, so nothing is exposed on
+      // the strength of this flag.
+      const isMinor = typeof r.age === "number" ? r.age < 18 : false;
       const cs = await c.query(
         `INSERT INTO person_case (incident_id, status, status_source, reference_number,
                                   public_listed, consent_photo_public, is_minor, source)
