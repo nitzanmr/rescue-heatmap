@@ -1,6 +1,6 @@
 # One entry point for the whole stack. The target that matters is `drill`:
 # from an empty machine to a running system with data, in one command.
-.PHONY: help up down migrate seed test ablation rank-ablation places-top nominate geocode build build-api build-web logs logs-edge psql drill reset fresh web operator-token
+.PHONY: help up down migrate seed test ablation rank-ablation places places-top nominate geocode harvest incident import build build-api build-web logs logs-edge psql drill reset fresh web operator-token
 
 COMPOSE ?= docker compose
 # Host port for the dev database. Override when 5432 is already taken:
@@ -295,6 +295,36 @@ fresh: reset up ## reset + up
 # geocodes anything. No database, no writes -- it reads the file and prints the
 # histogram, so "how many of these could ever be a cell?" is a number and not an
 # argument. FILE=data/external/ctb-full.ndjson make places
+# Pull the public registry into a file. No database, no photos, no writes to
+# anything but OUT. Re-run it to refresh; it is the only step that talks to
+# their server, so it is also the only step that needs the internet.
+#   OUT=data/external/ctb-full.ndjson make harvest
+harvest: ## Harvest colombiatebusca into an NDJSON file (OUT=...)
+	@mkdir -p data/external
+	@python3 ops/scrape/colombiatebusca.py --out "$${OUT:-data/external/ctb-full.ndjson}"
+
+# Create (or update) a real incident to import into. Importing third-party rows
+# into the synthetic drill incident is how a demo becomes a decision -- keep
+# them apart. SLUG=... NAME="..." LAT=... LNG=... make incident
+incident: ## Create a real incident row (SLUG=..., NAME=..., LAT=..., LNG=..., PREFIX=CTB)
+	@$(COMPOSE) exec -T db psql -U rescue -d rescue -v ON_ERROR_STOP=1 -c \
+	  "INSERT INTO incident (slug, name, country, ref_prefix, centre, public_expires_at) \
+	   VALUES ('$${SLUG:?set SLUG=<slug>}', '$${NAME:-Sismo Choco 2026}', 'CO', '$${PREFIX:-CTB}', \
+	           ST_SetSRID(ST_MakePoint($${LNG:--75.6906}, $${LAT:-4.8133}),4326)::geography, \
+	           now() + interval '30 days') \
+	   ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name RETURNING slug, id;"
+
+# Write the harvested file into the database. Dry run unless LOAD=1. Each row
+# keeps its source, its public code and a link back to the original page, so a
+# reader can always leave us and check. Photos are never fetched or stored.
+#   INCIDENT=sismo-choco-2026 make import          # dry run, counts only
+#   INCIDENT=sismo-choco-2026 LOAD=1 make import   # writes
+import:  ## Import a harvested NDJSON into the DB (INCIDENT=..., LOAD=1 to write)
+	@cd services/api && npx tsx src/import-external.ts \
+	  --file "../../$${FILE:-data/external/ctb-full.ndjson}" \
+	  --source "$${SOURCE:-colombiatebusca}" \
+	  $${INCIDENT:+--incident $$INCIDENT} $${LOAD:+--load}
+
 places:  ## Classify the place lines in a harvested NDJSON (FILE=...)
 	@cd services/api && npx tsx src/import-external.ts --file "../../$${FILE:-data/external/ctb-full.ndjson}"
 
