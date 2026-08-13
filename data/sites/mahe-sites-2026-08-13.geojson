@@ -1,0 +1,368 @@
+{
+ "type": "FeatureCollection",
+ "metadata": {
+  "title": "נקודות ריכוז נעדרים — קולומביה 13.8.2026",
+  "generated": "2026-08-13",
+  "warning": "ספירת אנשים = הערכה אחרי דדופ ממקור אזרחי [C], לא מספר רשמי. נקודות ברמת barrio/עיר הן מרכז מנהלי — לא מיקום מבנה. שני אתרים (El Remanso, María Elvira) ללא נקודה.",
+  "official_national": "UNGRD 12.8 18:00 — 496 נעדרים, 266 הרוגים, 339 מחולצים [A/B]"
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.73924,
+     4.80537
+    ]
+   },
+   "properties": {
+    "name": "Barrio Cuba (Comuna Cuba)",
+    "city": "Pereira",
+    "people_est": 60,
+    "precision": "barrio",
+    "uncertainty_m": 1500,
+    "point_source": "OSM/Nominatim — גבול מנהלי",
+    "notes": "רובע שלם בדרום-מערב פררה, ~60 אלף תושבים. הנקודה = מרכז הרובע, לא מבנה.",
+    "count_source": "colombiatebusca 2026-08-13 18:00Z, dedup [C]",
+    "scan_status": "not-scanned"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.73106,
+     4.82315
+    ]
+   },
+   "properties": {
+    "name": "Parque Industrial",
+    "city": "Pereira",
+    "people_est": 45,
+    "precision": "barrio",
+    "uncertainty_m": 1200,
+    "point_source": "OSM/Nominatim — גבול מנהלי",
+    "notes": "רובע בצפון-מערב, גובל דוסקברדס. כולל 'Alamedas del Café'.",
+    "count_source": "colombiatebusca 2026-08-13 18:00Z, dedup [C]",
+    "scan_status": "not-scanned"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.68889,
+     4.79432
+    ]
+   },
+   "properties": {
+    "name": "Universidad Tecnológica (UTP)",
+    "city": "Pereira",
+    "people_est": 43,
+    "precision": "מתחם",
+    "uncertainty_m": 600,
+    "point_source": "OSM — ישות אוניברסיטה",
+    "notes": "קמפוס. דיווחים מזכירים פקולטות שונות — מספר מבנים, לא אחד.",
+    "count_source": "colombiatebusca 2026-08-13 18:00Z, dedup [C]",
+    "scan_status": "not-scanned"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.71116,
+     4.79724
+    ]
+   },
+   "properties": {
+    "name": "Samaria I / II",
+    "city": "Pereira",
+    "people_est": 38,
+    "precision": "barrio",
+    "uncertainty_m": 900,
+    "point_source": "OSM/Nominatim",
+    "notes": "כולל Megacolegio de Samaria (בי\"ס).",
+    "count_source": "colombiatebusca 2026-08-13 18:00Z, dedup [C]",
+    "scan_status": "not-scanned"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.69157,
+     4.81344
+    ]
+   },
+   "properties": {
+    "name": "Hotel Dibeni",
+    "city": "Pereira",
+    "people_est": 23,
+    "precision": "מבנה",
+    "uncertainty_m": 30,
+    "point_source": "OSM — Cra 8 #15-55, מרכז העיר",
+    "notes": "הכתובת מהדיווחים עצמם תואמת ל-OSM. יחס כפילות ×5.16 — הגבוה בדאטהסט.",
+    "count_source": "colombiatebusca 2026-08-13 18:00Z, dedup [C]",
+    "scan_status": "not-scanned"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.67107,
+     4.79185
+    ]
+   },
+   "properties": {
+    "name": "Las Brisas",
+    "city": "Pereira",
+    "people_est": 19,
+    "precision": "barrio",
+    "uncertainty_m": 1000,
+    "point_source": "OSM/Nominatim",
+    "notes": "דיווחים מזכירים גם 'Cra 25' — לא אומת.",
+    "count_source": "colombiatebusca 2026-08-13 18:00Z, dedup [C]",
+    "scan_status": "not-scanned"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.68948,
+     4.79819
+    ]
+   },
+   "properties": {
+    "name": "Los Álamos",
+    "city": "Pereira",
+    "people_est": 19,
+    "precision": "barrio",
+    "uncertainty_m": 800,
+    "point_source": "OSM/Nominatim",
+    "notes": "ליד קמפוס UTP.",
+    "count_source": "colombiatebusca 2026-08-13 18:00Z, dedup [C]",
+    "scan_status": "not-scanned"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.5421,
+     3.3918
+    ]
+   },
+   "properties": {
+    "name": "Torres del Limonar (+Capri)",
+    "city": "Cali",
+    "people_est": 41,
+    "precision": "רחוב",
+    "uncertainty_m": 150,
+    "point_source": "קישור Google Maps מ-O 13.8 + Nominatim",
+    "notes": "Cra 72 #10 Bis-21, Ciudad Capri, קומונה 17. 36 מתוך 41 בני 65+. הנקודה תוקנה — הייתה 2.8 ק\"מ מזרחה.",
+    "count_source": "colombiatebusca 2026-08-13 18:00Z, dedup [C]",
+    "scan_status": "not-scanned"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.524,
+     3.41178
+    ]
+   },
+   "properties": {
+    "name": "Edificio Vanessa",
+    "city": "Cali",
+    "people_est": 27,
+    "precision": "רחוב",
+    "uncertainty_m": 200,
+    "point_source": "Nominatim — Cra 44 #9-35",
+    "notes": "25 מתוך 35 פרסומים הם בני 65+.",
+    "count_source": "colombiatebusca 2026-08-13 18:00Z, dedup [C]",
+    "scan_status": "not-scanned"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.52687,
+     3.40241
+    ]
+   },
+   "properties": {
+    "name": "Cuarto de Legua + Ana Pilar",
+    "city": "Cali",
+    "people_est": 27,
+    "precision": "רחוב",
+    "uncertainty_m": 200,
+    "point_source": "Nominatim — Cra 56 #3-88",
+    "notes": "הנקודה היא של Ana Pilar; 'Cuarto de Legua' הוא הרובע (3.40844,-76.54977).",
+    "count_source": "colombiatebusca 2026-08-13 18:00Z, dedup [C]",
+    "scan_status": "not-scanned"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.54531,
+     3.42083
+    ]
+   },
+   "properties": {
+    "name": "Tequendama (+Cantabria +Mirasol)",
+    "city": "Cali",
+    "people_est": 21,
+    "precision": "barrio",
+    "uncertainty_m": 900,
+    "point_source": "OSM — גבול קומונה 19",
+    "notes": "Cantabria אותר כמבנה: Calle 8B #45-17 (3.41451,-76.54169). Mirasol — אין התאמה ב-OSM.",
+    "count_source": "colombiatebusca 2026-08-13 18:00Z, dedup [C]",
+    "scan_status": "not-scanned"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.54544,
+     3.43018
+    ]
+   },
+   "properties": {
+    "name": "Hospital Universitario del Valle",
+    "city": "Cali",
+    "people_est": 18,
+    "precision": "מבנה",
+    "uncertainty_m": 25,
+    "point_source": "OSM — ישות בית חולים",
+    "notes": "קריסה חלקית ~30%; 800 מפונים, 6 מקרי מוות.",
+    "count_source": "colombiatebusca 2026-08-13 18:00Z, dedup [C]",
+    "scan_status": "not-scanned"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.54998,
+     3.40865
+    ]
+   },
+   "properties": {
+    "name": "Conjunto Residencial Guadalupe",
+    "city": "Cali",
+    "people_est": 11,
+    "precision": "barrio",
+    "uncertainty_m": 800,
+    "point_source": "Nominatim — Cuarto de Legua-Guadalupe",
+    "notes": "רמת רובע בלבד. נדרשת נעיצה ידנית.",
+    "count_source": "colombiatebusca 2026-08-13 18:00Z, dedup [C]",
+    "scan_status": "not-scanned"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.54828,
+     3.40281
+    ]
+   },
+   "properties": {
+    "name": "Universidad Santiago de Cali (USC)",
+    "city": "Cali",
+    "people_est": 5,
+    "precision": "מתחם",
+    "uncertainty_m": 400,
+    "point_source": "OSM — ישות אוניברסיטה",
+    "notes": "Calle 3, El Refugio, קומונה 19.",
+    "count_source": "colombiatebusca 2026-08-13 18:00Z, dedup [C]",
+    "scan_status": "not-scanned"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.548,
+     3.395
+    ]
+   },
+   "properties": {
+    "name": "Unidad Residencial Ariguaní",
+    "city": "Cali",
+    "people_est": 3,
+    "precision": "רחוב",
+    "uncertainty_m": 400,
+    "point_source": "קישור Google Maps מ-O 13.8",
+    "notes": "Cra 67 #3C-15, קומונה 18.",
+    "count_source": "colombiatebusca 2026-08-13 18:00Z, dedup [C]",
+    "scan_status": "not-scanned"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.65313,
+     5.69128
+    ]
+   },
+   "properties": {
+    "name": "Quibdó",
+    "city": "Chocó",
+    "people_est": 58,
+    "precision": "עיר",
+    "uncertainty_m": 5000,
+    "point_source": "OSM",
+    "notes": "מפוזר בעיר; אין מבנה מוביל. הנקודה = מרכז העיר.",
+    "count_source": "colombiatebusca 2026-08-13 18:00Z, dedup [C]",
+    "scan_status": "not-scanned"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.76313,
+     4.62245
+    ]
+   },
+   "properties": {
+    "name": "Quimbaya",
+    "city": "Quindío",
+    "people_est": 39,
+    "precision": "עיר",
+    "uncertainty_m": 3000,
+    "point_source": "OSM",
+    "notes": "מפוזר; אחת הרשומות בעלת אזרחות הולנדית.",
+    "count_source": "colombiatebusca 2026-08-13 18:00Z, dedup [C]",
+    "scan_status": "not-scanned"
+   }
+  }
+ ]
+}
