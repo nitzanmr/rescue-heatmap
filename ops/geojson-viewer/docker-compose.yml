@@ -1,0 +1,11 @@
+services:
+  geojson-viewer:
+    build: .
+    image: rescue-heatmap/geojson-viewer
+    container_name: geojson-viewer
+    ports:
+      - "${VIEWER_PORT:-8899}:8899"
+    volumes:
+      # read-only: the viewer never writes anything
+      - ../../data:/data:ro
+    restart: unless-stopped

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מציג GeoJSON — צוות מא"ה</title>
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="vendor/markercluster.css">
+<link rel="stylesheet" href="vendor/markercluster.default.css">
+<style>
+  :root { --bg:#111418; --panel:#191d23; --line:#2a3038; --fg:#e6e9ee; --mut:#9aa4b2; }
+  * { box-sizing:border-box; }
+  html,body { height:100%; margin:0; font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+              background:var(--bg); color:var(--fg); }
+  #wrap { display:flex; height:100%; }
+  #side { width:320px; min-width:320px; background:var(--panel); border-left:1px solid var(--line);
+          overflow-y:auto; padding:12px; }
+  #map { flex:1; }
+  h1 { font-size:15px; margin:0 0 4px; }
+  .sub { font-size:11px; color:var(--mut); margin-bottom:12px; line-height:1.5; }
+  h2 { font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--mut);
+       margin:16px 0 6px; border-top:1px solid var(--line); padding-top:12px; }
+  select, input[type=text], button { width:100%; background:#0e1116; color:var(--fg);
+       border:1px solid var(--line); border-radius:6px; padding:7px 8px; font-size:13px; }
+  button { cursor:pointer; }
+  button:hover { background:#161b22; }
+  label.row { display:flex; align-items:center; gap:8px; font-size:13px; padding:4px 2px; cursor:pointer; }
+  label.row .dot { width:11px; height:11px; border-radius:50%; flex:0 0 auto; }
+  label.row .cnt { margin-inline-start:auto; color:var(--mut); font-size:11px; }
+  .stat { font-size:12px; color:var(--mut); margin-top:8px; }
+  .btns { display:flex; gap:6px; margin-top:8px; }
+  .leaflet-popup-content { font-size:13px; line-height:1.5; }
+  .leaflet-popup-content b { display:block; margin-bottom:2px; }
+  #dropnote { font-size:11px; color:var(--mut); margin-top:6px; }
+  @media (max-width:760px){ #wrap{flex-direction:column;} #side{width:100%;min-width:0;height:45%;} #map{height:55%;} }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <div id="side">
+    <h1>מציג GeoJSON — צוות מא"ה</h1>
+    <div class="sub">משלחת קולומביה 08-2026 · רץ מקומית, בלי ענן.<br>
+      מקור הנקודות: OpenStreetMap (ODbL). קיים ≠ פתוח — לאמת לפני נסיעה.</div>
+
+    <h2>קובץ</h2>
+    <select id="file"></select>
+    <div class="btns">
+      <button id="reload">רענן רשימה</button>
+      <button id="fit">מרכז למפה</button>
+    </div>
+    <input type="file" id="local" accept=".geojson,.json" style="margin-top:8px;font-size:12px">
+    <div id="dropnote">אפשר גם לגרור קובץ GeoJSON אל המפה.</div>
+
+    <h2>חיפוש</h2>
+    <input type="text" id="q" placeholder="שם / כתובת…">
+
+    <h2>שכבות</h2>
+    <div id="layers"></div>
+    <div class="btns">
+      <button id="all">הכל</button>
+      <button id="none">כלום</button>
+    </div>
+    <div class="stat" id="stat"></div>
+  </div>
+  <div id="map"></div>
+</div>
+
+<script src="vendor/leaflet.js"></script>
+<script src="vendor/markercluster.js"></script>
+<script>
+L.Icon.Default.prototype.options.imagePath = 'vendor/images/';
+
+var KINDS = {
+  medical:            { he:'מוסד רפואי',    color:'#e2574c' },
+  pharmacy:           { he:'בית מרקחת',     color:'#e78b3c' },
+  fuel:               { he:'תחנת דלק',      color:'#d9c541' },
+  market:             { he:'סופר / מכולת',  color:'#4caf72' },
+  shelter:            { he:'מקלט פעיל',     color:'#3d8bd6' },
+  shelter_candidate:  { he:'מועמד למקלט',   color:'#7a6fd0' },
+  responder:          { he:'כוח הצלה',      color:'#e14b8a' },
+  water:              { he:'מים',           color:'#3fb8c4' },
+  other:              { he:'אחר',           color:'#8d96a3' }
+};
+function kindOf(p){
+  var k = p.kind || p.category || p.type || 'other';
+  return KINDS[k] ? k : 'other';
+}
+function meta(k){ return KINDS[k] || KINDS.other; }
+
+var map = L.map('map', { preferCanvas:true }).setView([3.44,-76.52], 12);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom:19, attribution:'&copy; OpenStreetMap'
+}).addTo(map);
+
+var cluster = L.markerClusterGroup({ disableClusteringAtZoom:16, chunkedLoading:true }).addTo(map);
+var allFeatures = [], active = {}, query = '';
+
+function popup(p){
+  var rows = [];
+  if (p.name) rows.push('<b>'+esc(p.name)+'</b>');
+  rows.push(meta(kindOf(p)).he);
+  ['address','phone','capacity','city','municipio'].forEach(function(f){
+    if (p[f]) rows.push(esc(f)+': '+esc(p[f]));
+  });
+  if (p.source_url) rows.push('<a href="'+p.source_url+'" target="_blank">מקור ב-OSM</a>');
+  return rows.join('<br>');
+}
+function esc(s){ return String(s).replace(/[<>&]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;'}[c];}); }
+
+function render(){
+  cluster.clearLayers();
+  var n = 0, q = query.trim().toLowerCase();
+  var batch = [];
+  allFeatures.forEach(function(f){
+    var k = kindOf(f.properties||{});
+    if (!active[k]) return;
+    if (q) {
+      var hay = JSON.stringify(f.properties||{}).toLowerCase();
+      if (hay.indexOf(q) === -1) return;
+    }
+    var c = f.geometry && f.geometry.coordinates;
+    if (!c) return;
+    var latlng;
+    if (f.geometry.type === 'Point') latlng = [c[1], c[0]];
+    else { var b = L.geoJSON(f).getBounds(); latlng = [b.getCenter().lat, b.getCenter().lng]; }
+    var m = L.circleMarker(latlng, {
+      radius:6, color:'#0b0d10', weight:1, fillColor:meta(k).color, fillOpacity:.95
+    }).bindPopup(popup(f.properties||{}));
+    batch.push(m); n++;
+  });
+  cluster.addLayers(batch);
+  document.getElementById('stat').textContent = n + ' נקודות מוצגות מתוך ' + allFeatures.length;
+}
+
+function buildLayerList(){
+  var counts = {};
+  allFeatures.forEach(function(f){ var k=kindOf(f.properties||{}); counts[k]=(counts[k]||0)+1; });
+  var box = document.getElementById('layers'); box.innerHTML='';
+  Object.keys(counts).sort(function(a,b){return counts[b]-counts[a];}).forEach(function(k){
+    if (!(k in active)) active[k] = true;
+    var l = document.createElement('label'); l.className='row';
+    l.innerHTML = '<input type="checkbox" '+(active[k]?'checked':'')+'>'+
+      '<span class="dot" style="background:'+meta(k).color+'"></span>'+
+      '<span>'+meta(k).he+'</span><span class="cnt">'+counts[k]+'</span>';
+    l.querySelector('input').onchange = function(){ active[k]=this.checked; render(); };
+    box.appendChild(l);
+  });
+}
+
+function load(geo){
+  allFeatures = (geo.type === 'FeatureCollection') ? geo.features : [geo];
+  active = {};
+  buildLayerList(); render(); fit();
+}
+function fit(){
+  var pts = allFeatures.filter(function(f){return f.geometry && f.geometry.type==='Point';})
+                       .map(function(f){return [f.geometry.coordinates[1], f.geometry.coordinates[0]];});
+  if (pts.length) map.fitBounds(L.latLngBounds(pts), {padding:[20,20]});
+}
+
+function refreshFiles(){
+  fetch('api/files').then(function(r){return r.json();}).then(function(list){
+    var sel = document.getElementById('file');
+    sel.innerHTML = '';
+    list.forEach(function(f){
+      var o = document.createElement('option');
+      o.value = f.path;
+      o.textContent = f.path + '  (' + Math.round(f.size/1024) + ' KB)';
+      sel.appendChild(o);
+    });
+    if (list.length) { sel.value = list[0].path; loadPath(list[0].path); }
+  });
+}
+function loadPath(p){
+  fetch('data/'+p).then(function(r){return r.json();}).then(load)
+    .catch(function(e){ alert('לא הצלחתי לקרוא את הקובץ: '+e); });
+}
+
+document.getElementById('file').onchange = function(){ loadPath(this.value); };
+document.getElementById('reload').onclick = refreshFiles;
+document.getElementById('fit').onclick = fit;
+document.getElementById('all').onclick = function(){ Object.keys(active).forEach(function(k){active[k]=true;}); buildLayerList(); render(); };
+document.getElementById('none').onclick = function(){ Object.keys(active).forEach(function(k){active[k]=false;}); buildLayerList(); render(); };
+document.getElementById('q').oninput = function(){ query = this.value; render(); };
+document.getElementById('local').onchange = function(){
+  var f = this.files[0]; if(!f) return;
+  var r = new FileReader(); r.onload = function(){ load(JSON.parse(r.result)); }; r.readAsText(f);
+};
+['dragover','drop'].forEach(function(ev){
+  document.getElementById('map').addEventListener(ev, function(e){
+    e.preventDefault();
+    if (ev === 'drop' && e.dataTransfer.files[0]) {
+      var r = new FileReader();
+      r.onload = function(){ load(JSON.parse(r.result)); };
+      r.readAsText(e.dataTransfer.files[0]);
+    }
+  });
+});
+
+refreshFiles();
+</script>
+</body>
+</html>
