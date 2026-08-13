@@ -115,6 +115,28 @@ export default async function intakeRoutes(app: FastifyInstance) {
     await enqueue("correlate", { case_id: out.caseId }, `correlate:${out.caseId}`);
     await audit(actor, "report.create", out.caseId, { channel: r.channel, reference: out.ref });
 
+    // The reporter answered "yes, same person" in the dedup modal. Now — and
+    // only now — both cases exist, so the pair can be linked with real ids:
+    // it enters the operator queue at the suggest floor with a visible badge,
+    // and a note naming THIS reference lands on the existing case. It never
+    // merges anything (0017). Best-effort on purpose: a stale or mistyped
+    // reference must not disturb a report that is already accepted.
+    if (r.confirmed_same_as) {
+      try {
+        const linked = await one<{ ok: boolean }>(
+          `SELECT public.link_reporter_confirmation($1, $2) AS ok`,
+          [out.caseId, r.confirmed_same_as]
+        );
+        if (linked?.ok) {
+          await audit(actor, "report.confirm_same_person", out.caseId, {
+            confirmed_same_as: r.confirmed_same_as,
+          });
+        }
+      } catch {
+        // The confirmation is a bonus signal, never a failure mode.
+      }
+    }
+
     reply.code(201);
     return {
       case_id: out.caseId,

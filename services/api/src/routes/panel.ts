@@ -18,7 +18,7 @@ export default async function panelRoutes(app: FastifyInstance) {
       requireOperator(req.actor);
       const limit = Math.min(Number(req.query.limit ?? 50) || 50, 200);
       const rows = await query(
-        `SELECT d.id, d.score, d.signals, d.state, d.created_at,
+        `SELECT d.id, d.score, d.signals, d.state, d.created_at, d.reporter_confirmed,
                 a.case_id AS a_case, a.name_raw AS a_name, a.age_approx AS a_age,
                 a.reporter_count AS a_reports, ca.reference_number AS a_ref, ca.status AS a_status,
                 b.case_id AS b_case, b.name_raw AS b_name, b.age_approx AS b_age,
@@ -31,7 +31,7 @@ export default async function panelRoutes(app: FastifyInstance) {
           WHERE d.state = COALESCE($1,'pending')
             AND ($2::text IS NULL OR d.incident_id = (SELECT id FROM incident WHERE slug = $2))
             AND ca.merged_into IS NULL AND cb.merged_into IS NULL
-          ORDER BY d.score DESC, d.created_at
+          ORDER BY d.reporter_confirmed DESC, d.score DESC, d.created_at
           LIMIT $3`,
         [req.query.state ?? null, req.query.incident ?? null, limit]
       );

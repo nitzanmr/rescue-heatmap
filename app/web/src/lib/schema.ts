@@ -52,6 +52,14 @@ export interface Report {
   last_contact_at?: string | null;
   last_contact_precision?: "exact" | "same_day" | "approximate" | "unknown";
 
+  // The dedup modal's answer: the reference number of the existing case this
+  // reporter said is the same person. Rides the payload through the offline
+  // outbox — the new report has no server id until it is accepted, so the link
+  // can only be made on arrival. Passed to commit() directly, never written to
+  // the draft: a confirmation about THIS submission must not survive into the
+  // next family's report via localStorage.
+  confirmed_same_as?: string | null;
+
   // reporter
   reporter_name?: string | null;
   reporter_phone?: string | null;

@@ -101,6 +101,15 @@ export const reportInput = z.object({
   consent_photo_public: z.boolean().default(false),
 
   status: statusEnum.default("missing"),
+
+  // The dedup modal's answer, travelling WITH the report instead of firing an
+  // orphan note at submit time. The reference number of the existing case the
+  // reporter picked when asked "¿Es la misma persona?". It has to ride the
+  // payload because the new report has no id until the server accepts it —
+  // any client-side attempt to link the two runs before one of them exists
+  // (docs: 0017). Resolved server-side by link_reporter_confirmation(); a bad
+  // or stale reference never rejects the report.
+  confirmed_same_as: z.string().min(4).max(24).nullish(),
 });
 export type ReportInput = z.infer<typeof reportInput>;
 

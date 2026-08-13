@@ -264,6 +264,24 @@ function DedupPair({ pair, onDecided }: { pair: any; onDecided: () => void }) {
         <Side ref_={pair.b_ref} name={pair.b_name} age={pair.b_age} reports={pair.b_reports} status={pair.b_status} />
       </div>
 
+      {/* The one signal a human contributed. The second reporter was shown the
+          existing case in the form and said "yes, same person" — which is why
+          this pair is here even if the engine's own score is modest. It is
+          still a stranger's claim, so it is a banner, not an auto-merge. */}
+      {signals.reporter_confirmed === true && (
+        <div
+          className="small"
+          style={{
+            marginTop: 10, padding: "8px 10px", borderRadius: 8,
+            border: "1px solid var(--ok, #2e7d32)", color: "var(--ok, #2e7d32)", lineHeight: 1.5,
+          }}
+        >
+          <strong>La segunda persona que reportó confirmó que es la misma persona.</strong>{" "}
+          Lo indicó en el formulario al ver el reporte existente. Sigue siendo su palabra:
+          revise antes de unir.
+        </div>
+      )}
+
       {/* Contradictions are not one signal among twelve. The engine already
           demoted this pair for them, so the only reason it is on screen is that
           something else pushed it back up — and the operator has to know which

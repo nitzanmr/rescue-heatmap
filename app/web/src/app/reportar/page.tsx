@@ -45,7 +45,7 @@ const WIRE_FIELDS = [
   "building_name", "floor", "apartment",
   "last_contact_at", "last_contact_precision",
   "reporter_name", "reporter_phone", "reporter_relation", "reporter_lang",
-  "consent_public_listing", "consent_photo_public", "status",
+  "consent_public_listing", "consent_photo_public", "status", "confirmed_same_as",
 ] as const;
 
 function toWire(draft: Draft): Record<string, unknown> {
@@ -112,8 +112,13 @@ export default function Reportar() {
 
   // Written to the device first, sent second. If the browser dies between the
   // two, the report is still here on the next open.
-  const commit = () => {
-    const id = enqueueReport(toWire(draft), draft.photo_data_url ?? null);
+  //
+  // `extra` exists for the dedup modal's confirmation: it is merged into the
+  // WIRE payload only, never into the draft. setDraft is asynchronous, so
+  // "set then commit" would race and read the old draft — and persisting the
+  // confirmation would let it leak into the next report from localStorage.
+  const commit = (extra?: Draft) => {
+    const id = enqueueReport(toWire(extra ? { ...draft, ...extra } : draft), draft.photo_data_url ?? null);
     localStorage.removeItem(DRAFT_KEY);
     setDupes(null);
     setDoneId(id);
@@ -198,7 +203,12 @@ export default function Reportar() {
       </div>
 
       {dupes && (
-        <DedupModal hits={dupes} onContinue={commit} onCancel={() => setDupes(null)} />
+        <DedupModal
+          hits={dupes}
+          onConfirm={(ref) => commit({ confirmed_same_as: ref })}
+          onContinue={() => commit()}
+          onCancel={() => setDupes(null)}
+        />
       )}
     </>
   );
@@ -695,54 +705,59 @@ function StepReporter({ draft, set }: { draft: Draft; set: (p: Draft) => void })
 }
 
 // Note what this modal does NOT do: it never merges, and it never replaces the
-// family's report with the existing one. Both buttons submit. Saying "it is the
-// same person" only attaches a signal to the existing case for an operator to
-// read — a stranger's opinion is not a merge decision.
-function DedupModal({ hits, onContinue, onCancel }: { hits: PublicCase[]; onContinue: () => void; onCancel: () => void }) {
-  const top = hits[0];
-  const [busy, setBusy] = useState(false);
-
-  const samePerson = async () => {
-    setBusy(true);
-    try {
-      await api.sighting(top.reference_number, {
-        kind: "correction",
-        note: "Otra persona reporta a la misma persona. Enviado desde el formulario, pendiente de revisión.",
-      });
-    } catch {
-      // Best effort. The report itself must go out regardless.
-    } finally {
-      setBusy(false);
-      onContinue();
-    }
-  };
-
+// family's report with the existing one. Every button submits the report.
+// Saying "it is the same person" attaches the CHOSEN reference to the outgoing
+// payload (confirmed_same_as) — the server links the pair when the report
+// arrives, and an operator still decides. A stranger's opinion is not a merge
+// decision.
+//
+// Two lessons this component already paid for:
+//   * No network call here. The old version fired a sighting at hits[0] the
+//     moment the button was pressed — before the new report had an id, and to
+//     the first candidate regardless of which one the reporter meant. The
+//     confirmation now rides the report itself through the offline queue.
+//   * The wording says what actually happens ("se enviará por separado y
+//     quedará vinculado"), not "sumar mi información", which read as a merge
+//     and made the three-cases outcome look like a bug (אושרי's report).
+function DedupModal({ hits, onConfirm, onContinue, onCancel }: {
+  hits: PublicCase[];
+  onConfirm: (ref: string) => void;
+  onContinue: () => void;
+  onCancel: () => void;
+}) {
   return (
     <div className="modal-bg" onClick={onCancel}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <h3 style={{ marginTop: 0 }}>¿Es la misma persona?</h3>
         <p className="small muted">
-          Ya hay {hits.length === 1 ? "un reporte" : `${hits.length} reportes`} con un nombre parecido:
+          Ya hay {hits.length === 1 ? "un reporte" : `${hits.length} reportes`} con un nombre parecido.
+          Si una de estas fichas es la persona que buscas, tócala:
         </p>
-        <ul className="small" style={{ margin: "8px 0 0", paddingLeft: 18 }}>
+        <div style={{ marginTop: 8 }}>
           {hits.slice(0, 3).map((h) => (
-            <li key={h.reference_number} style={{ marginBottom: 4 }}>
+            <button
+              key={h.reference_number}
+              className="btn block"
+              style={{ display: "block", width: "100%", textAlign: "left", marginTop: 6 }}
+              onClick={() => onConfirm(h.reference_number)}
+            >
               <strong>{h.name}</strong>
               {h.age_approx ? ` · ~${h.age_approx} años` : ""} · Ref. {h.reference_number}
               {h.reports > 1 ? ` · ${h.reports} personas la reportaron` : ""}
-            </li>
+              <span className="small muted" style={{ display: "block", marginTop: 2 }}>
+                Sí — es esta persona
+              </span>
+            </button>
           ))}
-        </ul>
+        </div>
         <div className="row" style={{ marginTop: 18, flexDirection: "column", alignItems: "stretch" }}>
-          <button className="btn primary block" disabled={busy} onClick={() => void samePerson()}>
-            {busy ? "Enviando…" : "Sí — sumar mi información"}
-          </button>
-          <button className="btn block" onClick={onContinue}>No — es otra persona</button>
+          <button className="btn primary block" onClick={onContinue}>No — es otra persona</button>
           <button className="btn ghost block" onClick={onCancel}>Volver a revisar</button>
         </div>
         <p className="small muted" style={{ marginTop: 14, marginBottom: 0 }}>
-          En los dos casos tu reporte se envía. Nunca lo descartamos ni lo unimos con otro en silencio:
-          un equipo revisa antes de unir dos reportes.
+          En los dos casos tu reporte se envía por separado — nunca se une con otro en silencio.
+          Si confirmas que es la misma persona, tu reporte quedará vinculado al existente y un equipo
+          revisará los dos antes de unirlos.
         </p>
       </div>
     </div>
