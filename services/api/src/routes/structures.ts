@@ -54,17 +54,22 @@ export default async function structureRoutes(app: FastifyInstance) {
       `SELECT * FROM public.structure_board WHERE id = $1`, [req.params.id]);
     if (!s) throw new HttpError(404, "not found", "not_found");
     const [people, events] = await Promise.all([
+      // structure_person, never structure_case: it follows merges, so a person
+      // an operator deduplicated stays on the board instead of quietly
+      // dropping out of the building's head-count.
       query(
-        `SELECT sc.case_id, sc.resolution, sc.resolved_by, sc.resolved_at,
-                sc.link_source, sc.confidence, sc.note,
-                pc.reference_number, pc.status, pc.is_minor, pc.merged_into,
+        `SELECT sp.case_id,
+                COALESCE(sp.resolution, 'unresolved') AS resolution,
+                sp.resolved_by, sp.resolved_at, sp.link_source, sp.confidence, sp.note,
+                pc.reference_number, pc.status, pc.is_minor,
                 pi.name_raw, pi.age_approx, pi.gender, pi.reporter_count,
                 pi.last_seen IS NOT NULL AS has_point
-           FROM structure_case sc
-           JOIN person_case pc ON pc.id = sc.case_id
-           LEFT JOIN person_index pi ON pi.case_id = sc.case_id
-          WHERE sc.structure_id = $1
-          ORDER BY (sc.resolution = 'unresolved') DESC, pc.is_minor DESC,
+           FROM structure_person sp
+           JOIN person_case pc ON pc.id = sp.case_id
+           LEFT JOIN person_index pi ON pi.case_id = sp.case_id
+          WHERE sp.structure_id = $1
+            AND pc.anonymised_at IS NULL
+          ORDER BY sp.is_open DESC, pc.is_minor DESC,
                    pi.age_approx DESC NULLS LAST, pi.name_raw`,
         [req.params.id]
       ),
@@ -279,8 +284,14 @@ export default async function structureRoutes(app: FastifyInstance) {
       if (!parsed.success) throw new HttpError(400, "invalid resolution", "invalid_resolution");
       const r = parsed.data;
 
+      // Matched through effective_case: the panel lists surviving cases, and a
+      // person may reach this structure through a record that was merged away.
+      // Every link that resolves to the same human moves together.
       const prev = await one<{ resolution: string }>(
-        `SELECT resolution FROM structure_case WHERE structure_id = $1 AND case_id = $2`,
+        `SELECT resolution FROM structure_case
+          WHERE structure_id = $1
+            AND public.effective_case(case_id) = public.effective_case($2)
+          ORDER BY (resolution <> 'unresolved') DESC LIMIT 1`,
         [req.params.id, req.params.caseId]
       );
       if (!prev) throw new HttpError(404, "not linked to this structure", "not_found");
@@ -292,7 +303,8 @@ export default async function structureRoutes(app: FastifyInstance) {
                   resolved_by = CASE WHEN $3 = 'unresolved' THEN NULL ELSE $4 END,
                   resolved_at = CASE WHEN $3 = 'unresolved' THEN NULL ELSE now() END,
                   note = COALESCE($5, note)
-            WHERE structure_id=$1 AND case_id=$2`,
+            WHERE structure_id=$1
+              AND public.effective_case(case_id) = public.effective_case($2)`,
           [req.params.id, req.params.caseId, r.resolution, `operator:${op.userId}`, r.note ?? null]
         );
         await c.query(
