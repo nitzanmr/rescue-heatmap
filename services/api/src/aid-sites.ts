@@ -28,6 +28,8 @@ export type AidKind =
   | "water"
   | "morgue"
   | "info_point"
+  | "fuel"
+  | "market"
   | "other";
 
 export interface AidSite {
@@ -69,7 +71,22 @@ const RULES: Array<[(t: Tags) => boolean, AidKind]> = [
   [(t) => t.amenity === "community_centre" || Boolean(t.social_facility), "shelter_candidate"],
   [(t) => t.amenity === "school" || t.amenity === "college" || t.amenity === "university", "shelter_candidate"],
   [(t) => t.amenity === "drinking_water" || t.man_made === "water_tower", "water"],
+  // Logistics, not aid. A delegation lands with vehicles and no local supply
+  // chain: fuel and food are the two questions asked before the first tasking,
+  // and both are asked again every day. They describe institutions, so they
+  // carry no privacy weight — but they are NOT "where do I go" for a civilian,
+  // which is why the map keeps them on their own toggle.
+  [(t) => t.amenity === "fuel", "fuel"],
+  [(t) => t.shop === "supermarket" || t.shop === "convenience" || t.shop === "wholesale" || t.amenity === "marketplace", "market"],
 ];
+
+// Kinds where an unnamed point is still worth having. A pump is a pump whether
+// or not a mapper typed the brand; a hospital without a name is a data error we
+// do not want on a map somebody reads out loud over a radio.
+const NAME_OPTIONAL: Partial<Record<AidKind, string>> = {
+  fuel: "Estación de servicio (sin nombre)",
+  market: "Tienda / supermercado (sin nombre)",
+};
 
 export function classify(tags: Tags): AidKind | null {
   for (const [match, kind] of RULES) if (match(tags)) return kind;
@@ -104,8 +121,10 @@ export function fromOverpass(elements: OverpassElement[]): AidSite[] {
     const lat = el.lat ?? el.center?.lat;
     const lng = el.lon ?? el.center?.lon;
     if (lat == null || lng == null) continue;
-    // An unnamed point is unusable on a map a frightened person reads out loud.
-    const name = tags.name || tags["name:es"] || tags.operator;
+    // An unnamed point is unusable on a map a frightened person reads out loud —
+    // except for the logistics kinds, where the coordinate IS the answer.
+    const name =
+      tags.name || tags["name:es"] || tags.operator || tags.brand || NAME_OPTIONAL[kind];
     if (!name) continue;
     out.push({
       kind,
@@ -127,8 +146,9 @@ export function overpassQuery(bbox: BBox): string {
   const b = `${bbox.south},${bbox.west},${bbox.north},${bbox.east}`;
   return `[out:json][timeout:90];
 (
-  nwr["amenity"~"^(hospital|clinic|doctors|pharmacy|fire_station|police|shelter|community_centre|school|college|university|drinking_water)$"](${b});
+  nwr["amenity"~"^(hospital|clinic|doctors|pharmacy|fire_station|police|shelter|community_centre|school|college|university|drinking_water|fuel|marketplace)$"](${b});
   nwr["emergency"="shelter"](${b});
+  nwr["shop"~"^(supermarket|convenience|wholesale)$"](${b});
   nwr["healthcare"](${b});
   nwr["social_facility"](${b});
 );

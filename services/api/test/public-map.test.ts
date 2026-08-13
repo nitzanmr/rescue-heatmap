@@ -11,7 +11,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { clusterPoints, project } from "../../../app/web/src/lib/cluster.ts";
 import { PROVIDERS, shouldFailover, tileChain } from "../../../app/web/src/lib/tiles.ts";
-import { classify, fromOverpass, toGeoJSON } from "../src/aid-sites.ts";
+import { classify, fromOverpass, overpassQuery, toGeoJSON } from "../src/aid-sites.ts";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 const migration = fs.readFileSync(path.join(root, "db/migrations/0008_public_map.sql"), "utf8");
@@ -170,6 +170,32 @@ test("unnamed and geometry-less elements are dropped", () => {
   assert.deepEqual(sites.map((s) => s.source_ref), ["way/3"]);
 });
 
+test("fuel and markets classify as logistics kinds, separate from aid", () => {
+  assert.equal(classify({ amenity: "fuel" }), "fuel");
+  assert.equal(classify({ shop: "supermarket" }), "market");
+  assert.equal(classify({ amenity: "marketplace" }), "market");
+  // A pharmacy must not fall into the logistics bucket: it is an aid kind and
+  // civilians are sent there.
+  assert.equal(classify({ amenity: "pharmacy", shop: "convenience" }), "pharmacy");
+});
+
+test("an unnamed pump is kept; an unnamed hospital is not", () => {
+  const sites = fromOverpass([
+    { type: "node", id: 11, lat: 3.4, lon: -76.5, tags: { amenity: "fuel" } },
+    { type: "node", id: 12, lat: 3.4, lon: -76.5, tags: { amenity: "hospital" } },
+    { type: "node", id: 13, lat: 3.4, lon: -76.5, tags: { shop: "supermarket", brand: "Éxito" } },
+  ]);
+  assert.deepEqual(sites.map((s) => s.source_ref), ["node/11", "node/13"]);
+  assert.match(sites[0].name, /sin nombre/);
+  assert.equal(sites[1].name, "Éxito");
+});
+
+test("the overpass query asks for fuel and shops", () => {
+  const q = overpassQuery({ south: 3.3, west: -76.6, north: 3.55, east: -76.42 });
+  assert.match(q, /fuel/);
+  assert.match(q, /supermarket\|convenience\|wholesale/);
+});
+
 test("imported sites carry provenance and are unverified by construction", () => {
   const sites = fromOverpass([
     { type: "node", id: 7, lat: 5.69, lon: -76.66, tags: { amenity: "pharmacy", name: "Farmacia Central" } },
@@ -179,8 +205,33 @@ test("imported sites carry provenance and are unverified by construction", () =>
   assert.equal(toGeoJSON(sites).attribution.includes("OpenStreetMap"), true, "ODbL attribution is mandatory");
 });
 
-test("the committed dataset is loadable and non-trivial", () => {
-  const file = path.join(root, "data/aid-sites/pereira-co.geojson");
+// A kind that exists in the classifier but not in the CHECK constraint fails on
+// the first import row, and a kind missing from the legend renders as a grey
+// "Otro" dot nobody can filter. Both are silent until an activation, so they are
+// checked statically here.
+test("every classifier kind is accepted by the schema and drawn by the legend", () => {
+  const src = fs.readFileSync(path.join(root, "services/api/src/aid-sites.ts"), "utf8");
+  const kinds = (src.match(/export type AidKind =([\s\S]*?);/)![1].match(/"([a-z_]+)"/g) ?? [])
+    .map((k) => k.replaceAll('"', ""));
+  assert.ok(kinds.includes("fuel") && kinds.includes("market"));
+
+  const migrations = fs
+    .readdirSync(path.join(root, "db/migrations"))
+    .map((f) => fs.readFileSync(path.join(root, "db/migrations", f), "utf8"))
+    .join("\n");
+  const legend = fs.readFileSync(path.join(root, "app/web/src/lib/aid-kinds.ts"), "utf8");
+  for (const k of kinds) {
+    assert.match(migrations, new RegExp(`'${k}'`), `kind ${k} is not allowed by any CHECK`);
+    assert.match(legend, new RegExp(`\\b${k}:`), `kind ${k} has no colour/label`);
+  }
+});
+
+test("the committed datasets are loadable and non-trivial", () => {
+  for (const name of ["pereira-co.geojson", "cali-co.geojson"]) checkDataset(name);
+});
+
+function checkDataset(name: string) {
+  const file = path.join(root, "data/aid-sites", name);
   const fc = JSON.parse(fs.readFileSync(file, "utf8"));
   assert.ok(fc.features.length > 50, `only ${fc.features.length} sites committed`);
   // Every feature must be usable offline: name + coordinates, no exceptions.
@@ -188,4 +239,4 @@ test("the committed dataset is loadable and non-trivial", () => {
     assert.ok(f.properties.name, "a site without a name cannot be read out loud");
     assert.equal(f.geometry.coordinates.length, 2);
   }
-});
+}

@@ -1,6 +1,17 @@
 {
  "type": "FeatureCollection",
  "attribution": "© OpenStreetMap contributors (ODbL)",
+ "area": {
+  "label": "Pereira metro, Risaralda",
+  "bbox": {
+   "minLat": 4.7,
+   "minLng": -75.96,
+   "maxLat": 4.98,
+   "maxLng": -75.56
+  },
+  "pulled": "2026-08-13",
+  "source": "OpenStreetMap via Overpass"
+ },
  "features": [
   {
    "type": "Feature",
@@ -107,6 +118,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.9185319,
+     4.7500053
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Olimpica",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1223391992",
+    "source_url": "https://www.openstreetmap.org/node/1223391992"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.9128027,
      4.7504063
     ]
@@ -120,6 +151,66 @@
     "source": "osm",
     "source_ref": "node/1223397142",
     "source_url": "https://www.openstreetmap.org/node/1223397142"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9125149,
+     4.7497377
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1240927227",
+    "source_url": "https://www.openstreetmap.org/node/1240927227"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.909761,
+     4.7416545
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Metro",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1241072149",
+    "source_url": "https://www.openstreetmap.org/node/1241072149"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9116935,
+     4.7498594
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Exito",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1241387409",
+    "source_url": "https://www.openstreetmap.org/node/1241387409"
    }
   },
   {
@@ -187,6 +278,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7202402,
+     4.8157474
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de servicio (sin nombre)",
+    "address": "Carrera 13, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1398072376",
+    "source_url": "https://www.openstreetmap.org/node/1398072376"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6951101,
+     4.8105634
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de servicio (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1398072407",
+    "source_url": "https://www.openstreetmap.org/node/1398072407"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6366433,
      4.7290434
     ]
@@ -227,6 +358,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6880023,
+     4.8038548
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Punto 5",
+    "address": "Carrera 18 10-04, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1454376386",
+    "source_url": "https://www.openstreetmap.org/node/1454376386"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6855368,
+     4.8039318
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Pinares Tienda",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1457379134",
+    "source_url": "https://www.openstreetmap.org/node/1457379134"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6813094,
      4.8082505
     ]
@@ -247,6 +418,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7317566,
+     4.8217134
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Mi Viejo Paris",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1613118734",
+    "source_url": "https://www.openstreetmap.org/node/1613118734"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7340955,
+     4.8252253
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1613130298",
+    "source_url": "https://www.openstreetmap.org/node/1613130298"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7319939,
      4.8223789
     ]
@@ -260,6 +471,46 @@
     "source": "osm",
     "source_ref": "node/1613130904",
     "source_url": "https://www.openstreetmap.org/node/1613130904"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.682575,
+     4.823126
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1948008866",
+    "source_url": "https://www.openstreetmap.org/node/1948008866"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6823497,
+     4.8231046
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1948008872",
+    "source_url": "https://www.openstreetmap.org/node/1948008872"
    }
   },
   {
@@ -307,6 +558,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7079322,
+     4.802486
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Mercafacil",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/1968370661",
+    "source_url": "https://www.openstreetmap.org/node/1968370661"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7076533,
      4.8024991
     ]
@@ -327,6 +598,66 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7161844,
+     4.8162421
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Éxito",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/2529943348",
+    "source_url": "https://www.openstreetmap.org/node/2529943348"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7313044,
+     4.8217167
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "ARA",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/2532334249",
+    "source_url": "https://www.openstreetmap.org/node/2532334249"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6839209,
+     4.8266846
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Mercolanta",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/2653238594",
+    "source_url": "https://www.openstreetmap.org/node/2653238594"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7160115,
      4.7189182
     ]
@@ -340,6 +671,146 @@
     "source": "osm",
     "source_ref": "node/3243668652",
     "source_url": "https://www.openstreetmap.org/node/3243668652"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6893955,
+     4.7235642
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Fonda Perez Alto",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/3243668653",
+    "source_url": "https://www.openstreetmap.org/node/3243668653"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6906049,
+     4.7246498
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/3243668972",
+    "source_url": "https://www.openstreetmap.org/node/3243668972"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6721899,
+     4.8341724
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda ARA",
+    "address": "Carrera 16, Dosquebradas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/3268331991",
+    "source_url": "https://www.openstreetmap.org/node/3268331991"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7152429,
+     4.720472
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/3288816873",
+    "source_url": "https://www.openstreetmap.org/node/3288816873"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7424329,
+     4.7989414
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/3315519261",
+    "source_url": "https://www.openstreetmap.org/node/3315519261"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6954892,
+     4.8130442
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "Carrera 9, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/3348458309",
+    "source_url": "https://www.openstreetmap.org/node/3348458309"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7352948,
+     4.9380691
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de servicio (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/3627206595",
+    "source_url": "https://www.openstreetmap.org/node/3627206595"
    }
   },
   {
@@ -400,6 +871,26 @@
     "source": "osm",
     "source_ref": "node/3969589257",
     "source_url": "https://www.openstreetmap.org/node/3969589257"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7154004,
+     4.7190656
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Estanquillo Burbuja",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/3969589258",
+    "source_url": "https://www.openstreetmap.org/node/3969589258"
    }
   },
   {
@@ -487,6 +978,66 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7384092,
+     4.9388769
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4153630420",
+    "source_url": "https://www.openstreetmap.org/node/4153630420"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7384625,
+     4.9381924
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "La Canasta",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4153630421",
+    "source_url": "https://www.openstreetmap.org/node/4153630421"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7385599,
+     4.9374654
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "ARA",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4153644674",
+    "source_url": "https://www.openstreetmap.org/node/4153644674"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7384789,
      4.9377379
     ]
@@ -500,6 +1051,86 @@
     "source": "osm",
     "source_ref": "node/4153666505",
     "source_url": "https://www.openstreetmap.org/node/4153666505"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7481635,
+     4.8048495
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Supertienda olimpica",
+    "address": "Calle 83 B, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4166572920",
+    "source_url": "https://www.openstreetmap.org/node/4166572920"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6629417,
+     4.854653
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Supermercado La Moneda",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4168006155",
+    "source_url": "https://www.openstreetmap.org/node/4168006155"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.661792,
+     4.852195
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Supermercado ARA",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4168014922",
+    "source_url": "https://www.openstreetmap.org/node/4168014922"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6145151,
+     4.7147266
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Super M&L El Manzano",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4168396473",
+    "source_url": "https://www.openstreetmap.org/node/4168396473"
    }
   },
   {
@@ -567,6 +1198,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6893833,
+     4.8131253
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Mercado",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4259454427",
+    "source_url": "https://www.openstreetmap.org/node/4259454427"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.8993308,
      4.759337
     ]
@@ -587,6 +1238,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.8837756,
+     4.8952376
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Supermercado Olimpica",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4462333458",
+    "source_url": "https://www.openstreetmap.org/node/4462333458"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.882339,
      4.8977434
     ]
@@ -600,6 +1271,26 @@
     "source": "osm",
     "source_ref": "node/4462380689",
     "source_url": "https://www.openstreetmap.org/node/4462380689"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8804981,
+     4.8982516
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Mobil",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4462391546",
+    "source_url": "https://www.openstreetmap.org/node/4462391546"
    }
   },
   {
@@ -667,6 +1358,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6691312,
+     4.8418166
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4470533897",
+    "source_url": "https://www.openstreetmap.org/node/4470533897"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.8824412,
      4.8883785
     ]
@@ -720,6 +1431,46 @@
     "source": "osm",
     "source_ref": "node/4579455793",
     "source_url": "https://www.openstreetmap.org/node/4579455793"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6912532,
+     4.7957236
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "Calle 12 17-116",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4635874890",
+    "source_url": "https://www.openstreetmap.org/node/4635874890"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6936117,
+     4.7985289
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Mini mercado California",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4658179190",
+    "source_url": "https://www.openstreetmap.org/node/4658179190"
    }
   },
   {
@@ -787,6 +1538,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6732544,
+     4.8413993
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4763314021",
+    "source_url": "https://www.openstreetmap.org/node/4763314021"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6871982,
+     4.7642725
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "Variante Condina",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4795577625",
+    "source_url": "https://www.openstreetmap.org/node/4795577625"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6872808,
      4.7643684
     ]
@@ -800,6 +1591,26 @@
     "source": "osm",
     "source_ref": "node/4795585325",
     "source_url": "https://www.openstreetmap.org/node/4795585325"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7396905,
+     4.7950419
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Olimpica",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/4795981823",
+    "source_url": "https://www.openstreetmap.org/node/4795981823"
    }
   },
   {
@@ -867,6 +1678,66 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7080446,
+     4.8004031
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Cafetal poblado",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5023195521",
+    "source_url": "https://www.openstreetmap.org/node/5023195521"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9113133,
+     4.7474966
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Olimpica",
+    "address": "Calle 10",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5099664921",
+    "source_url": "https://www.openstreetmap.org/node/5099664921"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.914385,
+     4.7476917
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Super Inter",
+    "address": "Carrera 6",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5099665121",
+    "source_url": "https://www.openstreetmap.org/node/5099665121"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.659654,
      4.8841305
     ]
@@ -907,6 +1778,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6113373,
+     4.7583015
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Progresso",
+    "address": "carretera 13 99ESTE41",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5214401922",
+    "source_url": "https://www.openstreetmap.org/node/5214401922"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6792596,
+     4.8290161
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Mercamás",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5229027409",
+    "source_url": "https://www.openstreetmap.org/node/5229027409"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6240679,
      4.9106101
     ]
@@ -920,6 +1831,26 @@
     "source": "osm",
     "source_ref": "node/5252829996",
     "source_url": "https://www.openstreetmap.org/node/5252829996"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.618822,
+     4.8671949
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": "Calle 14, Santa Rosa de Cabal",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5253288623",
+    "source_url": "https://www.openstreetmap.org/node/5253288623"
    }
   },
   {
@@ -1087,6 +2018,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6823078,
+     4.8289654
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5372965320",
+    "source_url": "https://www.openstreetmap.org/node/5372965320"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7372656,
+     4.806173
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5376162228",
+    "source_url": "https://www.openstreetmap.org/node/5376162228"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.5827525,
      4.9027786
     ]
@@ -1160,6 +2131,106 @@
     "source": "osm",
     "source_ref": "node/5452312230",
     "source_url": "https://www.openstreetmap.org/node/5452312230"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6855936,
+     4.791564
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5462524651",
+    "source_url": "https://www.openstreetmap.org/node/5462524651"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6856513,
+     4.7913462
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5462524652",
+    "source_url": "https://www.openstreetmap.org/node/5462524652"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6856124,
+     4.7922202
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5462524653",
+    "source_url": "https://www.openstreetmap.org/node/5462524653"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6857727,
+     4.7927408
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5462524654",
+    "source_url": "https://www.openstreetmap.org/node/5462524654"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6856191,
+     4.7924955
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5462524655",
+    "source_url": "https://www.openstreetmap.org/node/5462524655"
    }
   },
   {
@@ -1287,6 +2358,126 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6792565,
+     4.820367
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5956328494",
+    "source_url": "https://www.openstreetmap.org/node/5956328494"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6788577,
+     4.8207291
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Minimercado la Calidad",
+    "address": "Dosquebradas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5956328495",
+    "source_url": "https://www.openstreetmap.org/node/5956328495"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6788808,
+     4.8205556
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5956328496",
+    "source_url": "https://www.openstreetmap.org/node/5956328496"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.679277,
+     4.8216414
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5956336086",
+    "source_url": "https://www.openstreetmap.org/node/5956336086"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6750014,
+     4.841033
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5963315685",
+    "source_url": "https://www.openstreetmap.org/node/5963315685"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6752131,
+     4.8408812
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5963315687",
+    "source_url": "https://www.openstreetmap.org/node/5963315687"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6755359,
      4.8406391
     ]
@@ -1307,6 +2498,86 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6753334,
+     4.8411215
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "La tienda de don Fidel",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5963322785",
+    "source_url": "https://www.openstreetmap.org/node/5963322785"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6203984,
+     4.8669662
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda D1",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/5984184785",
+    "source_url": "https://www.openstreetmap.org/node/5984184785"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7575681,
+     4.8062864
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Supermercado Villasol",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6091125932",
+    "source_url": "https://www.openstreetmap.org/node/6091125932"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6716741,
+     4.8077028
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "SuperEconomico Kennedy",
+    "address": "Avenida Santander, Oriente",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6093960502",
+    "source_url": "https://www.openstreetmap.org/node/6093960502"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6036973,
      4.9744282
     ]
@@ -1320,6 +2591,46 @@
     "source": "osm",
     "source_ref": "node/6116834247",
     "source_url": "https://www.openstreetmap.org/node/6116834247"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6843313,
+     4.8068247
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "La rebaja plus",
+    "address": "Avenida Circunvalar, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6154468285",
+    "source_url": "https://www.openstreetmap.org/node/6154468285"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6233762,
+     4.8768632
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": "Carrera 13, Santa Rosa de Cabal",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6171773887",
+    "source_url": "https://www.openstreetmap.org/node/6171773887"
    }
   },
   {
@@ -1387,6 +2698,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7151095,
+     4.9645762
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "El Kiosco",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6201183088",
+    "source_url": "https://www.openstreetmap.org/node/6201183088"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7382012,
+     4.9356051
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "donde Jose",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6201218185",
+    "source_url": "https://www.openstreetmap.org/node/6201218185"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.8265713,
      4.9196762
     ]
@@ -1400,6 +2751,46 @@
     "source": "osm",
     "source_ref": "node/6217316533",
     "source_url": "https://www.openstreetmap.org/node/6217316533"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6204743,
+     4.8676079
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Justo y Bueno",
+    "address": "Calle 15, Santa Rosa de Cabal",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6218994683",
+    "source_url": "https://www.openstreetmap.org/node/6218994683"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6284012,
+     4.870394
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda D1",
+    "address": "Santa Rosa de Cabal",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6219074925",
+    "source_url": "https://www.openstreetmap.org/node/6219074925"
    }
   },
   {
@@ -1540,6 +2931,26 @@
     "source": "osm",
     "source_ref": "node/6277414428",
     "source_url": "https://www.openstreetmap.org/node/6277414428"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9155705,
+     4.735819
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ciudadela de paz",
+    "address": "Mz 6 casa 10",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6278458785",
+    "source_url": "https://www.openstreetmap.org/node/6278458785"
    }
   },
   {
@@ -1727,6 +3138,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7424766,
+     4.7955925
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda Nely",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6528734072",
+    "source_url": "https://www.openstreetmap.org/node/6528734072"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7320893,
      4.9005039
     ]
@@ -1867,6 +3298,566 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6809977,
+     4.8084882
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6718969074",
+    "source_url": "https://www.openstreetmap.org/node/6718969074"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7337379,
+     4.806477
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "ARA",
+    "address": null,
+    "phone": "018000521888",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6718971702",
+    "source_url": "https://www.openstreetmap.org/node/6718971702"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6956559,
+     4.8106812
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": "Carrera 12 11-50, Pereira",
+    "phone": "+57 310 7760066; +57 1 800 0521888",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6718974343",
+    "source_url": "https://www.openstreetmap.org/node/6718974343"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6910918,
+     4.8135442
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": "Carrera 8 15-15, Pereira",
+    "phone": "+57 310 7760066; +57 1 800 0521888",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6718981242",
+    "source_url": "https://www.openstreetmap.org/node/6718981242"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6956157,
+     4.8138511
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": "Pereira",
+    "phone": "+57 1 800 0521888",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6718982114",
+    "source_url": "https://www.openstreetmap.org/node/6718982114"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6775644,
+     4.8092005
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "2E 76 Carrera 11, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6718988628",
+    "source_url": "https://www.openstreetmap.org/node/6718988628"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6937113,
+     4.8147171
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": "Carrera 7 18-32, Pereira",
+    "phone": "+57 310 7760066; +57 1 800 0521888",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6718990859",
+    "source_url": "https://www.openstreetmap.org/node/6718990859"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7393947,
+     4.7955399
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "ARA",
+    "address": null,
+    "phone": "018000521888",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6718992636",
+    "source_url": "https://www.openstreetmap.org/node/6718992636"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7166228,
+     4.8153131
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": "Carrera 12, Pereira",
+    "phone": "01 800 0521888",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6718994824",
+    "source_url": "https://www.openstreetmap.org/node/6718994824"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7031068,
+     4.8156083
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": "Megabus 24-49, Pereira",
+    "phone": "+57 1 800 0521888",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6718994825",
+    "source_url": "https://www.openstreetmap.org/node/6718994825"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7251133,
+     4.8077917
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6718996627",
+    "source_url": "https://www.openstreetmap.org/node/6718996627"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6978124,
+     4.8049455
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "5 22 Calle 63, Pereira - Risaralda - Colombia",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6718996628",
+    "source_url": "https://www.openstreetmap.org/node/6718996628"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6915334,
+     4.8025841
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "Calle 14, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6718996990",
+    "source_url": "https://www.openstreetmap.org/node/6718996990"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7337084,
+     4.7986751
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "ARA",
+    "address": null,
+    "phone": "+57 1 800 0521888",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6718999084",
+    "source_url": "https://www.openstreetmap.org/node/6718999084"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6903948,
+     4.8132979
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6718999403",
+    "source_url": "https://www.openstreetmap.org/node/6718999403"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6988826,
+     4.8133914
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "Carrera 9, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6719000270",
+    "source_url": "https://www.openstreetmap.org/node/6719000270"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6938964,
+     4.8107507
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6719000966",
+    "source_url": "https://www.openstreetmap.org/node/6719000966"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7410513,
+     4.8041846
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "5 22 Calle 63",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6719002783",
+    "source_url": "https://www.openstreetmap.org/node/6719002783"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7251656,
+     4.7864255
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "5 22 Calle 63",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6719003046",
+    "source_url": "https://www.openstreetmap.org/node/6719003046"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7380239,
+     4.8036271
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6719003155",
+    "source_url": "https://www.openstreetmap.org/node/6719003155"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7523216,
+     4.8106478
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6719003250",
+    "source_url": "https://www.openstreetmap.org/node/6719003250"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7301818,
+     4.8216364
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "5 22 Calle 63",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6719007753",
+    "source_url": "https://www.openstreetmap.org/node/6719007753"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7107917,
+     4.7925677
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "5 22 Calle 63",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6719008287",
+    "source_url": "https://www.openstreetmap.org/node/6719008287"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.805255,
+     4.8061723
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "5 22 Calle 63",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6719008490",
+    "source_url": "https://www.openstreetmap.org/node/6719008490"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7067591,
+     4.8122003
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "Carrera 13, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6719008654",
+    "source_url": "https://www.openstreetmap.org/node/6719008654"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7087387,
+     4.8006676
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "5 22 Calle 63, El Poblado",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6719008655",
+    "source_url": "https://www.openstreetmap.org/node/6719008655"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6803083,
+     4.8090281
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "5 22 Calle 63",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6719016822",
+    "source_url": "https://www.openstreetmap.org/node/6719016822"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7126209,
+     4.8154254
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "5 22 Calle 63",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6719023573",
+    "source_url": "https://www.openstreetmap.org/node/6719023573"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7462696,
      4.9602339
     ]
@@ -1927,6 +3918,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.817635,
+     4.8070213
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6741516515",
+    "source_url": "https://www.openstreetmap.org/node/6741516515"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7575508,
      4.884531
     ]
@@ -1940,6 +3951,26 @@
     "source": "osm",
     "source_ref": "node/6757382912",
     "source_url": "https://www.openstreetmap.org/node/6757382912"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7340327,
+     4.7986128
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Surtimos Salsamentaria",
+    "address": "Calle 75 Carrera 35, pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/6758215137",
+    "source_url": "https://www.openstreetmap.org/node/6758215137"
    }
   },
   {
@@ -2227,6 +4258,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7415885,
+     4.7962382
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1 Altavista",
+    "address": "Carrera 26, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7044982894",
+    "source_url": "https://www.openstreetmap.org/node/7044982894"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7667621,
+     4.8069229
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "El Arriero",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7047823332",
+    "source_url": "https://www.openstreetmap.org/node/7047823332"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6111935,
      4.8243316
     ]
@@ -2267,6 +4338,66 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6587452,
+     4.850148
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7133209887",
+    "source_url": "https://www.openstreetmap.org/node/7133209887"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6618802,
+     4.8444841
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Justo y bueno",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7133228385",
+    "source_url": "https://www.openstreetmap.org/node/7133228385"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6545521,
+     4.85723
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Rapitienda",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7133228485",
+    "source_url": "https://www.openstreetmap.org/node/7133228485"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6990083,
      4.8168964
     ]
@@ -2280,6 +4411,26 @@
     "source": "osm",
     "source_ref": "node/7146463985",
     "source_url": "https://www.openstreetmap.org/node/7146463985"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6618386,
+     4.8445443
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D'1",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7170545985",
+    "source_url": "https://www.openstreetmap.org/node/7170545985"
    }
   },
   {
@@ -2347,6 +4498,206 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.820544,
+     4.7971563
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7176476685",
+    "source_url": "https://www.openstreetmap.org/node/7176476685"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8206599,
+     4.7980948
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7176476785",
+    "source_url": "https://www.openstreetmap.org/node/7176476785"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8207422,
+     4.7984879
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7176476786",
+    "source_url": "https://www.openstreetmap.org/node/7176476786"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8209687,
+     4.7982618
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7176476788",
+    "source_url": "https://www.openstreetmap.org/node/7176476788"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8205908,
+     4.7992668
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7176476885",
+    "source_url": "https://www.openstreetmap.org/node/7176476885"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8208384,
+     4.798372
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7176476985",
+    "source_url": "https://www.openstreetmap.org/node/7176476985"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8204049,
+     4.7981204
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7176477185",
+    "source_url": "https://www.openstreetmap.org/node/7176477185"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8201827,
+     4.7994366
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7178547286",
+    "source_url": "https://www.openstreetmap.org/node/7178547286"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8203587,
+     4.7981449
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7178945785",
+    "source_url": "https://www.openstreetmap.org/node/7178945785"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8201617,
+     4.7967491
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7185256487",
+    "source_url": "https://www.openstreetmap.org/node/7185256487"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6960549,
      4.7981663
     ]
@@ -2360,6 +4711,126 @@
     "source": "osm",
     "source_ref": "node/7206683385",
     "source_url": "https://www.openstreetmap.org/node/7206683385"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8157644,
+     4.7982474
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7214828985",
+    "source_url": "https://www.openstreetmap.org/node/7214828985"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8186412,
+     4.7989711
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7214828986",
+    "source_url": "https://www.openstreetmap.org/node/7214828986"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8161306,
+     4.7984077
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7214829086",
+    "source_url": "https://www.openstreetmap.org/node/7214829086"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8164338,
+     4.7984486
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7214829087",
+    "source_url": "https://www.openstreetmap.org/node/7214829087"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7190989,
+     4.8146747
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda Maraya",
+    "address": "Carrera 11 48-13, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/7274590571",
+    "source_url": "https://www.openstreetmap.org/node/7274590571"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8838559,
+     4.8959018
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "SUPERMERCADO CUCUTEÑO",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/8066791286",
+    "source_url": "https://www.openstreetmap.org/node/8066791286"
    }
   },
   {
@@ -2467,6 +4938,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7332483,
+     4.8062375
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda D1",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/9783811029",
+    "source_url": "https://www.openstreetmap.org/node/9783811029"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6825005,
      4.8233037
     ]
@@ -2547,6 +5038,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7030079,
+     4.8155891
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "Carrera 7, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10131523819",
+    "source_url": "https://www.openstreetmap.org/node/10131523819"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7064606,
      4.8123953
     ]
@@ -2600,6 +5111,46 @@
     "source": "osm",
     "source_ref": "node/10133170162",
     "source_url": "https://www.openstreetmap.org/node/10133170162"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.708205,
+     4.81645
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": "Carrera 7, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10175715052",
+    "source_url": "https://www.openstreetmap.org/node/10175715052"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7082416,
+     4.8164517
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Supernordico",
+    "address": null,
+    "phone": "+57 312 5878208",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10175715053",
+    "source_url": "https://www.openstreetmap.org/node/10175715053"
    }
   },
   {
@@ -2740,6 +5291,86 @@
     "source": "osm",
     "source_ref": "node/10241123113",
     "source_url": "https://www.openstreetmap.org/node/10241123113"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6895858,
+     4.8141811
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Estanquillo Popular",
+    "address": "Carrera 7 13-50, Pereira",
+    "phone": "+57 606 3348129;+57 606 3334524;+57 310 4947505",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10241238548",
+    "source_url": "https://www.openstreetmap.org/node/10241238548"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6933274,
+     4.8119491
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": "Carrera 10 #9-63/67, Pereira",
+    "phone": "+57 310 7760066; +57 1 800 0521888",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10241426282",
+    "source_url": "https://www.openstreetmap.org/node/10241426282"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6932067,
+     4.8087258
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": "Calle 13 31-71, Pereira",
+    "phone": "+57 310 7760066; +57 1 800 0521888",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10241426283",
+    "source_url": "https://www.openstreetmap.org/node/10241426283"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7086271,
+     4.8015893
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": "Carrera 27 Calle 33 Bis, Pereira",
+    "phone": "+57 310 7760066; +57 1 800 0521888",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10241426284",
+    "source_url": "https://www.openstreetmap.org/node/10241426284"
    }
   },
   {
@@ -3147,6 +5778,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6792076,
+     4.8080386
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": "Avenida Circunvalar, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10289617324",
+    "source_url": "https://www.openstreetmap.org/node/10289617324"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6794785,
+     4.8083753
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "Avenida Circunvalar, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10289669637",
+    "source_url": "https://www.openstreetmap.org/node/10289669637"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6800904,
      4.8083399
     ]
@@ -3167,6 +5838,66 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6912587,
+     4.8095825
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "Calle 15, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10289716094",
+    "source_url": "https://www.openstreetmap.org/node/10289716094"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6901861,
+     4.8131437
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Olímpica",
+    "address": "Calle 14, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10291452448",
+    "source_url": "https://www.openstreetmap.org/node/10291452448"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6906237,
+     4.8133375
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Olímpica",
+    "address": "Carrera 8, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10291452452",
+    "source_url": "https://www.openstreetmap.org/node/10291452452"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6994473,
      4.8174711
     ]
@@ -3180,6 +5911,46 @@
     "source": "osm",
     "source_ref": "node/10294387431",
     "source_url": "https://www.openstreetmap.org/node/10294387431"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6906545,
+     4.8135147
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": "Carrera 8, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10300578640",
+    "source_url": "https://www.openstreetmap.org/node/10300578640"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6915954,
+     4.8134413
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10300670004",
+    "source_url": "https://www.openstreetmap.org/node/10300670004"
    }
   },
   {
@@ -3267,6 +6038,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7028887,
+     4.8105818
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Texaco",
+    "address": "Carrera 13, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10539669411",
+    "source_url": "https://www.openstreetmap.org/node/10539669411"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7024238,
+     4.8105516
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Primax",
+    "address": "Carrera 13, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10539669420",
+    "source_url": "https://www.openstreetmap.org/node/10539669420"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6935847,
      4.8162067
     ]
@@ -3280,6 +6091,26 @@
     "source": "osm",
     "source_ref": "node/10539693453",
     "source_url": "https://www.openstreetmap.org/node/10539693453"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.702206,
+     4.8107663
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Terpel",
+    "address": "Carrera 13, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10554901532",
+    "source_url": "https://www.openstreetmap.org/node/10554901532"
    }
   },
   {
@@ -3327,6 +6158,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7077484,
+     4.8122959
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "Carrera 13, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10555185310",
+    "source_url": "https://www.openstreetmap.org/node/10555185310"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7133102,
      4.8138003
     ]
@@ -3340,6 +6191,166 @@
     "source": "osm",
     "source_ref": "node/10568025253",
     "source_url": "https://www.openstreetmap.org/node/10568025253"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6928067,
+     4.8100455
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Terpel",
+    "address": "Carrera 12, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10584196943",
+    "source_url": "https://www.openstreetmap.org/node/10584196943"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8209681,
+     4.798262
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10587746856",
+    "source_url": "https://www.openstreetmap.org/node/10587746856"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8206593,
+     4.798095
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10587753336",
+    "source_url": "https://www.openstreetmap.org/node/10587753336"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8205434,
+     4.7971565
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10587753373",
+    "source_url": "https://www.openstreetmap.org/node/10587753373"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8208378,
+     4.7983722
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10587753383",
+    "source_url": "https://www.openstreetmap.org/node/10587753383"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8186406,
+     4.7989713
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10587753406",
+    "source_url": "https://www.openstreetmap.org/node/10587753406"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8203581,
+     4.7981451
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10587753511",
+    "source_url": "https://www.openstreetmap.org/node/10587753511"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8207416,
+     4.7984881
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10587753540",
+    "source_url": "https://www.openstreetmap.org/node/10587753540"
    }
   },
   {
@@ -3367,6 +6378,66 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.8201611,
+     4.7967493
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10587753952",
+    "source_url": "https://www.openstreetmap.org/node/10587753952"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8208875,
+     4.7984488
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10587753980",
+    "source_url": "https://www.openstreetmap.org/node/10587753980"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8204043,
+     4.7981206
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10587754179",
+    "source_url": "https://www.openstreetmap.org/node/10587754179"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6903698,
      4.8045017
     ]
@@ -3380,6 +6451,26 @@
     "source": "osm",
     "source_ref": "node/10591731728",
     "source_url": "https://www.openstreetmap.org/node/10591731728"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9128245,
+     4.7305916
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Gazel",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10592074705",
+    "source_url": "https://www.openstreetmap.org/node/10592074705"
    }
   },
   {
@@ -3507,6 +6598,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6972882,
+     4.8032724
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Mini Mart",
+    "address": "Carrera 20 Bis #21-20B, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10891614207",
+    "source_url": "https://www.openstreetmap.org/node/10891614207"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6964227,
      4.9303409
     ]
@@ -3560,6 +6671,86 @@
     "source": "osm",
     "source_ref": "node/10934504146",
     "source_url": "https://www.openstreetmap.org/node/10934504146"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6966317,
+     4.8080202
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "Carrera 15, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/10944499228",
+    "source_url": "https://www.openstreetmap.org/node/10944499228"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6971251,
+     4.8038723
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Bancolombia Corresponsal",
+    "address": "Calle 21, Pereira",
+    "phone": "+57 310 4988092",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11018079474",
+    "source_url": "https://www.openstreetmap.org/node/11018079474"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6976899,
+     4.8031378
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": "Calle 21 Bis, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11022979001",
+    "source_url": "https://www.openstreetmap.org/node/11022979001"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6976912,
+     4.8031075
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": "Calle 21 Bis, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11022979002",
+    "source_url": "https://www.openstreetmap.org/node/11022979002"
    }
   },
   {
@@ -3627,6 +6818,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7061806,
+     4.8152892
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Super Mercado Nuevo Sol",
+    "address": "Carrera 8, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11094468300",
+    "source_url": "https://www.openstreetmap.org/node/11094468300"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7108356,
+     4.8170042
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Super Inter",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11108048450",
+    "source_url": "https://www.openstreetmap.org/node/11108048450"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7096035,
      4.8128823
     ]
@@ -3667,6 +6898,146 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7031092,
+     4.8183172
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": "Carrera 4, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11144606280",
+    "source_url": "https://www.openstreetmap.org/node/11144606280"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.695756,
+     4.7785838
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Terpel",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11146591192",
+    "source_url": "https://www.openstreetmap.org/node/11146591192"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6956704,
+     4.7785697
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Oxxo",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11149259480",
+    "source_url": "https://www.openstreetmap.org/node/11149259480"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6961141,
+     4.7865913
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11149259481",
+    "source_url": "https://www.openstreetmap.org/node/11149259481"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6669797,
+     4.7494626
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11149260415",
+    "source_url": "https://www.openstreetmap.org/node/11149260415"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7004183,
+     4.8116989
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Mi Tienda Número 2",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11158098723",
+    "source_url": "https://www.openstreetmap.org/node/11158098723"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.700314,
+     4.8095102
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11158129827",
+    "source_url": "https://www.openstreetmap.org/node/11158129827"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6996207,
      4.8186367
     ]
@@ -3700,6 +7071,86 @@
     "source": "osm",
     "source_ref": "node/11165632854",
     "source_url": "https://www.openstreetmap.org/node/11165632854"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.682724,
+     4.8250948
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Terpel",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11170380531",
+    "source_url": "https://www.openstreetmap.org/node/11170380531"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6870329,
+     4.8140728
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11170740001",
+    "source_url": "https://www.openstreetmap.org/node/11170740001"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6754418,
+     4.8392732
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11182384238",
+    "source_url": "https://www.openstreetmap.org/node/11182384238"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6740439,
+     4.8410966
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/11182384239",
+    "source_url": "https://www.openstreetmap.org/node/11182384239"
    }
   },
   {
@@ -3847,6 +7298,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6149659,
+     4.862895
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12206033601",
+    "source_url": "https://www.openstreetmap.org/node/12206033601"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6163736,
      4.8622914
     ]
@@ -3860,6 +7331,46 @@
     "source": "osm",
     "source_ref": "node/12207100704",
     "source_url": "https://www.openstreetmap.org/node/12207100704"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6624698,
+     4.8514569
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Oxxo",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12207167701",
+    "source_url": "https://www.openstreetmap.org/node/12207167701"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9284687,
+     4.7555491
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D-UNO",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12282027828",
+    "source_url": "https://www.openstreetmap.org/node/12282027828"
    }
   },
   {
@@ -3920,6 +7431,26 @@
     "source": "osm",
     "source_ref": "node/12484381760",
     "source_url": "https://www.openstreetmap.org/node/12484381760"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.730803,
+     4.7917285
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "El Arriero",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/12628619867",
+    "source_url": "https://www.openstreetmap.org/node/12628619867"
    }
   },
   {
@@ -4000,6 +7531,26 @@
     "source": "osm",
     "source_ref": "node/12916338702",
     "source_url": "https://www.openstreetmap.org/node/12916338702"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9102263,
+     4.7415396
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "El tio",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13073321374",
+    "source_url": "https://www.openstreetmap.org/node/13073321374"
    }
   },
   {
@@ -4107,6 +7658,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7035158,
+     4.8159355
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "OXXO",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13467972001",
+    "source_url": "https://www.openstreetmap.org/node/13467972001"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.8325664,
      4.8037514
     ]
@@ -4120,6 +7691,46 @@
     "source": "osm",
     "source_ref": "node/13725854404",
     "source_url": "https://www.openstreetmap.org/node/13725854404"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8319396,
+     4.8036526
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Carulla",
+    "address": "Cerritos",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13725854406",
+    "source_url": "https://www.openstreetmap.org/node/13725854406"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8320253,
+     4.8036526
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "Cerritos",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13725854407",
+    "source_url": "https://www.openstreetmap.org/node/13725854407"
    }
   },
   {
@@ -4167,6 +7778,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6955741,
+     4.8244642
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13759291731",
+    "source_url": "https://www.openstreetmap.org/node/13759291731"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6918197,
      4.8079645
     ]
@@ -4207,6 +7838,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6778753,
+     4.8161637
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda Ara El Japón",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13921308308",
+    "source_url": "https://www.openstreetmap.org/node/13921308308"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6782178,
      4.8166314
     ]
@@ -4240,6 +7891,66 @@
     "source": "osm",
     "source_ref": "node/13921320522",
     "source_url": "https://www.openstreetmap.org/node/13921320522"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7071203,
+     4.7937848
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Merca fruver Emanuel",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13952562116",
+    "source_url": "https://www.openstreetmap.org/node/13952562116"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7069949,
+     4.7940366
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Minimercado la gran esquina",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13952568220",
+    "source_url": "https://www.openstreetmap.org/node/13952568220"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6805183,
+     4.8255441
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Oxxo",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "node/13960979580",
+    "source_url": "https://www.openstreetmap.org/node/13960979580"
    }
   },
   {
@@ -4307,6 +8018,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6971751,
+     4.8147662
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": "Carrera 7 22-25, Pereira",
+    "phone": "+57 310 7760066; +57 1 800 0521888",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/150689127",
+    "source_url": "https://www.openstreetmap.org/way/150689127"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6953094,
      4.8087023
     ]
@@ -4340,6 +8071,26 @@
     "source": "osm",
     "source_ref": "way/159258534",
     "source_url": "https://www.openstreetmap.org/way/159258534"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6776283,
+     4.8312962
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Supermercado Inter",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/184340839",
+    "source_url": "https://www.openstreetmap.org/way/184340839"
    }
   },
   {
@@ -4387,6 +8138,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.676149,
+     4.8387762
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Super Inter",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/185448127",
+    "source_url": "https://www.openstreetmap.org/way/185448127"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7231,
      4.8028166
     ]
@@ -4400,6 +8171,26 @@
     "source": "osm",
     "source_ref": "way/244162326",
     "source_url": "https://www.openstreetmap.org/way/244162326"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6789429,
+     4.7169385
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "La Aurora",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/302601513",
+    "source_url": "https://www.openstreetmap.org/way/302601513"
    }
   },
   {
@@ -4467,6 +8258,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6695353,
+     4.8350262
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Supermercado Metro",
+    "address": "Carrera 16, Dosquebradas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/318161611",
+    "source_url": "https://www.openstreetmap.org/way/318161611"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6700531,
+     4.8352904
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Olímpica",
+    "address": "Dosquebradas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/318161612",
+    "source_url": "https://www.openstreetmap.org/way/318161612"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.713259,
      4.7209415
     ]
@@ -4520,6 +8351,26 @@
     "source": "osm",
     "source_ref": "way/323909732",
     "source_url": "https://www.openstreetmap.org/way/323909732"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7375979,
+     4.7039536
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Supermercado Tamaka",
+    "address": "Carrera 2, Ulloa",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/323909737",
+    "source_url": "https://www.openstreetmap.org/way/323909737"
    }
   },
   {
@@ -4587,6 +8438,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7380978,
+     4.7009831
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de servicio (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/387701060",
+    "source_url": "https://www.openstreetmap.org/way/387701060"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7406735,
+     4.8188883
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estacion de Servicio Texaco LasPalmas",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/389742783",
+    "source_url": "https://www.openstreetmap.org/way/389742783"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7387756,
      4.9389163
     ]
@@ -4600,6 +8491,26 @@
     "source": "osm",
     "source_ref": "way/409610470",
     "source_url": "https://www.openstreetmap.org/way/409610470"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7380701,
+     4.9386904
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Plaza de mercado",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/409610706",
+    "source_url": "https://www.openstreetmap.org/way/409610706"
    }
   },
   {
@@ -4707,6 +8618,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7416398,
+     4.796233
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "Calle 80 29-16, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/467674924",
+    "source_url": "https://www.openstreetmap.org/way/467674924"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.737363,
      4.7037334
     ]
@@ -4720,6 +8651,46 @@
     "source": "osm",
     "source_ref": "way/469103833",
     "source_url": "https://www.openstreetmap.org/way/469103833"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7372492,
+     4.7028379
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "MercaUlloa",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/469103848",
+    "source_url": "https://www.openstreetmap.org/way/469103848"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7387307,
+     4.7044977
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "La Economia",
+    "address": "3 - 58",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/469430093",
+    "source_url": "https://www.openstreetmap.org/way/469430093"
    }
   },
   {
@@ -4747,6 +8718,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.9243989,
+     4.7039314
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio Terpel Zaragoza",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/484838660",
+    "source_url": "https://www.openstreetmap.org/way/484838660"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7602176,
      4.8051762
     ]
@@ -4760,6 +8751,26 @@
     "source": "osm",
     "source_ref": "way/489423302",
     "source_url": "https://www.openstreetmap.org/way/489423302"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7399473,
+     4.8060087
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/512092533",
+    "source_url": "https://www.openstreetmap.org/way/512092533"
    }
   },
   {
@@ -4820,6 +8831,26 @@
     "source": "osm",
     "source_ref": "way/525980788",
     "source_url": "https://www.openstreetmap.org/way/525980788"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9251027,
+     4.7504866
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Supermercados Ara",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/525980794",
+    "source_url": "https://www.openstreetmap.org/way/525980794"
    }
   },
   {
@@ -4907,6 +8938,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7178019,
+     4.8074793
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/531268801",
+    "source_url": "https://www.openstreetmap.org/way/531268801"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7164801,
+     4.8064093
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Homecenter",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/531268804",
+    "source_url": "https://www.openstreetmap.org/way/531268804"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7359752,
      4.706981
     ]
@@ -4940,6 +9011,26 @@
     "source": "osm",
     "source_ref": "way/536790491",
     "source_url": "https://www.openstreetmap.org/way/536790491"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6852976,
+     4.8154279
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Jumbo",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/540883979",
+    "source_url": "https://www.openstreetmap.org/way/540883979"
    }
   },
   {
@@ -4987,6 +9078,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6821815,
+     4.8210086
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": "Carrera 17 11 - 36",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/546369598",
+    "source_url": "https://www.openstreetmap.org/way/546369598"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6794828,
      4.8221365
     ]
@@ -5000,6 +9111,46 @@
     "source": "osm",
     "source_ref": "way/546407578",
     "source_url": "https://www.openstreetmap.org/way/546407578"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.73997,
+     4.8052243
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Viejo Paris",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/546856577",
+    "source_url": "https://www.openstreetmap.org/way/546856577"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7828428,
+     4.739221
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Fonda La Estrella",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/547081793",
+    "source_url": "https://www.openstreetmap.org/way/547081793"
    }
   },
   {
@@ -5027,6 +9178,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6905831,
+     4.8075934
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Oxxo",
+    "address": "Calle 14, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/547106840",
+    "source_url": "https://www.openstreetmap.org/way/547106840"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7096571,
      4.8123257
     ]
@@ -5047,6 +9218,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.627492,
+     4.7236985
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio La Manuela",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/551765249",
+    "source_url": "https://www.openstreetmap.org/way/551765249"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6765575,
      4.7557079
     ]
@@ -5060,6 +9251,26 @@
     "source": "osm",
     "source_ref": "way/563678453",
     "source_url": "https://www.openstreetmap.org/way/563678453"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6767306,
+     4.7554022
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda El Control",
+    "address": "Via Armenia - Tribunas - Los Bohios, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/563747984",
+    "source_url": "https://www.openstreetmap.org/way/563747984"
    }
   },
   {
@@ -5147,6 +9358,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6279093,
+     4.8968237
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación De Servicio Biomax La María",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/579645861",
+    "source_url": "https://www.openstreetmap.org/way/579645861"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6253463,
+     4.8855189
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio La Italia",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/579902982",
+    "source_url": "https://www.openstreetmap.org/way/579902982"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6899031,
      4.8040674
     ]
@@ -5220,6 +9471,66 @@
     "source": "osm",
     "source_ref": "way/652504709",
     "source_url": "https://www.openstreetmap.org/way/652504709"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.62184,
+     4.8665635
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Super Inter",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/654317800",
+    "source_url": "https://www.openstreetmap.org/way/654317800"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6205171,
+     4.8663731
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "La Economia",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/654318901",
+    "source_url": "https://www.openstreetmap.org/way/654318901"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6193658,
+     4.8681652
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Olímpica",
+    "address": "Calle 15, Santa Rosa de Cabal",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/654782493",
+    "source_url": "https://www.openstreetmap.org/way/654782493"
    }
   },
   {
@@ -5467,6 +9778,126 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6706679,
+     4.8343492
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Olímpica",
+    "address": "Dosquebradas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/769975951",
+    "source_url": "https://www.openstreetmap.org/way/769975951"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.662039,
+     4.8439763
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Super Inter",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/770679462",
+    "source_url": "https://www.openstreetmap.org/way/770679462"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7108588,
+     4.8153936
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Merca Ya",
+    "address": "Carrera 8, Centro",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/806142043",
+    "source_url": "https://www.openstreetmap.org/way/806142043"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7090976,
+     4.8129478
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Olímpica",
+    "address": "Carrera 13 84-74, Pereira",
+    "phone": "+57 1 800 0510510",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/806142791",
+    "source_url": "https://www.openstreetmap.org/way/806142791"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7062085,
+     4.8159819
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Primax",
+    "address": "Carrera 7, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/806144515",
+    "source_url": "https://www.openstreetmap.org/way/806144515"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.701092,
+     4.8105767
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Primax",
+    "address": "Carrera 13, Centro",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/806154420",
+    "source_url": "https://www.openstreetmap.org/way/806154420"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7001595,
      4.8134756
     ]
@@ -5480,6 +9911,66 @@
     "source": "osm",
     "source_ref": "way/806154785",
     "source_url": "https://www.openstreetmap.org/way/806154785"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6953511,
+     4.8106502
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Esso",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/806196691",
+    "source_url": "https://www.openstreetmap.org/way/806196691"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6962743,
+     4.809998
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Biomax",
+    "address": "Calle 21, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/806196779",
+    "source_url": "https://www.openstreetmap.org/way/806196779"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7736371,
+     4.8128802
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Carulla",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/885614412",
+    "source_url": "https://www.openstreetmap.org/way/885614412"
    }
   },
   {
@@ -5567,6 +10058,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.654686,
+     4.8569588
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Distracom S.A.",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/995738388",
+    "source_url": "https://www.openstreetmap.org/way/995738388"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6618278,
      4.8555321
     ]
@@ -5600,6 +10111,26 @@
     "source": "osm",
     "source_ref": "way/1028998428",
     "source_url": "https://www.openstreetmap.org/way/1028998428"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7002284,
+     4.824604
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estacion de servicio Brio",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1030162725",
+    "source_url": "https://www.openstreetmap.org/way/1030162725"
    }
   },
   {
@@ -5687,6 +10218,466 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7369936,
+     4.9379061
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estacion de Gasolina",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1050119337",
+    "source_url": "https://www.openstreetmap.org/way/1050119337"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7157475,
+     4.816866
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Gazel",
+    "address": "Carrera 7, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1051883100",
+    "source_url": "https://www.openstreetmap.org/way/1051883100"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7153768,
+     4.8172409
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Terpel",
+    "address": "Carrera 7, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1051883101",
+    "source_url": "https://www.openstreetmap.org/way/1051883101"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6659555,
+     4.810171
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Olímpica",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1054421279",
+    "source_url": "https://www.openstreetmap.org/way/1054421279"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7053192,
+     4.8069735
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Gazel",
+    "address": "Avenida de las Americas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1056643854",
+    "source_url": "https://www.openstreetmap.org/way/1056643854"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7051423,
+     4.8068684
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Terpel",
+    "address": "Avenida de las Americas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1056643855",
+    "source_url": "https://www.openstreetmap.org/way/1056643855"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7044492,
+     4.8061151
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Primax",
+    "address": "Avenida de las Americas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1056643856",
+    "source_url": "https://www.openstreetmap.org/way/1056643856"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7043292,
+     4.8061961
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Esso",
+    "address": "Avenida de las Americas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1056643857",
+    "source_url": "https://www.openstreetmap.org/way/1056643857"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7045379,
+     4.8062176
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Primax",
+    "address": "Avenida de las Americas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1056643858",
+    "source_url": "https://www.openstreetmap.org/way/1056643858"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6929962,
+     4.8077887
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Texaco",
+    "address": "Carrera 15, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1056730154",
+    "source_url": "https://www.openstreetmap.org/way/1056730154"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6831337,
+     4.8144979
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio Coochoferes Pereira",
+    "address": "Carrera 5, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1056730157",
+    "source_url": "https://www.openstreetmap.org/way/1056730157"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6680224,
+     4.8495242
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio La Carlota",
+    "address": "Variante Romelia el Pollo",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1057364129",
+    "source_url": "https://www.openstreetmap.org/way/1057364129"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9304403,
+     4.757842
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Primax",
+    "address": "Carrera 2",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1057424191",
+    "source_url": "https://www.openstreetmap.org/way/1057424191"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.922731,
+     4.749924
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Gazel",
+    "address": "Calle 20",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1057424192",
+    "source_url": "https://www.openstreetmap.org/way/1057424192"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9227365,
+     4.750089
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Terpel",
+    "address": "Calle 20",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1057424193",
+    "source_url": "https://www.openstreetmap.org/way/1057424193"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9010498,
+     4.7525857
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Texaco",
+    "address": "Diagonal 3",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1057427052",
+    "source_url": "https://www.openstreetmap.org/way/1057427052"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9000727,
+     4.7527619
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio Terpel La Pricipal",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1057427053",
+    "source_url": "https://www.openstreetmap.org/way/1057427053"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8982699,
+     4.7565665
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Brío",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1057427054",
+    "source_url": "https://www.openstreetmap.org/way/1057427054"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8983055,
+     4.7571943
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "EDS Cartago Cl 1 Este",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1057427055",
+    "source_url": "https://www.openstreetmap.org/way/1057427055"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8983071,
+     4.7561543
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio El Mariscal",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1057427056",
+    "source_url": "https://www.openstreetmap.org/way/1057427056"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.900395,
+     4.7517373
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio Mobil Cartago Cl 3 Este",
+    "address": "Carretera Circunvalar Calle 1",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1057427057",
+    "source_url": "https://www.openstreetmap.org/way/1057427057"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9120216,
+     4.7320109
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Primax",
+    "address": "Calle 10",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1057427060",
+    "source_url": "https://www.openstreetmap.org/way/1057427060"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9119193,
+     4.732084
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Primax",
+    "address": "Calle 10",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1057427061",
+    "source_url": "https://www.openstreetmap.org/way/1057427061"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.731897,
      4.8066255
     ]
@@ -5707,6 +10698,1026 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6229814,
+     4.8638946
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio San Eugenio",
+    "address": "Carrera 16A, Santa Rosa de Cabal",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1066138268",
+    "source_url": "https://www.openstreetmap.org/way/1066138268"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7577228,
+     4.812612
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1080401058",
+    "source_url": "https://www.openstreetmap.org/way/1080401058"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9211218,
+     4.7500943
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Esso",
+    "address": "Calle 18",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1080612633",
+    "source_url": "https://www.openstreetmap.org/way/1080612633"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8823666,
+     4.8956908
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estacion de Servicio Antioqueña",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1081174873",
+    "source_url": "https://www.openstreetmap.org/way/1081174873"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6234175,
+     4.8728678
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Zeuss",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1081868315",
+    "source_url": "https://www.openstreetmap.org/way/1081868315"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6231083,
+     4.8632211
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio Araucarias",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1081872482",
+    "source_url": "https://www.openstreetmap.org/way/1081872482"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.633065,
+     4.8720864
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio La Hermosa",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1081893401",
+    "source_url": "https://www.openstreetmap.org/way/1081893401"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6557256,
+     4.8562338
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio Líneas Pereiranas",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1081893835",
+    "source_url": "https://www.openstreetmap.org/way/1081893835"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.656172,
+     4.8553185
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio Buenavista",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1081894418",
+    "source_url": "https://www.openstreetmap.org/way/1081894418"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6615514,
+     4.8513506
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio La Acuarela",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1081895172",
+    "source_url": "https://www.openstreetmap.org/way/1081895172"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6619683,
+     4.851926
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio Nuevo Bosque",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1081925159",
+    "source_url": "https://www.openstreetmap.org/way/1081925159"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6676475,
+     4.8489739
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio Risaralda",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1081926448",
+    "source_url": "https://www.openstreetmap.org/way/1081926448"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6712743,
+     4.8484001
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio Terpel La Tractomula",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1081927734",
+    "source_url": "https://www.openstreetmap.org/way/1081927734"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6772148,
+     4.8426709
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Primax",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1081928638",
+    "source_url": "https://www.openstreetmap.org/way/1081928638"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6763464,
+     4.8317484
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Texaco",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1081932201",
+    "source_url": "https://www.openstreetmap.org/way/1081932201"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6785908,
+     4.8297342
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "EDS del café",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1081933452",
+    "source_url": "https://www.openstreetmap.org/way/1081933452"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7017642,
+     4.8304958
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio Terpel La Alqueria",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082085188",
+    "source_url": "https://www.openstreetmap.org/way/1082085188"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7037759,
+     4.8113038
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Terpel",
+    "address": "Carrera 13, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082085522",
+    "source_url": "https://www.openstreetmap.org/way/1082085522"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6969132,
+     4.8086492
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Terpel",
+    "address": "Megabus, Bostón",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082086996",
+    "source_url": "https://www.openstreetmap.org/way/1082086996"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6938299,
+     4.8061916
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Terpel",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082333739",
+    "source_url": "https://www.openstreetmap.org/way/1082333739"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6938521,
+     4.8060727
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Gazel",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082333740",
+    "source_url": "https://www.openstreetmap.org/way/1082333740"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7192903,
+     4.8065579
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Texaco",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082335053",
+    "source_url": "https://www.openstreetmap.org/way/1082335053"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7259174,
+     4.8159669
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Terpel",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082336269",
+    "source_url": "https://www.openstreetmap.org/way/1082336269"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7356643,
+     4.8125024
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Gazel",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082336780",
+    "source_url": "https://www.openstreetmap.org/way/1082336780"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7357621,
+     4.8124441
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Terpel",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082336781",
+    "source_url": "https://www.openstreetmap.org/way/1082336781"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7350346,
+     4.8099586
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Biomax",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082337528",
+    "source_url": "https://www.openstreetmap.org/way/1082337528"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.735076,
+     4.8100282
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Biomax",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082337529",
+    "source_url": "https://www.openstreetmap.org/way/1082337529"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7331318,
+     4.8083713
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "EDS Diagnosticentro",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082339214",
+    "source_url": "https://www.openstreetmap.org/way/1082339214"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7702769,
+     4.8110012
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Primax",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082340451",
+    "source_url": "https://www.openstreetmap.org/way/1082340451"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7845953,
+     4.8144443
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Terpel",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082341273",
+    "source_url": "https://www.openstreetmap.org/way/1082341273"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8116198,
+     4.8087884
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Brio",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082344420",
+    "source_url": "https://www.openstreetmap.org/way/1082344420"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8115362,
+     4.8090144
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Brio",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082344421",
+    "source_url": "https://www.openstreetmap.org/way/1082344421"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8203411,
+     4.8061877
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Biomax",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082344621",
+    "source_url": "https://www.openstreetmap.org/way/1082344621"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8205521,
+     4.8061464
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Biomax",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082344622",
+    "source_url": "https://www.openstreetmap.org/way/1082344622"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8454711,
+     4.7982685
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Terpel",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082347488",
+    "source_url": "https://www.openstreetmap.org/way/1082347488"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8456072,
+     4.7984484
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Terpel",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082347489",
+    "source_url": "https://www.openstreetmap.org/way/1082347489"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.840666,
+     4.8215848
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio Gulf Cerritos",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082348379",
+    "source_url": "https://www.openstreetmap.org/way/1082348379"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8824491,
+     4.8946843
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Brio",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1082351796",
+    "source_url": "https://www.openstreetmap.org/way/1082351796"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8965129,
+     4.764395
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio Puerto Caldas",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1083895818",
+    "source_url": "https://www.openstreetmap.org/way/1083895818"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8993016,
+     4.7546982
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Biomax",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1083896367",
+    "source_url": "https://www.openstreetmap.org/way/1083896367"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.899305,
+     4.754873
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Biomax",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1083896368",
+    "source_url": "https://www.openstreetmap.org/way/1083896368"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9180793,
+     4.7503285
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Primax",
+    "address": "Calle 16",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1083897373",
+    "source_url": "https://www.openstreetmap.org/way/1083897373"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9194947,
+     4.7455158
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Petromil",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1083897759",
+    "source_url": "https://www.openstreetmap.org/way/1083897759"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9114264,
+     4.7327006
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio Biomax",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1083898276",
+    "source_url": "https://www.openstreetmap.org/way/1083898276"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9125284,
+     4.7310333
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Brío",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1083899490",
+    "source_url": "https://www.openstreetmap.org/way/1083899490"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9074466,
+     4.7326256
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio San Jeronimo - Brio",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1083899874",
+    "source_url": "https://www.openstreetmap.org/way/1083899874"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.9323498,
+     4.7572377
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Primax",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1083901878",
+    "source_url": "https://www.openstreetmap.org/way/1083901878"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7749082,
+     4.7519816
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Brio",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1083902360",
+    "source_url": "https://www.openstreetmap.org/way/1083902360"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6143149,
+     4.7145656
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio El Manzano",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1084055497",
+    "source_url": "https://www.openstreetmap.org/way/1084055497"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7135629,
+     4.736602
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio Vista Hermosa",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1084057376",
+    "source_url": "https://www.openstreetmap.org/way/1084057376"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6203324,
+     4.9430739
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio Tarapacá",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1085862576",
+    "source_url": "https://www.openstreetmap.org/way/1085862576"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7065206,
      4.8173564
     ]
@@ -5720,6 +11731,66 @@
     "source": "osm",
     "source_ref": "way/1107077877",
     "source_url": "https://www.openstreetmap.org/way/1107077877"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.705787,
+     4.8167707
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Franer y Estanquillo La Campana",
+    "address": "Calle 33, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1107082618",
+    "source_url": "https://www.openstreetmap.org/way/1107082618"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7069589,
+     4.8127443
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": "Carrera 11 33-51, Pereira",
+    "phone": "+57 310 7760066; +57 1 800 0521888",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1119736801",
+    "source_url": "https://www.openstreetmap.org/way/1119736801"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7103188,
+     4.8171921
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": "Carrera 6 #35-56, Pereira",
+    "phone": "+57 1 800 0521888; +57 310 7760066",
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1119744341",
+    "source_url": "https://www.openstreetmap.org/way/1119744341"
    }
   },
   {
@@ -5987,6 +12058,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.8278341,
+     4.8030618
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Texaco",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1194867990",
+    "source_url": "https://www.openstreetmap.org/way/1194867990"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7034152,
      4.81845
     ]
@@ -6000,6 +12091,26 @@
     "source": "osm",
     "source_ref": "way/1202215320",
     "source_url": "https://www.openstreetmap.org/way/1202215320"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7253845,
+     4.807904
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Petrobras",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1216266480",
+    "source_url": "https://www.openstreetmap.org/way/1216266480"
    }
   },
   {
@@ -6140,6 +12251,26 @@
     "source": "osm",
     "source_ref": "way/1283017829",
     "source_url": "https://www.openstreetmap.org/way/1283017829"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6884834,
+     4.8175642
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "D1",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1285006030",
+    "source_url": "https://www.openstreetmap.org/way/1285006030"
    }
   },
   {
@@ -6307,6 +12438,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.8072447,
+     4.814589
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Copidrogas",
+    "address": "Entrada 6 Malabar, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1312115224",
+    "source_url": "https://www.openstreetmap.org/way/1312115224"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.8190678,
      4.8052631
     ]
@@ -6400,6 +12551,26 @@
     "source": "osm",
     "source_ref": "way/1333241907",
     "source_url": "https://www.openstreetmap.org/way/1333241907"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6865021,
+     4.8037704
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Carulla",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "way/1337146061",
+    "source_url": "https://www.openstreetmap.org/way/1337146061"
    }
   },
   {
@@ -7007,6 +13178,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7664862,
+     4.8066851
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Central Mayorista de Alimentos Mercasa",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7188374",
+    "source_url": "https://www.openstreetmap.org/relation/7188374"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7450489,
      4.8065522
     ]
@@ -7100,6 +13291,46 @@
     "source": "osm",
     "source_ref": "relation/7423878",
     "source_url": "https://www.openstreetmap.org/relation/7423878"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7506704,
+     4.8061972
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Superinter",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7426408",
+    "source_url": "https://www.openstreetmap.org/relation/7426408"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7649909,
+     4.8076062
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de servicio (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7426474",
+    "source_url": "https://www.openstreetmap.org/relation/7426474"
    }
   },
   {
@@ -7300,6 +13531,46 @@
     "source": "osm",
     "source_ref": "relation/7623043",
     "source_url": "https://www.openstreetmap.org/relation/7623043"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7160062,
+     4.8063745
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Tienda / supermercado (sin nombre)",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7623053",
+    "source_url": "https://www.openstreetmap.org/relation/7623053"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.7178603,
+     4.8072642
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Alkosto",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7623054",
+    "source_url": "https://www.openstreetmap.org/relation/7623054"
    }
   },
   {
@@ -7647,6 +13918,86 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.6883568,
+     4.810982
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Servicentro Ciudad Victoria",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7734282",
+    "source_url": "https://www.openstreetmap.org/relation/7734282"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6826709,
+     4.825364
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "EDS Metropolitana",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7734774",
+    "source_url": "https://www.openstreetmap.org/relation/7734774"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6837043,
+     4.8236933
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "EDS Dosquebradas Makro",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7734780",
+    "source_url": "https://www.openstreetmap.org/relation/7734780"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6845062,
+     4.8237121
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Makro",
+    "address": "Dosquebradas",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7734781",
+    "source_url": "https://www.openstreetmap.org/relation/7734781"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6800241,
      4.8240598
     ]
@@ -7987,6 +14338,86 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.693238,
+     4.7956924
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Terpel Ciudad Jardín",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7752533",
+    "source_url": "https://www.openstreetmap.org/relation/7752533"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6925435,
+     4.7952591
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Ara",
+    "address": "Carrera 29, Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7752536",
+    "source_url": "https://www.openstreetmap.org/relation/7752536"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6926767,
+     4.8017038
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Econogas",
+    "address": "Pereira",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7752797",
+    "source_url": "https://www.openstreetmap.org/relation/7752797"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6927902,
+     4.8010132
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Esso",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7752798",
+    "source_url": "https://www.openstreetmap.org/relation/7752798"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6903654,
      4.8041431
     ]
@@ -8227,6 +14658,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.7134248,
+     4.8144602
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "La Placita",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7896021",
+    "source_url": "https://www.openstreetmap.org/relation/7896021"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6872312,
+     4.8132817
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Centrales",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/7896043",
+    "source_url": "https://www.openstreetmap.org/relation/7896043"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.6706029,
      4.830096
     ]
@@ -8300,6 +14771,46 @@
     "source": "osm",
     "source_ref": "relation/9052444",
     "source_url": "https://www.openstreetmap.org/relation/9052444"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6834046,
+     4.8225159
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Supermercado ARA",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/9052520",
+    "source_url": "https://www.openstreetmap.org/relation/9052520"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6851749,
+     4.8259775
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "EDS El Viaducto",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/9413897",
+    "source_url": "https://www.openstreetmap.org/relation/9413897"
    }
   },
   {
@@ -8540,6 +15051,26 @@
     "source": "osm",
     "source_ref": "relation/11905914",
     "source_url": "https://www.openstreetmap.org/relation/11905914"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.8841192,
+     4.8962873
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Plaza de Mercado",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/11905915",
+    "source_url": "https://www.openstreetmap.org/relation/11905915"
    }
   },
   {
@@ -8847,6 +15378,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.8701665,
+     4.8896717
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de Servicio La Virginia",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/14768773",
+    "source_url": "https://www.openstreetmap.org/relation/14768773"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.7324021,
      4.8225426
     ]
@@ -8907,6 +15458,26 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -75.8112488,
+     4.8090432
+    ]
+   },
+   "properties": {
+    "kind": "fuel",
+    "name": "Estación de servicio Santa Barbara",
+    "address": null,
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/16792763",
+    "source_url": "https://www.openstreetmap.org/relation/16792763"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -75.8274008,
      4.8031292
     ]
@@ -8940,6 +15511,26 @@
     "source": "osm",
     "source_ref": "relation/17538285",
     "source_url": "https://www.openstreetmap.org/relation/17538285"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.6200245,
+     4.8672176
+    ]
+   },
+   "properties": {
+    "kind": "market",
+    "name": "Plaza de Mercado Los Fundadores",
+    "address": "Calle 14, Santa rosa de cabal",
+    "phone": null,
+    "capacity": null,
+    "source": "osm",
+    "source_ref": "relation/17770295",
+    "source_url": "https://www.openstreetmap.org/relation/17770295"
    }
   },
   {

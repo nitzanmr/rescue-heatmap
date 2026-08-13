@@ -25,6 +25,10 @@ export const KIND_STYLE: Record<string, KindStyle> = {
   water: { colour: "#39c5cf", label: "Agua" },
   morgue: { colour: "#6e7681", label: "Morgue" },
   info_point: { colour: "#a371f7", label: "Punto de información" },
+  // Logistics. Deliberately cool colours: these are not emergency destinations
+  // for a civilian, and must not compete visually with a shelter or a hospital.
+  fuel: { colour: "#bc8cff", label: "Combustible" },
+  market: { colour: "#7ee787", label: "Mercado / supermercado" },
   other: { colour: "#8b949e", label: "Otro" },
 };
 

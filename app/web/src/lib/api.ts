@@ -186,6 +186,8 @@ export type AidKind =
   | "water"
   | "morgue"
   | "info_point"
+  | "fuel"
+  | "market"
   | "other";
 
 export interface AidSite {

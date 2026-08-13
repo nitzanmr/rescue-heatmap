@@ -26,7 +26,7 @@ Ordered by how much damage the class causes in a live event, not by frequency.
 | A | **Work that disappears silently** | Everything returns 200/green; the data is simply not there | 8 |
 | B | **Confidence not earned** | A coordinate or a score that looks precise and is invented | 5 |
 | C | **A measurement that measured something else** | The number quoted came from a different engine, or from a race | 4 |
-| D | **The environment guessed instead of configured** | Behaviour inferred from a hostname, a port, a machine | 5 |
+| D | **The environment guessed instead of configured** | Behaviour inferred from a hostname, a port, a machine | 6 |
 | E | **A schema/type error only a live DB can find** | Static checks clean, first real call raises | 4 |
 | F | **The UI swallowed the reason** | A blocked control that does not say why | 3 |
 | G | **Real data broke an assumption synthetic data never tested** | One row ≠ one person; blank fields; site markup drift | 5 |
@@ -80,6 +80,7 @@ time.
 | D3 | `DB_PORT` hardcoded to 5432 while the drill ran on 55432 | Same class | Drill | `6915dad` |
 | D4 | Share links and QR codes pointed at `buscamos.co` from a staging deployment | Base URL hardcoded unless set at build time | Tailscale deployment | `ea00a6b` |
 | D5 | A stale `rescue-api:dev` made a run apply 0001–0006 and never see 0007 | The drill reused a cached image | Drill | `0222165` |
+| D6 | A committed aid-site file was asserted against the *incident* bbox, so pulling a second in-scope city (Cali) failed the suite as "wrong city pulled" | A guard tied to the map's current view instead of to the file's own claim | Adding the logistics layers | `0020` commit — each file now declares its `area.bbox` |
 
 ### Class E — schema/type errors only a live DB finds
 

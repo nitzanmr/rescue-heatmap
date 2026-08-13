@@ -67,18 +67,35 @@ test("the seed's scatter stays inside the bbox, not just its centre", () => {
 // ---------------------------------------------------------------------------
 // 2 · A data file in the repo that nothing loads is not data.
 // ---------------------------------------------------------------------------
-test("the committed aid-site files are non-empty and inside the bbox", () => {
+test("every committed aid-site file matches the area it declares", () => {
+  // This used to compare every file against the INCIDENT bbox, which was right
+  // while one city was in scope and wrong the moment a second one was: pulling
+  // Cali (the delegation's landing point) made a correct file look like the
+  // wrong city had been downloaded. A file now carries the bbox it was pulled
+  // for, and is checked against its own claim. The "did we pull the wrong city"
+  // guard survives — it is just no longer tied to the map's current view.
   const dir = path.join(root, "data/aid-sites");
   const files = fs.readdirSync(dir).filter((f) => f.endsWith(".geojson"));
   assert.ok(files.length > 0, "no reviewed aid-site file is committed");
+  let anyInIncident = false;
   for (const f of files) {
     const fc = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
     assert.ok(fc.features.length > 0, `${f} has no features`);
-    const off = fc.features.filter((x: any) => !inside(x.geometry.coordinates[1], x.geometry.coordinates[0]));
-    // A handful of outliers is normal (the pull bbox is slightly wider than the
-    // map view). A majority outside means the wrong city was pulled.
-    assert.ok(off.length < fc.features.length / 2, `${f}: most sites are outside the incident bbox`);
+    assert.ok(fc.area?.bbox, `${f} does not say which area it covers`);
+    const b = fc.area.bbox;
+    const off = fc.features.filter(
+      (x: any) =>
+        x.geometry.coordinates[1] < b.minLat || x.geometry.coordinates[1] > b.maxLat ||
+        x.geometry.coordinates[0] < b.minLng || x.geometry.coordinates[0] > b.maxLng
+    );
+    assert.equal(off.length, 0, `${f}: ${off.length} sites outside the bbox the file declares`);
+    if (fc.features.some((x: any) => inside(x.geometry.coordinates[1], x.geometry.coordinates[0]))) {
+      anyInIncident = true;
+    }
   }
+  // At least one file must cover what the map actually shows, or the public map
+  // renders an aid layer nobody can see.
+  assert.ok(anyInIncident, "no committed aid-site file falls inside the incident bbox");
 });
 
 test("seeding loads the aid layer, so a fresh database is never a blank map", () => {

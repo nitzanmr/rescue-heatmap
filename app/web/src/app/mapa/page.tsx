@@ -28,6 +28,9 @@ const PublicMap = dynamic(() => import("@/components/PublicMap"), {
 // we stay well above it. A tight cell with few cases is an address.
 const CELL_M = 500;
 
+// Logistics kinds, filtered together by one toggle.
+const LOGISTICS_KINDS = new Set(["fuel", "market"]);
+
 export default function MapaPage() {
   const [cells, setCells] = useState<HeatCell[]>([]);
   const [sites, setSites] = useState<AidSite[]>([]);
@@ -40,6 +43,12 @@ export default function MapaPage() {
   // "sin confirmar" in words. The toggle remains for anyone who wants a map of
   // only-what-is-open.
   const [showCandidates, setShowCandidates] = useState(true);
+  // Fuel and markets. ON by default, same lesson as shelter_candidate: a layer
+  // that starts hidden is read as a layer that does not exist. They get their
+  // own toggle because "where do I refuel" and "where do I go for help" are
+  // different questions, and a responder planning a day wants one without the
+  // other.
+  const [showLogistics, setShowLogistics] = useState(true);
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -67,7 +76,11 @@ export default function MapaPage() {
     return () => clearInterval(t);
   }, [load]);
 
-  const visible = showCandidates ? sites : sites.filter((s) => s.kind !== "shelter_candidate");
+  const visible = sites.filter(
+    (s) =>
+      (showCandidates || s.kind !== "shelter_candidate") &&
+      (showLogistics || !LOGISTICS_KINDS.has(s.kind))
+  );
   const counts = visible.reduce<Record<string, number>>((a, s) => ((a[s.kind] = (a[s.kind] ?? 0) + 1), a), {});
 
   return (
@@ -87,6 +100,9 @@ export default function MapaPage() {
         </button>
         <button className={`chip ${showCandidates ? "on" : ""}`} onClick={() => setShowCandidates((v) => !v)}>
           Incluir posibles albergues
+        </button>
+        <button className={`chip ${showLogistics ? "on" : ""}`} onClick={() => setShowLogistics((v) => !v)}>
+          Combustible y mercados
         </button>
       </div>
 
