@@ -98,10 +98,12 @@ var allFeatures = [], active = {}, query = '';
 function popup(p){
   var rows = [];
   if (p.name) rows.push('<b>'+esc(p.name)+'</b>');
-  rows.push(meta(kindOf(p)).he);
-  ['address','phone','capacity','city','municipio'].forEach(function(f){
+  rows.push(meta(kindOf(p)).he + (p.kind_en ? ' / ' + esc(p.kind_en) : ''));
+  ['neighbourhood','address','phone','opening_hours','operator','capacity','city','municipio'].forEach(function(f){
     if (p[f]) rows.push(esc(f)+': '+esc(p[f]));
   });
+  if (p.description) rows.push('<i>'+esc(p.description)+'</i>');
+  if (p.verified === 'no') rows.push('⚠ לא מאומת — אמת לפני נסיעה');
   if (p.source_url) rows.push('<a href="'+p.source_url+'" target="_blank">מקור ב-OSM</a>');
   return rows.join('<br>');
 }
