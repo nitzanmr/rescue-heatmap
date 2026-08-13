@@ -19,7 +19,8 @@
     "test": "tsx --test test/**/*.test.ts",
     "rank-ablation": "RANK_ABLATION=1 tsx --test test/heat-rank-ablation.test.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "import-external": "tsx src/import-external.ts"
+    "import-external": "tsx src/import-external.ts",
+    "import-structures": "tsx src/import-structures.ts"
   },
   "dependencies": {
     "fastify": "^4.28.1",

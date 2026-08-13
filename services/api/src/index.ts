@@ -18,6 +18,7 @@ import intakeRoutes from "./routes/intake.js";
 import reporterRoutes from "./routes/reporter.js";
 import panelRoutes from "./routes/panel.js";
 import publicRoutes from "./routes/public.js";
+import structureRoutes from "./routes/structures.js";
 
 export async function buildServer(): Promise<FastifyInstance> {
   const app = Fastify({
@@ -78,7 +79,14 @@ export async function buildServer(): Promise<FastifyInstance> {
   // -------------------------------------------------------------------------
   app.setErrorHandler((err, req, reply) => {
     if (err instanceof HttpError) {
-      return reply.code(err.status).send({ error: err.code, message: err.message });
+      // Details first: a refusal's payload explains the rule (e.g. who is still
+      // unresolved inside a structure), but it must never be able to overwrite
+      // the code or the message the client keys on.
+      return reply.code(err.status).send({
+        ...(err.details ?? {}),
+        error: err.code,
+        message: err.message,
+      });
     }
     if ((err as any).statusCode === 429) {
       return reply.code(429).send({ error: "rate_limited", message: "too many requests" });
@@ -120,6 +128,7 @@ export async function buildServer(): Promise<FastifyInstance> {
   await app.register(reporterRoutes);
   await app.register(panelRoutes);
   await app.register(publicRoutes);
+  await app.register(structureRoutes);
 
   return app;
 }

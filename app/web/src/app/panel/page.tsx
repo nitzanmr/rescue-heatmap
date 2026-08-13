@@ -12,6 +12,7 @@ import dynamic from "next/dynamic";
 import { api, ApiError, HeatCell, MergeRecord, UnmappedCase, operatorToken, setOperatorToken } from "@/lib/api";
 import { incident } from "@/lib/incident";
 import StatusBadge from "@/components/StatusBadge";
+import StructureBoard from "@/components/StructureBoard";
 
 const HeatMap = dynamic(() => import("@/components/HeatMap"), {
   ssr: false,
@@ -176,6 +177,12 @@ function PanelBody({ onSignOut }: { onSignOut: () => void }) {
         <Stat n={unmapped.length} l="Sin ubicar (solo dirección)" accent={unmapped.length ? "var(--warn)" : undefined} />
         <Stat n={cellM} l="Tamaño de celda (m)" />
       </div>
+
+      {/* ----------------------------------------------------------------
+          Structures come FIRST on this screen, above the dedup queue. The
+          queue is data hygiene; this is where a team is sent. When both are
+          on one page, the order is the priority. */}
+      <StructureBoard />
 
       {/* ---------------------------------------------------------------- */}
       <div className="section-title">Posibles duplicados — decisión humana</div>

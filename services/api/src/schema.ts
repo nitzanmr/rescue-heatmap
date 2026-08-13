@@ -151,6 +151,63 @@ export const operatorLocation = z.object({
   note: z.string().max(500).nullish(),
 });
 
+// ---------------------------------------------------------------------------
+// Structures (0018). A building is the unit a rescue team is dispatched to, and
+// "clear" is the sentence that stops people digging — so every write here is
+// narrow, graded and signed.
+// ---------------------------------------------------------------------------
+
+// Same vocabulary as the database and as place_nomination.cand_precision. Note
+// what is missing: 'exact'. Staff working from a written address are locating a
+// building at best.
+export const structurePrecisionEnum = z.enum(["building", "street", "area", "town"]);
+export const scanStateEnum = z.enum([
+  "not_scanned", "in_progress", "partial", "clear", "unsafe", "unreachable",
+]);
+export const structureResolutionEnum = z.enum([
+  "unresolved", "recovered_alive", "recovered_deceased", "not_at_structure", "withdrawn",
+]);
+
+export const structureInput = z.object({
+  key: z.string().min(2).max(80).regex(/^[a-z0-9][a-z0-9-]*$/,
+    "key is a slug: lowercase letters, digits and hyphens"),
+  name: z.string().min(2).max(200),
+  address_text: z.string().max(300).nullish(),
+  neighbourhood: z.string().max(120).nullish(),
+  municipality: z.string().max(120).nullish(),
+  authority_status: z.enum(["unverified", "reported", "confirmed"]).default("unverified"),
+  authority_source: z.string().max(200).nullish(),
+  note: z.string().max(2000).nullish(),
+});
+
+// A point is never part of creation: it arrives through its own signed call, so
+// that "somebody typed a building name" and "somebody put a pin on the map" can
+// never be the same event.
+export const structurePoint = z.object({
+  lat: z.number().min(-90).max(90),
+  lng: z.number().min(-180).max(180),
+  precision: structurePrecisionEnum,
+  source: z.enum(["operator_pin", "osm", "nominatim", "reported", "import"]).default("operator_pin"),
+  note: z.string().max(500).nullish(),
+});
+
+export const structureScan = z.object({
+  scan_state: scanStateEnum,
+  note: z.string().max(1000).nullish(),
+});
+
+export const structureLink = z.object({
+  case_id: z.string().uuid(),
+  link_source: z.enum(["reported", "nomination", "operator", "import"]).default("operator"),
+  confidence: z.enum(["reported", "inferred", "confirmed"]).default("reported"),
+  note: z.string().max(500).nullish(),
+});
+
+export const structureResolve = z.object({
+  resolution: structureResolutionEnum,
+  note: z.string().max(1000).nullish(),
+});
+
 export const statusUpdate = z.object({
   status: statusEnum,
   status_source: z.enum(["citizen", "verified_field", "official"]).default("verified_field"),

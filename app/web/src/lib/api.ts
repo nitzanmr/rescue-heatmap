@@ -14,7 +14,12 @@ export class ApiError extends Error {
   constructor(
     public status: number,
     public code: string,
-    message: string
+    message: string,
+    // Whatever else the server sent with the refusal. A blocked action has to be
+    // able to say WHO is blocking it (e.g. the people still unresolved inside a
+    // structure); dropping that here would leave the panel with nothing but a
+    // greyed-out button, which a user in the field reads as "broken".
+    public details: Record<string, unknown> = {}
   ) {
     super(message);
     this.name = "ApiError";
@@ -138,7 +143,9 @@ export async function apiFetch<T = unknown>(path: string, opts: RequestOptions =
       (payload && typeof payload === "object" && (payload as any).message) ||
       (typeof payload === "string" && payload) ||
       res.statusText;
-    throw new ApiError(res.status, String(code), String(message));
+    const details =
+      payload && typeof payload === "object" ? (payload as Record<string, unknown>) : {};
+    throw new ApiError(res.status, String(code), String(message), details);
   }
   return payload as T;
 }
@@ -231,6 +238,45 @@ export interface UnmappedCase {
   first_reported_at: string;
 }
 
+// A building on the board. Counts only — the names live behind the detail
+// route, which is audited.
+export interface StructureRow {
+  id: string;
+  key: string;
+  name: string;
+  address_text: string | null;
+  neighbourhood: string | null;
+  lat: number | null;
+  lng: number | null;
+  point_precision: "building" | "street" | "area" | "town" | null;
+  point_source: string | null;
+  scan_state: "not_scanned" | "in_progress" | "partial" | "clear" | "unsafe" | "unreachable";
+  scan_signed_by: string | null;
+  scan_signed_at: string | null;
+  authority_status: "unverified" | "reported" | "confirmed";
+  people: number;
+  open_people: number;
+  recovered_alive: number;
+  recovered_deceased: number;
+  not_at_structure: number;
+  open_minors: number;
+  open_elderly: number;
+  location_action: string;
+}
+
+export interface StructurePerson {
+  case_id: string;
+  reference_number: string;
+  name_raw: string | null;
+  age_approx: number | null;
+  status: string;
+  is_minor: boolean;
+  has_point: boolean;
+  resolution: "unresolved" | "recovered_alive" | "recovered_deceased" | "not_at_structure" | "withdrawn";
+  resolved_by: string | null;
+  resolved_at: string | null;
+}
+
 export const api = {
   meta: () => apiFetch<{ version: string; incidents: { slug: string; name: string; ref_prefix: string }[] }>("/v1/meta"),
 
@@ -321,6 +367,34 @@ export const api = {
 
   setStatus: (caseId: string, body: { status: string; status_source?: string; note?: string }) =>
     apiFetch<{ ok: true }>(`/v1/panel/cases/${caseId}/status`, { body, auth: "operator" }),
+
+  // Structures (0018). The board a team is dispatched from.
+  structures: () =>
+    apiFetch<{ structures: StructureRow[] }>("/v1/panel/structures", { auth: "operator" }),
+
+  structure: (id: string) =>
+    apiFetch<{ structure: StructureRow; people: StructurePerson[]; events: any[] }>(
+      `/v1/panel/structures/${id}`, { auth: "operator" }),
+
+  setStructurePoint: (
+    id: string,
+    body: { lat: number; lng: number; precision: "building" | "street" | "area" | "town"; source?: string; note?: string }
+  ) => apiFetch<{ ok: true }>(`/v1/panel/structures/${id}/point`, { body, auth: "operator" }),
+
+  projectStructurePoint: (id: string, note?: string) =>
+    apiFetch<{ ok: true; cases_located: number }>(
+      `/v1/panel/structures/${id}/project-point`, { body: { note }, auth: "operator" }),
+
+  // 409 + a `blockers` array when the structure still has open people. The
+  // panel shows that list instead of a dead button.
+  setStructureScan: (id: string, body: { scan_state: string; note?: string }) =>
+    apiFetch<{ ok: true }>(`/v1/panel/structures/${id}/scan`, { body, auth: "operator" }),
+
+  resolveStructureCase: (
+    id: string, caseId: string,
+    body: { resolution: "unresolved" | "recovered_alive" | "recovered_deceased" | "not_at_structure" | "withdrawn"; note?: string }
+  ) => apiFetch<{ ok: true }>(`/v1/panel/structures/${id}/cases/${caseId}/resolve`,
+    { body, auth: "operator" }),
 
   panelHeat: (cell = 100) =>
     apiFetch<{ cell_m: number; cells: HeatCell[] }>(`/v1/panel/heat?cell=${cell}`, { auth: "operator" }),

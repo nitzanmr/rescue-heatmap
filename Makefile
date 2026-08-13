@@ -1,6 +1,6 @@
 # One entry point for the whole stack. The target that matters is `drill`:
 # from an empty machine to a running system with data, in one command.
-.PHONY: help up down migrate seed test ablation rank-ablation places places-top nominate geocode harvest incident import census retire purge build build-api build-web logs logs-edge psql drill reset fresh web operator-token
+.PHONY: help up down migrate seed test ablation rank-ablation places places-top nominate geocode structures harvest incident import census retire purge build build-api build-web logs logs-edge psql drill reset fresh web operator-token
 
 COMPOSE ?= docker compose
 # Host port for the dev database. Override when 5432 is already taken:
@@ -345,6 +345,19 @@ import:  ## Import a harvested NDJSON into the DB (INCIDENT=..., LOAD=1 to write
 	  --file "../../$${FILE:-data/external/ctb-full.ndjson}" \
 	  --source "$${SOURCE:-colombiatebusca}" \
 	  $${INCIDENT:+--incident $$INCIDENT} $${LOAD:+--load}
+
+# Load a target dossier's STRUCTURES into the database, so the dossier can stop
+# living outside the product. Nothing here signs anything: an import may not
+# mark a building searched, it never upgrades a precision, and it never
+# overwrites a pin an operator placed. ACTOR is mandatory -- somebody's name
+# goes on every point.
+#   ACTOR=nitzan make structures                       # dry run, validates only
+#   INCIDENT=cali-2026 ACTOR=nitzan LOAD=1 make structures
+structures: ## Load target-dossier structures (FILE=..., ACTOR=..., INCIDENT=..., LOAD=1 to write)
+	@cd services/api && npx tsx src/import-structures.ts \
+	  --file "../../$${FILE:-data/cali-structures.json}" \
+	  --actor "$${ACTOR:?set ACTOR=<name>: every point carries the name of whoever placed it}" \
+	  $${INCIDENT:+--incident $$INCIDENT} $${LINK:+--link-nominations} $${LOAD:---dry-run}
 
 places:  ## Classify the place lines in a harvested NDJSON (FILE=...)
 	@cd services/api && npx tsx src/import-external.ts --file "../../$${FILE:-data/external/ctb-full.ndjson}"

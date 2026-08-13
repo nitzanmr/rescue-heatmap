@@ -94,7 +94,16 @@ export async function resolveActor(req: FastifyRequest): Promise<Actor> {
 }
 
 export class HttpError extends Error {
-  constructor(public status: number, message: string, public code = "error") {
+  // `details` carries the machine-readable reason a refusal happened — e.g. the
+  // list of people who must be resolved before a structure can be signed clear.
+  // Without it the panel can only grey a button out, and a control that will
+  // not say why it is blocked reads to a user in the field as broken.
+  constructor(
+    public status: number,
+    message: string,
+    public code = "error",
+    public details?: Record<string, unknown>
+  ) {
     super(message);
   }
 }
