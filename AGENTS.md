@@ -4,6 +4,13 @@ Read this before changing anything. These are decisions, not preferences —
 each one was made for a reason that is written down. If you think one is wrong,
 open the discussion; do not silently "upgrade" it.
 
+**Before you write code, read `docs/bug-ledger.md`.** It is every defect this project
+has shipped or nearly shipped, grouped into seven recurring classes, with a checklist
+of recurrence checks at the bottom. The rules in this file are the *conclusions*; the
+ledger is the evidence, and it is the faster way to find out whether the mistake you are
+about to make has already been made here. When you fix a defect, append a row to it in
+the same commit.
+
 ## Getting it running
 
 ```
