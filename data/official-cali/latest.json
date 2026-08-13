@@ -1,34 +1,31 @@
 {
-  "fetched_at_utc": "2026-08-13T20:14:49+00:00",
+  "fetched_at_utc": "2026-08-13T21:06:29+00:00",
   "source_grade": "A",
   "source_name": "Alcaldía de Santiago de Cali — PMU (Puesto de Mando Unificado)",
   "repository_url": "https://www.cali.gov.co/gobierno/publicaciones/193607/terremoto-de-cali-repositorio-oficial-de-informacion/",
   "report_url": "https://www.cali.gov.co/loader.php?lServicio=Tools2&lTipo=descargas&lFuncion=descargar&idFile=112180&id_comunidad=gobierno",
-  "report_file": "pmu-report-006.pdf",
+  "report_file": "pmu-report-007.pdf",
   "page_balance": {
     "dead": 96,
     "injured": 1401,
     "buildings_collapsed_total": 46,
     "missing": 111,
-    "rescued": 88,
-    "page_updated_text": "08:00 p. m. · miércoles 12 de agosto de 2026"
+    "rescued": 88
   },
   "report": {
-    "report_no": 6,
-    "cut_date": "agosto 12 de 2026",
-    "cut_time": "8:00 p.m.",
+    "report_no": 7,
+    "cut_date": "agosto 13 de 2026",
+    "cut_time": "11:00 a.m.",
     "rescued": 88,
     "buildings_collapsed_total": 45,
     "missing": 111,
-    "buildings_collapsed_partial": 35,
-    "buildings_structural_damage": 832,
-    "injured": 1224,
+    "buildings_collapsed_partial": 46,
+    "buildings_structural_damage": 1142,
+    "injured": 1401,
     "buildings_evacuation_order": 18,
-    "debris_tons_removed": 6530,
+    "debris_tons_removed": 8236,
     "damage_assessments": 250,
     "rescuers_active": 1800,
-    "fronts_with_signs_of_life_text": "Seis",
-    "points_signs_ruled_out": 20,
-    "novedades": "-Seis frentes de trabajo activos en puntos donde hay indicios de vida. En 20 puntos se descartaron indicios de vida, por lo que iniciarán labores de remoción. -Servicio de energía: Todos los circuitos y subestaciones de Emcali operan de manera normal. 21 cuadrillas atienden requerimientos recibidos a través del contact center 177. 4.500 usuarios, con servicio intermitente o suspensión total. -Acueducto y Alcantarillado: Entre el 11 de agosto y 12 de agosto se reportaron 35 daños de los cuales 25 ya fueron reparados. 18 cuadrillas trabajando en la ciudad. -Suministro de gas domiciliario: GDO informa que 5.906 usuarios se encuentran sin suministro en Cali. Se han recibido 683 reportes de novedades, de los cuales se han atendido el 75%. -Sitios de disposición ﬁnal de escombros: EDT Carrera 50 - Carrera 8 con Calle 59 - Carrera 50 entre calles 5 y 1."
+    "novedades": "-Se mantienen nueve puntos activos de búsqueda especializada por parte de organismos de socorro. -La Unidad Administrativa Especial de Protección Animal, Uaepa, registra 15 animales fallecidos y 290 reportados como desaparecidos. -Emcali atiende 14 daños de acueducto en los sectores de: Champagnat, El Dorado, Aranjuez, Bolivariano, Bosques del Limonar, Cámbulos, Puerto Mallarino, El Limonar, Ciudad Jardín, Capri, Nueva Tequendama, Las Ceibas y Santa Mónica Residencial -Se atienden 15 daños de energía en Multifamiliar La Selva, circuitos Bretaña, Calipso, Alameda, Vergel, La Hacienda, La Sirena, La Montaña, El Campo, Caldas, Km. 18, Buitrera, Alto Nápoles, La Sirena y La Montaña."
   }
 }
