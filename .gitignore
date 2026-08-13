@@ -38,4 +38,11 @@ services/api/.env
 # Committing them would make that copy permanent and unerasable in every clone —
 # the exact opposite of what Ley 1581/2012 requires of us. The harvester and the
 # importer are in the repo; the personal data stays on the machine that pulled it.
-data/external/
+# ...but the README that explains how a harvested set must be read is not data,
+# and a clone that has the harvester without the rules is worse than no clone.
+# Excluding the directory itself would stop git from ever descending into it,
+# so the wildcard has to exclude the *contents* and then re-admit the READMEs.
+data/external/*
+!data/external/*/
+data/external/*/*
+!data/external/*/README.md
