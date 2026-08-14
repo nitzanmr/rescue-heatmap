@@ -1,31 +1,30 @@
 {
-  "fetched_at_utc": "2026-08-14T18:05:25+00:00",
+  "fetched_at_utc": "2026-08-14T19:03:59+00:00",
   "source_grade": "A",
   "source_name": "Alcaldía de Santiago de Cali — PMU (Puesto de Mando Unificado)",
   "repository_url": "https://www.cali.gov.co/gobierno/publicaciones/193607/terremoto-de-cali-repositorio-oficial-de-informacion/",
   "report_url": "https://www.cali.gov.co/loader.php?lServicio=Tools2&lTipo=descargas&lFuncion=descargar&idFile=112180&id_comunidad=gobierno",
-  "report_file": "pmu-report-007.pdf",
+  "report_file": "pmu-report-009.pdf",
   "page_balance": {
-    "dead": 96,
-    "injured": 1401,
+    "dead": 110,
+    "injured": 1410,
     "buildings_collapsed_total": 46,
-    "missing": 111,
+    "missing": 115,
     "rescued": 88
   },
   "report": {
-    "report_no": 7,
-    "cut_date": "agosto 13 de 2026",
-    "cut_time": "11:00 a.m.",
+    "report_no": 9,
+    "cut_date": "agosto 14 de 2026",
+    "cut_time": "11:30 a.m.",
     "rescued": 88,
-    "buildings_collapsed_total": 45,
-    "missing": 111,
-    "buildings_collapsed_partial": 46,
-    "buildings_structural_damage": 1142,
-    "injured": 1401,
-    "buildings_evacuation_order": 18,
-    "debris_tons_removed": 8236,
-    "damage_assessments": 250,
-    "rescuers_active": 1800,
-    "novedades": "-Se mantienen nueve puntos activos de búsqueda especializada por parte de organismos de socorro. -La Unidad Administrativa Especial de Protección Animal, Uaepa, registra 15 animales fallecidos y 290 reportados como desaparecidos. -Emcali atiende 14 daños de acueducto en los sectores de: Champagnat, El Dorado, Aranjuez, Bolivariano, Bosques del Limonar, Cámbulos, Puerto Mallarino, El Limonar, Ciudad Jardín, Capri, Nueva Tequendama, Las Ceibas y Santa Mónica Residencial -Se atienden 15 daños de energía en Multifamiliar La Selva, circuitos Bretaña, Calipso, Alameda, Vergel, La Hacienda, La Sirena, La Montaña, El Campo, Caldas, Km. 18, Buitrera, Alto Nápoles, La Sirena y La Montaña."
+    "buildings_collapsed_total": 46,
+    "missing": 115,
+    "buildings_collapsed_partial": 35,
+    "buildings_structural_damage": 1408,
+    "injured": 1410,
+    "buildings_evacuation_order": 457,
+    "debris_tons_removed": 12817,
+    "damage_assessments": 998,
+    "novedades": "-Se mantienen nueve puntos activos de búsqueda especializada por parte de organismos de socorro. -La Unidad Administrativa Especial de Protección Animal, Uaepa, registra 16 animales de compañía fallecidos y 298 reportados como desaparecidos. -Emcali reporta que la cobertura del servicio de energía en la ciudad es del 99%. 2.000 usuarios se encuentran sin servicio por daños diversos. 13 cuadrillas operativas trabajan en campo. -Frente al servicio de acueducto y alcantarillado, se informa que el día de hoy se reportaron 10 daños que se encuentran en proceso de reparación."
   }
 }
