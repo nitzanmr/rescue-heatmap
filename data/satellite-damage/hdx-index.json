@@ -1,0 +1,722 @@
+[
+ {
+  "name": "col-earthquake-august-2026-openstreetmap-data",
+  "title": "Colombia - Earthquake - August 2026 - OpenStreetMap Data",
+  "org": "Humanitarian OpenStreetMap Team (HOT)",
+  "modified": "2026-08-14T07:35:56.513826",
+  "url": "https://data.humdata.org/dataset/col-earthquake-august-2026-openstreetmap-data",
+  "resources": [
+   {
+    "name": "Colombia_EQ_Buildings_13Aug2026_geojson.zip",
+    "format": "GeoJSON",
+    "modified": "2026-08-13T14:36:10.844137",
+    "url": "https://data.humdata.org/dataset/e8bdd009-7844-40d5-9093-80a692ace688/resource/c3d39f08-2423-4f78-9585-9a261cf95d9a/download/colombia_eq_buildings_13aug2026_geojson.zip"
+   },
+   {
+    "name": "Colombia_EQ_Buildings_13Aug2026_shp.zip",
+    "format": "SHP",
+    "modified": "2026-08-13T14:36:13.683380",
+    "url": "https://data.humdata.org/dataset/e8bdd009-7844-40d5-9093-80a692ace688/resource/143420c1-66c0-4d79-9e3e-ee0940f35ec9/download/colombia_eq_buildings_13aug2026_shp.zip"
+   },
+   {
+    "name": "Colombia_EQ_Roads_13Aug2026_geojson.zip",
+    "format": "GeoJSON",
+    "modified": "2026-08-13T14:36:16.243474",
+    "url": "https://data.humdata.org/dataset/e8bdd009-7844-40d5-9093-80a692ace688/resource/a47602bc-7436-4a79-95c6-145836a1269d/download/colombia_eq_roads_13aug2026_geojson.zip"
+   },
+   {
+    "name": "Colombia_EQ_Roads_13Aug2026_shp.zip",
+    "format": "SHP",
+    "modified": "2026-08-13T14:36:19.103426",
+    "url": "https://data.humdata.org/dataset/e8bdd009-7844-40d5-9093-80a692ace688/resource/5ca14c7b-f95b-4202-9238-88bc817f06fd/download/colombia_eq_roads_13aug2026_shp.zip"
+   }
+  ]
+ },
+ {
+  "name": "gdacs-rss-information",
+  "title": "GDACS RSS Information",
+  "org": "Global Disaster Alert and Coordination System",
+  "modified": "2026-08-14T05:31:10.835557",
+  "url": "https://data.humdata.org/dataset/gdacs-rss-information",
+  "resources": [
+   {
+    "name": "gdacs_rss_information.csv",
+    "format": "CSV",
+    "modified": "2026-08-14T05:31:08.076713",
+    "url": "https://data.humdata.org/dataset/a87f96f8-16e6-4d51-872c-cfa54a8251ec/resource/4ef001d1-7888-4f5d-98ce-0ca8006787f7/download/gdacs_rss_information.csv"
+   }
+  ]
+ },
+ {
+  "name": "col-glide-events",
+  "title": "Colombia - GLIDE Disaster Events",
+  "org": "GLIDE Initiative",
+  "modified": "2026-08-13T14:45:33.237526",
+  "url": "https://data.humdata.org/dataset/col-glide-events",
+  "resources": [
+   {
+    "name": "col_glide_events.csv",
+    "format": "CSV",
+    "modified": "2026-08-11T14:47:13.096444",
+    "url": "https://data.humdata.org/dataset/ef43fa0d-6c5a-405f-a487-4f77d602a738/resource/15c5c098-0b9e-4bd8-8097-9f7d639031cc/download/col_glide_events.csv"
+   },
+   {
+    "name": "col_glide_events.geojson",
+    "format": "GeoJSON",
+    "modified": "2026-08-11T14:47:13.096925",
+    "url": "https://data.humdata.org/dataset/ef43fa0d-6c5a-405f-a487-4f77d602a738/resource/6804326b-2dde-4bb8-8591-7578357aaa15/download/col_glide_events.geojson"
+   }
+  ]
+ },
+ {
+  "name": "m-7-4-in-south-of-san-jose-del-palmar-colombia-10-august-2026-at-12-34-utc",
+  "title": "M 7.4  in South of San Jos\u00e9 del Palmar, Colombia 10 August 2026 at 12:34 UTC",
+  "org": "United Nations Satellite Centre (UNOSAT)",
+  "modified": "2026-08-13T09:47:53.395137",
+  "url": "https://data.humdata.org/dataset/m-7-4-in-south-of-san-jose-del-palmar-colombia-10-august-2026-at-12-34-utc",
+  "resources": [
+   {
+    "name": "UNOSAT_PopulationExposure_EQ20260810COL_M74_V5.xlsx",
+    "format": "XLSX",
+    "modified": "2026-08-11T06:16:06",
+    "url": "https://unosat.org/static/unosat_filesystem/4250/UNOSAT_PopulationExposure_EQ20260810COL_M74_V5.xlsx"
+   }
+  ]
+ },
+ {
+  "name": "colombia-2026-earthquake-pereira",
+  "title": "Colombia 2026 Earthquake Pereira",
+  "org": "Microsoft AI for Good Lab",
+  "modified": "2026-08-13T06:41:02.071304",
+  "url": "https://data.humdata.org/dataset/colombia-2026-earthquake-pereira",
+  "resources": [
+   {
+    "name": "vantor_8-12_pereira_model-predictions.tif",
+    "format": "GeoTIFF",
+    "modified": "2026-08-13T06:28:30.292336",
+    "url": "https://data.humdata.org/dataset/ee1f2b95-25ce-4927-91f1-0b432f032091/resource/8c85d107-6686-491a-897f-641be0bb0bbe/download/vantor_8-12_pereira_model-predictions.tif"
+   },
+   {
+    "name": "vantor_8-12_pereira_overture_buildings_with_predictions.gpkg",
+    "format": "Geopackage",
+    "modified": "2026-08-13T06:28:32.318957",
+    "url": "https://data.humdata.org/dataset/ee1f2b95-25ce-4927-91f1-0b432f032091/resource/ecb4cdf6-4f5c-41d8-80e4-1cb2be346e00/download/vantor_8-12_pereira_overture_buildings_with_predictions.gpkg"
+   },
+   {
+    "name": "vantor_8-12_pereira_google_buildings_with_predictions.gpkg",
+    "format": "Geopackage",
+    "modified": "2026-08-13T06:28:35.135174",
+    "url": "https://data.humdata.org/dataset/ee1f2b95-25ce-4927-91f1-0b432f032091/resource/b5486439-cec6-4142-a7dc-b211f41bacf3/download/vantor_8-12_pereira_google_buildings_with_predictions.gpkg"
+   },
+   {
+    "name": "vantor_8-12_pereira_valid_area_mask.geojson",
+    "format": "GeoJSON",
+    "modified": "2026-08-13T06:04:13.197962",
+    "url": "https://data.humdata.org/dataset/ee1f2b95-25ce-4927-91f1-0b432f032091/resource/bb51b3cd-7f0a-4d25-bb7a-bb1d82d8b4ac/download/vantor_8-12_pereira_valid_area_mask.geojson"
+   }
+  ]
+ },
+ {
+  "name": "2026-colombia-earthquake",
+  "title": "Colombia - 2026 Earthquake",
+  "org": "Microsoft AI for Good Lab",
+  "modified": "2026-08-12T06:14:03.104789",
+  "url": "https://data.humdata.org/dataset/2026-colombia-earthquake",
+  "resources": [
+   {
+    "name": "airbus_8-10_cali_valid_area_mask.geojson",
+    "format": "GeoJSON",
+    "modified": "2026-08-12T00:34:13.897477",
+    "url": "https://data.humdata.org/dataset/98e2bb4b-e2b9-4178-bf47-826883ca08cc/resource/2e917265-3d4e-4660-8256-51c77c435063/download/airbus_8-10_cali_valid_area_mask.geojson"
+   },
+   {
+    "name": "airbus_cali_warped_cog_model-predictions.tif",
+    "format": "GeoTIFF",
+    "modified": "2026-08-12T00:34:15.736972",
+    "url": "https://data.humdata.org/dataset/98e2bb4b-e2b9-4178-bf47-826883ca08cc/resource/25f91e45-a0aa-4bf7-bcc8-6addf3c68303/download/airbus_cali_warped_cog_model-predictions.tif"
+   },
+   {
+    "name": "airbus_8-10_cali_HDX_building_footprints_with_predictions_validated.gpkg",
+    "format": "Geopackage",
+    "modified": "2026-08-12T00:55:54.311113",
+    "url": "https://data.humdata.org/dataset/98e2bb4b-e2b9-4178-bf47-826883ca08cc/resource/d146b2a4-6794-4792-a0df-31841312b85c/download/airbus_8-10_cali_hdx_building_footprints_with_predictions_validated.gpkg"
+   },
+   {
+    "name": "airbus_8-10_cali_overture_building_footprints_with_predictions.gpkg",
+    "format": "Geopackage",
+    "modified": "2026-08-12T00:34:22.189191",
+    "url": "https://data.humdata.org/dataset/98e2bb4b-e2b9-4178-bf47-826883ca08cc/resource/a00eebfb-0590-456a-b46d-4633122330d9/download/airbus_8-10_cali_overture_building_footprints_with_predictions.gpkg"
+   }
+  ]
+ },
+ {
+  "name": "aruba-cyclone-1000977",
+  "title": "Aruba: Cyclone - Tropical storm - Jun 2023",
+  "org": "WFP Automated Disaster Analysis & Mapping",
+  "modified": "2026-07-22T08:04:27.626901",
+  "url": "https://data.humdata.org/dataset/aruba-cyclone-1000977",
+  "resources": [
+   {
+    "name": "1000977-22-adam-ts-1000977-22-shp.zip",
+    "format": "SHP",
+    "modified": "2023-11-24T03:35:48.029279",
+    "url": "https://data.humdata.org/dataset/b4dfe0f5-65a8-4e05-ba66-9b2d306f2277/resource/549ef1b2-dde7-4443-9a88-53b5c66cb2d4/download/1000977-22-adam-ts-1000977-22-shp.zip"
+   }
+  ]
+ },
+ {
+  "name": "col-earthquake-sm-us7000qw4k",
+  "title": "Colombia - Earthquake on Sep 14 2025",
+  "org": "WFP Automated Disaster Analysis & Mapping",
+  "modified": "2026-05-21T22:10:07.907234",
+  "url": "https://data.humdata.org/dataset/col-earthquake-sm-us7000qw4k",
+  "resources": [
+   {
+    "name": "col_wfpadam_earthquake_20250914.geojson",
+    "format": "GeoJSON",
+    "modified": "2026-05-21T21:17:34.250305",
+    "url": "https://data.humdata.org/dataset/a360900e-1c66-415e-9ed2-7a2dc6776a29/resource/0ed9bb86-29d4-4f6a-8538-4719f411d775/download/col_wfpadam_earthquake_20250914.geojson"
+   },
+   {
+    "name": "col_wfpadam_earthquake_20250914.csv",
+    "format": "CSV",
+    "modified": "2026-05-21T21:17:34.250663",
+    "url": "https://data.humdata.org/dataset/a360900e-1c66-415e-9ed2-7a2dc6776a29/resource/d0bf377d-6fb1-4c99-9741-0d23022ec583/download/col_wfpadam_earthquake_20250914.csv"
+   }
+  ]
+ },
+ {
+  "name": "col-earthquake-sm-us6000rtuk",
+  "title": "Colombia - Earthquake on Dec 10 2025",
+  "org": "WFP Automated Disaster Analysis & Mapping",
+  "modified": "2026-05-21T22:08:44.400323",
+  "url": "https://data.humdata.org/dataset/col-earthquake-sm-us6000rtuk",
+  "resources": [
+   {
+    "name": "col_wfpadam_earthquake_20251210.geojson",
+    "format": "GeoJSON",
+    "modified": "2026-05-21T21:13:46.425477",
+    "url": "https://data.humdata.org/dataset/11df3738-e06c-4932-b792-add1556a100e/resource/1a0dd61c-f349-4929-a992-2b0d3c7eba6e/download/col_wfpadam_earthquake_20251210.geojson"
+   },
+   {
+    "name": "col_wfpadam_earthquake_20251210.csv",
+    "format": "CSV",
+    "modified": "2026-05-21T21:13:46.425825",
+    "url": "https://data.humdata.org/dataset/11df3738-e06c-4932-b792-add1556a100e/resource/68acdd8b-fe98-4017-bac6-19d8ad2f0c05/download/col_wfpadam_earthquake_20251210.csv"
+   }
+  ]
+ },
+ {
+  "name": "col-earthquake-sm-us6000pj4s",
+  "title": "Colombia - Earthquake on Jan 10 2025",
+  "org": "WFP Automated Disaster Analysis & Mapping",
+  "modified": "2026-05-21T21:46:33.564607",
+  "url": "https://data.humdata.org/dataset/col-earthquake-sm-us6000pj4s",
+  "resources": [
+   {
+    "name": "col_wfpadam_earthquake_20250110.geojson",
+    "format": "GeoJSON",
+    "modified": "2026-05-21T21:24:49.303765",
+    "url": "https://data.humdata.org/dataset/c6d3326b-9ec1-4ac5-b6b5-96123684f427/resource/8d989c21-5bb3-4ce3-954d-73c3a434d31e/download/col_wfpadam_earthquake_20250110.geojson"
+   }
+  ]
+ },
+ {
+  "name": "col-earthquake-sm-us6000qixr",
+  "title": "Colombia - Earthquake on Jun 08 2025",
+  "org": "WFP Automated Disaster Analysis & Mapping",
+  "modified": "2026-05-21T21:44:26.407680",
+  "url": "https://data.humdata.org/dataset/col-earthquake-sm-us6000qixr",
+  "resources": [
+   {
+    "name": "col_wfpadam_earthquake_20250608.geojson",
+    "format": "GeoJSON",
+    "modified": "2026-05-21T21:20:56.779851",
+    "url": "https://data.humdata.org/dataset/03a94bdb-df3d-4940-8b46-7b9687505911/resource/82f1ef53-791f-4473-80f7-8fd99c32fa43/download/col_wfpadam_earthquake_20250608.geojson"
+   },
+   {
+    "name": "col_wfpadam_earthquake_20250608.csv",
+    "format": "CSV",
+    "modified": "2026-05-21T21:20:56.780250",
+    "url": "https://data.humdata.org/dataset/03a94bdb-df3d-4940-8b46-7b9687505911/resource/5347d18e-4868-4bb7-8dea-372d5263fbe3/download/col_wfpadam_earthquake_20250608.csv"
+   }
+  ]
+ },
+ {
+  "name": "json-repository",
+  "title": "JSON Repository",
+  "org": "HDX",
+  "modified": "2025-09-05T01:55:45.746892",
+  "url": "https://data.humdata.org/dataset/json-repository",
+  "resources": [
+   {
+    "name": "Mali IDPs by Region.csv",
+    "format": "CSV",
+    "modified": "2025-03-10T23:28:54.810148",
+    "url": "https://docs.google.com/spreadsheets/d/10U4I_9v2vd5iXoSEuADXA8O50h0k0Iz9_w3d383Qqxw/export?format=csv&id=10U4I_9v2vd5iXoSEuADXA8O50h0k0Iz9_w3d383Qqxw&gid=0"
+   },
+   {
+    "name": "mli_admbnda_adm1_gov.geojson",
+    "format": "GeoJSON",
+    "modified": "2021-03-25T14:30:18",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/864ef944-a6a8-496a-b0f7-94ab37e34922/download/mli-admbnda-adm1-gov.geojson"
+   },
+   {
+    "name": "col_polbnda_adm1_tes_WGS84.json",
+    "format": "JSON",
+    "modified": "2021-03-25T15:56:32",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/ec7df11e-5b2c-4f01-b85b-dfdfa601ad9a/download/col-polbnda-adm1-tes-wgs84.json"
+   },
+   {
+    "name": "col_idp_for_map.csv",
+    "format": "CSV",
+    "modified": "2021-03-25T16:10:41",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/fb37281c-f0d1-43bd-a13d-b9cc9044dc47/download/col-idp-for-map.csv"
+   },
+   {
+    "name": "SMART 2014 Data.csv",
+    "format": "CSV",
+    "modified": "2021-03-25T16:02:03",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/f2945273-3c07-4d19-a1b5-79cd4f3f77fd/download/smart-2014-data.csv"
+   },
+   {
+    "name": "Mali Monthly National IDP and Refugee Figures  - Data.csv",
+    "format": "CSV",
+    "modified": "2021-03-25T14:11:25",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/720ebb2d-14d0-4cfb-aa15-03531dbefb1d/download/mali-monthly-national-idp-and-refugee-figures-data.csv"
+   },
+   {
+    "name": "no-of-children.csv",
+    "format": "CSV",
+    "modified": "2021-03-25T15:37:26",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/d28bae36-63c8-423c-9cbb-4e1494787ca9/download/no-of-children.csv"
+   },
+   {
+    "name": "nepal_earthquake_shake_contoursv4_low_res.geojson",
+    "format": "GeoJSON",
+    "modified": "2021-03-25T14:00:29",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/665dd302-f329-4219-870e-a0e0576985fc/download/nepal-earthquake-shake-contoursv4-low-res.geojson"
+   },
+   {
+    "name": "nepal_earthquake_shake_contoursv4.csv",
+    "format": "CSV",
+    "modified": "2021-03-25T13:47:54",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/57c0d926-e4b6-4689-912b-38cf74ad5461/download/nepal-earthquake-shake-contoursv4.csv"
+   },
+   {
+    "name": "Key Government Figures - Nepal Earthquake - 20-May-2015.csv",
+    "format": "CSV",
+    "modified": "2021-03-25T13:55:17",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/60804d36-b0b6-4d1f-9531-bf8f064497df/download/key-government-figures-nepal-earthquake-20-may-2015.csv"
+   },
+   {
+    "name": "cccm_nepal_displacement_tracking_matrix.geojson",
+    "format": "GeoJSON",
+    "modified": "2021-03-25T15:28:10",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/c7a5b4a5-ce29-484e-9f8c-581ccefba04e/download/cccm_nepal_displacement_tracking_matrix.geojson"
+   },
+   {
+    "name": "nepal_earthquake_shake_contours_val-gt-4_mapshaper25.json",
+    "format": "GeoJSON",
+    "modified": "2021-03-25T13:32:59",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/475656c7-ee1e-4cd1-a11e-fd20e397be1c/download/nepal-earthquake-shake-contours-val-gt-4-mapshaper25.json"
+   },
+   {
+    "name": "npl_adm3_mapshaper12.geojson",
+    "format": "GeoJSON",
+    "modified": "2021-03-25T15:08:20",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/b0aa9065-eadb-49ac-8c61-9ffccf4397bc/download/npl-adm3-mapshaper12.geojson"
+   },
+   {
+    "name": "3W - 15 May - Final consolidated.csv",
+    "format": "CSV",
+    "modified": "2021-03-25T14:23:53",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/7f6f7d5e-d9b5-4dfe-88bf-d24d590533a2/download/3w-15-may-final-consolidated.csv"
+   },
+   {
+    "name": "som_admbnda_adm2_undp.geojson",
+    "format": "GeoJSON",
+    "modified": "2021-03-25T12:30:00",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/07c835cd-7b47-4d76-97e0-ff0fd5cc09c5/download/som-admbnda-adm2-undp.geojson"
+   },
+   {
+    "name": "Somalia NGO Consortium Data.csv",
+    "format": "CSV",
+    "modified": "2021-03-25T15:37:56",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/d3970640-2f26-4558-85e9-5b48d22a07fc/download/somalia-ngo-consortium-data.csv"
+   },
+   {
+    "name": "afg_admbnd_adm3_pol_shp_1.json",
+    "format": "JSON",
+    "modified": "2021-03-25T15:45:34",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/dd7729d0-8cbe-4c22-851a-9499cf72cc0b/download/afg-admbnd-adm3-pol-shp-1.json"
+   },
+   {
+    "name": "gin_admn_ad2_py_ocha_prefecture_rs.json",
+    "format": "GeoJSON",
+    "modified": "2021-03-25T14:24:45",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/80dd8b0a-acf2-4e01-8fd7-52a89855597f/download/gin-admn-ad2-py-ocha-prefecture-rs.json"
+   },
+   {
+    "name": "somalia_admin_level_2.geojson",
+    "format": "GeoJSON",
+    "modified": "2021-03-25T14:31:54",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/884d95c2-8b60-4a83-8b60-1ad4f6ee0656/download/somalia-admin-level-2.geojson"
+   },
+   {
+    "name": "NEPAL_3W_14July2015_consolidated2.csv",
+    "format": "CSV",
+    "modified": "2021-03-25T13:28:27",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/42faf3b6-c4a1-4849-bce3-ccc89148b578/download/nepal-3w-14july2015-consolidated2.csv"
+   },
+   {
+    "name": "col_IDPs_ratio_2015_final.csv",
+    "format": "CSV",
+    "modified": "2021-03-25T12:48:22",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/1ace0c32-505a-4d0e-9051-2963986ea020/download/col-idps-ratio-2015-final2.csv"
+   },
+   {
+    "name": "Myanmar_adm2.geojson",
+    "format": "GeoJSON",
+    "modified": "2021-03-25T15:44:50",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/dc8da7da-59bc-4fad-98b8-9a0303b2deed/download/myanmar-adm2.geojson"
+   },
+   {
+    "name": "Myanmar_adm1.geojson",
+    "format": "GeoJSON",
+    "modified": "2021-03-25T13:51:16",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/5bce8017-a3f9-4660-8189-ec7188f8d7fd/download/myanmar-adm1.geojson"
+   },
+   {
+    "name": "cod_admbndp3_1m_rgc.json",
+    "format": "JSON",
+    "modified": "2021-03-25T13:11:53",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/30303933-fd21-4eb5-bd84-0097a0658e01/download/cod-admbndp3-1m-rgc.json"
+   },
+   {
+    "name": "SudanStatePolygon.json",
+    "format": "GeoJSON",
+    "modified": "2021-03-25T14:31:57",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/8866ccf0-b9ef-46d8-96d8-91cc040954af/download/sudanstatepolygon.json"
+   },
+   {
+    "name": "lbr_admn_ad1_py_lisgis_county.json",
+    "format": "JSON",
+    "modified": "2021-03-25T15:32:35",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/ccde7cbe-3acb-4b38-a46a-55290d68e2d1/download/lbradmnad1pylisgiscounty.json"
+   },
+   {
+    "name": "150423-3w-master-q1-2015.csv",
+    "format": "CSV",
+    "modified": "2021-03-25T13:18:24",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/37ec21a5-5784-4105-b769-d044f9f2af32/download/150423-3w-master-q1-2015.csv"
+   },
+   {
+    "name": "roea_countries.geojson",
+    "format": "GeoJSON",
+    "modified": "2021-03-25T13:15:09",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/3475bec8-4465-4e5c-be61-0b8bcb494df6/download/roeacountries.geojson"
+   },
+   {
+    "name": "DatabaseV5.0_15_10_2015for-HDX.csv",
+    "format": "CSV",
+    "modified": "2021-03-25T14:20:33",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/7c4fa251-ce6d-4c75-acb6-fb27998ab875/download/databasev5.0_15_10_2015for-hdx.csv"
+   },
+   {
+    "name": "Feature-Organizations-Data-Template.csv",
+    "format": "CSV",
+    "modified": "2016-11-29T19:42:55.963445",
+    "url": "https://docs.google.com/spreadsheets/d/1-pn1lhXcPn3jy4VG-1ot62PYoc8HSGUXyaD1yXBBIIw/export?format=csv&id=1-pn1lhXcPn3jy4VG-1ot62PYoc8HSGUXyaD1yXBBIIw&gid=0"
+   },
+   {
+    "name": "HTI_limites_haitidata.geojson",
+    "format": "GeoJSON",
+    "modified": "2021-03-25T14:45:12",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/975be9d3-4e83-43de-9759-0e91b0aa23cb/download/hti_limites_haitidata.geojson"
+   },
+   {
+    "name": "sle_adm_pu_govt_ad3chiefdom.geojson",
+    "format": "GeoJSON",
+    "modified": "2021-03-25T14:05:24",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/6c571d97-4a53-4879-b220-9226f907bad4/download/sle_adm_pu_govt_ad3chiefdom.geojson"
+   },
+   {
+    "name": "ner_admbnd1_ocha.geojson",
+    "format": "GeoJSON",
+    "modified": "2021-03-25T15:10:03",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/b2e5dac4-417f-4936-a0be-ec68f13aecaf/download/ner_admbnd1_ocha.geojson"
+   },
+   {
+    "name": "Mali Monthly National IDP and Refugee Figures  - Refugees.csv",
+    "format": "CSV",
+    "modified": "2021-03-25T15:47:15",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/df76ca26-4546-4feb-9586-3e3f01da32f1/download/mali-monthly-national-idp-and-refugee-figures-refugees.csv"
+   },
+   {
+    "name": "kenya.geojson",
+    "format": "GeoJSON",
+    "modified": "2021-03-25T13:41:31",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/51939d78-35aa-4591-9831-11e61e555130/download/kenya.geojson"
+   },
+   {
+    "name": "south_sudan.json",
+    "format": "JSON",
+    "modified": "2021-03-25T15:47:11",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/df5c977f-a738-447b-b8c2-55beb387636a/download/south_sudan.json"
+   },
+   {
+    "name": "Ethiopia_admin3_woredas.json",
+    "format": "JSON",
+    "modified": "2021-03-25T15:11:29",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/b42c8b40-fcf1-4dd0-ac75-a79ad1e1ebb1/download/ethiopia_admin3_woredas.json"
+   },
+   {
+    "name": "NXPROVINCIAS (1).json",
+    "format": "JSON",
+    "modified": "2021-03-25T14:21:30",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/7d48a629-8a0e-43f9-80f4-61f721aa65f7/download/nxprovincias-1.json"
+   },
+   {
+    "name": "tanzaniaadmin3wardsmapshaper.json",
+    "format": "JSON",
+    "modified": "2021-03-25T12:34:47",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/0cc50fe4-dbd9-47cb-8049-02975ce42354/download/tanzaniaadmin3wardsmapshaper.json"
+   },
+   {
+    "name": "Ecuador.geojson",
+    "format": "JSON",
+    "modified": "2021-03-25T14:09:03",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/6fa37b41-ad28-40a6-9641-3b4efd4dbe13/download/ecuador.geojson"
+   },
+   {
+    "name": "World_admin_0.geojson",
+    "format": "GeoJSON",
+    "modified": "2021-03-25T14:32:56",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/89d703b1-7511-47b6-acc0-e5ab6d710768/download/world_admin_0.geojson"
+   },
+   {
+    "name": "GAFCCSTVS (1).json",
+    "format": "JSON",
+    "modified": "2021-03-25T13:14:46",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/33a81485-a78c-4052-a3ad-47b0c892befa/download/gafccstvs-1.json"
+   },
+   {
+    "name": "gafccs.json",
+    "format": "JSON",
+    "modified": "2021-03-25T13:17:17",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/367677d4-2b0e-4853-835f-9cd80b53e964/download/gafccs.json"
+   },
+   {
+    "name": "nigeria_lga.json",
+    "format": "JSON",
+    "modified": "2021-03-25T14:27:23",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/83dba4b0-992f-4748-b037-4b55ecc0c3b4/download/nigeria_lga.json"
+   },
+   {
+    "name": "ecuador_admin_3.json",
+    "format": "TopoJSON",
+    "modified": "2021-03-25T14:31:06",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/87374808-0266-4761-9d73-e7e74f26e287/download/ecuador_admin_3.json"
+   },
+   {
+    "name": "HaJaBaDoM.json",
+    "format": "JSON",
+    "modified": "2021-03-25T12:42:52",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/14786e23-abca-4b16-839c-f6f88ca5a449/download/hajabadom.json"
+   },
+   {
+    "name": "hti_admnbnda_adm2_CNIGS2013.geojson",
+    "format": "GeoJSON",
+    "modified": "2021-03-25T12:39:10",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/10d8b3ff-0091-4bd9-aae1-ee0a3e1ef601/download/hti_admnbnda_adm2_cnigs2013.geojson"
+   },
+   {
+    "name": "math0.json",
+    "format": "JSON",
+    "modified": "2021-03-25T13:08:14",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/2b845c55-796d-4f13-b1d8-230af5d41357/download/math0.json"
+   },
+   {
+    "name": "mathew_2.json",
+    "format": "JSON",
+    "modified": "2021-03-25T13:24:09",
+    "url": "https://data.humdata.org/dataset/e66dbc70-17fe-4230-b9d6-855d192fc05c/resource/3e207e68-bdea-4289-b605-e95c3182ec29/download/mathew_2.json"
+   }
+  ]
+ },
+ {
+  "name": "climada-earthquake-dataset",
+  "title": "Earthquakes: Hazard Data for Disaster Risk Assessment (selected countries)",
+  "org": "ETH Z\u00fcrich - Weather and Climate Risks",
+  "modified": "2025-04-15T15:37:32.320683",
+  "url": "https://data.humdata.org/dataset/climada-earthquake-dataset",
+  "resources": [
+   {
+    "name": "admin1-summaries-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:48.863356",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/dbf9b4bd-1321-4846-b6f0-4654509d3626/download/admin1-summaries-earthquake.csv"
+   },
+   {
+    "name": "admin1-timeseries-summaries-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:49.133430",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/c0f26186-5d48-4369-a9b6-9fedda623e99/download/admin1-timeseries-summaries-earthquake.csv"
+   },
+   {
+    "name": "afghanistan-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:49.620062",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/04618b65-4dad-439f-b7c9-7dfab145be47/download/afghanistan-admin1-earthquake.csv"
+   },
+   {
+    "name": "burkina-faso-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:49.859980",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/b0b2a3bb-f337-4735-8f37-4adfb499b322/download/burkina-faso-admin1-earthquake.csv"
+   },
+   {
+    "name": "burundi-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:50.082385",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/d816f779-a802-49b1-afda-f400be00ed43/download/burundi-admin1-earthquake.csv"
+   },
+   {
+    "name": "cameroon-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:50.510349",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/d4f6eed1-02f4-4aa9-b4b8-fa6f638921dd/download/cameroon-admin1-earthquake.csv"
+   },
+   {
+    "name": "central-african-republic-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:50.814611",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/8d5e0d66-2103-4ce3-9a6f-019c7bb2ef00/download/central-african-republic-admin1-earthquake.csv"
+   },
+   {
+    "name": "chad-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:51.080940",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/27507eaa-1366-42c0-9243-39c4dd0d3d74/download/chad-admin1-earthquake.csv"
+   },
+   {
+    "name": "colombia-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:51.545306",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/158110b9-25f3-4c4b-bc1f-678e4138b8ed/download/colombia-admin1-earthquake.csv"
+   },
+   {
+    "name": "dr-congo-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:51.820719",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/c0d51e02-2065-487b-8261-ecce427b0b1b/download/dr-congo-admin1-earthquake.csv"
+   },
+   {
+    "name": "ethiopia-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:52.064283",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/de67ee9c-651f-413b-8af8-45aa19ae985c/download/ethiopia-admin1-earthquake.csv"
+   },
+   {
+    "name": "haiti-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:52.315779",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/75dcbaf5-d7d5-48ce-a0e2-8450e2813cae/download/haiti-admin1-earthquake.csv"
+   },
+   {
+    "name": "mali-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:52.874872",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/984ac6bb-fc18-4c5b-97d4-11b0ffe40dc8/download/mali-admin1-earthquake.csv"
+   },
+   {
+    "name": "mozambique-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:53.140854",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/63234e04-ceb5-4290-8b8b-85ad64527a02/download/mozambique-admin1-earthquake.csv"
+   },
+   {
+    "name": "myanmar-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:53.391200",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/45401093-802f-4caa-927d-3705d3bc2355/download/myanmar-admin1-earthquake.csv"
+   },
+   {
+    "name": "niger-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:53.617483",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/3c1c4419-1ab6-44dc-a83b-3a908dce7409/download/niger-admin1-earthquake.csv"
+   },
+   {
+    "name": "nigeria-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:53.846888",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/c66c8126-93a8-4c2f-9c62-3fe716d82aff/download/nigeria-admin1-earthquake.csv"
+   },
+   {
+    "name": "somalia-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:54.453150",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/cb17f6dd-b08b-45c4-8d8d-a718bc98f897/download/somalia-admin1-earthquake.csv"
+   },
+   {
+    "name": "south-sudan-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:54.681827",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/79ffe939-a6f7-46b9-8c64-ee9c33b901ed/download/south-sudan-admin1-earthquake.csv"
+   },
+   {
+    "name": "state-of-palestine-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:54.880891",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/12c2825e-eab8-48a8-ba23-56aa5a9c093a/download/state-of-palestine-admin1-earthquake.csv"
+   },
+   {
+    "name": "sudan-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:55.164147",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/0e213b93-9e3c-47cb-a22a-18e78ab77ddf/download/sudan-admin1-earthquake.csv"
+   },
+   {
+    "name": "syrian-arab-republic-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:55.431725",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/f558dbf5-715d-4100-b96b-2608513154bf/download/syrian-arab-republic-admin1-earthquake.csv"
+   },
+   {
+    "name": "ukraine-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:55.687410",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/29976fec-7e8c-43c9-9a70-54b17a1a476f/download/ukraine-admin1-earthquake.csv"
+   },
+   {
+    "name": "venezuela-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:56.356433",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/229a25c4-4178-4a93-beb7-cdce16661b1e/download/venezuela-admin1-earthquake.csv"
+   },
+   {
+    "name": "yemen-admin1-earthquake.csv",
+    "format": "CSV",
+    "modified": "2024-06-04T09:31:56.582824",
+    "url": "https://data.humdata.org/dataset/744f4f0b-3172-4397-9609-5ec0b9d34fcb/resource/c4cb4c8b-3dde-49e9-b3b4-905018740b08/download/yemen-admin1-earthquake.csv"
+   }
+  ]
+ },
+ {
+  "name": "gar15-global-exposure-dataset-for-colombia",
+  "title": "GAR15 Global Exposure Dataset for Colombia",
+  "org": "United Nations Office for Disaster Risk Reduction (UNDRR)",
+  "modified": "2023-05-16T04:20:35.713724",
+  "url": "https://data.humdata.org/dataset/gar15-global-exposure-dataset-for-colombia",
+  "resources": [
+   {
+    "name": "GAR15 Global Exposure Dataset for Colombia.zip",
+    "format": "SHP",
+    "modified": "2016-01-29T15:37:27.123113",
+    "url": "https://data.humdata.org/dataset/c88ae941-e3c2-4160-b49d-2d466c9b6f49/resource/e7634cd4-1fbf-4ea8-a658-a26f5e3bcdc9/download/col.zip"
+   }
+  ]
+ }
+]
